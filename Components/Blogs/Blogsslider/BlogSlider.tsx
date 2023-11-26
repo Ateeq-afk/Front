@@ -24,7 +24,7 @@ interface DataProps {
 const  BlogSlider =({ data }: { data: DataProps }) => {
   return (
     <div className="relative bg-black">
-         <h2 className="text-3xl text-white font-bold text-center py-6">
+         <h2 className="text-3xl text-white font-bold text-center md:py-6  py-3">
         Explore Our Destinations
       </h2>
       <Swiper

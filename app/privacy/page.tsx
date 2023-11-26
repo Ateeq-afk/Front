@@ -2,83 +2,206 @@
 import Footer from '@/Components/Navbar/Footer/Footer'
 import Header from '@/Components/Navbar/Header/Header'
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
-// AboutUs Component
+
+
 const page = () => {
+
   return (
     <div className='bg-black text-white flex flex-col min-h-screen'>
     <Header />
     {/* Full width container with flex-grow to push footer to the bottom */}
-    <div className='pt-10'></div>
+    <div className='pt-12'></div>
     <div className='flex-grow'>
       <motion.div initial="initial" animate="animate"  className="flex flex-col items-center justify-center px-4 py-6">
-        <h1  className="text-center text-6xl text-yellow-500 ">Privacy Policy</h1>
+        <h1  className="text-center text-6xl text-yellow-500 ">Privacy Policy
+</h1>
         <div className="pt-2 md:pt-4 mb-6">
           <hr className="border-t-2 border-white md:w-[60px] w-[30px]" />
         </div>
         {/* Centered content */}
         <motion.div className="w-full max-w-6xl mx-auto">
-                    <p className="pb-4">Welcome to Backpackers United! Your privacy is important to us, and we are committed to protecting it. This Privacy Policy outlines the types of personal information we collect, how we use it, and the measures we take to safeguard your privacy when you visit our website: https://backpackersunited.in/ (the "Website").
+        <motion.h2  className="text-2xl font-bold pb-4">Introduction</motion.h2>
+                    <p className="pb-4">Backpackers United ("we"/"our"/"us") recognizes the importance of your personal and financial information. We are committed to protecting your privacy in compliance with this policy when you use BU’s Website or App.
 </p>
-                    <p className="pb-4">By using our Website and agreeing to this Privacy Policy, you consent to the collection, use, and disclosure of your personal information in accordance with the terms outlined below.
+                    <p className="pb-4">
+
 </p>
-<motion.h2  className="text-2xl font-bold pb-4">Information We Collect :
+<motion.h2  className="text-2xl font-bold pb-4">Applicability
 </motion.h2>
-<motion.h2  className="text-2xl font-bold pb-4">Personal Information
+            <p>This policy applies to the information collected:
+
+</p>
+<p>Via the Backpackers United Website or App.
+
+
+</p>
+<p>Through electronic communication between you and Backpackers United.
+
+
+
+</p>
+<p>It does not apply to information collected by third parties linked to or accessible from our Website or App.
+
+
+
+
+</p>
+            <p>
+</p>
+<motion.h2 className="text-2xl font-bold pb-4">Consent
 </motion.h2>
-            <p>When you use our Website, we may collect personal information that you voluntarily provide, such as your name, email address, phone number, and other contact details. This may occur when you sign up for our newsletter, create an account, or make a booking.
-</p>
-<motion.h2 className="text-2xl font-bold pb-4">Non-Personal Information
+<p className="pb-4">By accessing and using our Website or App, you acknowledge and agree to this privacy policy. If you do not agree, please do not use our Website or App. If you represent another individual or entity, you confirm you have the authority to accept this policy on their behalf.</p>
+<p className="pb-4"></p>
+<motion.h2  className="text-2xl font-bold pb-4">Information Collection and Use
+
 </motion.h2>
-<p className="pb-4">We may also collect non-personal information about your visit to our Website, such as your IP address, browser type, operating system, referring website, pages viewed, and other anonymous usage data.
+<p className="pb-4">We collect various types of information, including:
 </p>
-<p className="pb-4">Full payment is required at the time of booking unless otherwise specified. We accept various payment methods, including credit cards and online payment platforms. By providing your payment information, you authorize us to charge your chosen payment method for the total amount of your booking.
+<p className="pb-4">Personal information like name, address, email, phone number, and financial details.
 </p>
-<motion.h2  className="text-2xl font-bold pb-4">Cookies
+<p className="pb-4">Non-identifying information such as geo-location, search history, and usage details.
+</p>
+
+<motion.h2  className="text-2xl font-bold pb-4">Automatic Data Collection Technologies
+
+
 </motion.h2>
-<p className="pb-4">Our Website uses cookies to enhance your browsing experience and gather information about your usage patterns. Cookies are small text files that are stored on your device. You can manage your cookie preferences through your browser settings.
-</p>
-<motion.h2  className="text-2xl font-bold pb-4">How We Use Your Information
+<p className="pb-4">We utilize technologies like cookies, flash cookies, and web beacons to collect data about your interaction with our Website or App, including details about your device and browsing patterns.</p>
+<motion.h2 className="text-2xl font-bold pb-4">Third-Party Tracking
+
 </motion.h2>
-<ul className="list-disc pl-5 pb-4">
-  <li>To provide and improve our services.</li>
-  <li>To respond to your inquiries and communicate with you.</li>
-  <li>To process transactions and bookings.</li>
-  <li>To personalize your user experience and tailor content.</li>
-  <li>To send periodic emails with news, promotions, and special offers.</li>
-  <li>To protect the security and integrity of our Website and services.</li>
-  <li>To comply with legal obligations and enforce our policies.</li>
-</ul>
-<motion.h2 className="text-2xl font-bold pb-4">Sharing and Disclosing Your Information
+<p className="pb-4">Third parties, such as advertisers or content providers, may use cookies and other tracking technologies to collect information about you when using our Website or App. We do not control these third-party technologies.
+
+</p>
+<motion.h2  className="text-2xl font-bold pb-4">Usage of Information
+
 </motion.h2>
-<p className="pb-4">We do not sell, trade, or rent your personal information to third parties. However, we may share your information with trusted third-party service providers to perform functions and provide services on our behalf, such as payment processing, marketing, and analytics. These third parties are bound by confidentiality agreements and are only permitted to use your information for the specific purposes outlined in this Privacy Policy.
+<p className="pb-4">We use your information to:
+
+
 </p>
-<motion.h2  className="text-2xl font-bold pb-4">Security
+<p className="pb-4">Provide and improve our Website or App services.
+
+
+
+</p>
+<p className="pb-4">Offer personalized content.
+
+
+
+
+</p>
+<p className="pb-4">Communicate with you about our products and services.
+
+
+
+
+
+</p>
+<motion.h2  className="text-2xl font-bold pb-4">Disclosure of Information
+
+
+
+
 </motion.h2>
-<p className="pb-4">We take reasonable precautions to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, please note that no method of electronic transmission or storage is 100% secure, and we cannot guarantee absolute security.
+<p className="pb-4">We may share your information with service providers, business partners, or in the event of a business transfer. We may also share information for legal compliance, enforcing our terms, and protecting Backpackers United and its partners.
+
+
+
 </p>
-<motion.h2  className="text-2xl font-bold pb-4">Changes to This Privacy Policy
+<motion.h2  className="text-2xl font-bold pb-4">Choices and Control
+
+
+
+
+
 </motion.h2>
-<p className="pb-4">We may update this Privacy Policy from time to time. Any changes will be effective when we post the updated policy on our Website. Your continued use of our Website after we post any modifications to the Privacy Policy will constitute your acceptance of those changes.
+<p className="pb-4">You have control over your information, including options to refuse cookies and opt out of receiving promotional offers from us.
+
+
 </p>
-<motion.h2  className="text-2xl font-bold pb-4">Contact Us
+<motion.h2  className="text-2xl font-bold pb-4">Access and Correction
+
+
+
+
+
 </motion.h2>
-<p className="pb-4">If you have any questions or concerns about this Privacy Policy or our privacy practices, please contact us at:
+<p className="pb-4">You can review and modify your personal information through your account profile. We may not delete information if it requires deleting your account.
 </p>
-<p className="pb-4">Backpackers United
+<motion.h2  className="text-2xl font-bold pb-4">Data Security
+
+
+
+
+
+
+
+</motion.h2>
+<p className="pb-4">We implement measures to protect your data, but no system is entirely secure. We are not liable for unauthorized access to your account.
+
+
+
+
 </p>
-<p className="pb-4">#817 Ground Floor, 10 A main, Indiranagar 1st Stage, Bengaluru- 560038
+<motion.h2  className="text-2xl font-bold pb-4">Changes to the Policy
+
+
+
+
+
+
+
+
+</motion.h2>
+<p className="pb-4">We may update this policy, and changes will be posted on this page. You are responsible for periodically reviewing the policy.
+
 </p>
-<p className="pb-4">Phone Number(s) : +91 83101 80586
+<motion.h2  className="text-2xl font-bold pb-4">Use by Minors
+
+</motion.h2>
+<p className="pb-4">Our Website and App are not intended for minors. Parents or guardians should supervise minors using our services.
+
+
+
 </p>
-<p className="pb-4">info@backpackersunited.in
+<motion.h2  className="text-2xl font-bold pb-4">Account Closure and Contact Information
+
+
+</motion.h2>
+<p className="pb-4">To close your account or inquire about our privacy practices, contact us at info@backpackersunited.in or at our postal address.
+
 </p>
-<p className="pb-4">Thank you for trusting Backpackers United with your personal information. We are committed to ensuring your privacy and providing a secure and enjoyable experience on our Website.
+<motion.h2  className="text-2xl font-bold pb-4">Governing Law and Dispute Resolution
+
+
+</motion.h2>
+<p className="pb-4">Disputes relating to this policy will be governed by Indian law and resolved through arbitration in Bangalore, India.</p>
+<motion.h2  className="text-2xl font-bold pb-4">Final Statement
+
+
+
+</motion.h2>
+<p className="pb-4">Backpackers United is dedicated to safeguarding your privacy and ensuring your personal information is protected. This policy is effective upon your acceptance and continued use of our Website or App signifies agreement with its terms.
+
+
 </p>
-<Link href="/contact">
-              <div className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Join Our Adventures</div>
-            </Link>
+<motion.h2  className="text-2xl font-bold pb-4">
+
+
+
+</motion.h2>
+<p className="pb-4">
+</p>
+       
+       
+        
           </motion.div>
+      
+    
+    
       </motion.div>
       </div>
       <Footer />

@@ -22,11 +22,11 @@ const SignUp = () => {
         <div className="container">
           <div className="flex justify-center">
             <div className="w-11/12 sm:w-2/3 lg:w-[34rem]">
-              <div className="p-12 bg-black text-white shadow-md rounded-lg">
+              <div className="md:p-12 p-6 bg-black text-white shadow-md rounded-lg">
 
                 {/* <SignUpForm /> */}
                 <SignUpForm />
-                <div className="mt-8">
+                <div className="md:mt-8 mt-4">
                   <div className="text-center">or sign in with</div>
                 </div>
       <Googlelogin />

@@ -43,7 +43,7 @@ const Googlelogin = () => {
         // localStorage.setItem('token', res.data.token);
   
         // Navigate to home page or dashboard
-        await router.push('/user');
+        await router.push('/');
       } catch (err) {
         setLoading(false);
         toast.error("Invalid Credentials ", {
@@ -66,7 +66,7 @@ const Googlelogin = () => {
     <div className="w-[20rem] mt-4  ">
 <button onClick={() => signInWithGoogle()} className="w-full border  text-black py-2 rounded-lg flex items-center justify-center bg-gray-300 ">
 <Image src="/signup/glogo.png" alt="google logo" width={30} height={30} className="pr-2"/>
-Sigin with Google Account
+Sign In with Google Account
 </button>
 </div>
 </div>

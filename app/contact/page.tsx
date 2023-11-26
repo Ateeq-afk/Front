@@ -19,7 +19,7 @@ declare global {
 const Page = () => {
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAgEHDqe4d1MYTGZRu5UZ2YUUIfMRv9GSM&callback=initMap';
         script.async = true;
         script.defer = true;
         script.onload = function () {
@@ -42,7 +42,7 @@ const Page = () => {
           <motion.div 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
-            className="flex-grow container mx-auto px-4 py-12 md:py-24"
+            className="flex-grow container mx-auto px-4 py-24"
           >
               <motion.h1
                   initial={{ y: -50 }}
@@ -72,7 +72,7 @@ const Page = () => {
                               <p className="text-white">For questions about our products, group bookings, or special requests, please reach out to our sales team.</p>
                               <p className="text-white">
                                   Email: <a href="mailto:info@backpackersunited.in" className="hover:text-yellow-500">info@backpackersunited.in</a><br />
-                                  Phone: <a href="tel:+918310180586" className="hover:text-yellow-500">+91 8310180586</a>
+                                  Phone: <a href="tel:+919364099494" className="hover:text-yellow-500">+91 9364099494</a>
                               </p>
                           </div>
                           <div>
@@ -80,7 +80,7 @@ const Page = () => {
                               <p className="text-white">For questions about our products, group bookings, exclusive travel pass or special requests, please reach out to our sales team.</p>
                               <p className="text-white">
                                   Email: <a href="mailto:info@backpackersunited.in" className="hover:text-yellow-500">info@backpackersunited.in</a><br />
-                                  Phone: <a href="tel:+919364099494" className="hover:text-yellow-500">+91 9364099494</a>
+                                  Phone: <a href="tel:+918310180586" className="hover:text-yellow-500">+91 8310180586</a>
                               </p>
                           </div>
                           <div>

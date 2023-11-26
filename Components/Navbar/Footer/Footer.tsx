@@ -19,7 +19,7 @@ const sections = [
     title: 'QUICK LINKS',
     links: [
       { text: 'Destinations', url: '/destinations' },
-      { text: 'Book a Trip', url: '/destinations' },
+      { text: 'Blogs', url: '/blogs' },
       { text: 'International Trip', url: '/destinations' },
     ],
   },
@@ -97,14 +97,14 @@ const Footer = () => {
         {sections.map((section, index) => (
   <motion.div key={section.title} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }} className="flex flex-col md:items-center md:mb-8 mb-4 md:space-y-2 space-y-0">
     <h2 className="font-semibold md:text-xl text-lg ">{section.title}</h2>
-    <div className="flex justify-center pb-2">
-        <hr className="border-t-2 border-yellow-500 md:w-[30PX] w-[10px]" />
+    <div className="flex md:justify-center pb-2">
+        <hr className="border-t-2 border-yellow-500 md:w-[30PX] w-[10px] mt-2" />
       </div>
     <ul className="flex flex-col md:items-center md:space-y-2 space-y-0 mt-1">
       {section.links.map((link) => (
         <motion.li key={link.text} className="relative group hover:text-yellow-500" whileHover={{ y: -4, scale: 1.05 }}>
           <Link href={link.url} className="relative z-10  text-xs md:text-base">{link.text}</Link>
-          <motion.div className="absolute h-[2px] bg-yellow-500 left-0 right-0 bottom-0 opacity-0 transform -translate-x-full group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
+          <motion.div className="absolute h-[2px] md:w-full w-[60px] bg-yellow-500 left-0 right-0 bottom-0 opacity-0 transform -translate-x-full group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
@@ -129,7 +129,7 @@ const Footer = () => {
     ></motion.div> 
   </div></Link>
   <Link href="mailto:info@backpackersunited.in" className="hover:text-yellow-500">
-  <div className="flex flex-col items-center  relative group md:p-1">
+  <div className="flex flex-col md:items-left  relative group p-1">
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }} className="flex items-center md:space-x-3 space-x-1 z-10">
       <FontAwesomeIcon icon={faEnvelope} className="text-white group-hover:text-black" />
       <div className="text-xs md:text-lg group-hover:text-black relative" >info@backpackersunited.in</div>

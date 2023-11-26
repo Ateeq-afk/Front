@@ -2,7 +2,7 @@ const teamMembers = [
     {
       name: 'Habeeb Ul Haq',
       designation: 'CEO & Founder',
-      photoUrl: 'https://imgtr.ee/images/2023/11/02/73f4d0db7dbcff2cbc04dc25bd47d343.th.jpeg'
+      photoUrl: '/profile/habeeb.jpeg'
     },
     {
         name: 'R Ashwin Kumar',
@@ -52,22 +52,22 @@ const teamMembers = [
       {
         name: 'Pramod',
         designation: 'Outdoor Lead Manager',
-        photoUrl: 'https://imgtr.ee/images/2023/11/02/f4ff1be7d7d4868f68f3ac9be453287c.th.jpeg'
+        photoUrl: '/profile/pramod.jpeg'
       },
       {
         name: 'Bharath M',
         designation: 'Outdoor Lead Manager',
-        photoUrl: 'https://imgtr.ee/images/2023/11/02/5591f97fcdff7e41e3e128054337d124.th.jpeg'
+        photoUrl: '/profile/bharath.jpeg'
       },
       {
         name: 'Saad Adnan',
         designation: 'Accounts',
-        photoUrl: 'https://imgtr.ee/images/2023/11/02/04246e04c2161fe29055555bd6f81966.th.jpeg'
+        photoUrl: '/profile/saad.jpeg'
       },
       {
         name: 'Shreekanth G',
         designation: 'Operations',
-        photoUrl: 'https://imgtr.ee/images/2023/11/02/b3e9269d3c2bede3fe000a6bfcf3817a.th.jpeg'
+        photoUrl: '/profile/sree.jpeg'
       },
     {
       name: 'Abhinandan M Kumar',

@@ -69,7 +69,7 @@ const Popular = () => {
             <motion.div
             whileHover={{ scale: 1.05 }}
             className="col-span-1 md:col-span-2 relative overflow-hidden w-full rounded-lg md:h-[240px] h-[155px]"
-          > <Link href="/destinations/kashmir" >  
+          > <Link href="/destinations/srinagar" >  
             <Image
               src='/home/Kashmir.webp'
               alt="KASHMIR"
@@ -78,7 +78,7 @@ const Popular = () => {
             />
            <div className="absolute inset-0 bg-gradient-to-b  from-black to-transparent opacity-50"></div>
           {/* Text at top left */}
-          <div className="absolute md:top-5 md:left-5 md:text-xl text-lg top-2 left-2 text-white">KASHMIR
+          <div className="absolute md:top-5 md:left-5 md:text-xl text-lg top-2 left-2 text-white">SRINAGAR
           <hr className="border-t-2 border-yellow-500 md:w-[60PX] w-[30px]" /></div>
           </Link>
         </motion.div>
@@ -89,7 +89,7 @@ const Popular = () => {
             className="row-span-2 md:row-span-1 relative overflow-hidden w-full rounded-lg md:h-[155px] h-[155px]"
           > <Link href="/destinations/kodaikanal" >  
             <Image
-              src='/home/kodaikanal.webp'
+              src='/home/Kodaikanal.webp'
               alt="KODAIKANAL"
               layout="fill"
               objectFit="cover"
@@ -160,7 +160,7 @@ const Popular = () => {
       <motion.div
             whileHover={{ scale: 1.05 }}
             className="relative overflow-hidden w-full rounded-lg md:h-40 h-52"
-          > <Link href="/destinations/andaman" >  
+          > <Link href="/destinations/thailand" >  
             <Image
               src='/home/ANDAMAN.jpg'
               alt="ANDAMAN"
@@ -169,7 +169,7 @@ const Popular = () => {
             />
         <div className="absolute inset-0 bg-gradient-to-b  from-black to-transparent opacity-50"></div>
           {/* Text at top left */}
-          <div className="absolute md:top-5 md:left-5 md:text-xl text-lg top-2 left-2 text-white">ANDAMAN AND NICOBAR ISLAND
+          <div className="absolute md:top-5 md:left-5 md:text-xl text-lg top-2 left-2 text-white">THAILAND
           <hr className="border-t-2 border-yellow-500 md:w-[60PX] w-[30px]" /></div>
           </Link>
       </motion.div>

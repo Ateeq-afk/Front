@@ -27,9 +27,9 @@ const Hero = () => {
   const fetchData = async () => {
     try {
       // Fetching treks, tours, and destinations
-      const trekResponse = await fetch('http://localhost:4000/trek/trek');
-      const tourResponse = await fetch('http://localhost:4000/trek/tour');
-      const destinationResponse = await fetch('http://localhost:4000/dest');
+      const trekResponse = await fetch('https://launch-api1.vercel.app/trek/trek');
+      const tourResponse = await fetch('https://launch-api1.vercel.app/trek/tour');
+      const destinationResponse = await fetch('https://launch-api1.vercel.app/dest');
   
       // Assuming all responses are in the correct format
       const treks = await trekResponse.json();

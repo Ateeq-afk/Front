@@ -1,8 +1,7 @@
 {
-  "/not-found": "app/not-found.js",
-  "/tours/page": "app/tours/page.js",
+  "/page": "app/page.js",
+  "/login/page": "app/login/page.js",
   "/treks/page": "app/treks/page.js",
   "/trek/[name]/page": "app/trek/[name]/page.js",
-  "/travel-pass/book/page": "app/travel-pass/book/page.js",
-  "/destinations/page": "app/destinations/page.js"
+  "/tour/[name]/page": "app/tour/[name]/page.js"
 }

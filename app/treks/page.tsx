@@ -32,9 +32,9 @@ const [searchInput, setSearchInput] = useState('');
 
   const fetchData = async () => {
       try {
-          const trekResponse = await fetch('http://localhost:4000/trek/trek');
-          const tourResponse = await fetch('http://localhost:4000/trek/tour');
-          const destinationResponse = await fetch('http://localhost:4000/dest');
+          const trekResponse = await fetch('https://launch-api1.vercel.app/trek/trek');
+          const tourResponse = await fetch('https://launch-api1.vercel.app/trek/tour');
+          const destinationResponse = await fetch('https://launch-api1.vercel.app/dest');
 
           const treks = await trekResponse.json();
           const tours = await tourResponse.json();
@@ -130,6 +130,7 @@ useEffect(() => {
           objectFit="cover"  // This will cover the entire div area
           quality={100}
         />
+           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent"></div>
       </div>
       {/* <div className='relative h-[50vh] text-white font-bold text-center flex flex-col justify-center items-center  border-t-2 border-b-2 border-gray-700'> */}
       <div className='relative z-10 w-[80%] flex flex-col justify-center items-center'>

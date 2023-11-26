@@ -52,7 +52,7 @@ const LoginForm = () => {
                       progress: undefined,
                       theme: "dark",
                       })
-                      router.push('/user');
+                      router.push('/');
               }
         } catch (err) {
           

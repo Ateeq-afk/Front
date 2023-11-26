@@ -8,6 +8,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import AccordionItem from '@/Components/Member/Accordian/Accordianitem';
 import Footer from '@/Components/Navbar/Footer/Footer';
 import Header from '@/Components/Navbar/Header/Header';
+import Link from 'next/link';
 
 interface FormData {
     title: string;
@@ -72,11 +73,11 @@ const expiringDate = formatDate(today);
 
     if (name === 'passtype') {
         if (value === 'Trek Pass') {
-          setMembershipPrice(1); // Updated Trek Pass price
+          setMembershipPrice(12000); // Updated Trek Pass price
         } else if (value === 'Tour Pass') {
           setMembershipPrice(21000); // Updated Tour Pass price
         } else {
-          setMembershipPrice(9999);
+          setMembershipPrice(0);
         }
       }
       
@@ -183,18 +184,20 @@ console.log("hey charlie")
 
     <>
    <Header />
-      <div className="container mx-auto p-8 bg-black">
+   <div className='md:pt-20 pt-14 bg-black'></div>
+   <div className='w-full bg-black'>
+   <div className="container mx-auto md:p-8 p-2">
         <div >
           {/* Guest Details Section  onSubmit={initiateAndPayMembership} */}
           <form onSubmit={handleSubmit} className="flex flex-col md:flex-row">
-          <div className="md:w-2/3 p-4">
-  <div className="bg-gray-400 p-6 shadow rounded-lg mb-4">
-    <h2 className="text-xl font-bold text-black mb-4">Traveller's Details</h2>
+          <div id="targetDiv"  className="md:w-2/3 md:p-4 py-4 px-2 pb-0">
+  <div className="bg-white md:p-6 p-4 shadow rounded-lg mb-4">
+    <h2 className="text-xl font-bold text-yellow-500 mb-4">Traveller's Details</h2>
 
   
       {/* Title Field */}
       <div className="mb-4 md:mb-0 md:col-span-2">
-  <label htmlFor="title" className="block  mt-2 text-sm font-medium text-gray-800">
+  <label htmlFor="title" className="block  mt-2 text-sm font-medium text-black">
     Title
   </label>
   <select
@@ -202,7 +205,7 @@ console.log("hey charlie")
     name="title"
     value={formData.title}
     onChange={handleChange}
-    className="bg-white border border-gray-600 text-black sm:text-sm rounded-lg  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2 mr-2"
+    className="bg-gray-300 border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
     required
   >
     <option value="">Select...</option>
@@ -217,7 +220,7 @@ console.log("hey charlie")
       {/* First Name Field */}
       <div className='flex flex-row gap-4'>
       <div className="mb-4 md:mb-0 w-1/2 ">
-        <label htmlFor="firstName" className="block mt-2 text-sm font-medium text-gray-800">
+        <label htmlFor="firstName" className="block mt-2 text-sm font-medium text-black ">
           First Name
         </label>
         <input
@@ -226,14 +229,14 @@ console.log("hey charlie")
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
-          className="bg-white border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
+          className="bg-grey-300 border border-gray-600 text-white  sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
           required
         />
       </div>
 
       {/* Last Name Field */}
       <div className="mb-4 md:mb-0 w-1/2 ">
-        <label htmlFor="lastName" className="block  mt-2text-sm font-medium text-gray-800">
+        <label htmlFor="lastName" className="block  mt-2 text-sm font-medium text-black ">
           Last Name
         </label>
         <input
@@ -252,7 +255,7 @@ console.log("hey charlie")
       <div className="flex flex-col md:flex-row gap-4">
         {/* Email Field */}
         <div className="flex-1">
-          <label htmlFor="email" className="block  mt-2 text-sm font-medium text-gray-800">
+          <label htmlFor="email" className="block  mt-2 text-sm font-medium text-black">
             Email
           </label>
           <input
@@ -261,14 +264,14 @@ console.log("hey charlie")
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="bg-white border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
+            className="bg-white border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
             required
           />
         </div>
 
         {/* Phone Number Field */}
         <div className="flex-1">
-          <label htmlFor="phonenumber" className="block  mt-2 text-sm font-medium text-gray-800">
+          <label htmlFor="phonenumber" className="block  mt-2 text-sm font-medium text-black">
             Phone Number
           </label>
           <input
@@ -277,7 +280,7 @@ console.log("hey charlie")
             name="phonenumber"
             value={formData.phonenumber}
             onChange={handleChange}
-            className="bg-white border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
+            className="bg-grey-500 border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
             required
           />
         </div>
@@ -291,7 +294,7 @@ console.log("hey charlie")
            
           {/* Membership Cards Section */}
         {/* Membership Cards Section */}
-            <div className="bg-white p-8">
+            <div className="bg-white p-8 hidden md:block">
             <div className='flex flex-col items-center justify-center'>
     <h2 className="text-3xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
     <hr className="border-t-2 border-yellow-500 w-16 mb-10" /> {/* Fixed width for all viewports */}
@@ -299,11 +302,12 @@ console.log("hey charlie")
               <div className="flex gap-4">
                 <div className="w-full md:w-1/2 pr-2">
                   <div className='font-bold text-lg mb-2 text-center'>TREK PASS</div>
-              <div className='text-justify words-break'> Unlock the world of adventure with our exclusive Trek Pass. Embark on thrilling journeys through breathtaking landscapes, conquer challenging trails, and immerse yourself in the beauty of nature. The Trek Pass is your ticket to unforgettable trekking experiences, connecting you with the essence of exploration. Plus, enjoy the flexibility to choose 6 treks worth RS 24,000 from a selection of 20 treks, all at a 50% discount, ensuring you get the most out of your adventure-packed journey.
-              </div> 
+              <div className='text-justify words-break'>Unlock the world of adventure with our exclusive Trek Pass. Embark on thrilling journeys through breathtaking landscapes, conquer challenging trails, and immerse yourself in the beauty of nature. The Trek Pass is your ticket to unforgettable trekking experiences, connecting you with the essence of exploration. Plus, enjoy the flexibility to choose 6 treks worth RS 24,000 from a selection of 20 treks, all at a 50% discount, ensuring you get the most out of your adventure-packed journey. Each trek blends cultural encounters and enriching every step.</div> 
               <div className="text-center">
     <button className="bg-yellow-500  text-white font-bold py-2 px-4 mt-4 rounded">
+    <Link href="#targetDiv" className="text-white">
       AVAIL PASS
+</Link>
     </button>
   </div>
                 </div>
@@ -314,7 +318,9 @@ console.log("hey charlie")
               </div> 
               <div className="text-center">
     <button className="bg-yellow-500  text-white font-bold py-2 px-4 mt-4 rounded">
+    <Link href="#targetDiv" className="text-white">
       AVAIL PASS
+</Link>
     </button>
   </div>
                 </div>
@@ -324,7 +330,7 @@ console.log("hey charlie")
           </div>
 
           {/* ... (other sections) */}
-                  
+                  <div className='mt-5 hidden md:block'>
           <AccordionItem
   title="Terms of Conditions "
   points={[
@@ -347,10 +353,10 @@ console.log("hey charlie")
   points={[
     "Refunds are not available once the Pass has been purchased.  ",
     "In exceptional circumstances, such as medical emergencies, passholders may request a deferral to the next month. Approval is at the discretion of Backpackers United.   ",
-    "Lost or Stolen Passes: In the event of a lost or stolen Pass, passholders must report it immediately to Backpackers United. A replacement Pass may be issued for a fee, and the original Pass will be deactivated to prevent unauthorized use. "
+    
   ]}
 />
-
+</div>
 
        {/* Room Options Section */}
             {/* ... */}
@@ -359,12 +365,11 @@ console.log("hey charlie")
 
           {/* Summary Section */}
                {/* Summary Section */}
-               <div className="md:w-1/3 p-4">
+               <div className="md:w-1/3 md:p-4 p-4 px-2 pt-0">
   {/* Summary Section */}
-  <div className="bg-gray-400 shadow rounded-lg p-6 text-black">
+  <div className="bg-white shadow rounded-lg p-6 text-black">
               <div className="flex justify-between items-center">
-                <h2 className="text-xl font-bold">SUMMARY</h2>
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <h2 className="text-xl text-yellow-500 font-bold">SUMMARY</h2>
                 <button  className="text-yellow-300 hover:text-yellow-200"></button>
               </div>
 
@@ -378,7 +383,7 @@ console.log("hey charlie")
                   name="passtype"
                   value={formData.passtype}
                   onChange={handleChange}
-                  className="bg-gray-700 border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                  className="bg-gray-300 border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                   required
                 >
                   <option value="">Select...</option>
@@ -389,7 +394,7 @@ console.log("hey charlie")
 
               <div className="mt-4">
                 <div className="flex justify-between">
-                  <span className="font-medium">BACKPACKER</span>
+                  <span className="font-medium">THE UNITED PASS</span>
                   <span>₹{membershipPrice.toFixed(2)}</span>
                 </div>
                 <div className="text-sm">valid till: {expiringDate}</div>
@@ -417,27 +422,30 @@ console.log("hey charlie")
                 <div className="flex items-center mb-2">
                   <input id="confirmation" type="checkbox" className="w-4 h-4 text-blue-600 rounded" required />
                   <label htmlFor="confirmation" className="ml-2 text-sm">
-                    Yes, I confirm all the guests are above 18 years old.
+                    Yes, I confirm all the travellers are above 18 years old.
                   </label>
                 </div>
                 <div className="flex items-center">
                   <input id="policies" type="checkbox" className="w-4 h-4 text-blue-600 rounded" required />
                   <label htmlFor="policies" className="ml-2 text-sm">
-                    I acknowledge and accept all the Membership Enrollment Policies, Terms & Conditions, and Cancellation Policies.
+                    I acknowledge and accept all the Terms & Conditions and Cancellation Policies.
                   </label>
                 </div>
               </div>
 
-              <button className="w-full bg-yellow-500 text-white p-3 rounded-lg font-semibold hover:bg-yellow-600" type='submit' >
+              <button className="w-full bg-yellow-500 text-white p-3 rounded-lg font-semibold hover:bg-yellow-600 mt-2" type='submit' >
                 Unlock Travel Pass
               </button>
+              <div className="text-sm text-gray-500 mt-2" >
+          <p>For more information, please dont hesitate to give us a call at <a href="tel:+919364099494" className='text-yellow-500 font-bold hover:underline '>+91 93640-99494</a></p>
+      </div>
             </div>
           
-            <div className="bg-gray-400 p-6 rounded-lg shadow-md text-grey-800 mt-4">
-            <h2 className="text-lg font-semibold mb-4 border-b border-gray-600 pb-2 text-black">
+            <div className="bg-white p-6 rounded-lg shadow-md text-grey-800 mt-4">
+            <h2 className="text-lg font-semibold mb-4 border-b border-gray-600 pb-2 text-yellow-500">
             Pass Details:
     </h2>
-    <ul className="list-disc">
+    <ul className="list-disc pl-1">
   <li className="mb-2">
     <span className="block font-medium">
     The United Travel Pass 2023 offers a semi-annual trekking and backpacking experience priced at ₹12,000 and ₹21,000, respectively, plus a 5% GST.
@@ -499,10 +507,72 @@ console.log("hey charlie")
   </div>
           </div>
           </form>
+          <div className="bg-white p-4 px-3 md:hidden block mx-2">
+            <div className='flex flex-col items-center justify-center'>
+    <h2 className="md:text-3xl text-2xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
+    <hr className="border-t-2 border-yellow-500 w-16 mb-5" /> {/* Fixed width for all viewports */}
+</div>
+              <div className="flex flex-col gap-4">
+                <div className="w-full md:w-1/2 pr-2">
+                  <div className='font-bold text-lg mb-2 text-center'>TREK PASS</div>
+              <div className='text-justify words-break'>Unlock the world of adventure with our exclusive Trek Pass. Embark on thrilling journeys through breathtaking landscapes, conquer challenging trails, and immerse yourself in the beauty of nature. The Trek Pass is your ticket to unforgettable trekking experiences, connecting you with the essence of exploration. Plus, enjoy the flexibility to choose 6 treks worth RS 24,000 from a selection of 20 treks, all at a 50% discount, ensuring you get the most out of your adventure-packed journey. Each trek blends cultural encounters and enriching every step.</div> 
+              <div className="text-center">
+    <button className="bg-yellow-500  text-white font-bold py-2 px-4 mt-4 rounded">
+    <Link href="#targetDiv" className="text-white">
+      AVAIL PASS
+</Link>
+    </button>
+  </div>
+                </div>
+                <div className="w-full md:w-1/2">
+                <div className="w-full  pr-2">
+                  <div className='font-bold text-lg mb-2 text-center'>TOUR PASS</div>
+              <div className='text-justify words-break'> Embark on a journey with our exclusive Tour Pass. Immerse yourself in extraordinary travel experiences, from uncovering hidden gems in various destinations to savoring the flavors of diverse cuisines. The Tour Pass opens up a world of exploration, giving you the chance to create memories and connections with our community. Customize your adventure by selecting 6 tours worth RS 42,000 from a diverse array of 20 destinations, all available at flat 50% discounted rate. Make your travels amazing friends as you explore with us, one exciting adventure at a time.
+              </div> 
+              <div className="text-center">
+    <button className="bg-yellow-500  text-white font-bold py-2 px-4 mt-4 rounded">
+    <Link href="#targetDiv" className="text-white">
+      AVAIL PASS
+</Link>
+    </button>
+  </div>
+                </div>
+                </div>
+              </div>
+            {/* ... (other sections) */}
+          </div>
+          <div className='mt-5 md:hidden block px-2'>
+          <AccordionItem
+  title="Terms of Conditions "
+  points={[
+    "Passholders must read and agree to the terms and conditions before purchasing the United Trek or Tour Pass.    ",
+    "Passholders are responsible for their own safety during treks/tours and must adhere to safety guidelines provided by Backpackers United.    ",
+    "Passholders should inform Backpackers United of any health conditions or special requirements that may affect their participation in treks. ",
+    "Changes to Itinerary: Backpackers United reserves the right to make changes to the trek itineraries due to unforeseen circumstances such as weather conditions, natural disasters, or other safety concerns.",
+    "Liability Disclaimer: Backpackers United is not liable for any injury, loss, or damage to personal property that may occur during treks/tours. Passholders participate in treks/tours at their own risk, and Backpackers United is not responsible for any accidents or injuries. ",
+    "Passholder Conduct: Passholders are expected to behave responsibly and respectfully towards fellow trekkers/travelers, guides, and the environment. ",
+    "Promotional Materials: Backpackers United reserves the right to use photographs, videos, or testimonials featuring passholders for promotional purposes on its website, social media, or other marketing materials.   ",
+     "Pass Revocation: Backpackers United reserves the right to revoke the Pass at any time if a passholder is found to be in violation of these terms and conditions. ",
+     "Changes to Terms and Conditions: Backpackers United reserves the right to modify these terms and conditions at any time. Passholders will be notified of changes, and continued use of the Pass constitutes acceptance of the updated terms. ",
+     "Force Majeure: Backpackers United is not liable for any failure to perform its obligations under these terms and conditions due to unforeseen circumstances beyond its control, including but not limited to acts of God, war, terrorism, or government regulations. ",
+
+
+  ]}
+/>
+<AccordionItem
+  title="Cancellation Policies"
+  points={[
+    "Refunds are not available once the Pass has been purchased.  ",
+    "In exceptional circumstances, such as medical emergencies, passholders may request a deferral to the next month. Approval is at the discretion of Backpackers United.   ",
+    
+  ]}
+/>
+</div>
             {/* SignUpSection */}
   
 
         </div>
+      </div>
       </div>
       <Footer />
     </>

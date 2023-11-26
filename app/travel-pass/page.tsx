@@ -341,13 +341,19 @@ const displayLimit = isMobile ? 5 : treks.length;
     </div>
   </div>
   <div className="flex justify-around mt-6">
-    <button className="px-6 py-2 bg-yellow-500 text-black font-semibold rounded-full border-2 border-yellow-500 hover:bg-black hover:text-yellow-500 hover:border-yellow-500 transition duration-300" onClick={() => setShowEnquiry(true)}>
+  <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }} className="px-6 py-2  font-semibold rounded-full border border-yellow-500  text-black  " onClick={() => setShowEnquiry(true)}>
       Send Enquiry
-    </button>
+    </motion.button>
   
-  <Link href='/travel-pass/book'> <button className="px-6 py-2 bg-yellow-500 text-black font-semibold rounded-full border-2 border-yellow-500 hover:bg-black hover:text-yellow-500 hover:border-yellow-500 transition duration-300">
+  <Link href='/travel-pass/book'>   <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }} className="px-6 py-2  font-semibold rounded-full border border-yellow-500  text-black">
       Avail Now
-    </button></Link> 
+    </motion.button></Link> 
   </div>
   
   </div>
@@ -405,7 +411,7 @@ const displayLimit = isMobile ? 5 : treks.length;
   {/* Make sure to replace < /> with the actual Faq component call and pass the necessary props */}
   {/* <Faq faqItems={faqItems} /> */}
   <div ref={topOfTreksListRef} className="treks-section">
-  <div className="relative text-white text-center py-12" style={{ background: 'linear-gradient(to right, #7b4397, #dc2430)' }}>
+  <div className="relative text-white text-center py-12" style={{ background: 'linear-gradient(to right, #662D8C, #ED1E79)' }}>
   {/* Title */}
   <h1 className="md:text-4xl text-3xl font-bold mb-6">TREK PASS</h1>
   <h2 className="md:text-2xl text-xl font-semibold mb-8">20 TREKS TO CHOOSE FROM </h2>
@@ -416,7 +422,7 @@ const displayLimit = isMobile ? 5 : treks.length;
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
           {displayedTreks.map((trek, index) => (
             <div key={index} className="bg-white bg-opacity-20 rounded-full px-6 h-[60px] flex justify-center items-center">
-              <Link href={`/treks/${trek.replace(/\s+/g, '-').toLowerCase()}`}>
+              <Link href={`/trek/${trek.replace(/\s+/g, '-').toLowerCase()}`}>
                 <div className="hover:text-gray-300">{trek}</div>
               </Link>
             </div>
@@ -439,7 +445,7 @@ const displayLimit = isMobile ? 5 : treks.length;
   {/* Tours grid */}
   <div ref={topOfToursListRef} className="tours-section">
   <div className="relative text-white text-center py-12"
-  style={{ background: 'linear-gradient(to right, #0000FF, #00FF00)' }}>
+  style={{ background: 'linear-gradient(to right, #2E3192, #00CDAC)' }}>
   {/* Title */}
   
   <h1 className="md:text-4xl text-3xl font-bold mb-6">TOUR PASS </h1>
@@ -450,7 +456,7 @@ const displayLimit = isMobile ? 5 : treks.length;
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
           {displayedTours.map((tour, index) => (
             <div key={index} className="bg-white bg-opacity-20 rounded-full px-6 h-[60px] flex justify-center items-center">
-              <Link href={`/tours/${tour.replace(/\s+/g, '-').toLowerCase()}`}>
+              <Link href={`/tour/${tour.replace(/\s+/g, '-').toLowerCase()}`}>
                 <div className="hover:text-gray-300">{tour}</div>
               </Link>
             </div>

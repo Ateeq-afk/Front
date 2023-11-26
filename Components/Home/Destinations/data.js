@@ -37,13 +37,13 @@ export const destinations2 = [
     },
     {
       id: 7,
-      city: "SriLanka",
+      city: "Sri Lanka",
       img: "/destination/srilanka.jpg",
       url:"sri-lanka"
     },
     {
       id: 7,
-      city: "Veitnsm",
+      city: "Vietnam",
       img: "/destination/vietnam.jpg",
       url:"vietnam"
     },

@@ -82,10 +82,10 @@ const page : FC <PageProps> = ({ params })=> {
     <>
      <div className='bg-black w-full'>
       <Header />
-     <div className="flex  pt-20">
-       <div className="bg-yellow-500 w-1 h-16 mr-8 self-center"></div> 
-       {blog?.name && <h1 className="text-4xl pt-10 text-white">{blog?.name}</h1>}
-       <span className="text-yellow-500 text-9xl  relative" style={{top: '-0.2em'}}>.</span> 
+     <div className="flex  pt-20 pl-5" >
+       <div className="bg-yellow-500 w-1 md:h-16 h-12 mt-8 md:mt-0 md:mr-6 mr-4 self-center"></div> 
+       {blog?.name && <h1 className="md:text-4xl  text-2xl pt-10 text-white">{blog?.name}</h1>}
+       <span className="text-yellow-500 text-9xl  relative hidden md:block " style={{top: '-0.2em'}}>.</span> 
       </div>
        <div className="ml-9">
       {blog && blog.over && blog.over.map((over, index) => (
@@ -97,8 +97,8 @@ const page : FC <PageProps> = ({ params })=> {
   
        {/* Activity Section */}
        {/* Activity Section */}
-       <div className="bg-black py-8">
-  <div className="container mx-auto px-16 grid grid-cols-2 gap-5">
+       <div className="bg-black py-8 pb-0">
+  <div className="container mx-auto md:px-16 px-4 grid grid-cols-1 md:grid-cols-2 md:gap-5">
   {blog && blog.blogs && blog.blogs.map((blogs, index) => (
       <div key={blogs._id} className="mb-6 shadow-lg rounded-lg overflow-hidden border border-white">
         <div className="relative h-[200px]">

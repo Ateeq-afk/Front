@@ -13,6 +13,7 @@ import { faIndianRupeeSign,faCircle, faMountainSun, faPersonHiking, faHotel, faM
 import Booking from '@/Components/Book/Book'
 import Footer from '@/Components/Navbar/Footer/Footer';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
+import { motion } from 'framer-motion';
 
 interface PageProps {
   params: {
@@ -230,7 +231,12 @@ const page : FC<PageProps> = ({ params })=> {
             </div>
           </div>
           { data && data.batch && data.batch.length > 1 &&      <div className="hidden  md:flex justify-center items-center ">
-          <button className="bg-yellow-500 text-black px-6 py-2 rounded-md"   onClick={() => setShowPopup(true)}> BOOK NOW</button>
+          <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }}
+               className="border border-yellow-500 text-black w-[150px] py-2 rounded-md"   onClick={() => setShowPopup(true)}> BOOK NOW
+               </motion.button>
         </div> }
         </div>
       </div>
@@ -264,12 +270,16 @@ const page : FC<PageProps> = ({ params })=> {
                 </Link>
                         <div className="border-t-2 border-gray-300 mt-4 mb-1"></div>
 
-                        { data && data.batch && data.batch.length > 1 &&     <button className="w-full py-4 bg-yellow-500 hover:bg-black border-2 hover:text-yellow-500 border-yellow-500  rounded"   onClick={() => setShowPopup(true)}>BOOK NOW</button> }
+                        { data && data.batch && data.batch.length > 1 &&    <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }}
+               className="w-full py-4  border  border-yellow-500 text-black rounded"   onClick={() => setShowPopup(true)}>BOOK NOW</motion.button> }
       <div className="text-center mt-6">Call <a href="tel:+919364099494" className='text-yellow-500 font-bold hover:underline '>+91 93640-99494</a></div>
       <button className="w-full my-4 mt-4  text-xl text-yellow-500 font-bold hover:underline " onClick={() => setShowEnquiry(true)}>Send Enquiry</button>
                 {/* Add other links similarly */}
             </div>
-            <div className="ml-1/4 md:w-3/4 w-full overflow-y-auto">
+            <div className="ml-1/4 md:w-3/4 w-full overflow-y-auto text-black">
             <section id="expedition-overview">
                 <div className="bg-white md:p-10 p-4 text-black">
                     <div className="border-b-2 border-gray-300 md:py-8 py-2">

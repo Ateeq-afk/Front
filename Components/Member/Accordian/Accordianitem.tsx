@@ -12,7 +12,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, points }) => {
   return (
     <div className="mb-4">
     <div
-      className="flex justify-between items-center bg-gray-500 p-2 cursor-pointer"
+      className="flex justify-between items-center bg-gray-300 p-2 cursor-pointer"
       onClick={toggleAccordion}
     >
       <h3 className="text-lg font-semibold">{title}</h3>

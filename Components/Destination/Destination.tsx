@@ -77,7 +77,7 @@ const Destination: React.FC<DestinationProps> = ({ dest, uniqueId, row, height }
               {/* Text at top left */}
               <div className="absolute md:top-5 md:left-5 md:text-xl text-lg top-2 left-2 text-white">
                 {destination.name}
-                <hr className="border-t-2 border-white md:w-[20px] w-[20px]" />
+                <hr className="border-t-2 border-yellow-500 md:w-[20px] w-[20px]" />
               </div>
             </div>
             </Link>

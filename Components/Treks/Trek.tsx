@@ -8,6 +8,7 @@ import { Navigation,Pagination  } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupeeSign, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
+import { motion } from "framer-motion";
 // SwiperCore.use([Navigation, Scrollbar]);
 interface TrekItem {
   _id: string;
@@ -65,7 +66,7 @@ const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
          {trek && trek.map((item) => (
    <SwiperSlide key={item._id}>
    <Link href={`${name}/${item.urllink}`} className="block"> {/* Make the entire card a link */}
-     <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between h-full transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white p-4">
+     <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white p-4 h-[410px]">
        <div className="overflow-hidden relative rounded-xl h-72 w-full">
          <Image
            src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${item.testimage}`} 
@@ -86,9 +87,13 @@ const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
    
        <div className="flex justify-between w-full mt-2 mx-4">
        <p className="text-md pt-1"><FontAwesomeIcon icon={faIndianRupeeSign} className="pr-1"/>{item.amount}</p>
-         <button className="px-3 py-1 bg-yellow-500 text-black font-semibold rounded-full hover:bg-yellow-600 transition duration-300">
+       <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }}
+                className="px-3 py-1  text-black font-semibold rounded-full border border-yellow-500 ">
            Book Now
-         </button>
+         </motion.button>
        </div>
        </div>
      </div>

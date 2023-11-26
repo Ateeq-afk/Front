@@ -6,7 +6,9 @@ const page = () => {
   return (
     <div>
       <Header />
+      <div className='text-7xl flex justify-center items-center bg-black text-white pt-20 h-screen'>
       Coming Soon
+      </div>
       <Footer />
     </div>
   )

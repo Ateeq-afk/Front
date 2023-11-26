@@ -55,12 +55,12 @@ const Page = () => {
   return (
     <div className="bg-black text-white min-h-screen">
       <Header />
-      <main className="p-5">
+      <main className="p-5 pt-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center pt-8 mb-8">
-            <div className="bg-yellow-500 w-1 h-16 mr-8"></div>
-            <h1 className="text-7xl font-bold">Blogs</h1>
-            <span className="text-yellow-500 text-9xl" style={{ top: '-0.2em' }}>.</span>
+            <div className="bg-yellow-500 w-1 md:h-16 h-10  md:mr-8 mr-4"></div>
+            <h1 className="md:text-7xl text-5xl font-bold">Blogs</h1>
+            <span className="text-yellow-500 text-9xl md:block hidden relative" style={{ top: '-15px' }}>.</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
             {Array.isArray(currentCards) &&  currentCards.map((blog, index) => (

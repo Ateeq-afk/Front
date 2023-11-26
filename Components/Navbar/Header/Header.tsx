@@ -98,9 +98,9 @@ const Header = () => {
                 closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 }}
               }}
             >
-              {['Home', 'Destinations', 'Treks', 'Tours', 'Contact Us'].map((link, index) => (
+              {['Home', 'Destinations', 'Treks', 'Tours','Travel Pass', 'Contact Us'].map((link, index) => (
                 <motion.div key={link} variants={variants}>
-                  <Link href={link === 'Home' ? '/' : link === 'ContactUs' ? '/contact' : `/${link.toLowerCase()}`}>
+                  <Link href={link === 'Home' ? '/' : link === 'Contact Us' ? '/contact' :  link === 'Travel Pass' ? '/travel-pass'  :`/${link.toLowerCase()}`}>
                     <span className="text-white text-xl">{ link}</span>
                   </Link>
                 </motion.div>
