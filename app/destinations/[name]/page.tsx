@@ -112,7 +112,7 @@ const page : FC<PageProps> = ({ params })=> {
   <div className="pt-5"></div>
 </div>
       {/* Updated Hostels Section */}
-      <div className="  text-center">
+      <div className="text-center">
   <h1 className="text-3xl font-bold mb-6">Getaway to  {destination?.name} </h1>
 </div>
 {destination && destination.products && destination.products.map((products, index) => (
@@ -120,7 +120,7 @@ const page : FC<PageProps> = ({ params })=> {
   <div className="relative flex flex-col  gap-2">
     <div className="relative md:w-[50%] w-[100%] h-[400px]">
       <Image
-        src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${products.testimage}`}
+        src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${products?.testimage}`}
         alt="Zostel Shillong"
         layout="fill"
         objectFit="cover"
@@ -133,16 +133,16 @@ const page : FC<PageProps> = ({ params })=> {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
     >
-      <h2 className="text-2xl font-bold mb-4">{products.name}</h2>
+      <h2 className="text-2xl font-bold mb-4">{products?.name}</h2>
       <p className="text-gray-400 mb-4 line-clamp-4">
-        {products.over[0]}
+        {products?.over[0]}
       </p>
       <div className="flex justify-between items-center mb-4">
         <div className="text-gray-400 font-medium">
           <p>Starting from</p>
-          <p className="text-yellow-400 font-bold text-xl">₹{products.fromamount}</p>
+          <p className="text-yellow-400 font-bold text-xl">₹{products?.fromamount}</p>
         </div>
-        <Link href={`/tour/${products.urllink}`} >   <button className="bg-yellow-400 text-black font-bold py-2 px-6 rounded-full border-2 border-transparent hover:bg-black hover:text-yellow-400 hover:border-yellow-400 transition duration-300">
+        <Link href={`/tour/${products?.urllink}`} >   <button className="bg-yellow-400 text-black font-bold py-2 px-6 rounded-full border-2 border-transparent hover:bg-black hover:text-yellow-400 hover:border-yellow-400 transition duration-300">
           BOOK NOW ➔
         </button>
         </Link>

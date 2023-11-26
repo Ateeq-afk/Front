@@ -163,7 +163,7 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
       };
       
   const initializePayment = async () => {
-      const resInitiate = await fetch('https://bpu-images-v1.s3.eu-north-1.amazonaws.com/book/initiatePayment', {
+      const resInitiate = await fetch('https://launch-api1.vercel.app/book/initiatePayment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: isCheckboxTicked ? getTotalFirst().toFixed(2) :getTotal().toFixed(2)  })  // Replace with the desired amount

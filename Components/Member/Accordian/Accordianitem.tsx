@@ -10,7 +10,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, points }) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-black">
     <div
       className="flex justify-between items-center bg-gray-300 p-2 cursor-pointer"
       onClick={toggleAccordion}

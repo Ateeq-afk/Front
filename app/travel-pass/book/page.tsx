@@ -189,7 +189,7 @@ console.log("hey charlie")
    <div className="container mx-auto md:p-8 p-2">
         <div >
           {/* Guest Details Section  onSubmit={initiateAndPayMembership} */}
-          <form onSubmit={handleSubmit} className="flex flex-col md:flex-row">
+          <form onSubmit={handleSubmit} className="flex flex-col md:flex-row text-black">
           <div id="targetDiv"  className="md:w-2/3 md:p-4 py-4 px-2 pb-0">
   <div className="bg-white md:p-6 p-4 shadow rounded-lg mb-4">
     <h2 className="text-xl font-bold text-yellow-500 mb-4">Traveller's Details</h2>
@@ -229,7 +229,7 @@ console.log("hey charlie")
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
-          className="bg-grey-300 border border-gray-600 text-white  sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
+          className="bg-grey-300 border text-black border-gray-600  sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
           required
         />
       </div>
@@ -245,7 +245,7 @@ console.log("hey charlie")
           name="lastName"
           value={formData.lastName}
           onChange={handleChange}
-          className="bg-white border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
+          className="bg-white border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
           required
         />
       </div>
@@ -264,7 +264,7 @@ console.log("hey charlie")
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="bg-white border border-gray-600 text-white sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
+            className="bg-white border border-gray-600 text-blacksm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
             required
           />
         </div>
@@ -294,7 +294,7 @@ console.log("hey charlie")
            
           {/* Membership Cards Section */}
         {/* Membership Cards Section */}
-            <div className="bg-white p-8 hidden md:block">
+            <div className="bg-white p-8 hidden md:block text-black">
             <div className='flex flex-col items-center justify-center'>
     <h2 className="text-3xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
     <hr className="border-t-2 border-yellow-500 w-16 mb-10" /> {/* Fixed width for all viewports */}
@@ -330,7 +330,7 @@ console.log("hey charlie")
           </div>
 
           {/* ... (other sections) */}
-                  <div className='mt-5 hidden md:block'>
+                  <div className='mt-5 hidden md:block text-black'>
           <AccordionItem
   title="Terms of Conditions "
   points={[
@@ -441,7 +441,7 @@ console.log("hey charlie")
       </div>
             </div>
           
-            <div className="bg-white p-6 rounded-lg shadow-md text-grey-800 mt-4">
+            <div className="bg-white p-6 rounded-lg shadow-md text-grey-800 mt-4 text-black">
             <h2 className="text-lg font-semibold mb-4 border-b border-gray-600 pb-2 text-yellow-500">
             Pass Details:
     </h2>
@@ -507,7 +507,7 @@ console.log("hey charlie")
   </div>
           </div>
           </form>
-          <div className="bg-white p-4 px-3 md:hidden block mx-2">
+          <div className="bg-white p-4 px-3 md:hidden block mx-2 text-black">
             <div className='flex flex-col items-center justify-center'>
     <h2 className="md:text-3xl text-2xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
     <hr className="border-t-2 border-yellow-500 w-16 mb-5" /> {/* Fixed width for all viewports */}

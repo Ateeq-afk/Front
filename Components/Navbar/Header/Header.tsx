@@ -85,7 +85,7 @@ const Header = () => {
             animate={{ x: 0 }}
             exit={{ x: '100vw' }}
             transition={{ type: 'spring', stiffness: 60, damping: 20 }}
-            className="fixed bg-black h-screen w-64 z-40 top-0 right-0 flex flex-col space-y-6 py-8 pl-8 pt-20 md:hidden"
+            className="fixed bg-black h-screen w-64 z-40 top-0 right-0 flex flex-col space-y-2 py-8 pl-8 pt-20 md:hidden"
             role="navigation"
             aria-label="Mobile Navigation"
           >

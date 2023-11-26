@@ -97,7 +97,7 @@ const Footer = () => {
         {sections.map((section, index) => (
   <motion.div key={section.title} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }} className="flex flex-col md:items-center md:mb-8 mb-4 md:space-y-2 space-y-0">
     <h2 className="font-semibold md:text-xl text-lg ">{section.title}</h2>
-    <div className="flex md:justify-center pb-2">
+    <div className="flex md:justify-center items-start pb-2">
         <hr className="border-t-2 border-yellow-500 md:w-[30PX] w-[10px] mt-2" />
       </div>
     <ul className="flex flex-col md:items-center md:space-y-2 space-y-0 mt-1">

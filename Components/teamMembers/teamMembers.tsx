@@ -26,7 +26,7 @@ const teamMembers = [
       },
       {
         name: 'Tahir Shariff',
-        designation: 'Quality & Risk Analyst',
+        designation: 'Quality Analyst',
         photoUrl: '/profile/tahir.jpeg'
       },
       {
@@ -41,7 +41,7 @@ const teamMembers = [
       },
       {
         name: 'Jafar Sharief',
-        designation: 'Operations Head - Thailand',
+        designation: 'Operations Manager  (Thailand)',
         photoUrl: '/profile/jaffar.jpeg'
       },
       {
