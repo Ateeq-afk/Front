@@ -175,8 +175,8 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
         key: process.env.RAZORPAY_KEY_ID,
         amount: isCheckboxTicked ? getTotalFirst().toFixed(2) : getTotal().toFixed(2)  ,
         currency: 'INR',
-        name: 'Your App Name',
-        description: 'Test Transaction',
+        name: 'Backpackers United Pvt Ltd',
+        description: 'Booking Transaction',
         order_id: dataInitiate.orderId,
         handler: async (response: RazorpayResponse) =>{
           const resVerify = await fetch('https://launch-api1.vercel.app/book/verifyPayment', {

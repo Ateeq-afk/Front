@@ -111,8 +111,8 @@ console.log("hey charlie")
             key: process.env.RAZORPAY_KEY_ID, // Ensure this is configured correctly
             amount: getTotalFirst().toFixed(2),
             currency: 'INR',
-            name: 'Your App Name',
-            description: 'Membership Transaction',
+            name: 'Backpackers United Pvt Ltd',
+            description: 'Travel Pass Transaction',
             order_id: dataInitiate.orderId,
             handler: async function (response: {
                 razorpay_order_id: string;
@@ -157,12 +157,12 @@ console.log("hey charlie")
 
                     const dataSave = await resSave.json();
                     if(dataSave.success) {
-                        alert('Membership payment successful and saved!');
+                        alert('Travel Pass is unlocked, You can check mail for further details');
                     } else {
-                        alert('Error saving membership details.');
+                        alert('Error saving Travel Pass details.');
                     }
                 } else {
-                    alert('Membership payment verification failed.');
+                    alert('Travel Pass payment verification failed.');
                 }
             }
         };
