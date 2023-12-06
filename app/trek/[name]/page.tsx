@@ -275,7 +275,7 @@ const page : FC<PageProps> = ({ params })=> {
                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
                transition={{ duration: 0.3 }}
                className="w-full py-4  border  border-yellow-500 text-black rounded"   onClick={() => setShowPopup(true)}>BOOK NOW</motion.button> }
-      <div className="text-center mt-6">Call <a href="tel:+919364099494" className='text-yellow-500 font-bold hover:underline '>+91 93640-99494</a></div>
+      <div className="text-center mt-6">Call <a href="tel:+918310180609" className='text-yellow-500 font-bold hover:underline '>+91 83101-80609</a></div>
       <button className="w-full my-4 mt-4  text-xl text-yellow-500 font-bold hover:underline " onClick={() => setShowEnquiry(true)}>Send Enquiry</button>
                 {/* Add other links similarly */}
             </div>

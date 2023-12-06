@@ -121,7 +121,7 @@ const page : FC<PageProps> = ({ params })=> {
     <div className="relative md:w-[50%] w-[100%] h-[400px]">
       <Image
         src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${products?.testimage}`}
-        alt="Zostel Shillong"
+        alt="Destination Image"
         layout="fill"
         objectFit="cover"
         className="rounded-xl"

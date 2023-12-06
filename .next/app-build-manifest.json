@@ -11,6 +11,41 @@
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+    ],
+    "/tour/[name]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/tour/[name]/page.css",
+      "static/chunks/app/tour/[name]/page.js"
+    ],
+    "/destinations/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/destinations/page.css",
+      "static/chunks/app/destinations/page.js"
+    ],
+    "/destinations/[name]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/destinations/[name]/page.js"
+    ],
+    "/trek/[name]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/trek/[name]/page.css",
+      "static/chunks/app/trek/[name]/page.js"
+    ],
+    "/tours/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/tours/page.css",
+      "static/chunks/app/tours/page.js"
+    ],
+    "/treks/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/treks/page.css",
+      "static/chunks/app/treks/page.js"
     ]
   }
 }

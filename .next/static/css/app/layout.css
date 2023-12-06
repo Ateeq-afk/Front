@@ -1202,6 +1202,10 @@ video {
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
 } 
+.rounded-b-xl {
+  border-bottom-right-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
+} 
 .border {
   border-width: 1px;
 } 
@@ -1478,6 +1482,10 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 } 
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+} 
 .pb-0 {
   padding-bottom: 0px;
 } 
@@ -1513,6 +1521,9 @@ video {
 } 
 .pl-20 {
   padding-left: 5rem;
+} 
+.pl-3 {
+  padding-left: 0.75rem;
 } 
 .pl-4 {
   padding-left: 1rem;

@@ -2,7 +2,7 @@
 import { motion, useAnimation } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 interface Product {
   id: string;
@@ -24,6 +24,7 @@ const Hero = () => {
   const [searchInput, setSearchInput] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedUrl, setSelectedUrl] = useState<string>("");
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const fetchData = async () => {
     try {
       // Fetching treks, tours, and destinations
@@ -38,23 +39,102 @@ const Hero = () => {
       const destinations = await destinationResponse.json();
   
       const destWithType = destinations.data.map((item: BaseProduct) => ({ ...item, type: 'destinations' })) || [];
-      const treksWithType = treks?.map((item: BaseProduct) => ({ ...item, type: 'trek' })) || [];
       const toursWithType = tours?.map((item: BaseProduct) => ({ ...item, type: 'tour' })) || [];
-     
+      const treksWithType = treks?.map((item: BaseProduct) => ({ ...item, type: 'trek' })) || [];
 
-      setProducts([...destWithType,...treksWithType, ...toursWithType, ]);
+      setProducts([...destWithType, ...toursWithType, ...treksWithType,]);
 
       // console.log("Combined Data: ", combinedData); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
-  const handleSelectProduct = (product: Product) => {
-    setSearchInput(product.name);
-    setSelectedUrl(`/${product.type}/${product.urllink}`);
-    console.log('Selected Product:', product); // Debug log
+  const setSearchInputAndResetHighlight = (input: string) => {
+    setSearchInput(input);
+    setHighlightedIndex(-1);
+  };
+
+  const findClosestMatch = (input: string): Product | null => {
+    if (input.length <= 2) {
+      return null;
+    }
+    const filteredProducts = products.filter(product => 
+      product.name.toLowerCase().includes(input.toLowerCase())
+    );
+    return filteredProducts.length > 0 ? filteredProducts[0] : null;
   };
   
+
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    // Get the list of filtered products based on the current search input
+    const filteredProducts = products.filter(product => 
+      product.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    const maxIndex = filteredProducts.length - 1;
+  
+    if (event.key === 'ArrowDown') {
+      // Prevent default to stop scrolling the entire page
+      event.preventDefault();
+      setHighlightedIndex(prevIndex => (prevIndex < maxIndex ? prevIndex + 1 : 0));
+    } else if (event.key === 'ArrowUp') {
+      // Prevent default to stop scrolling the entire page
+      event.preventDefault();
+      setHighlightedIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : maxIndex));
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
+      if (highlightedIndex >= 0 && highlightedIndex <= maxIndex) {
+        const selectedProduct = filteredProducts[highlightedIndex];
+        navigateToProductPage(`/${selectedProduct.type}/${selectedProduct.urllink}`);
+      } else {
+        // If no item is highlighted, find the closest match or navigate to destinations
+        const closestMatch = findClosestMatch(searchInput);
+        if (closestMatch) {
+          navigateToProductPage(`/${closestMatch.type}/${closestMatch.urllink}`);
+        } else {
+          navigateToProductPage('/destinations');
+        }
+      }
+    }
+  };
+  // ... [rest of the functions]
+
+  // Function to render the product list
+  const renderProductList = () => {
+    return Array.isArray(products) && searchInput.length >= 2 && products
+      .filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()))
+      .slice(0, 5)
+      .map((product, index) => (
+        <div
+          className={`text-black cursor-pointer pl-3 ${
+            index === highlightedIndex ? 'bg-yellow-400' : ''
+          }`}
+          onMouseEnter={() => setHighlightedIndex(index)}
+          onClick={() => navigateToProductPage(`/${product.type}/${product.urllink}`)}
+          key={product.id || index}
+        >
+          {product.name}
+        </div>
+      ));
+  };
+
+  const handleNavigateBasedOnInput = () => {
+    const closestMatch = findClosestMatch(searchInput);
+    if (closestMatch) {
+      navigateToProductPage(`/${closestMatch.type}/${closestMatch.urllink}`);
+    } else {
+      navigateToProductPage('/destinations');
+    }
+  };
+  // Updated navigateToProductPage function to accept URL parameter
+  const navigateToProductPage = (url = selectedUrl) => {
+    const navigateUrl = url || '/destinations';
+    console.log('Navigating to URL:', navigateUrl);
+    window.location.href = navigateUrl;
+  };
+
+
+
 
   
   useEffect(() => {
@@ -72,7 +152,7 @@ const Hero = () => {
   }, []);
  
   return (
-    <div className='relative' >
+    <div className='relative' onKeyDown={handleKeyPress} tabIndex={0} >
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -100,27 +180,18 @@ const Hero = () => {
           Discover amazing places at exclusive deals!
         </motion.p>
         <div className=" flex flex-row mt-6 ">
-      <div className="px-3 py-2 rounded-lg bg-white w-[200px] md:w-[380px] z-10 ">
+      <div className=" py-2 rounded-lg bg-white w-[200px] md:w-[380px] z-10 ">
         <input
           type="text"
           placeholder="Search"
-          className="bg-white  text-black outline-none w-full"
-          onChange={(e) => setSearchInput(e.target.value)}
+          className="bg-white  text-black outline-none w-full pl-3"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInputAndResetHighlight(e.target.value)}
           value={searchInput}
+        
         />
-   {Array.isArray(products) && searchInput.length >= 3 && products
-              .filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()))
-              .slice(0, 5)
-              .map((product, index) => (
-                <div 
-                  className="text-black cursor-pointer"
-                  onClick={() => handleSelectProduct(product)}
-                  key={product.id || index}
-                >
-                  {product.name}
-                </div>
-              ))
-            }
+      <div className="search-results-list">
+              {renderProductList()}
+            </div>
 
 
       </div>
@@ -129,14 +200,7 @@ const Hero = () => {
                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
                transition={{ duration: 0.3 }}
             className="border border-yellow-500  w-[80px] h-[40px] md:w-[90px] rounded-lg ml-2 text-black shadow-lg"
-            onClick={() => {
-              console.log('Selected URL:', selectedUrl); // Debug log
-              if (selectedUrl) {
-                window.location.href = selectedUrl;
-              } else {
-                console.error('URL is not set correctly', selectedUrl);
-              }
-            }}
+            onClick={handleNavigateBasedOnInput}
           
 >
   Explore

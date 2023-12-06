@@ -58,6 +58,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/tour/gokarna-beachtrek-newyear',
+        destination: '/tour/gokarna-murudeshwar-3day',
+        permanent: true,
+      },
+      {
         source: '/tours/kumara-parvatha-trek',
         destination: '/trek/kumara-parvatha-coorg-trek',
         permanent: true,
