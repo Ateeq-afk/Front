@@ -8,6 +8,7 @@ import React, { useState,useEffect } from 'react'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import Trek from '@/Components/Treks/Trek'
 import Image from 'next/image'
+import Treka from '@/Components/Treks/Treka'
 interface Product {
   id: string;
   name: string;
@@ -198,7 +199,29 @@ useEffect(() => {
   fetchTnTrekTreks();
 }, []);
 
-  
+const newYearTrek = [
+  {
+    _id: '1',
+    urllink: '/trek/kudremukh-trek-for-new-year',
+    testimage: '/home/Kudremukha.webp',
+    name: 'Kudremukh New Year Bash',
+    amount: 5999,
+  },
+  {
+    _id: '2',
+    urllink: '/trek/Nethravathi-trek-for-new-year',
+    testimage: '/home/Netravathi.webp',
+    name: 'Nethravathi New Year Bash',
+    amount: 5999,
+  },
+  {
+    _id: '3',
+    urllink: '/tour/gokarna-murudeshwar-3day',
+    testimage: '/home/gokarnamuru.webp',
+    name: 'Gokarna - Murudeshwar: A Festive Retreat',
+    amount: 9999,
+  },
+];
   return (
     <div className='bg-black'>
       <Header />
@@ -238,7 +261,17 @@ useEffect(() => {
 </div>
       </div>
 </div>
-
+<div className=' mx-10 pt-10'>
+ <div className="text-center md:text-center">
+          <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Christmas and New Years</h2>
+          <div className="flex justify-center pt-2 md:pt-5">
+        <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
+      </div>
+        </div>
+    <div className='pt-10'>
+      <Treka trek={newYearTrek}  uniqueId="NewYear" />
+    </div>
+ </div>
       
  <div className=' mx-10 pt-10'>
  <div className="text-center md:text-center">

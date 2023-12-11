@@ -19,6 +19,27 @@ type FaqContent = {
   Payment: { question: string; answer: string }[];
 };
 const tabs: (keyof FaqContent)[] = ['General', 'Safety', 'Service', 'Policy', 'Booking', 'Payment'];
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number; // Add seconds here
+}
+const calculateTimeLeft = (endDate: Date): TimeLeft => {
+  const now = new Date();
+  const difference = endDate.getTime() - now.getTime();
+
+  if (difference > 0) {
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60), // Add seconds here
+    };
+  }
+
+  return { days: 0, hours: 0, minutes: 0, seconds: 0 }; // Add seconds here
+};
 
 const Page = () => {
 const backgroundImages = [
@@ -26,18 +47,37 @@ const backgroundImages = [
 'https://source.unsplash.com/random/?beach',
 'https://source.unsplash.com/random/?jungle',
 ];
+const endDate = new Date('December 16, 2023 00:00:00');
+
+
 const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0);
 const [showEnquiry, setShowEnquiry] = useState(false);
+const [isMobile, setIsMobile] = useState(false);
+const [showAllTreks, setShowAllTreks] = useState(false);
+const [showAllTours, setShowAllTours] = useState(false);
+const [countdownTime, setCountdownTime] = useState<TimeLeft | null>(null);
 
+
+
+// Initialize countdown time
+
+
+useEffect(() => {
+  setCountdownTime(calculateTimeLeft(endDate)); // Initialize the countdown time on client-side
+
+  const intervalId = setInterval(() => {
+    setCountdownTime(calculateTimeLeft(endDate));
+  }, 1000); // Update every second
+
+  return () => clearInterval(intervalId);
+}, []);
 useEffect(() => {
 const intervalId = setInterval(() => {
 setCurrentBackgroundIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
 }, 3000);
 return () => clearInterval(intervalId);
 }, []);
-const [isMobile, setIsMobile] = useState(false);
-const [showAllTreks, setShowAllTreks] = useState(false);
-const [showAllTours, setShowAllTours] = useState(false);
+
 
 // States and refs for tours
 
@@ -160,6 +200,45 @@ const displayLimit = isMobile ? 5 : treks.length;
   
   // State for the active tab
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const cardVariants = {
+    offscreen: {
+      y: 50,
+      opacity: 0
+    },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.8
+      }
+    }
+  };
+// State for the active tab
+const cards = [
+  {
+    title: "Trek Pass",
+    description: "Travel to 6 treks, originally at ₹24,000, now just ₹12,000!",
+    bgClass: "bg-purple-500" // Purple circle for Trek Pass
+  },
+  {
+    title: "Tour Pass",
+    description: "Access to 6 tours, slashed from ₹24,000 to only ₹12,000!",
+    bgClass: "bg-blue-500" // Blue circle for Tour Pass
+  }
+];
+
+const countdownVariants = {
+  hidden: { y: 0 },
+  visible: (custom) => ({
+    y: -40 * custom, // Adjust based on the height of each number
+    transition: { duration: 1, ease: "easeInOut" }
+  })
+};
+const formatTime = (time) => {
+  return String(time).padStart(2, '0');
+};
   return (
   <div className='bg-gradient-to-r from-gray-900 to-gray-800 text-white'>
   <Header />
@@ -170,15 +249,99 @@ const displayLimit = isMobile ? 5 : treks.length;
   <div className="flex items-center justify-center bg-no-repeat bg-cover bg-center transition-opacity duration-1000 h-full"
   style={{ backgroundImage: `url(${backgroundImages[currentBackgroundIndex]})` }}>
   {/* Content for the dynamic background section */}
-  <div className="text-center text-white p-12 z-10">
+  <div className="text-center text-white md:pt-20 pt-10 z-10">
   <h1 className="md:text-5xl text-4xl font-bold mb-6"><span className='text-yellow-500'>Explore South India:</span> Your Pass, Backpackers Style</h1>
-  <p className="text-xl mb-6">Embark on amazing expeditions with our Backpackers United Community with the United Travel Pass. One stop shop for amazing experiences and a lifetime of memories.</p>
+  <p className="text-xl mb-6 hidden md:block">Embark on amazing expeditions with our Backpackers United Community with the United Travel Pass. One stop shop for amazing experiences and a lifetime of memories.</p>
  <Link href='/travel-pass/book'> <button className="text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
       JOIN NOW
   </button></Link>
-  
+  <div className="flex md:flex-row flex-col justify-center items-center md:space-x-4  space-y-2 md:space-y-0 md:my-8 my-4">
+  {cards.map((card, index) => (
+    <Link href='/travel-pass/book'>
+    <motion.div
+      key={index}
+      variants={cardVariants}
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.8 }}
+      className="border border-black rounded-lg shadow-md w-64 transform hover:scale-105 transition duration-500 ease-in-out dark:bg-gray-700"
+    >
+      <div className="flex flex-col items-center justify-center bg-gradient-to-r from-yellow-200 to-yellow-600 rounded-lg">
+        {/* Title and Description */}
+        <div className="p-4 text-center">
+          <h3 className="text-md font-semibold text-gray-800 dark:text-gray-100">{card.title}</h3>
+          <p className="text-black text-sm">
+            {index === 0 ? (
+              <span>
+                Venture into 6 Treks for just <span className="line-through">₹24,000</span> ₹12,000/-
+              </span>
+            ) : (
+              <span>
+                Explore 6 Tours for just <span className="line-through">₹42,000</span> ₹21,000/-
+              </span>
+            )}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+    </Link>
+  ))}
+</div>
+<div className="rounded-lg shadow-md text-black">
+  <p className="text-lg font-semibold mb-2 text-yellow-500">THE SALE ENDS IN</p>
+  {countdownTime && (
+    <div className="flex justify-center space-x-3">
+      {/* Days */}
+      <div className="flex flex-col items-center">
+        <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
+          <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.days} initial="hidden" animate="visible" variants={countdownVariants}>
+            {[...Array(10)].map((_, num) => (
+              <div key={num} style={{ height: '40px' }}>{num}</div>
+            ))}
+          </motion.div>
+        </div>
+        <p className="text-sm mt-1 text-white">DAYS</p>
+      </div>
+      {/* Hours */}
+      <div className="flex flex-col items-center">
+        <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
+          <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.hours} initial="hidden" animate="visible" variants={countdownVariants}>
+            {[...Array(24)].map((_, num) => (
+              <div key={num} style={{ height: '40px' }}>{num}</div>
+            ))}
+          </motion.div>
+        </div>
+        <p className="text-sm mt-1 text-white">HOURS</p>
+      </div>
+      {/* Minutes */}
+      <div className="flex flex-col items-center">
+        <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
+          <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.minutes} initial="hidden" animate="visible" variants={countdownVariants}>
+            {[...Array(60)].map((_, num) => (
+              <div key={num} style={{ height: '40px' }}>{num}</div>
+            ))}
+          </motion.div>
+        </div>
+        <p className="text-sm mt-1 text-white">MINUTES</p>
+      </div>
+      {/* Seconds */}
+      <div className="flex flex-col items-center">
+        <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
+          <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.seconds} initial="hidden" animate="visible" variants={countdownVariants}>
+            {[...Array(60)].map((_, num) => (
+              <div key={num} style={{ height: '40px' }}>{num}</div>
+            ))}
+          </motion.div>
+        </div>
+        <p className="text-sm mt-1 text-white">SECONDS</p>
+      </div>
+    </div>
+  )}
+</div>
   </div>
+
   </div>
+
   </div>
   <div className="bg-black">
   <div className="py-8 px-4 md:px-4">
@@ -484,7 +647,7 @@ const displayLimit = isMobile ? 5 : treks.length;
   {tabs.map((tab, index) => (
   <button
   key={index}
-  className={`md:px-4 px-2 py-2 text-sm sm:text-base md:text-lg border-b-2 ${activeTab === tab ? 'text-yellow-500 border-yellow-500' : 'text-gray-400 border-gray-700'}`}
+  className={`md:px-4 px-2 py-2 text-xxs sm:text-xxs  md:text-lg border-b-2 ${activeTab === tab ? 'text-yellow-500 border-yellow-500' : 'text-gray-400 border-gray-700'}`}
   onClick={() => setActiveTab(tab)}
   >
   {tab}

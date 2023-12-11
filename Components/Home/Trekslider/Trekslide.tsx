@@ -22,8 +22,8 @@ const destinations = [
   {
     title: "Brahmatal Trek",
     location: "Kuling, Uttarakhand",
-    price: 6299,
-    img: "/home/Brahmatal.webp",
+    price: 6999,
+    img: "/home/Hampta.webp",
     url:"brahmatal-trek"
   },
   {
@@ -40,13 +40,13 @@ const destinations = [
     price: 3999,
     img: "/home/kp.webp",
     badge: "TOP RATED",
-    url:"kumara-parvatha-trek"
+    url:"kumara-parvatha-kukke-trek"
   },
   {
     title: "Hamta Pass Trek",
     location: "Kullu, Himachal Pradesh",
     price: 7000,
-    img: "/home/Hampta.webp",
+    img: "/home/Brahmatal.webp",
     url:"hampta-pass-trek"
   },
 ];

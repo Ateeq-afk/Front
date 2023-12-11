@@ -7,6 +7,7 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import Trek from '@/Components/Treks/Trek'
 import Image from 'next/image'
 import Link from 'next/link'
+import Treka from '@/Components/Treks/Treka'
 interface Product {
   id: string;
   name: string;
@@ -198,7 +199,43 @@ const page = () => {
     // Fetch data for North India Tour treks
     fetchNorthIndiaTourTreks();
   }, []);
-
+  const newYearTrek = [
+    {
+      _id: '1',
+      urllink: '/tour/wayanad-backpacking-tour-long-weekend-3-days-and-2-nights',
+      testimage: '/home/Wayanad.webp',
+      name: 'Wayanad Tour: Kerala Hidden Gem',
+      amount: 9999,
+    },
+    {
+      _id: '2',
+      urllink: '/tour/coorg-tour-package',
+      testimage: '/home/Coorg.webp',
+      name: 'Coorg Tour: Discovering the Scotland of India',
+      amount: 9999,
+    },
+    {
+      _id: '3',
+      urllink: '/tour/gokarna-murudeshwar-3day',
+      testimage: '/home/gokarnamuru.webp',
+      name: 'Gokarna - Murudeshwar: A Festive Retreat',
+      amount: 9999,
+    },
+    {
+      _id: '4',
+      urllink: '/tour/goa-backpacking-tour',
+      testimage: '/home/Goa.webp',
+      name: 'Goa Tour: A Captivating 3-Day Journey',
+      amount: 9999,
+    },
+    {
+      _id: '5',
+      urllink: '/tour/munnar-backpacking-tour-long-weekend-3-days-and-2-nights',
+      testimage: '/home/Munar.webp',
+      name: 'Munnar Tour: Paradise in the Western Ghats',
+      amount: 9999,
+    },
+  ];
   
   return (
     <div className='bg-black'>
@@ -239,20 +276,17 @@ const page = () => {
 </div>
       </div>
 </div>
-
-
-            {/* {searchResult.filter(item => {
-                const searchTerm = searchInput.toLowerCase()
-                const fullname = item.name.toLowerCase()
-                return searchTerm && fullname.startsWith(searchTerm)
-            }).map((list) => (
-                <div className="p-4 font-bold">
-                    <Link href={list.link}>
-                        <div className="no-underline text-black">{list.name}</div>
-                    </Link>
-                </div>
-            ))} */}
-      
+      <div className=' mx-10 pt-10'>
+ <div className="text-center md:text-center">
+          <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Christmas and New Years</h2>
+          <div className="flex justify-center pt-2 md:pt-5">
+        <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
+      </div>
+        </div>
+    <div className='pt-10'>
+      <Treka trek={newYearTrek}  uniqueId="NewYear" />
+    </div>
+ </div>
  <div className=' mx-10 pt-10'>
  <div className="text-center md:text-center">
           <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Weekend Group Tours</h2>

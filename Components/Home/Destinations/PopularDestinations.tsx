@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
+import {useEffect} from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation,Scrollbar } from 'swiper/modules';
 import "swiper/css";
@@ -12,6 +13,15 @@ import { destinations2 } from "./data"; // Make sure the path is correct
 
 // SwiperCore.use([Navigation, Scrollbar]);
 const PopularDestinations = () => {
+  useEffect(() => {
+    // Importing AOS and initializing inside useEffect
+    const AOS = require('aos');
+    AOS.init({
+      // Optionally, you can define AOS settings here, for example:
+      duration: 1000,
+      // once: true,
+    });
+  }, []);
   return (
     <>
     {/* <div className="mx-10" > */}

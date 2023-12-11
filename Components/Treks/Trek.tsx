@@ -14,7 +14,6 @@ interface TrekItem {
   _id: string;
   urllink: string;
   testimage: string;
-  title: string;
   name: string;
   amount: number;
   badge?: string; // Optional property
@@ -70,7 +69,7 @@ const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
        <div className="overflow-hidden relative rounded-xl h-72 w-full">
          <Image
            src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${item.testimage}`} 
-           alt={item.title}
+           alt={item.name}
            objectFit="cover"
            layout="fill"
            className="transform transition-transform duration-300"

@@ -16,6 +16,9 @@ const config: Config = {
       colors: {
         'custom-blue': '#3490dc', // Add a custom color
       },
+      fontSize: {
+        'xxs': '0.6rem', // Example size, you can adjust as needed
+      },
     },
   },
   variants: {

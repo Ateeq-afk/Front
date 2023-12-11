@@ -15,7 +15,7 @@ const teamMembers = [
         photoUrl: '/profile/tejs.jpeg'
       },
       {
-        name: 'Syed Shadab Mehdi',
+        name: 'Syed Shadab',
         designation: 'Business Development Manager',
         photoUrl: '/profile/shadab.jpeg'
       },
@@ -70,7 +70,7 @@ const teamMembers = [
         photoUrl: '/profile/sree.jpeg'
       },
     {
-      name: 'Abhinandan M Kumar',
+      name: 'Abhinandan Kumar',
       designation: 'Business Development',
       photoUrl: '/profile/abhi.jpeg'
     },

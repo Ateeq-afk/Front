@@ -46,6 +46,16 @@
   bottom: 0px !important;
   width: auto !important;
 }
+.text-extra-small {
+  font-size: 0.75rem; /* Adjust the size as needed */
+}
+
+/* Custom media query for small screens like Galaxy Fold */
+@media screen and (max-width: 280px) { 
+  .text-extra-small {
+    font-size: 0.5rem; /* Further reduce the font size for very small screens */
+  }
+}
 @media screen and (max-width: 768px) {
   .swiper-button-prev, .swiper-button-next {
     margin-top: 0 !important;

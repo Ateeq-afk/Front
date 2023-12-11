@@ -3,6 +3,7 @@ import Header from '@/Components/Navbar/Header/Header'
 import { useState, useEffect,  FC  } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
+import Head from 'next/head';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from 'swiper/modules';
 import "swiper/css";
@@ -14,6 +15,7 @@ import Booking from '@/Components/Book/Book'
 import Footer from '@/Components/Navbar/Footer/Footer';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
 import { motion } from 'framer-motion';
+import DynamicMetaTags from '@/Components/Dynamic/Metatag';
 
 interface PageProps {
   params: {
@@ -23,6 +25,8 @@ interface PageProps {
 interface Data {
   name:String;
   amount: number;
+  metatitle: String;
+  metades: String;
   batch: Batch[];
   day: string;
   days: DayDetail[];
@@ -88,9 +92,11 @@ interface FAQ {
   question: string;
   answer: string;
 }
-
+type OpenDays = {
+  [key: number]: boolean;
+};
 const page : FC<PageProps> = ({ params })=> {
-    const [openDay, setOpenDay] = useState<null | number>(null);
+    const [openDay, setOpenDay] = useState<OpenDays>({});
     const [openItem, setOpenItem] = useState<null | number>(null);
     const [showPopup, setShowPopup] = useState(false);
     const [data, setData] = useState<Data | null>(null);
@@ -145,13 +151,12 @@ const page : FC<PageProps> = ({ params })=> {
       }
     };
   
-    const toggleOpen = (day: number) => {
-      if (openDay === day) {
-        setOpenDay(null);
-      } else {
-        setOpenDay(day);
-      }
-    };
+    const toggleOpen = (index: number) => {
+      setOpenDay((prevOpenDays: { [key: number]: boolean }) => ({
+        ...prevOpenDays,
+        [index]: !prevOpenDays[index] // Toggle the boolean value for this day
+      }));
+    }
     const faq = [
       {
         question: "What is the number of participants on a trip?",
@@ -174,11 +179,22 @@ const page : FC<PageProps> = ({ params })=> {
         answer: "We have multiple payment options on the website that you can refer to."
       }
     ];
+    const defaultImageUrl = "/home/ANDAMAN.jpg"
+    const imageUrl = data ? `https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${data.testimage}` : defaultImageUrl;
     if (!data) {
-      return <div>Loading...</div>;
+      return (
+        <div>
+          <div>Loading...</div>
+        </div>
+      );
   }
   return (
     <div >
+             <DynamicMetaTags
+        title={String(data.metatitle)} 
+        description={String(data.metades)}
+        imageUrl={imageUrl} 
+      />
         <Header />
      
     <div className='flex flex-col'>
@@ -230,7 +246,7 @@ const page : FC<PageProps> = ({ params })=> {
               </div>
             </div>
           </div>
-          { data && data.batch && data.batch.length > 1 &&      <div className="hidden  md:flex justify-center items-center ">
+          { data && data.batch && data.batch.length >= 1 &&      <div className="hidden  md:flex justify-center items-center ">
           <motion.button
                initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
@@ -270,7 +286,7 @@ const page : FC<PageProps> = ({ params })=> {
                 </Link>
                         <div className="border-t-2 border-gray-300 mt-4 mb-1"></div>
 
-                        { data && data.batch && data.batch.length > 1 &&    
+                        { data && data.batch && data.batch.length >= 1 &&    
                          <motion.button
                initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
@@ -284,10 +300,10 @@ const page : FC<PageProps> = ({ params })=> {
             <section id="expedition-overview">
                 <div className="bg-white md:p-10 p-4 text-black">
                     <div className="border-b-2 border-gray-300 md:py-8 py-2">
-                        <div className="flex justify-between items-center md:hidden">
+                        <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("expedition")}>
                            {/* hidden on medium and above screens */}
                             <h1 className="text-2xl font-bold md:mb-6 mb-2">OVERVIEW</h1>
-                            <button onClick={() => toggleSection("expedition")} className='text-xl'>
+                            <button  className='text-xl'>
                             {openSection.includes("expedition")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                             </button>
                         </div>
@@ -311,9 +327,9 @@ const page : FC<PageProps> = ({ params })=> {
         <section id="itinerary">
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0 text-black">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
-            <div className="flex justify-between items-center md:hidden"> {/* hidden on medium and above screens */}
+            <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("itinerary")} > {/* hidden on medium and above screens */}
                 <h1 className="text-2xl font-bold md:mb-6 mb-2">ITINERARY</h1>
-                <button onClick={() => toggleSection("itinerary")} className='text-xl'>
+                <button className='text-xl'>
                     {openSection.includes("itinerary")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                 </button>
             </div>
@@ -323,36 +339,38 @@ const page : FC<PageProps> = ({ params })=> {
                     <div className="container mx-auto">
                         {data && data.days && data.days.map((days, index) => (
                             <div key={index} className="border-b pb-4 mb-4">
-                                <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleOpen(index + 1)}>
-                                    <h3 className="text-xl font-semibold">{days.day} : {days.cityName}</h3>
-                                    <span>{openDay === index + 1 ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}</span>
-                                </div>
-                                {openDay === index + 1 && (
-                                    <div className="mt-4">
-                                        <div className="flex flex-col md:flex-row">
-                                            <div className="flex-1 p-4 pl-0 pt-0 ">
-                                                {days && days.description && days.description.map((des, index) => (
-                                                    <p key={index} className="mb-1 flex flex-row">
-                                                        <FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px]' />
-                                                        {des}
-                                                    </p>
-                                                ))}
-                                                <p className="font-semibold pt-4">Meals : {days.meals}</p>
-                                            </div>
-                                            {days.image &&
-                                                  <div className="w-auto h-40 relative rounded-lg mx-4 ">
-                                                  <Image
-                                                      src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${days.image}`}
-                                                      alt={days.imagealt}
-                                                    layout='fill'
-                                                    objectFit='cover'
-                                                  className='rounded-lg'
-                                                  />
-                                              </div>
-                                            }
-                                        </div>
+                            <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleOpen(index)}>
+                              <h3 className="text-xl font-semibold">{days.day} : {days.cityName}</h3>
+                              <span>
+                                {openDay[index] ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
+                              </span>
+                            </div>
+                            {openDay[index] && (
+                              <div className="mt-4">
+                                <div className="flex flex-col md:flex-row">
+                                  <div className="flex-1 p-4 pl-0 pt-0">
+                                    {days.description && days.description.map((des, descIndex) => (
+                                      <p key={descIndex} className="mb-1 flex flex-row">
+                                        <FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px]' />
+                                        {des}
+                                      </p>
+                                    ))}
+                                    <p className="font-semibold pt-4">Meals : {days.meals}</p>
+                                  </div>
+                                  {days.image && (
+                                    <div className="w-auto h-40 relative rounded-lg mx-4">
+                                      <Image
+                                        src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${days.image}`}
+                                        alt={days.imagealt}
+                                        layout='fill'
+                                        objectFit='cover'
+                                        className='rounded-lg'
+                                      />
                                     </div>
-                                )}
+                                  )}
+                                </div>
+                              </div>
+                            )}
                             </div>
                         ))}
                     </div>
@@ -366,38 +384,40 @@ const page : FC<PageProps> = ({ params })=> {
                 <p className="text-gray-600 mb-10">{data.itinerary}</p>
                 <div className="container mx-auto">
                     {data && data.days && data.days.map((days, index) => (
-                        <div key={index} className="border-b pb-4 mb-4">
-                        <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleOpen(index + 1)}>
-                            <h3 className="text-xl font-semibold">{days.day} : {days.cityName}</h3>
-                            <span>{openDay === index + 1 ? <FontAwesomeIcon icon={faCaretUp} className='pr-6'/> : <FontAwesomeIcon icon={faCaretDown} className='pr-6'/>}</span>
-                        </div>
-                        {openDay === index + 1 && (
-                            <div className="mt-4">
-                                <div className="flex flex-col md:flex-row">
-                                    <div className="flex-1 p-4 pl-0 pt-0 ">
-                                        {days && days.description && days.description.map((des, index) => (
-                                            <p key={index} className="mb-1 flex flex-row">
-                                                <FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px]' />
-                                                {des}
-                                            </p>
-                                        ))}
-                                        <p className="font-semibold pt-4">Meals : {days.meals}</p>
-                                    </div>
-                                    {days.image &&
-                                        <div className="w-full md:w-1/3 h-40 relative rounded-lg overflow-hidden">
-                                            <Image
-                                                src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${days.image}`}
-                                                alt={days.imagealt}
-                                              layout='fill'
-                                              objectFit='cover'
-                              
-                                            />
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-)}
-  </div>
+                         <div key={index} className="border-b pb-4 mb-4">
+                         <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleOpen(index)}>
+                           <h3 className="text-xl font-semibold">{days.day} : {days.cityName}</h3>
+                           <span>
+                             {openDay[index] ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
+                           </span>
+                         </div>
+                         {openDay[index] && (
+                           <div className="mt-4">
+                             <div className="flex flex-col md:flex-row">
+                               <div className="flex-1 p-4 pl-0 pt-0">
+                                 {days.description && days.description.map((des, descIndex) => (
+                                   <p key={descIndex} className="mb-1 flex flex-row">
+                                     <FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px]' />
+                                     {des}
+                                   </p>
+                                 ))}
+                                 <p className="font-semibold pt-4">Meals : {days.meals}</p>
+                               </div>
+                               {days.image && (
+                                 <div className="w-auto h-40 relative rounded-lg mx-4">
+                                   <Image
+                                     src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${days.image}`}
+                                     alt={days.imagealt}
+                                     layout='fill'
+                                     objectFit='cover'
+                                     className='rounded-lg'
+                                   />
+                                 </div>
+                               )}
+                             </div>
+                           </div>
+                         )}
+                         </div>
                     ))}
                 </div>
             </div>
@@ -407,9 +427,9 @@ const page : FC<PageProps> = ({ params })=> {
 <section id="what">
         <div className="mx-auto bg-white md:p-10 p-4 pt-0 md:pt-0">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
-          <div className="flex justify-between  md:hidden">
+          <div className="flex justify-between  md:hidden" onClick={() => toggleSection("expect")}>
             <h1 className="text-2xl  font-bold pb-2 ">WHAT TO EXPECT</h1>
-            <button onClick={() => toggleSection("expect")} className="text-xl">
+            <button  className="text-xl">
               {openSection.includes("expect") ? (
                 <FontAwesomeIcon icon={faAngleUp} />
               ) : (
@@ -435,9 +455,9 @@ const page : FC<PageProps> = ({ params })=> {
                 <section id="date">
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0">
     <div className="border-b-2 border-gray-300 md:pb-8 py-1">
-        <div className="flex justify-between items-center md:hidden"> {/* hidden on medium and above screens */}
+        <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("date")}> {/* hidden on medium and above screens */}
             <h2 className="text-2xl font-bold mb-2">DATES & PRICES</h2>
-            <button onClick={() => toggleSection("date")} className='text-xl'>
+            <button  className='text-xl'>
                 {openSection.includes("date")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
             </button>
         </div>
@@ -459,9 +479,9 @@ const page : FC<PageProps> = ({ params })=> {
  <section id='inclu'>
  <div className="flex justify-between md:p-10 md:pt-0 p-4 pt-0 mx-auto bg-white">
  <div className='border-b-2 border-gray-300 md:pb-8 py-1'>
- <div className="flex justify-between items-center md:hidden"> 
+ <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("inclu")} > 
  <h2 className="text-2xl font-bold mb-4">INCLUSIONS AND EXCLUSIONS</h2>
- <button onClick={() => toggleSection("inclu")} className='text-xl'>
+ <button className='text-xl'>
                 {openSection.includes("inclu")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
             </button>
         </div>
@@ -484,9 +504,9 @@ const page : FC<PageProps> = ({ params })=> {
  <section id="things">
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
-            <div className="flex justify-between items-center md:hidden"> {/* hidden on medium and above screens */}
+            <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("things")} > {/* hidden on medium and above screens */}
                 <h2 className="text-2xl font-bold mb-2">THINGS TO CARRY</h2>
-                <button onClick={() => toggleSection("things")} className='text-xl'>
+                <button className='text-xl'>
                     {openSection.includes("things") ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                 </button>
             </div>
@@ -611,7 +631,7 @@ const page : FC<PageProps> = ({ params })=> {
     <div className="fixed bottom-0 left-0 w-full bg-yellow-500 p-4 md:hidden z-10">
       <div className="flex justify-center space-x-4">
         <button className="bg-gray-500 text-white px-4 py-2 rounded-lg" onClick={() => setShowEnquiry(true)}>Send Enquiry</button>
-        <button className="bg-black text-white px-4 py-2 rounded-lg" onClick={() => setShowPopup(true)}>Book Now</button>
+        { data && data.batch && data.batch.length >= 1 &&   <button className="bg-black text-white px-4 py-2 rounded-lg" onClick={() => setShowPopup(true)}>Book Now</button> }
       </div>
     </div>
     {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.fromamount} name={data.name.toString()}  /> }
@@ -663,7 +683,7 @@ interface DateContentProps {
 
 const  DateContent: FC<DateContentProps> = ({ displayedBatches, toggleExpanded, data, expanded, setShowEnquiry, setShowPopup }) => (
   <div>
-     { data && data.batch && data.batch.length > 1 && (
+     { data && data.batch && data.batch.length >= 1 && (
       <div>
       <div className="border-b border-gray-300 mb-4 p-2">
           <h3>Batches</h3>

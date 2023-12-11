@@ -237,14 +237,6 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
       loadRazorpayScript();
     };
     
-
-   
-    // useEffect(() => {
-    //   // Assuming you want to instantiate on component mount
-    //   if (window.Razorpay) {
-    //     initiateAndPay();
-    //   }
-    // }, []);
     return (
         <div className="fixed top-0 left-0 w-full h-full   flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto z-10">
             <div className="bg-black text-white rounded shadow-lg mt-32 mb-2">

@@ -1,10 +1,11 @@
 
 "use client";
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
 import AccordionItem from '@/Components/Member/Accordian/Accordianitem';
 import Footer from '@/Components/Navbar/Footer/Footer';
 import Header from '@/Components/Navbar/Header/Header';
@@ -28,7 +29,7 @@ const page = () => {
     lastName: '',
     email: '',
     phonenumber: '',
-    passtype: ''
+    passtype: '',
   });
 
   // Generate an array of 20 items for the MembershipCard lists
@@ -49,12 +50,27 @@ const page = () => {
   
 
 // Calculate today's date
-const today = new Date();
-const activationDate = formatDate(today);
+// const today = new Date();
+// const activationDate = formatDate(today);
 
-// Calculate expiring date (6 months from today)
-today.setMonth(today.getMonth() + 6);
-const expiringDate = formatDate(today);
+// // Calculate expiring date (6 months from today)
+// today.setMonth(today.getMonth() + 6);
+// const expiringDate = formatDate(today);
+// Calculate today's date
+const today = new Date();
+const defaultActivationDate = today.toISOString().split('T')[0];
+// const defaultActivationDate = formatDate(today);
+
+// State for activation and expiring dates
+const [activationDate, setActivationDate] = useState(defaultActivationDate);
+const [expiringDate, setExpiringDate] = useState('');
+
+// Effect to update expiring date when activation date changes
+useEffect(() => {
+  const activation = new Date(activationDate);
+  activation.setMonth(activation.getMonth() + 6); // Add 6 months to the activation date
+  setExpiringDate(formatDate(activation));
+}, [activationDate]);
 
 
   const [membershipPrice, setMembershipPrice] = useState(0); // Default price for BACKPACKER
@@ -70,7 +86,9 @@ const expiringDate = formatDate(today);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-
+    if (name === 'activationdate') {
+      setActivationDate(value); // Update activation date
+    }
     if (name === 'passtype') {
         if (value === 'Trek Pass') {
           setMembershipPrice(12000); // Updated Trek Pass price
@@ -294,7 +312,7 @@ console.log("hey charlie")
            
           {/* Membership Cards Section */}
         {/* Membership Cards Section */}
-            <div className="bg-white p-8 hidden md:block text-black">
+            <div className="bg-white p-8 hidden md:block rounded-lg text-black">
             <div className='flex flex-col items-center justify-center'>
     <h2 className="text-3xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
     <hr className="border-t-2 border-yellow-500 w-16 mb-10" /> {/* Fixed width for all viewports */}
@@ -304,11 +322,15 @@ console.log("hey charlie")
                   <div className='font-bold text-lg mb-2 text-center'>TREK PASS</div>
               <div className='text-justify words-break'>Unlock the world of adventure with our exclusive Trek Pass. Embark on thrilling journeys through breathtaking landscapes, conquer challenging trails, and immerse yourself in the beauty of nature. The Trek Pass is your ticket to unforgettable trekking experiences, connecting you with the essence of exploration. Plus, enjoy the flexibility to choose 6 treks worth RS 24,000 from a selection of 20 treks, all at a 50% discount, ensuring you get the most out of your adventure-packed journey. Each trek blends cultural encounters and enriching every step.</div> 
               <div className="text-center">
-    <button className="bg-yellow-500  text-white font-bold py-2 px-4 mt-4 rounded">
-    <Link href="#targetDiv" className="text-white">
+              <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }}
+               className="py-2  px-4 mt-4 border  border-yellow-500 text-black rounded-lg">
+    <Link href="#targetDiv">
       AVAIL PASS
 </Link>
-    </button>
+    </motion.button>
   </div>
                 </div>
                 <div className="w-full md:w-1/2">
@@ -317,11 +339,15 @@ console.log("hey charlie")
               <div className='text-justify words-break'> Embark on a journey with our exclusive Tour Pass. Immerse yourself in extraordinary travel experiences, from uncovering hidden gems in various destinations to savoring the flavors of diverse cuisines. The Tour Pass opens up a world of exploration, giving you the chance to create memories and connections with our community. Customize your adventure by selecting 6 tours worth RS 42,000 from a diverse array of 20 destinations, all available at flat 50% discounted rate. Make your travels amazing friends as you explore with us, one exciting adventure at a time.
               </div> 
               <div className="text-center">
-    <button className="bg-yellow-500  text-white font-bold py-2 px-4 mt-4 rounded">
-    <Link href="#targetDiv" className="text-white">
+              <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }}
+               className="py-2  px-4 mt-4 border  border-yellow-500 text-black rounded-lg">
+    <Link href="#targetDiv">
       AVAIL PASS
 </Link>
-    </button>
+    </motion.button>
   </div>
                 </div>
                 </div>
@@ -330,7 +356,7 @@ console.log("hey charlie")
           </div>
 
           {/* ... (other sections) */}
-                  <div className='mt-5 hidden md:block text-black'>
+                  <div className='mt-5 hidden md:block text-black '>
           <AccordionItem
   title="Terms of Conditions "
   points={[
@@ -392,12 +418,28 @@ console.log("hey charlie")
                 </select>
               </div>
 
+              <div className='mt-4'>
+              <label htmlFor="passtype" className="block mb-2 text-sm font-medium text-black">
+                Pass Activation Date
+                </label>
+                <input
+  type='date'
+  id="date"
+  name="activationdate"
+  value={activationDate}
+  onChange={handleChange}
+  className="bg-grey-500 border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
+  required
+/>
+
+              </div>
               <div className="mt-4">
                 <div className="flex justify-between">
                   <span className="font-medium">THE UNITED PASS</span>
                   <span>₹{membershipPrice.toFixed(2)}</span>
                 </div>
                 <div className="text-sm">valid till: {expiringDate}</div>
+          
               </div>
 
               <div className="mt-4">
@@ -433,9 +475,13 @@ console.log("hey charlie")
                 </div>
               </div>
 
-              <button className="w-full bg-yellow-500 text-white p-3 rounded-lg font-semibold hover:bg-yellow-600 mt-2" type='submit' >
+              <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }}
+               className="w-full border  p-2 rounded-lg border-yellow-500 mt-2" type='submit' >
                 Unlock Travel Pass
-              </button>
+              </motion.button>
               <div className="text-sm text-gray-500 mt-2" >
           <p>For more information, please dont hesitate to give us a call at <a href="tel:+919364099494" className='text-yellow-500 font-bold hover:underline '>+91 93640-99494</a></p>
       </div>
@@ -507,7 +553,7 @@ console.log("hey charlie")
   </div>
           </div>
           </form>
-          <div className="bg-white p-4 px-3 md:hidden block mx-2 text-black">
+          <div className="bg-white p-4 px-3 md:hidden block rounded-lg mx-2 text-black">
             <div className='flex flex-col items-center justify-center'>
     <h2 className="md:text-3xl text-2xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
     <hr className="border-t-2 border-yellow-500 w-16 mb-5" /> {/* Fixed width for all viewports */}
@@ -517,11 +563,15 @@ console.log("hey charlie")
                   <div className='font-bold text-lg mb-2 text-center'>TREK PASS</div>
               <div className='text-justify words-break'>Unlock the world of adventure with our exclusive Trek Pass. Embark on thrilling journeys through breathtaking landscapes, conquer challenging trails, and immerse yourself in the beauty of nature. The Trek Pass is your ticket to unforgettable trekking experiences, connecting you with the essence of exploration. Plus, enjoy the flexibility to choose 6 treks worth RS 24,000 from a selection of 20 treks, all at a 50% discount, ensuring you get the most out of your adventure-packed journey. Each trek blends cultural encounters and enriching every step.</div> 
               <div className="text-center">
-    <button className="bg-yellow-500  text-white font-bold py-2 px-4 mt-4 rounded">
-    <Link href="#targetDiv" className="text-white">
+              <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }}
+               className="py-2  px-4 mt-4 border  border-yellow-500 text-black rounded-lg">
+    <Link href="#targetDiv">
       AVAIL PASS
 </Link>
-    </button>
+    </motion.button>
   </div>
                 </div>
                 <div className="w-full md:w-1/2">
@@ -530,11 +580,15 @@ console.log("hey charlie")
               <div className='text-justify words-break'> Embark on a journey with our exclusive Tour Pass. Immerse yourself in extraordinary travel experiences, from uncovering hidden gems in various destinations to savoring the flavors of diverse cuisines. The Tour Pass opens up a world of exploration, giving you the chance to create memories and connections with our community. Customize your adventure by selecting 6 tours worth RS 42,000 from a diverse array of 20 destinations, all available at flat 50% discounted rate. Make your travels amazing friends as you explore with us, one exciting adventure at a time.
               </div> 
               <div className="text-center">
-    <button className="bg-yellow-500  text-white font-bold py-2 px-4 mt-4 rounded">
-    <Link href="#targetDiv" className="text-white">
+              <motion.button
+               initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+               whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+               transition={{ duration: 0.3 }}
+               className="py-2  px-4 mt-4 border  border-yellow-500 text-black rounded-lg">
+    <Link href="#targetDiv">
       AVAIL PASS
 </Link>
-    </button>
+    </motion.button>
   </div>
                 </div>
                 </div>

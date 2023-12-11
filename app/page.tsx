@@ -10,6 +10,12 @@ import Popular from '@/Components/Home/Popular/Popular'
 import LocationListSection from '@/Components/Home/Location/Location'
 
 
+export async function generateMetadata() {
+  return {
+    title: 'Backpackers United: Connect with Global Travel Community',
+    description: 'Join Backpackers United: a vibrant community for travel enthusiasts. Discover tips, share experiences, and connect with fellow backpackers every weekend.'
+  };
+}
 export default function Home() {
   return (
     <main className="flex flex-col bg-black">
