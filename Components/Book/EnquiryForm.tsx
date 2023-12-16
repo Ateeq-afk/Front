@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React ,{ useState, ChangeEvent } from 'react';
 
 interface EnquiryFormProps {
-  onClose: () => void; // Assuming onClose is a function that returns nothing
+  onClose: () => void;
+  source: string;  // Assuming onClose is a function that returns nothing
 }
-const EnquiryForm = ({ onClose }: EnquiryFormProps) => {
+const EnquiryForm = ({ onClose, source }: EnquiryFormProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,17 +32,21 @@ const EnquiryForm = ({ onClose }: EnquiryFormProps) => {
     }));
   };
 
-  
+  console.log(source,"source")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const postData = {
+      ...formData,
+      source, // Add the source to the POST data
+    };
     try {
       const response = await fetch('https://launch-api1.vercel.app/enquiry/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(postData),
       });
 
       if (!response.ok) {

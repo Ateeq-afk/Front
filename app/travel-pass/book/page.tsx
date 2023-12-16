@@ -104,98 +104,63 @@ useEffect(() => {
     event.preventDefault(); // Prevent the default form submission
     await initiateAndPayMembership();
 };
+const initiateAndPayMembership = async () => {
+  const loadRazorpayScript = () => {
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.onload = () => initializeMembershipPayment().catch(console.error);
+      document.head.appendChild(script);
+  };
 
-  const initiateAndPayMembership = async () => {
-    const loadRazorpayScript = () => {
-        const script = document.createElement('script');
-        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-        script.onload = () => initializeMembershipPayment().catch(console.error); // Call the payment initialization function when the script is loaded
-        document.head.appendChild(script);
-    };
-console.log("hey charlie")
-    const initializeMembershipPayment = async () => {
- 
-        // Replace with the correct URL and amount calculation logic for membership
-        console.log("hey saad")
-        const resInitiate = await fetch('https://launch-api1.vercel.app/member/initiatePayment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ totalamount: getTotalFirst().toFixed(2) }) 
-        });
+  const initializeMembershipPayment = async () => {
+      try {
+          const requestBody = {
+              // Update with the correct data for initiating payment
+              passtype: formData.passtype,
+              activationdate: activationDate,
+              expiringdate: expiringDate, 
+              title: formData.title,
+              firstname: formData.firstName,
+              lastname: formData.lastName,
+              phonenumber: formData.phonenumber,
+              email: formData.email,
+              amount: membershipPrice, 
+              gst: getGstFirst().toFixed(2), 
+              totalamount: getTotalFirst().toFixed(2) ,
+          };
 
-        const dataInitiate = await resInitiate.json();
+          const resInitiate = await fetch('https://launch-api1.vercel.app/membera/initiatePayment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(requestBody),
+          });
 
-        const options = {
-            key: process.env.RAZORPAY_KEY_ID, // Ensure this is configured correctly
-            amount: getTotalFirst().toFixed(2),
-            currency: 'INR',
-            name: 'Backpackers United Pvt Ltd',
-            description: 'Travel Pass Transaction',
-            order_id: dataInitiate.orderId,
-            handler: async function (response: {
-                razorpay_order_id: string;
-                razorpay_payment_id: string;
-                razorpay_signature: string;
-            }) 
-               {
-                // Handle the response after payment
-                const resVerify = await fetch('https://launch-api1.vercel.app/member/verifyPayment', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        razorpayOrderId: response.razorpay_order_id,
-                        razorpayPaymentId: response.razorpay_payment_id,
-                        razorpaySignature: response.razorpay_signature
-                    })
-                });
+          const dataInitiate = await resInitiate.json();
 
-                const dataVerify = await resVerify.json();
+          console.log('Initiate Payment Response:', dataInitiate);
 
-                if(dataVerify.verified) {
-                    // Save membership details to the backend
-                    const resSave = await fetch('https://launch-api1.vercel.app/member/savePayment', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            passtype: formData.passtype,
-                            activationdate: activationDate,
-                            expiringdate: expiringDate, 
-                            title: formData.title,
-                            firstname: formData.firstName,
-                            lastname: formData.lastName,
-                            phonenumber: formData.phonenumber,
-                            email: formData.email,
-                            amount: membershipPrice, 
-                            gst: getGstFirst().toFixed(2), 
-                            totalamount: getTotalFirst().toFixed(2) ,
-                            razorpayOrderId: response.razorpay_order_id,
-                            razorpayPaymentId: response.razorpay_payment_id
-                        })
-                    });
+          const options = {
+              key: process.env.RAZORPAY_KEY_ID,
+              amount: dataInitiate.order.amount,
+              currency: dataInitiate.order.currency,
+              name: 'Backpackers United Pvt Ltd',
+              description: 'Travel Pass Transaction',
+              order_id: dataInitiate.order.id,
+              handler: (response: any) => {
+                alert('Travel Pass is unlocked, You can check mail for further details');
+              },
+          };
 
-                    const dataSave = await resSave.json();
-                    if(dataSave.success) {
-                        alert('Travel Pass is unlocked, You can check mail for further details');
-                    } else {
-                        alert('Error saving Travel Pass details.');
-                    }
-                } else {
-                    alert('Travel Pass payment verification failed.');
-                }
-            }
-        };
+          const rzp = new window.Razorpay(options);
+          rzp.open();
+      } catch (error) {
+          console.error('Error during payment initiation:', error);
+          alert('Travel Pass payment verification failed.');
+      }
+  };
 
-        const rzp = new window.Razorpay(options);
-        console.log("hey bob")
-        rzp.open();
-        console.log("hey harry")
-    }
-
-    loadRazorpayScript();
+  loadRazorpayScript();
 };
-// initiateAndPayMembership().catch(console.error);
-// Usage example
-
 
 
   return (

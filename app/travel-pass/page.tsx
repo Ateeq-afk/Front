@@ -231,14 +231,12 @@ const cards = [
 
 const countdownVariants = {
   hidden: { y: 0 },
-  visible: (custom) => ({
+  visible: (custom: number) => ({
     y: -40 * custom, // Adjust based on the height of each number
     transition: { duration: 1, ease: "easeInOut" }
   })
 };
-const formatTime = (time) => {
-  return String(time).padStart(2, '0');
-};
+
   return (
   <div className='bg-gradient-to-r from-gray-900 to-gray-800 text-white'>
   <Header />
@@ -287,11 +285,11 @@ const formatTime = (time) => {
     </Link>
   ))}
 </div>
-<div className="rounded-lg shadow-md text-black">
+{/* <div className="rounded-lg shadow-md text-black">
   <p className="text-lg font-semibold mb-2 text-yellow-500">THE SALE ENDS IN</p>
   {countdownTime && (
     <div className="flex justify-center space-x-3">
-      {/* Days */}
+ 
       <div className="flex flex-col items-center">
         <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
           <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.days} initial="hidden" animate="visible" variants={countdownVariants}>
@@ -302,7 +300,7 @@ const formatTime = (time) => {
         </div>
         <p className="text-sm mt-1 text-white">DAYS</p>
       </div>
-      {/* Hours */}
+  
       <div className="flex flex-col items-center">
         <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
           <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.hours} initial="hidden" animate="visible" variants={countdownVariants}>
@@ -313,7 +311,7 @@ const formatTime = (time) => {
         </div>
         <p className="text-sm mt-1 text-white">HOURS</p>
       </div>
-      {/* Minutes */}
+   
       <div className="flex flex-col items-center">
         <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
           <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.minutes} initial="hidden" animate="visible" variants={countdownVariants}>
@@ -324,7 +322,7 @@ const formatTime = (time) => {
         </div>
         <p className="text-sm mt-1 text-white">MINUTES</p>
       </div>
-      {/* Seconds */}
+
       <div className="flex flex-col items-center">
         <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
           <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.seconds} initial="hidden" animate="visible" variants={countdownVariants}>
@@ -337,7 +335,7 @@ const formatTime = (time) => {
       </div>
     </div>
   )}
-</div>
+</div> */}
   </div>
 
   </div>
@@ -664,7 +662,7 @@ const formatTime = (time) => {
   </div>
   </div>
   </div>
-  {showEnquiry && <EnquiryForm onClose={() => setShowEnquiry(false)}/>}
+  {showEnquiry && <EnquiryForm onClose={() => setShowEnquiry(false)} source="Travel Pass"/>}
   <Footer />
   </div>
   );

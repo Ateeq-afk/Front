@@ -302,7 +302,7 @@ const page : FC<PageProps> = ({ params })=> {
                     <div className="border-b-2 border-gray-300 md:py-8 py-2">
                         <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("expedition")}>
                            {/* hidden on medium and above screens */}
-                            <h1 className="text-2xl font-bold md:mb-6 mb-2">OVERVIEW</h1>
+                            <h2 className="text-2xl font-bold md:mb-6 mb-2">OVERVIEW</h2>
                             <button  className='text-xl'>
                             {openSection.includes("expedition")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                             </button>
@@ -316,7 +316,7 @@ const page : FC<PageProps> = ({ params })=> {
                         <div className="hidden md:block"> {/* shown only on medium and above screens */}
                         <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-                            <h1 className="text-3xl font-bold mb-6">OVERVIEW</h1>
+                            <h2 className="text-3xl font-bold mb-6">OVERVIEW</h2>
                             </div>
                             <SpecialOffers />
                             <FeatureList data={data} />
@@ -328,7 +328,7 @@ const page : FC<PageProps> = ({ params })=> {
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0 text-black">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
             <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("itinerary")} > {/* hidden on medium and above screens */}
-                <h1 className="text-2xl font-bold md:mb-6 mb-2">ITINERARY</h1>
+                <h2 className="text-2xl font-bold md:mb-6 mb-2">ITINERARY</h2>
                 <button className='text-xl'>
                     {openSection.includes("itinerary")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                 </button>
@@ -379,7 +379,7 @@ const page : FC<PageProps> = ({ params })=> {
             <div className="hidden md:block"> 
             <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-                <h1 className="text-3xl font-bold mb-6">ITINERARY</h1>
+                <h2 className="text-3xl font-bold mb-6">ITINERARY</h2>
                 </div>
                 <p className="text-gray-600 mb-10">{data.itinerary}</p>
                 <div className="container mx-auto">
@@ -428,7 +428,7 @@ const page : FC<PageProps> = ({ params })=> {
         <div className="mx-auto bg-white md:p-10 p-4 pt-0 md:pt-0">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
           <div className="flex justify-between  md:hidden" onClick={() => toggleSection("expect")}>
-            <h1 className="text-2xl  font-bold pb-2 ">WHAT TO EXPECT</h1>
+            <h2 className="text-2xl  font-bold pb-2 ">WHAT TO EXPECT</h2>
             <button  className="text-xl">
               {openSection.includes("expect") ? (
                 <FontAwesomeIcon icon={faAngleUp} />
@@ -445,7 +445,7 @@ const page : FC<PageProps> = ({ params })=> {
           <div className="hidden md:block">
           <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-            <h1 className="text-3xl font-bold mb-6">WHAT TO EXPECT</h1>
+            <h2 className="text-3xl font-bold mb-6">WHAT TO EXPECT</h2>
             </div>
             <ExpectContent data={data} />
           </div>
@@ -634,8 +634,8 @@ const page : FC<PageProps> = ({ params })=> {
         { data && data.batch && data.batch.length >= 1 &&   <button className="bg-black text-white px-4 py-2 rounded-lg" onClick={() => setShowPopup(true)}>Book Now</button> }
       </div>
     </div>
-    {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.fromamount} name={data.name.toString()}  /> }
-    {showEnquiry && <EnquiryForm onClose={() => setShowEnquiry(false)}/>}
+    {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.fromamount} name={data.name.toString()} testimage={data.testimage} /> }
+    {showEnquiry && <EnquiryForm onClose={() => setShowEnquiry(false)} source={String(data.name)}/>}
     </div>
   )
 }

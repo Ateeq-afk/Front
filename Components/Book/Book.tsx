@@ -4,8 +4,9 @@ import {IoIosArrowDropleft} from 'react-icons/io'
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
 import {FaRupeeSign} from 'react-icons/fa'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faAnglesLeft, faPlay } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
+import Image from 'next/image'
 interface BookingProps {
   onClose: () => void;
   Batch: { date: string }[]; // Modify according to the actual structure of Batch
@@ -13,6 +14,7 @@ interface BookingProps {
   foramount: number;
   withoutamount: number;
   name: string;
+  testimage: string;
 }
 type RazorpayResponse = {
   razorpay_order_id: string;
@@ -26,7 +28,7 @@ declare global {
   }
 }
 export {};
-const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name}: BookingProps) => {
+const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name,testimage}: BookingProps) => {
     const ticketPrice = foramount;
     const firstTicketPrice = reserveamount;
     const transportPrice = withoutamount;
@@ -161,100 +163,73 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
         script.onload = initializePayment; // Call the payment initialization function when the script is loaded
         document.head.appendChild(script);
       };
-      
-  const initializePayment = async () => {
-      const resInitiate = await fetch('https://launch-api1.vercel.app/book/initiatePayment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: isCheckboxTicked ? getTotalFirst().toFixed(2) :getTotal().toFixed(2)  })  // Replace with the desired amount
-      });
     
-      const dataInitiate = await resInitiate.json();
+      const initializePayment = async () => {
+        const requestBody = {
+                        eventName: name,
+                        selecteddate: inputValue.date,
+                        username: inputValue.name,  // Replace with actual data
+                        phonenumber: inputValue.number,  // Replace with actual data
+                        email: inputValue.email, 
+                        amount: isCheckboxTicked ? getTotalFirst().toFixed(2) : getTotal().toFixed(2),
+                        tickets: ticketCount + ticketCount1,
+                        payableamount: getTotalFirst().toFixed(2),
+                        pendingamount: subtractedAmount,
+                        source: 'Razorpay',
+                        gst:  isCheckboxTicked ? getGstFirst().toFixed(2) : getGst().toFixed(2) ,
+                        withtransport: ticketCount,
+                        withouttransport : ticketCount1,
+                        totalamount:    isCheckboxTicked ? getTotalFirst().toFixed(2) : getTotal().toFixed(2) 
+        };
     
-      const options = {
-        key: process.env.RAZORPAY_KEY_ID,
-        amount: isCheckboxTicked ? getTotalFirst().toFixed(2) : getTotal().toFixed(2)  ,
-        currency: 'INR',
-        name: 'Backpackers United Pvt Ltd',
-        description: 'Booking Transaction',
-        order_id: dataInitiate.orderId,
-        handler: async (response: RazorpayResponse) =>{
-          const resVerify = await fetch('https://launch-api1.vercel.app/book/verifyPayment', {
+        try {
+          const resInitiate = await fetch('https://launch-api1.vercel.app/bookb/initiatePayment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              razorpayOrderId: response.razorpay_order_id,
-              razorpayPaymentId: response.razorpay_payment_id,
-              razorpaySignature: response.razorpay_signature
-            })
+            body: JSON.stringify(requestBody),
           });
     
-          const dataVerify = await resVerify.json();
+          const dataInitiate = await resInitiate.json();
     
-          if(dataVerify.verified) {
-            // Save to DB
-            const resSave = await fetch('https://launch-api1.vercel.app/book/savePayment', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                eventName: name,
-                selecteddate: inputValue.date,
-                username: inputValue.name,  // Replace with actual data
-                phonenumber: inputValue.number,  // Replace with actual data
-                email: inputValue.email, 
-                amount: foramount,
-                tickets: ticketCount + ticketCount1,
-                payableamount: getTotalFirst().toFixed(2),
-                pendingamount: subtractedAmount,
-                source: 'Razorpay',
-                gst:  isCheckboxTicked ? getGstFirst().toFixed(2) : getGst().toFixed(2) ,
-                withtransport: ticketCount,
-                withouttransport : ticketCount1,
-                totalamount:    isCheckboxTicked ? getTotalFirst().toFixed(2) : getTotal().toFixed(2) ,
-                razorpayOrderId: response.razorpay_order_id,
-                razorpayPaymentId: response.razorpay_payment_id
-              })
-            });
+          console.log('Initiate Payment Response:', dataInitiate);
+          const options = {
+            key: process.env.RAZORPAY_KEY_ID,
+            amount: dataInitiate.order.amount,
+            currency: dataInitiate.order.currency,
+            name: 'Backpackers United Pvt Ltd',
+            description: 'Booking Transaction',
+            order_id: dataInitiate.order.id,
+            handler: (response : any) => {
+              alert('Your Booking has been confirmed. You can check mail for further details');
+              onClose();
+            },
+          };
     
-            const dataSave = await resSave.json();
-            if(dataSave.success) {
-              alert('Payment successful and saved!');
-              onClose()
-            } else {
-              alert('Error saving payment details.');
-            }
-          } else {
-            alert('Payment verification failed.');
-          }
+          const rzp = new window.Razorpay(options);
+          rzp.open();
+        } catch (error) {
+          console.error('Error during payment initiation:', error);
         }
       };
-
     
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-    }
-
       loadRazorpayScript();
     };
-    
+  
+
     return (
         <div className="fixed top-0 left-0 w-full h-full   flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto z-10">
-            <div className="bg-black text-white rounded shadow-lg mt-32 mb-2">
+            <div className="bg-black text-white rounded-xl shadow-lg mt-32 mb-2">
 
                 {isTabOneActive ? (
                     <div className='w-auto' >
-                    <div className='flex flex-row bg-form1 p-4 border-b border-gray-400 justify-between md:gap-20 gap-10 '>
-                        <button onClick={onClose} ><IoIosArrowDropleft className="text-3xl text-gray-400 hover:text-yellow-500" /></button>
-                        <div className='flex flex-col justify-center pt-4'>
-                            <div className='text-xl font-bold text-center'>
-                                Who Is Booking ?
+                    <div className='flex flex-row bg-form1 py-4 px-4 justify-between md:gap-5 gap-5 border-b border-gray-400'>
+                        <button onClick={onClose} ><FontAwesomeIcon icon={faAnglesLeft} className="text-2xl text-gray-400 hover:text-yellow-500" /></button>
+                        
+                        <div className='text-xl font-bold text-center  rounded-lg '>
+                                Booking Details
                                 </div>
-                                <div className='text-sm text-gray-400 pt-1 text-center'>
-                                {name}
-                                </div>
-                            </div>
                             <div >
-                            <div className="flex mt-5 ">
+                            <div className="flex ">
       {/* First rounded circle */}
       <div className="relative">
       
@@ -268,10 +243,27 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
     </div>
                                 </div>
                     </div>
+                    <div className='flex flex-row px-5 pt-4 gap-4'>
+  <div className='relative min-h-[60px] w-[120px]'>
+    <Image src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${testimage}`} layout='fill' objectFit="cover" alt={name} className='rounded-lg' />
+  </div>
+  <div className='flex flex-col'>
+  <div className='text-lg text-yellow-500 pt-1 text-center flex justify-center items-center '>
+  <div className='max-w-[200px]  '>
+    {name}
+  </div>
+</div>
+<div className='max-w-[250px] '>
+The world is a book, and those who do not travel read only one page.
+  </div>
+</div>
+</div>
+
                     <div className='p-4'>
                     <form onSubmit={handleSubmit}>
+                      <div className='border border-gray-500 p-4 rounded-lg'>
                     <div className="mb-2  rounded-lg">
-        <label className="block text-sm  mb-2 text-center  text-yellow-500 ">Select Dates</label>
+        <label className="block text-sm  mb-2 text-yellow-500 ">Select Batch Dates</label>
                              <select className="w-full p-2 border rounded text-black" name="date"  value={inputValue.date}
                             onChange={handleChange}  required>
                                <option value="" >Please select the Date</option>
@@ -292,7 +284,7 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
                             onChange={handleChange}   required/>
       </div>
       <div className='flex flex-row gap-2'>
-         <div className="mb-2   rounded-lg md:w-1/2 w-[58%]">
+         <div className="mb-2   rounded-lg md:w-[70%] w-[70%]">
           <label className="block text-sm text-yellow-500 mb-2">Phone Number </label>
           <input type="text" className="w-full p-2 border rounded text-black" placeholder="Phone Number" name="number" value={inputValue.number}
                             onChange={handleChange}  required/>
@@ -303,24 +295,24 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
                             onChange={handleChange}  required/>
       </div>
       </div>
+      </div>
       <button type='submit' className="w-full bg-yellow-500 text-white p-3 rounded mt-2" >Next</button>
+     
       </form>
           </div>
                     </div>
                 ) : (
                     <div className='md:w-[420px] w-[375px]'>
-                    <div className='flex flex-row bg-form1 justify-between p-2 border-b border-gray-400'>
-                        <button onClick={switchToTabOne} ><IoIosArrowDropleft className="text-3xl text-gray-400 hover:text-yellow-500" /></button>
-                        <div className='flex flex-col justify-center  pt-4'>
+                      <div className='flex flex-row bg-form1 p-4 justify-between md:gap-5 gap-5 '>
+                        <button onClick={switchToTabOne} ><FontAwesomeIcon icon={faAnglesLeft} className="text-2xl text-gray-400 hover:text-yellow-500" /></button>
+                    
+                        <div className='flex flex-col justify-center '>
                             <div className='text-xl font-bold text-center'>
-                                Book Your Event Now
-                                </div>
-                                <div className='text-sm text-gray-400 pt-1 text-center'>
-                               {name}
+                                Book Your Slot Now
                                 </div>
                             </div>
                             
-                            <div className="flex mt-5 ">
+                            <div className="flex  ">
       {/* First rounded circle */}
       <div className="relative">
         {/* <div className={`w-4 h-4 rounded-full ${isTabOneActive ? 'bg-yellow-500' : 'bg-blue-200'} flex items-center justify-center text-white`}>
@@ -335,8 +327,8 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
     </div>
         </div>
         <div className={isShow ? 'block' : 'hidden'} >
-                 <div className='px-6 border-t-5 border-gray-400 border-t-4 mt-5 text-gray-600 h-[250px]' >
-                      <h3 className="text-xl font-semibold mb-3 mt-5">Bill Summary</h3>
+                 <div className='px-6 border-t-5 border-gray-400 border-t-4 mt-5  text-gray-600 h-[250px]' >
+                      <h3 className="text-xl font-semibold mb-3 mt-5 text-yellow-500"> Summary</h3>
 
 <div className="mb-2 flex flex-row">
   <div className="w-[200px]">Total Price:</div>
@@ -364,56 +356,63 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
     <div>INR {getTotal().toFixed(2)}/-</div>
   )}</span>
 </div>
-<div>The remaining amount should be paid before one day departure
+<div>To ensure your reservation is not cancelled, please ensure that the remaining balance is paid at least one day before your scheduled departure.
+
   </div>
                  </div>
 </div>
                     <div className={isShow ? 'hidden' : 'block'}>
-                    <div className=" p-4 pb-2">
-                    <label className="block text-sm mb-2 mt-6 text-yellow-500 ">Select Ticket(s)</label>
-                    <div className="flex items-center  justify-between space-x-4 rounded-xl p-3 bg-form1 border border-gray-400">
+                    <div  className='border border-gray-400 rounded-xl m-2'>
+                    <div className=" p-4 ">
+               
+                      <div className='flex flex-row justify-center items-center'>
+                       <div> Batch Date&nbsp;:&nbsp; </div>   <div className='text-yellow-500'> {inputValue.date}</div>
+                        </div>
+                    <label className="block text-sm mt-2 text-yellow-500 ">Pick Your Preference(s)</label>
+                 
+                    <div className="flex items-center  justify-between space-x-4 rounded-xl p-1 pb-0 pt-2 bg-form1 ">
                       <span className='font-bold text-sm'>With transport: ₹ {ticketPrice}</span>
                       <button onClick={handleDecreaseTicket} className='pl-[100px]'>-</button>
                       <span>{ticketCount}</span>
                       <button onClick={handleIncreaseTicket}>+</button>
                     </div>
-                  </div>
-                 {transportPrice && <div className=" p-4 pt-0">
-                    <div className="flex items-center  justify-between space-x-4 rounded-xl p-3 bg-form1 border border-gray-400">
+                 
+                 {transportPrice && <div className="pt-2 ">
+                    <div className="flex items-center  justify-between space-x-4 rounded-xl p-1 pt-0 pb-4 bg-form1 ">
                       <span className='font-bold text-sm'>Without transport: ₹ {transportPrice}</span>
                       <button onClick={handleDecreaseTicket1} className='pl-20'>-</button>
                       <span>{ticketCount1}</span>
                       <button onClick={handleIncreaseTicket1}>+</button>
                     </div>
-                  </div>
-}
-                  <div className="flex items-center justify-between  px-6 text-sm">
+                    </div>
+             
+}    
+                  <div className="flex items-center justify-between   text-sm">
                   <label>
                       <input type="checkbox" className="mr-2 " onChange={() => setIsCheckboxTicked(!isCheckboxTicked)}/>
                      Reserve your slot by paying : INR  {getSubtotalFirst().toFixed(2)}/-
                     </label>
                     </div>
-                    <div className="flex items-center justify-between mt-2 px-6 text-sm">
+                    <div className="flex items-center justify-between mt-2 text-sm">
                     <label>
                       <input type="checkbox" className="mr-2" onChange={handleCheckboxChange} />
                       I have read and accept the Refunds, <Link href='/condition' className='text-yellow-500 hover:underline'>Cancellation Policy & Terms & Conditions</Link>
                     </label>
                   </div>
                   </div>
-                
-                  <div className="flex items-center justify-between mb-4 p-4">
-                  
                   </div>
-                  <div className='p-4 border-t border-gray-400 flex justify-between bg-form1'>
+                  </div> 
+             
+                  <div className='p-4 flex justify-between bg-form1'>
                     <div className='flex flex-col '> 
                         <div > {isCheckboxTicked ? (
     <div><FaRupeeSign className='float-left text-xl pt-1 font-bold'/>{getTotalFirst().toFixed(2)} </div>
   ) : (
     <div><FaRupeeSign className='float-left text-xl pt-1 font-bold'/>{getTotal().toFixed(2)}</div>
   )}</div>
-                        <div className='text-xxs text-blue-500 pl-2 cursor-pointer'   onClick={toggleDiv}>   {isShow ? 'Hide Details' : 'Show Details'} </div>
+                        <div className='text-xs text-green-500 pl-2 cursor-pointer'   onClick={toggleDiv}>   {isShow ? 'Hide Details' : 'Show Details'} </div>
                     </div>
-                  <button className= {`${isChecked ? 'bg-yellow-500' : 'bg-yellow-200'}  text-white w-40 h-10 rounded-lg`} onClick={initiateAndPay}  disabled={!isChecked} >Pay Now</button>
+                  <button className= {`${isChecked ? 'bg-yellow-500' : 'bg-yellow-200'}  text-black w-40 h-10 rounded-lg `} onClick={initiateAndPay}  disabled={!isChecked} >Pay Now</button>
                 </div>
                   </div>
                 )}

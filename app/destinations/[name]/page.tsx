@@ -46,6 +46,26 @@ const page : FC<PageProps> = ({ params })=> {
   
   const parallaxRef = useRef<HTMLDivElement>(null);
   const [destination, setDestination] = useState<Destination | null>(null);
+  const [readMore, setReadMore] = useState(false);
+  const paraRef = useRef<HTMLDivElement>(null);  // Create a ref for the paragraph
+
+  const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Effect to scroll to the paragraph when readMore is set to false
+  useEffect(() => {
+    if (!readMore) {
+      scrollToRef(paraRef);
+    }
+  }, [readMore]);
+
+  const toggleReadMore = () => {
+    setReadMore(!readMore);
+  };
+
     useEffect(() => {
       const handleScroll = () => {
         const scrolled = window.scrollY;
@@ -80,19 +100,28 @@ const page : FC<PageProps> = ({ params })=> {
   <div className="flex flex-col items-start">
     <div className="flex items-center md:mb-8 pt-10">
       <div className="bg-yellow-500 w-1 h-16 mr-8 self-center md:block hidden"></div>
-      <h1 className="text-7xl inline-block align-middle">
+      <h1 className="text-7xl inline-block align-middle" ref={paraRef} >
       {destination?.name}
         <span className="text-yellow-500 text-9xl inline-block align-middle relative" style={{top: '-0.2em'}}>.</span>
       </h1>
      
     </div>
     <div className="md:ml-9 ml-2">
-    {destination && destination.over && destination.over.map((over, index) => (
-          <p className="text-gray-300 mt-2" key={index}  >
-     {over}
+      {destination && destination.over && destination.over.map((over, index) => (
+        <div key={index} className="mt-2">
+          <p  className={`text-gray-300 ${!readMore ? 'line-clamp-3' : ''}`} >
+            {over}
           </p>
+          {over.split(' ').length > 50 && ( // Assuming 50 words is roughly 3 lines
+            <button
+              onClick={toggleReadMore}
+              className="text-yellow-500  transition-colors cursor-pointer text-sm mt-2"
+            >
+              {readMore ? 'Read less' : 'Read more'}
+            </button>
+          )}
+        </div>
       ))}
-  
     </div>
   </div>
 </div>
@@ -116,9 +145,9 @@ const page : FC<PageProps> = ({ params })=> {
   <h1 className="text-3xl font-bold mb-6">Getaway to  {destination?.name} </h1>
 </div>
 {destination && destination.products && destination.products.map((products, index) => (
-    <div className="bg-black md:p-10 p-4 text-white" key={index}>
-  <div className="relative flex flex-col  gap-2">
-    <div className="relative md:w-[50%] w-[100%] h-[400px]">
+   <Link href={`/tour/${products?.urllink}`} >     <div className="bg-black md:p-10 p-4 text-white" key={index}>
+  <div className="relative flex flex-col  gap-2 mx-2 ">
+    <div className="relative md:w-[50%] w-[100%] md:h-[400px] h-[300px] ">
       <Image
         src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${products?.testimage}`}
         alt="Destination Image"
@@ -128,7 +157,7 @@ const page : FC<PageProps> = ({ params })=> {
       />
     </div>
     <motion.div
-      className="md:absolute md:left-[45%] md:top-[18%] z-10 p-6 md:w-[55%]  bg-black rounded-xl shadow-2xl"
+      className="md:absolute md:left-[45%] md:top-[18%] z-10 md:p-6 md:w-[55%]  bg-black rounded-xl shadow-2xl"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
@@ -142,14 +171,15 @@ const page : FC<PageProps> = ({ params })=> {
           <p>Starting from</p>
           <p className="text-yellow-400 font-bold text-xl">₹{products?.fromamount}</p>
         </div>
-        <Link href={`/tour/${products?.urllink}`} >   <button className="bg-yellow-400 text-black font-bold py-2 px-6 rounded-full border-2 border-transparent hover:bg-black hover:text-yellow-400 hover:border-yellow-400 transition duration-300">
+       <button className="bg-yellow-400 text-black font-bold py-2 px-6 rounded-full border-2 border-transparent hover:bg-black hover:text-yellow-400 hover:border-yellow-400 transition duration-300">
           BOOK NOW ➔
         </button>
-        </Link>
+   
       </div>
     </motion.div>
   </div>
   </div>
+  </Link>
 ))}
 
       <div className="bg-black p-10 text-white">
@@ -160,8 +190,12 @@ const page : FC<PageProps> = ({ params })=> {
     </div>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {destination?.blogs?.map((blogs, index) => (
+           <Link href={`/blogs/${blogs?.urllink}`}>
         <div className="rounded-lg overflow-hidden shadow-lg bg-gray-800" key={index}>
           <div className="relative w-full h-64">
+
+
+            
             {blogs?.blogs && blogs.blogs[0] && (
               <Image
                 src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${blogs.blogs[0].image}`}
@@ -176,14 +210,15 @@ const page : FC<PageProps> = ({ params })=> {
             <h2 className="font-bold text-xl mb-2">{blogs?.name}</h2>
             <p className="text-gray-400 mb-4 overflow-hidden overflow-ellipsis line-clamp-3">{blogs?.over[0]}</p>
             <div className="flex justify-end">
-              <Link href={`/blogs/${blogs?.urllink}`}>
+           
                 <button className="bg-yellow-400 text-black font-bold py-2 px-6 rounded-full border-2 border-transparent hover:bg-black hover:text-yellow-400 hover:border-yellow-400 transition duration-300">
                   Read More
                 </button>
-              </Link>
+           
             </div>
           </div>
         </div>
+           </Link>
       ))}
     </div>
     <Link href="/blogs" className="block mt-10 text-center text-yellow-500 hover:text-yellow-600 underline">

@@ -16,9 +16,14 @@ const firebaseConfig = {
     appId: "1:520329530780:web:7da6a30492c1a9fa9d0c59"
   };
   // Initialize Firebase
-  if (!getApps().length) {
-    initializeApp(firebaseConfig);
+  try {
+    if (!getApps().length) {
+      initializeApp(firebaseConfig);
+    }
+  } catch (error) {
+    console.error("Firebase initialization error:", error);
   }
+  
 const Googlelogin = () => {
     const router = useRouter();
     const [error, setError] = useState(null);
@@ -37,6 +42,8 @@ const Googlelogin = () => {
           image: photoURL,
         });
         
+        console.log("Backend response:", res.data);
+
         setLoading(false);
   
         // Set the JWT token here if needed
@@ -46,16 +53,17 @@ const Googlelogin = () => {
         await router.push('/');
       } catch (err) {
         setLoading(false);
-        toast.error("Invalid Credentials ", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
+        // toast.error("Invalid Credentials ", {
+        //     position: "top-right",
+        //     autoClose: 5000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //     theme: "dark",
+        //     })
+            alert("Invalid Credentials ")
       }
     }
 
