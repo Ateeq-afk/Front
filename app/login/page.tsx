@@ -5,12 +5,14 @@ import Image from "next/image";
 import LoginForm from "@/Components/Signup/Login";
 import Googlelogin from "@/Components/Signup/Google";
 
-export const metadata = {
-  title: "Sign In | Backpackers United ",
-  description: "Backpackers United - Sign In",
-};
 
 
+export async function generateMetadata() {
+  return {
+    title: 'Log In to Your Backpackers United Account',
+    description: 'Access your Backpackers United account. Log in to manage your profile, view exclusive content, and interact with our global community of travelers.'
+  };
+}
 // const DynamicGoogleLogin = dynamic(
 //   () => import('../../Components/Signup/Google'),
 //   { ssr: false }

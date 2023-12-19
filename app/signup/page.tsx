@@ -7,11 +7,13 @@ import { faGoogle, faSquareGooglePlus} from '@fortawesome/free-brands-svg-icons'
 import Image from "next/image";
 import Googlelogin from "@/Components/Signup/Google";
 
-export const metadata = {
-  title: "Sign Up | Backpackers United ",
-  description: "Backpackers United - Sign Up",
-};
 
+export async function generateMetadata() {
+  return {
+    title: 'Sign Up for Backpackers United - Join Our Community ',
+    description: 'Create an account with Backpackers United and join a global community of backpacking enthusiasts. Access exclusive content, tips, and offers.'
+  };
+}
 const SignUp = () => {
   return (
     <>

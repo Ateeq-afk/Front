@@ -3,7 +3,12 @@ import Footer from '@/Components/Navbar/Footer/Footer'
 import Header from '@/Components/Navbar/Header/Header'
 import { motion } from 'framer-motion';
 
-
+export async function generateMetadata() {
+  return {
+    title: 'Terms of Use - Backpackers United | User Guidelines & Policies',
+    description: 'Review the Terms of Use for Backpackers United. Understand the guidelines and policies for using our backpacking resources and community platform.'
+  };
+}
 
 const page = () => {
 

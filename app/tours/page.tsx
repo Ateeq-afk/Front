@@ -8,6 +8,7 @@ import Trek from '@/Components/Treks/Trek'
 import Image from 'next/image'
 import Link from 'next/link'
 import Treka from '@/Components/Treks/Treka'
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
 interface Product {
   id: string;
   name: string;
@@ -22,6 +23,7 @@ interface BaseProduct {
   urllink: string;
   type: 'trek' | 'tour' | 'destinations'; 
 }
+
 const page = () => {
   const [groupTourTreks, setGroupTourTreks] = useState([]);
   const [longTourTreks, setLongTourTreks] = useState([]);
@@ -239,6 +241,10 @@ const page = () => {
   
   return (
     <div className='bg-black'>
+          <DynamicMetaTags
+        title="Backpackers United: Guided Tours for the Global Explorer"
+        description="Join our curated tours at Backpackers United and experience the world like never before. Tailored adventures await in every corner of the globe."
+      />
       <Header />
       <div className='h-[60px] '>
       </div>

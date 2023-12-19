@@ -5,6 +5,9 @@ import Header from '@/Components/Navbar/Header/Header';
 import { useState,useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
+
+
 
 // Placeholder data for page 2
 interface BlogDetail {
@@ -24,6 +27,7 @@ interface BlogItem {
   createdAt?: Date;  
   author?: string;   
 }
+
 const Page = () => {
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,6 +58,10 @@ const Page = () => {
 
   return (
     <div className="bg-black text-white min-h-screen">
+          <DynamicMetaTags
+        title="Backpackers United Blog - Insights, Tips & Travel Stories"
+        description="Dive into the Backpackers United Blog for the latest travel insights, tips, and inspiring stories. Stay updated with our regular backpacking adventures."
+      />
       <Header />
       <main className="p-5 pt-10">
         <div className="max-w-7xl mx-auto">

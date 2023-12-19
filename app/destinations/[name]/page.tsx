@@ -8,10 +8,13 @@ import Footer from '@/Components/Navbar/Footer/Footer';
 import { useSpring, animated } from 'react-spring';
 import { useGesture } from 'react-use-gesture';
 import Link from 'next/link';
+import DynamicMetaTags from '@/Components/Dynamic/Metatag';
+
 
 interface Product {
   name: string;
   testimage: string;
+
   // ... other properties of Product
   fromamount: number;
   over: string[];
@@ -32,6 +35,8 @@ interface Blog {
 interface Destination {
   name: string;
   over: string[];
+  metatitle: String;
+  metades: String;
   coverimage: string;
   products: Product[];
   blogs: Blog[];
@@ -56,11 +61,7 @@ const page : FC<PageProps> = ({ params })=> {
   };
 
   // Effect to scroll to the paragraph when readMore is set to false
-  useEffect(() => {
-    if (!readMore) {
-      scrollToRef(paraRef);
-    }
-  }, [readMore]);
+
 
   const toggleReadMore = () => {
     setReadMore(!readMore);
@@ -93,8 +94,15 @@ const page : FC<PageProps> = ({ params })=> {
         fetchData();
       }
     }, [name])
+    const defaultImageUrl = "/home/ANDAMAN.jpg"
+    const imageUrl = destination ? `https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${destination.coverimage}` : defaultImageUrl;
     return (
       <div className="bg-black font-jost text-white">
+              <DynamicMetaTags
+        title={String(destination?.metatitle)} 
+        description={String(destination?.metades)}
+        imageUrl={imageUrl} 
+      />
         <Header />
         <div className="bg-black text-white md:p-10 p-2">
   <div className="flex flex-col items-start">
@@ -150,7 +158,7 @@ const page : FC<PageProps> = ({ params })=> {
     <div className="relative md:w-[50%] w-[100%] md:h-[400px] h-[300px] ">
       <Image
         src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${products?.testimage}`}
-        alt="Destination Image"
+        alt={products.name}
         layout="fill"
         objectFit="cover"
         className="rounded-xl"

@@ -5,6 +5,12 @@ import { faFacebookF, faInstagram, faWhatsapp } from '@fortawesome/free-brands-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 
+export async function generateMetadata() {
+    return {
+      title: 'Backpackers United: Connect with Global Travel CommunityCareers at Backpackers United | Join Our Travel-Enthusiast Team',
+      description: 'Looking for a career in travel? Join the Backpackers United team and turn your passion into a profession. Explore current openings and be part of our journey.'
+    };
+  }
 const Page = () => {
   // Initialize state for the form data
 

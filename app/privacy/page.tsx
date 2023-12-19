@@ -5,7 +5,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
+export async function generateMetadata() {
+  return {
+    title: 'Privacy Policy - Backpackers United | Your Privacy Matters ',
+    description: 'Read our Privacy Policy to learn how Backpackers United protects your data and privacy. We are committed to transparent and secure handling of user information.'
+  };
+}
 const page = () => {
 
   return (

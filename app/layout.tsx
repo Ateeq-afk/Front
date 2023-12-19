@@ -3,10 +3,7 @@ import type { Metadata } from 'next';
 import { Jost } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 
-export const metadata: Metadata = {
-  title: 'Backpackers United',
-  description: 'One of the best trek / tour operators in South India',
-};
+
 
 const Jostr = Jost({ weight: '400', subsets: ['latin'] });
 

@@ -67,7 +67,7 @@ const Destination: React.FC<DestinationProps> = ({ dest, uniqueId, row, height }
             <div className="relative w-full rounded-lg " style={{ height: `${height}px` }}>
               <Image
                 src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${destination.coverimage}`}  
-                alt={destination.imagealt}
+                alt={destination.name}
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"

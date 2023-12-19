@@ -1,6 +1,7 @@
 'use client'
 import Header from '@/Components/Navbar/Header/Header'
 import Head from 'next/head';
+import Script from 'next/script';
 import { useState, useEffect,  FC  } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,6 +17,8 @@ import Footer from '@/Components/Navbar/Footer/Footer';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
 import { motion } from 'framer-motion';
 import DynamicMetaTags from '@/Components/Dynamic/Metatag';
+import ShareButton from '@/Components/Book/SharButton';
+import DynamicStructuredData from '@/Components/Dynamic/DynamicStructuredData ';
 
 interface PageProps {
   params: {
@@ -178,9 +181,29 @@ const page : FC<PageProps> = ({ params })=> {
         answer: "We have multiple payment options on the website that you can refer to."
       }
     ];
+    const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
+
     const defaultImageUrl = "/home/ANDAMAN.jpg"
     const imageUrl = data ? `https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${data.testimage}` : defaultImageUrl;
-
+    const structuredData = {
+      "@context": "http://schema.org",
+      "@type": "Product",
+      "name": data?.name || "Default Trek Name",
+      "image": [
+        `https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${data?.testimage}`
+      ],
+      "description": data?.metades || "Default description",
+      "brand": {
+        "@type": "Brand",
+        "name": "Backpackers United" // Replace with your brand name
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "INR",
+        "price": data?.fromamount || 0,
+        "availability": "http://schema.org/InStock", // Update based on actual availability
+      },
+    };
     if (!data) {
       return (
         <div>
@@ -191,10 +214,11 @@ const page : FC<PageProps> = ({ params })=> {
   return (
     <div >
           <DynamicMetaTags 
-        title={String(data.metatitle)} 
-        description={String(data.metades)}
-        imageUrl={imageUrl} 
-      />
+          title={String(data?.metatitle)} 
+          description={String(data?.metades)}
+          imageUrl={imageUrl} 
+        />
+       <DynamicStructuredData jsonLdData={structuredData} />
         <Header />
   
     <div className='flex flex-col'>
@@ -315,7 +339,7 @@ const page : FC<PageProps> = ({ params })=> {
                         <div className="hidden md:block"> {/* shown only on medium and above screens */}
                         <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-                            <h2 className="text-3xl font-bold mb-6">OVERVIEW</h2>
+                            <div className="text-3xl font-bold mb-6">OVERVIEW</div>
                             </div>
                             <SpecialOffers />
                             <FeatureList data={data} />
@@ -378,7 +402,7 @@ const page : FC<PageProps> = ({ params })=> {
             <div className="hidden md:block"> 
             <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-                <h2 className="text-3xl font-bold mb-6">ITINERARY</h2>
+                <div className="text-3xl font-bold mb-6">ITINERARY</div>
                 </div>
                 <p className="text-gray-600 mb-10">{data.itinerary}</p>
                 <div className="container mx-auto">
@@ -444,7 +468,7 @@ const page : FC<PageProps> = ({ params })=> {
           <div className="hidden md:block">
           <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-            <h2 className="text-3xl font-bold mb-6">WHAT TO EXPECT</h2>
+            <div className="text-3xl font-bold mb-6">WHAT TO EXPECT</div>
             </div>
             <ExpectContent data={data} />
           </div>
@@ -468,7 +492,7 @@ const page : FC<PageProps> = ({ params })=> {
         <div className="hidden md:block"> 
         <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-            <h2 className="text-3xl font-bold mb-6">DATES & PRICES</h2>
+            <div className="text-3xl font-bold mb-6">DATES & PRICES</div>
             </div>
             <DateContent data={data} expanded={expanded} toggleExpanded={toggleExpanded} displayedBatches={displayedBatches} setShowEnquiry={setShowEnquiry} setShowPopup={setShowPopup} />
         </div>
@@ -492,7 +516,7 @@ const page : FC<PageProps> = ({ params })=> {
         <div className="hidden md:block"> 
         <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-            <h2 className="text-3xl font-bold mb-6">INCLUSIONS AND EXCLUSIONS</h2>
+            <div className="text-3xl font-bold mb-6">INCLUSIONS AND EXCLUSIONS</div>
             </div>
             <IncluContent data={data} />
         </div>
@@ -517,7 +541,7 @@ const page : FC<PageProps> = ({ params })=> {
             <div className="hidden md:block">
             <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-                <h2 className="text-3xl font-bold mb-6">THINGS TO CARRY</h2>
+                <div className="text-3xl font-bold mb-6">THINGS TO CARRY</div>
                 </div>
                 <ThingsContent data={data} />
             </div>
@@ -635,6 +659,7 @@ const page : FC<PageProps> = ({ params })=> {
     </div>
     {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.fromamount} name={data.name.toString()} testimage={data.testimage}/> }
     {showEnquiry && <EnquiryForm onClose={() => setShowEnquiry(false)} source={String(data.name)}/>}
+    <ShareButton url={currentPageUrl} />
     </div>
   )
 }

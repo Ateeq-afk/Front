@@ -31,7 +31,12 @@ const parentVariants = {
 const imageHoverVariants = {
   hover: { scale: 1.1 }
 };
-
+export async function generateMetadata() {
+  return {
+    title: 'Terms of Use - Backpackers United | User Guidelines & Policies',
+    description: 'Review the Terms of Use for Backpackers United. Understand the guidelines and policies for using our backpacking resources and community platform.'
+  };
+}
 const AboutUs = () => {
   return (
     <div>

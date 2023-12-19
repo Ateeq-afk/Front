@@ -116,6 +116,9 @@
   transform: scaleX(1);
 }
 
+.hover-effect a.travel-pass::after {
+  width: 100%;
+}
 [label^=label-] {
   @apply absolute left-4 bottom-5 transform transition-transform duration-200 text-gray-500;
 }

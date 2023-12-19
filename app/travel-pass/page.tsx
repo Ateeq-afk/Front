@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { faGift, faPercent, faConciergeBell, faCalendarCheck, faMapMarkedAlt, faPlaneDeparture, faCreditCard, faUserClock, faLock, faTag, faSuitcase } from '@fortawesome/free-solid-svg-icons';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
 
 type FaqContent = {
   General: { question: string; answer: string }[];
@@ -25,6 +26,7 @@ interface TimeLeft {
   minutes: number;
   seconds: number; // Add seconds here
 }
+
 const calculateTimeLeft = (endDate: Date): TimeLeft => {
   const now = new Date();
   const difference = endDate.getTime() - now.getTime();
@@ -239,6 +241,10 @@ const countdownVariants = {
 
   return (
   <div className='bg-gradient-to-r from-gray-900 to-gray-800 text-white'>
+        <DynamicMetaTags
+        title="Backpackers United Travel Pass/Book: Your Gateway to Endless Adventures"
+        description="Embark on unforgettable journeys with the Backpackers United Travel Pass/Book. Gain exclusive access to travel deals, comprehensive guides, and personalized itineraries. Start exploring today!"
+      />
   <Header />
   
   {/* Dynamic background section */}

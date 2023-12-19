@@ -3,6 +3,12 @@ import Footer from '@/Components/Navbar/Footer/Footer'
 import Header from '@/Components/Navbar/Header/Header'
 import { motion } from 'framer-motion';
 // AboutUs Component
+export async function generateMetadata() {
+  return {
+    title: 'Terms & Conditions - Backpackers United | Booking & Service Policies',
+    description: 'Understand the Terms & Conditions at Backpackers United. Get detailed information on booking policies, service terms, and user responsibilities.'
+  };
+}
 const page = () => {
 
   return (

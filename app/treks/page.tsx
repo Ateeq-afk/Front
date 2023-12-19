@@ -9,6 +9,7 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import Trek from '@/Components/Treks/Trek'
 import Image from 'next/image'
 import Treka from '@/Components/Treks/Treka'
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
 interface Product {
   id: string;
   name: string;
@@ -224,6 +225,10 @@ const newYearTrek = [
 ];
   return (
     <div className='bg-black'>
+          <DynamicMetaTags
+        title="Exciting Trekking Adventures with Backpackers United"
+        description="Explore breathtaking trekking routes with Backpackers United. From beginner trails to challenging hikes, find the perfect trek to match your adventure spirit."
+      />
       <Header />
       <div className='h-[60px] '>
       </div>

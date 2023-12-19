@@ -1,7 +1,9 @@
 {
-  "/page": "app/page.js",
-  "/treks/page": "app/treks/page.js",
-  "/trek/[name]/page": "app/trek/[name]/page.js",
-  "/tour/[name]/page": "app/tour/[name]/page.js",
-  "/travel-pass/page": "app/travel-pass/page.js"
+  "/tours/page": "app/tours/page.js",
+  "/destinations/[name]/page": "app/destinations/[name]/page.js",
+  "/travel-pass/book/page": "app/travel-pass/book/page.js",
+  "/blogs/page": "app/blogs/page.js",
+  "/blogs/[name]/page": "app/blogs/[name]/page.js",
+  "/destinations/page": "app/destinations/page.js",
+  "/tour/[name]/page": "app/tour/[name]/page.js"
 }

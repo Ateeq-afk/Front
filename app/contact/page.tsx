@@ -15,7 +15,12 @@ declare global {
       };
     }
   }
-  
+  export async function generateMetadata() {
+    return {
+      title: 'Contact Backpackers United - Get in Touch for Travel Support & Queries',
+      description: 'Reach out to Backpackers United on our Contact Us page. Whether you have questions about trips, need travel support, or want to connect with our team, we are here to help. Get in touch for prompt and friendly assistance.'
+    };
+  }
 const Page = () => {
     useEffect(() => {
         const script = document.createElement('script');

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import React, { useState,useEffect } from 'react'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image'
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
 interface Product {
   id: string;
   name: string;
@@ -21,6 +22,9 @@ interface BaseProduct {
   urllink: string;
   type: 'trek' | 'tour' | 'destinations'; 
 }
+
+
+
 const page = () => {
   const [southIndiaDestinations, setSouthIndiaDestinations] = useState([]);
   const [northIndiaDestinations, setNorthIndiaDestinations] = useState([]);
@@ -180,6 +184,10 @@ const page = () => {
  
   return (
     <div className='bg-black'>
+        <DynamicMetaTags
+        title="Explore Global Destinations with Backpackers United | Travel Guide"
+        description="Discover and plan your next adventure with Backpackers United. Explore our comprehensive guides on global destinations for backpackers and travelers."
+      />
       <Header />
       <div className='h-[60px] '>
       </div>

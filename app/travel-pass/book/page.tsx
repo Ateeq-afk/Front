@@ -10,6 +10,7 @@ import AccordionItem from '@/Components/Member/Accordian/Accordianitem';
 import Footer from '@/Components/Navbar/Footer/Footer';
 import Header from '@/Components/Navbar/Header/Header';
 import Link from 'next/link';
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
 
 interface FormData {
     title: string;
@@ -68,7 +69,7 @@ const [expiringDate, setExpiringDate] = useState('');
 // Effect to update expiring date when activation date changes
 useEffect(() => {
   const activation = new Date(activationDate);
-  activation.setMonth(activation.getMonth() + 6); // Add 6 months to the activation date
+  activation.setMonth(activation.getMonth() + 12); // Add 6 months to the activation date
   setExpiringDate(formatDate(activation));
 }, [activationDate]);
 
@@ -166,6 +167,10 @@ const initiateAndPayMembership = async () => {
   return (
 
     <>
+        <DynamicMetaTags
+        title="Get 50% Off with Backpackers United Travel Pass | Start Your Adventure"
+        description="Unlock a world of adventures with the Backpackers United Travel Pass/Book and enjoy a flat 50% discount on your travels. Gain access to exclusive deals, detailed guides, exclusive travel benefits, merchandise, and dedicated travel assistance. Begin your journey towards unforgettable experiences today!"
+      />
    <Header />
    <div className='md:pt-20 pt-14 bg-black'></div>
    <div className='w-full bg-black'>
@@ -464,7 +469,7 @@ const initiateAndPayMembership = async () => {
   </li>
   <li className="mb-2">
     <span className="block font-medium">
-   The Pass grants exclusive access to 6 free treks or 6 free tours within a span of 6 months.
+   The Pass grants exclusive access to 6 free treks or 6 free tours within a span of 1 year.
     </span>
   </li>
   <li className="mb-2">
