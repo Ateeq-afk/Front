@@ -5,6 +5,7 @@ import Header from '@/Components/Navbar/Header/Header';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import teamMembers from '@/Components/teamMembers/teamMembers';
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
 
 const aboutUsVariants = {
   initial: { 
@@ -31,15 +32,16 @@ const parentVariants = {
 const imageHoverVariants = {
   hover: { scale: 1.1 }
 };
-export async function generateMetadata() {
-  return {
-    title: 'Terms of Use - Backpackers United | User Guidelines & Policies',
-    description: 'Review the Terms of Use for Backpackers United. Understand the guidelines and policies for using our backpacking resources and community platform.'
-  };
-}
+
 const AboutUs = () => {
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <div>
+           <DynamicMetaTags
+        title="About Backpackers United - Learn About Our Mission & Team"
+        description="Discover the story behind Backpackers United. Learn about our mission to empower backpackers and our team's passion for making travel accessible to all."
+        url={currentPageUrl}
+      />
       <Header />
       <div className='bg-black text-white'>
         <motion.div 

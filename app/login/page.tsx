@@ -4,25 +4,20 @@ import Footer from "@/Components/Navbar/Footer/Footer";
 import Image from "next/image";
 import LoginForm from "@/Components/Signup/Login";
 import Googlelogin from "@/Components/Signup/Google";
+import DynamicMetaTags from "@/Components/Dynamic/DynamicMetatag";
 
 
-
-export async function generateMetadata() {
-  return {
-    title: 'Log In to Your Backpackers United Account',
-    description: 'Access your Backpackers United account. Log in to manage your profile, view exclusive content, and interact with our global community of travelers.'
-  };
-}
-// const DynamicGoogleLogin = dynamic(
-//   () => import('../../Components/Signup/Google'),
-//   { ssr: false }
-// );
 const LogIn = () => {
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <>
       <Header />
       {/* End Header 1 */}
-
+      <DynamicMetaTags
+        title="Log In to Your Backpackers United Account"
+        description="Access your Backpackers United account. Log in to manage your profile, view exclusive content, and interact with our global community of travelers."
+        url={currentPageUrl}
+      />
       <section className="pt-24 pb-8 bg-yellow-100">
         <div className="container mx-auto">
           <div className="flex justify-center">

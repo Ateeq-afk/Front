@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState,useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,9 +7,44 @@ const variants = {
   open: { opacity: 1, y: 0 },
   closed: { opacity: 0, y: '-100%' }
 };
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
+
+const Header = () => {
+  
+  const [isOpen, setIsOpen] = useState(false);
+  const [animateTravelPass, setAnimateTravelPass] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimateTravelPass(true);
+    }, 1); // slight delay to ensure this runs after the component mounts
+    return () => clearTimeout(timer);
+  }, []);
+
+ useEffect(() => {
+    // Function to check if clicked outside
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef]);
+  // const toggleMenu = () => {
+  //   setIsOpen(!isOpen);
+  // };
+  const toggleMenu = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Stop event from propagating to other elements
+    setIsOpen(prevState => !prevState);
+  };
+  
   return (
     <>
       <motion.header
@@ -19,7 +54,7 @@ const Header = () => {
         className="bg-black text-white sm:p-1 z-50 fixed w-full"
         role="banner"
       >
-        <div className="container mx-auto flex justify-between items-center py-2">
+        <div className="container mx-auto flex justify-between items-center py-2 pl-3 pr-1">
           <div className="flex-grow-4 flex flex-row float-left md:pl-10 pl-1 ">
           <div className="flex flex-row items-center space-x-4">
   <Link href='/'>
@@ -47,17 +82,28 @@ const Header = () => {
 </div>
           </div>
           <div className="hidden md:flex items-center space-x-4 mr-8 sm:space-x-6 md:space-x-8">
-            {['Home', 'Destinations', 'Treks', 'Tours', 'Travel Pass','Contact Us'].map((link, index) => (
+          {['Home', 'Destinations', 'Treks', 'Tours', 'Travel Pass', 'Contact Us'].map((link, index) => (
+            <motion.div
+              key={link}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={link === 'Travel Pass' && animateTravelPass ? 'travel-pass-special-effect' : 'hover-effect'}
+            >
+            <Link href={link === 'Home' ? '/' : link === 'Contact Us' ? '/contact'  : link === 'Travel Pass' ? '/travel-pass'  : `/${link.toLowerCase()}`}>{ link}</Link>
+            </motion.div>
+          ))}
+
+            {/* {['Home', 'Destinations', 'Treks', 'Tours', 'Travel Pass','Contact Us'].map((link, index) => (
               <motion.div
                 key={link}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
+                        initial={{ opacity: 0, y: 20 }}
+             animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
                 className="hover-effect"
               >
                 <Link href={link === 'Home' ? '/' : link === 'Contact Us' ? '/contact'  : link === 'Travel Pass' ? '/travel-pass'  : `/${link.toLowerCase()}`}>{ link}</Link>
               </motion.div>
-            ))}
+            ))} */}
             <Link href='/signup'>
               <motion.button
                 initial={{ backgroundColor: "#FBBF24", color: "#000" }}
@@ -69,7 +115,7 @@ const Header = () => {
               </motion.button>
             </Link>
           </div>
-          <div className="md:hidden flex items-center pr-2" onClick={() => setIsOpen(!isOpen)}>
+          <div className="md:hidden flex items-center pr-2" onClick={toggleMenu}>
             <div className="hamburger-icon flex flex-col space-y-1">
               <div className="w-6 h-0.5 bg-white"></div>
               <div className="w-6 h-0.5 bg-white"></div>
@@ -81,6 +127,7 @@ const Header = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={menuRef} 
             initial={{ x: '100vw' }}
             animate={{ x: 0 }}
             exit={{ x: '100vw' }}
@@ -97,11 +144,12 @@ const Header = () => {
                 open: { transition: { staggerChildren: 0.07, delayChildren: 0.2 }},
                 closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 }}
               }}
+              className='text-white '
             >
               {['Home', 'Destinations', 'Treks', 'Tours','Travel Pass', 'Contact Us'].map((link, index) => (
-                <motion.div key={link} variants={variants}>
+                <motion.div key={link} variants={variants}    className={link === 'Travel Pass' && animateTravelPass ? 'travel-pass-special-effect' : 'hover-effect'}>
                   <Link href={link === 'Home' ? '/' : link === 'Contact Us' ? '/contact' :  link === 'Travel Pass' ? '/travel-pass'  :`/${link.toLowerCase()}`}>
-                    <span className="text-white text-xl">{ link}</span>
+                    <span className="text-white text-base">{ link}</span>
                   </Link>
                 </motion.div>
               ))}

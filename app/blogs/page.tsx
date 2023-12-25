@@ -55,12 +55,13 @@ const Page = () => {
       setCurrentPage(pageNumber);
     }
   };
-
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <div className="bg-black text-white min-h-screen">
           <DynamicMetaTags
         title="Backpackers United Blog - Insights, Tips & Travel Stories"
         description="Dive into the Backpackers United Blog for the latest travel insights, tips, and inspiring stories. Stay updated with our regular backpacking adventures."
+        url={currentPageUrl}
       />
       <Header />
       <main className="p-5 pt-10">

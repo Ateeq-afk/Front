@@ -8,7 +8,7 @@ import Footer from '@/Components/Navbar/Footer/Footer';
 import { useSpring, animated } from 'react-spring';
 import { useGesture } from 'react-use-gesture';
 import Link from 'next/link';
-import DynamicMetaTags from '@/Components/Dynamic/Metatag';
+import MetaTags from '@/Components/Dynamic/Metatag';
 
 
 interface Product {
@@ -52,7 +52,7 @@ const page : FC<PageProps> = ({ params })=> {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const [destination, setDestination] = useState<Destination | null>(null);
   const [readMore, setReadMore] = useState(false);
-  const paraRef = useRef<HTMLDivElement>(null);  // Create a ref for the paragraph
+  // Create a ref for the paragraph
 
   const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
@@ -61,7 +61,7 @@ const page : FC<PageProps> = ({ params })=> {
   };
 
   // Effect to scroll to the paragraph when readMore is set to false
-
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   const toggleReadMore = () => {
     setReadMore(!readMore);
@@ -98,17 +98,20 @@ const page : FC<PageProps> = ({ params })=> {
     const imageUrl = destination ? `https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${destination.coverimage}` : defaultImageUrl;
     return (
       <div className="bg-black font-jost text-white">
-              <DynamicMetaTags
+              <MetaTags
         title={String(destination?.metatitle)} 
         description={String(destination?.metades)}
         imageUrl={imageUrl} 
+        url={currentPageUrl}
       />
         <Header />
+        {destination && (
+          <div>
         <div className="bg-black text-white md:p-10 p-2">
   <div className="flex flex-col items-start">
     <div className="flex items-center md:mb-8 pt-10">
       <div className="bg-yellow-500 w-1 h-16 mr-8 self-center md:block hidden"></div>
-      <h1 className="text-7xl inline-block align-middle" ref={paraRef} >
+      <h1 className="text-7xl inline-block align-middle"  >
       {destination?.name}
         <span className="text-yellow-500 text-9xl inline-block align-middle relative" style={{top: '-0.2em'}}>.</span>
       </h1>
@@ -158,7 +161,7 @@ const page : FC<PageProps> = ({ params })=> {
     <div className="relative md:w-[50%] w-[100%] md:h-[400px] h-[300px] ">
       <Image
         src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${products?.testimage}`}
-        alt={products.name}
+        alt={products?.name}
         layout="fill"
         objectFit="cover"
         className="rounded-xl"
@@ -233,8 +236,11 @@ const page : FC<PageProps> = ({ params })=> {
     Roam the World Through Our Blogs →
     </Link>
 </div>
+</div>
+</div>
+)}
       <Footer />
-    </div>
+   
     </div>
   )
 }

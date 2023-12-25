@@ -95,7 +95,7 @@ const TrekSlider = () => {
    <SwiperSlide key={idx}>
 {/* Make the entire card a link */}
      <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between h-full transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white p-4">
-       <div className="overflow-hidden relative rounded-xl h-72 w-full">
+       <div className="overflow-hidden relative rounded-xl h-60 w-full">
          <Image
            src={item.img}
            alt={item.title}
@@ -114,7 +114,7 @@ const TrekSlider = () => {
   <h4 className="text-lg mb-1">{item.title}</h4>
   <p className="text-sm mb-2">{item.location}</p>
        </div>
-       <div className="flex flex-col sm:flex-row justify-between items-center mt-2 space-x-0 sm:space-x-4"> {/* Adjusted margin-top and space between price and button */}
+       <div className="flex flex-row justify-between items-center mt-2 space-x-4 "> {/* Adjusted margin-top and space between price and button */}
   <div className="flex flex-col items-start mb-2 sm:mb-0">
     <p className="text-xs text-gray-400">Starting from</p>
     <p className="text-lg font-bold">INR {item.price}</p>

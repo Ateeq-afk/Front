@@ -16,7 +16,7 @@ import Booking from '@/Components/Book/Book'
 import Footer from '@/Components/Navbar/Footer/Footer';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
 import { motion } from 'framer-motion';
-import DynamicMetaTags from '@/Components/Dynamic/Metatag';
+import MetaTags from '@/Components/Dynamic/Metatag';
 import ShareButton from '@/Components/Book/SharButton';
 import DynamicStructuredData from '@/Components/Dynamic/DynamicStructuredData ';
 
@@ -213,10 +213,11 @@ const page : FC<PageProps> = ({ params })=> {
   }
   return (
     <div >
-          <DynamicMetaTags 
+          <MetaTags 
           title={String(data?.metatitle)} 
           description={String(data?.metades)}
           imageUrl={imageUrl} 
+          url={currentPageUrl}
         />
        <DynamicStructuredData jsonLdData={structuredData} />
         <Header />
@@ -285,7 +286,7 @@ const page : FC<PageProps> = ({ params })=> {
      
       
       <div className="flex md:h-screen md:sticky md:top-0 ">
-            <div className="hidden md:block md:w-1/4 min-h-screen bg-gray text-black p-4  " >
+            <div className="hidden md:block md:w-1/4 min-h-screen bg-gray-200 text-black p-4  " >
           
                 <Link href="#expedition-overview">
                     <span className="block  hover:font-bold p-2">Overview</span>

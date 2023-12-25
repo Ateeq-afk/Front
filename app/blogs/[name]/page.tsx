@@ -5,10 +5,13 @@ import Image from 'next/image';
 import BlogSlider from '@/Components/Blogs/Blogsslider/BlogSlider';
 import Header from '@/Components/Navbar/Header/Header';
 import Footer from '@/Components/Navbar/Footer/Footer';
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
 
 interface Blog {
   name: string;
   over: string[];
+  metatitle: string;
+  metades: string;
   blogs: BlogDetail[];
   products: Product[];
 }
@@ -77,10 +80,15 @@ const page : FC <PageProps> = ({ params })=> {
       products: blog.products // Directly use the products array from Blog
     };
   };
-  
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <>
      <div className='bg-black w-full'>
+     <DynamicMetaTags
+        title={String(blog?.metatitle)} 
+        description={String(blog?.metades)}
+        url={currentPageUrl}
+      />
       <Header />
      <div className="flex  pt-20 pl-5" >
        <div className="bg-yellow-500 w-1 md:h-16 h-12 mt-8 md:mt-0 md:mr-6 mr-4 self-center"></div> 

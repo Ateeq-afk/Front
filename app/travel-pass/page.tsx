@@ -238,12 +238,13 @@ const countdownVariants = {
     transition: { duration: 1, ease: "easeInOut" }
   })
 };
-
+const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
   <div className='bg-gradient-to-r from-gray-900 to-gray-800 text-white'>
         <DynamicMetaTags
         title="Backpackers United Travel Pass/Book: Your Gateway to Endless Adventures"
         description="Embark on unforgettable journeys with the Backpackers United Travel Pass/Book. Gain exclusive access to travel deals, comprehensive guides, and personalized itineraries. Start exploring today!"
+        url={currentPageUrl}
       />
   <Header />
   

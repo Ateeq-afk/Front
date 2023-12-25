@@ -163,13 +163,14 @@ const initiateAndPayMembership = async () => {
   loadRazorpayScript();
 };
 
-
+const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
 
     <>
         <DynamicMetaTags
         title="Get 50% Off with Backpackers United Travel Pass | Start Your Adventure"
         description="Unlock a world of adventures with the Backpackers United Travel Pass/Book and enjoy a flat 50% discount on your travels. Gain access to exclusive deals, detailed guides, exclusive travel benefits, merchandise, and dedicated travel assistance. Begin your journey towards unforgettable experiences today!"
+        url={currentPageUrl}
       />
    <Header />
    <div className='md:pt-20 pt-14 bg-black'></div>

@@ -49,7 +49,7 @@ const Popular = () => {
         </motion.div>
     {/* First set of smaller images (3 images vertically) */}
     {/* Second set of smaller images (2 images vertically) */}
-    <div className="grid grid-rows-2 gap-2 col-span-2" >
+    <div className="grid grid-rows-2 gap-4 col-span-2" >
     <motion.div
             whileHover={{ scale: 1.05 }}
             className="col-span-1 md:col-span-2 relative overflow-hidden w-full rounded-lg md:h-[240px] h-[155px]"

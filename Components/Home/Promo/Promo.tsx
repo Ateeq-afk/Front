@@ -11,7 +11,7 @@ const Promo = () => {
       {/* Left Section */}
       <motion.div
         whileHover={{ scale: 1.05 }}
-        className="relative h-[20rem] md:h-[25rem] flex-grow bg-center rounded-lg shadow-lg md:mr-2  xl:mr-4"
+        className="relative h-[18rem] md:h-[25rem] flex-grow bg-center rounded-lg shadow-lg md:mr-2  xl:mr-4"
       >
         <Image
           src="/home/promo1.jpg"
@@ -33,7 +33,7 @@ const Promo = () => {
       {/* Right Section */}
       <motion.div
         whileHover={{ scale: 1.05 }}
-        className="relative mt-4 md:mt-0 h-[20rem] md:h-[25rem]  flex-grow bg-center rounded-lg shadow-lg md:ml-2 xl:ml-4"
+        className="relative mt-4 md:mt-0 h-[18rem] md:h-[25rem]  flex-grow bg-center rounded-lg shadow-lg md:ml-2 xl:ml-4"
       >
         <Image
           src="/home/promo2.png"

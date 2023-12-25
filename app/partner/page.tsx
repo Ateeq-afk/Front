@@ -6,12 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF,  faWhatsapp, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Header from '@/Components/Navbar/Header/Header';
 import Footer from '@/Components/Navbar/Footer/Footer';
-export async function generateMetadata() {
-    return {
-      title: 'Partner with Backpackers United | Collaborate in the Travel Industry',
-      description: 'Collaborate with Backpackers United. Discover partnership opportunities for travel industry professionals and brands. Let’s create amazing travel experiences together.'
-    };
-  }
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
+
 const Page = () => {
 useEffect(() => {
     const script = document.createElement('script');
@@ -35,8 +31,14 @@ useEffect(() => {
         document.head.removeChild(script);
     };
 }, []);
+const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
     return (
         <div className='flex flex-col min-h-screen bg-black'>
+                       <DynamicMetaTags
+        title="Partner with Backpackers United | Collaborate in the Travel Industry"
+        description="Collaborate with Backpackers United. Discover partnership opportunities for travel industry professionals and brands. Let’s create amazing travel experiences together."
+        url={currentPageUrl}
+      />
           <Header />
           {/* Added top padding and centered content */}
           <motion.div 

@@ -119,6 +119,37 @@
 .hover-effect a.travel-pass::after {
   width: 100%;
 }
+.travel-pass-special-effect {
+  position: relative;
+}
+
+.travel-pass-special-effect::after {
+  content: "";
+  position: absolute;
+  width: 72px;
+  height: 4px;
+  background: #FFD700;/* or any other color for the line */
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: loadAnimation 1s ease forwards;
+}
+
+@keyframes loadAnimation {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+
+
+
+
+
 [label^=label-] {
   @apply absolute left-4 bottom-5 transform transition-transform duration-200 text-gray-500;
 }

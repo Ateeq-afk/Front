@@ -1,18 +1,19 @@
 'use client'
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
 import Footer from '@/Components/Navbar/Footer/Footer'
 import Header from '@/Components/Navbar/Header/Header'
 import { motion } from 'framer-motion';
 // AboutUs Component
-export async function generateMetadata() {
-  return {
-    title: 'Terms & Conditions - Backpackers United | Booking & Service Policies',
-    description: 'Understand the Terms & Conditions at Backpackers United. Get detailed information on booking policies, service terms, and user responsibilities.'
-  };
-}
-const page = () => {
 
+const page = () => {
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <div className='bg-black text-white flex flex-col min-h-screen'>
+                 <DynamicMetaTags
+        title="Terms & Conditions - Backpackers United | Booking & Service Policies"
+        description="Understand the Terms & Conditions at Backpackers United. Get detailed information on booking policies, service terms, and user responsibilities."
+        url={currentPageUrl}
+      />
     <Header />
     {/* Full width container with flex-grow to push footer to the bottom */}
     <div className='pt-12'></div>

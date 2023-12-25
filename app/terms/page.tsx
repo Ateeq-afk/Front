@@ -1,19 +1,20 @@
 'use client'
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
 import Footer from '@/Components/Navbar/Footer/Footer'
 import Header from '@/Components/Navbar/Header/Header'
 import { motion } from 'framer-motion';
 
-export async function generateMetadata() {
-  return {
-    title: 'Terms of Use - Backpackers United | User Guidelines & Policies',
-    description: 'Review the Terms of Use for Backpackers United. Understand the guidelines and policies for using our backpacking resources and community platform.'
-  };
-}
+
 
 const page = () => {
-
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <div className='bg-black text-white flex flex-col min-h-screen'>
+                   <DynamicMetaTags
+        title="Terms of Use - Backpackers United | User Guidelines & Policies"
+        description="Review the Terms of Use for Backpackers United. Understand the guidelines and policies for using our backpacking resources and community platform."
+        url={currentPageUrl}
+      />
     <Header />
     {/* Full width container with flex-grow to push footer to the bottom */}
     <div className='pt-12'></div>

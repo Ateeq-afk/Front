@@ -181,12 +181,13 @@ const page = () => {
     fetchNorthIndiaDestinations();
     fetchInternationalDestinations();
   }, []);
- 
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <div className='bg-black'>
         <DynamicMetaTags
         title="Explore Global Destinations with Backpackers United | Travel Guide"
         description="Discover and plan your next adventure with Backpackers United. Explore our comprehensive guides on global destinations for backpackers and travelers."
+        url={currentPageUrl}
       />
       <Header />
       <div className='h-[60px] '>

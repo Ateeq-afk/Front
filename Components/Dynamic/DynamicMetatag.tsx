@@ -1,37 +1,57 @@
-import React, { useEffect } from 'react';
+"use client"
+import { useEffect } from 'react';
 
 interface DynamicMetaTagsProps {
   title?: string;
   description?: string;
+  imageUrl?: string;
+  url?: string;
 }
 
-const DynamicMetaTags: React.FC<DynamicMetaTagsProps> = ({ title, description }) => {
+const DynamicMetaTags: React.FC<DynamicMetaTagsProps> = ({ title, description, imageUrl = 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/image.png', url }) => {
   useEffect(() => {
-    // Function to set or update meta tag content
-    const setMetaTagContent = (name: string, content: string) => {
-      let metaTag = document.head.querySelector(`meta[name="${name}"]`);
+    const setMetaTagContent = (name: string, content: string, isProperty: boolean = false) => {
+      let metaTag = document.querySelector(isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`);
       if (!metaTag) {
         metaTag = document.createElement('meta');
-        metaTag.setAttribute('name', name);
+        if (isProperty) {
+          metaTag.setAttribute('property', name);
+        } else {
+          metaTag.setAttribute('name', name);
+        }
         document.head.appendChild(metaTag);
       }
       metaTag.setAttribute('content', content);
     };
 
-    // Set the document title
+    // Set the site name in Open Graph meta tag
+    setMetaTagContent('og:site_name', 'Backpackers United', true);
+
+    // Set the document title and og:title
     if (title) {
       document.title = title;
+      setMetaTagContent('og:title', title, true);
     }
 
-    // Set description meta tag
+    // Set description and og:description meta tags
     if (description) {
       setMetaTagContent('description', description);
+      setMetaTagContent('og:description', description, true);
     }
 
-    // Add similar logic for other meta tags if needed
-    // ...
+    // Set image URL in Open Graph meta tag
+    if (imageUrl) {
+      setMetaTagContent('og:image', imageUrl, true);
+    }
 
-  }, [title, description]); // Effect dependencies
+    // Set the canonical URL in Open Graph meta tag
+    if (url) {
+      setMetaTagContent('og:url', url, true);
+    }
+
+    // The site name is static and doesn't need to be in the dependency array,
+    // but it's here to show that it would re-run if you had dynamic site names.
+  }, [title, description, imageUrl, url]);
 
   return null; // This component does not render anything
 };

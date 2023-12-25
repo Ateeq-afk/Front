@@ -10,6 +10,7 @@ import Trek from '@/Components/Treks/Trek'
 import Image from 'next/image'
 import Treka from '@/Components/Treks/Treka'
 import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
+import Head from 'next/head'
 interface Product {
   id: string;
   name: string;
@@ -223,12 +224,20 @@ const newYearTrek = [
     amount: 9999,
   },
 ];
+const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <div className='bg-black'>
-          <DynamicMetaTags
-        title="Exciting Trekking Adventures with Backpackers United"
-        description="Explore breathtaking trekking routes with Backpackers United. From beginner trails to challenging hikes, find the perfect trek to match your adventure spirit."
-      />
+            <Head>
+        {/* Set the page title */}
+        <title>Backpackers United: Trekking the World's Most Breathtaking Paths</title>
+
+        {/* Set meta tags */}
+        <meta name="title" content="Exciting Trekking Adventures with Backpackers United" />
+        <meta name="description" content="Explore breathtaking trekking routes with Backpackers United. From beginner trails to challenging hikes, find the perfect trek to match your adventure spirit." />
+
+        {/* You can add more meta tags as needed */}
+      </Head>
+    
       <Header />
       <div className='h-[60px] '>
       </div>

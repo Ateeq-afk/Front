@@ -68,7 +68,7 @@ const PopularDestinations = () => {
           <SwiperSlide key={item.id}>
             <Link href={`/destinations/${item.url}`}>
     <div className="block rounded-lg shadow-lg overflow-hidden  group hover:bg-opacity-100 transition-all ease-out duration-300 w-auto">
-      <div className="w-auto h-[250px] md:w-[350px] md:h-[350px] relative ">
+      <div className="w-auto h-[270px] md:w-[350px] md:h-[350px] relative ">
               <Image
                 src={item.img}
                 alt={item.city}

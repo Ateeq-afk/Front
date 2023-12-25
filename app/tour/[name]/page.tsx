@@ -3,7 +3,6 @@ import Header from '@/Components/Navbar/Header/Header'
 import { useState, useEffect,  FC  } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
-import Head from 'next/head';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from 'swiper/modules';
 import "swiper/css";
@@ -15,7 +14,7 @@ import Booking from '@/Components/Book/Book'
 import Footer from '@/Components/Navbar/Footer/Footer';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
 import { motion } from 'framer-motion';
-import DynamicMetaTags from '@/Components/Dynamic/Metatag';
+import MetaTags from '@/Components/Dynamic/Metatag';
 import ShareButton from '@/Components/Book/SharButton';
 import DynamicStructuredData from '@/Components/Dynamic/DynamicStructuredData ';
 
@@ -213,10 +212,11 @@ const page : FC<PageProps> = ({ params })=> {
   }
   return (
     <div >
-             <DynamicMetaTags
+             <MetaTags
         title={String(data.metatitle)} 
         description={String(data.metades)}
         imageUrl={imageUrl} 
+        url={currentPageUrl}
       />
            <DynamicStructuredData jsonLdData={structuredData} />
         <Header />
@@ -285,7 +285,7 @@ const page : FC<PageProps> = ({ params })=> {
      
       
       <div className="flex md:h-screen md:sticky md:top-0 ">
-            <div className="hidden md:block md:w-1/4 min-h-screen bg-gray text-black p-4  " >
+            <div className="hidden md:block md:w-1/4 min-h-screen bg-gray-200 text-black p-4  " >
           
                 <Link href="#expedition-overview">
                     <span className="block  hover:font-bold p-2">Overview</span>
@@ -385,7 +385,7 @@ const page : FC<PageProps> = ({ params })=> {
                                     <div className="w-auto h-40 relative rounded-lg mx-4">
                                       <Image
                                         src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${days.image}`}
-                                        alt={days.imagealt}
+                                        alt="daysimage"
                                         layout='fill'
                                         objectFit='cover'
                                         className='rounded-lg'
@@ -428,15 +428,16 @@ const page : FC<PageProps> = ({ params })=> {
                                  <p className="font-semibold pt-4">Meals : {days.meals}</p>
                                </div>
                                {days.image && (
-                                 <div className="w-auto h-40 relative rounded-lg mx-4">
-                                   <Image
+                                    <div className="w-full md:w-1/3 h-40 relative rounded-lg overflow-hidden">
+                                    <Image
                                      src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${days.image}`}
-                                     alt={days.imagealt}
+                                     alt="dayimage"
                                      layout='fill'
                                      objectFit='cover'
                                      className='rounded-lg'
                                    />
-                                 </div>
+                                </div>
+                              
                                )}
                              </div>
                            </div>

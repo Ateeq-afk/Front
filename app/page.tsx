@@ -8,17 +8,24 @@ import Promo from '@/Components/Home/Promo/Promo'
 import TrekSlider from '@/Components/Home/Trekslider/Trekslide'
 import Popular from '@/Components/Home/Popular/Popular'
 import LocationListSection from '@/Components/Home/Location/Location'
+import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
+import Head from 'next/head'
 
-
-export async function generateMetadata() {
-  return {
-    title: 'Backpackers United: Connect with Global Travel Community',
-    description: 'Join Backpackers United: a vibrant community for travel enthusiasts. Discover tips, share experiences, and connect with fellow backpackers every weekend.'
-  };
-}
 export default function Home() {
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <main className="flex flex-col bg-black">
+         <Head>
+        {/* Set the page title */}
+        <title>Backpackers United: Your Gateway to Global Travel Adventures</title>
+
+        {/* Set meta tags */}
+        <meta name="title" content="Backpackers United: Connect with Global Travel Community" />
+        <meta name="description" content="Join Backpackers United: a vibrant community for travel enthusiasts. Discover tips, share experiences, and connect with fellow backpackers every weekend." />
+
+        {/* You can add more meta tags as needed */}
+      </Head>
+    
       <div >
     <Header />
     <Hero />
@@ -38,7 +45,7 @@ export default function Home() {
       </div>
     </div>
     
-    <div className="md:pt-3 ">
+    <div className="md:pt-3 px-3">
 
       <PopularDestinations />
   

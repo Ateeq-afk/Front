@@ -157,9 +157,9 @@ const Hero = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="h-screen flex items-center justify-center relative"
+      className="md:h-screen h-[93vh] flex items-center justify-center relative"
     >
-   <div className=" h-screen w-full absolute">
+   <div className=" md:h-screen h-[93vh] w-full absolute">
   <Image src="/home/Hero_image.jpg" alt="Description" layout="fill" objectFit="cover"  />
 </div>
       <div className="flex flex-col  items-start  md:w-1/2 absolute top-1/3 left-5 md:top-[40%] md:left-[10%]">

@@ -27,8 +27,14 @@ const ShareButton: React.FC<ShareButtonProps> = ({ url }) => {
   };
 
   const getWhatsAppShareLink = () => {
-    return `https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`;
+    const message = "Get pumped for our next adventure! 🏞️ Backpackers United has your itinerary all mapped out: " + url +
+                   "\nCan't wait to embark? Share this with your friends and let the countdown begin! ⏳🎒 #BackpackersUnited";
+    return `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
   };
+  
+  // const getWhatsAppShareLink = () => {
+  //   return `https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`;
+  // };
   useEffect(() => {
     const handleScroll = () => {
       setIsVisible(true);
@@ -53,12 +59,12 @@ const ShareButton: React.FC<ShareButtonProps> = ({ url }) => {
       </button>
 
       {isMenuOpen && (
-        <div className="mt-2 p-2 bg-white rounded-lg shadow-lg">
+        <div className="mt-2 p-2 bg-white text-black rounded-lg shadow-lg">
           <button onClick={copyToClipboard} className="block text-sm font-semibold my-1">
             <FontAwesomeIcon icon={faCopy} /> Copy Link
           </button>
           <a href={getWhatsAppShareLink()} target="_blank" rel="noopener noreferrer" className="block text-sm font-semibold my-1">
-            <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
+            <FontAwesomeIcon icon={faWhatsapp} className='text-green-700 font-bold' /> WhatsApp
           </a>
       
         </div>

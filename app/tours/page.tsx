@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Treka from '@/Components/Treks/Treka'
 import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
+import Head from 'next/head'
 interface Product {
   id: string;
   name: string;
@@ -211,9 +212,9 @@ const page = () => {
     },
     {
       _id: '2',
-      urllink: '/tour/coorg-tour-package',
-      testimage: '/home/Coorg.webp',
-      name: 'Coorg Tour: Discovering the Scotland of India',
+      urllink: '/tour/chikmagalur-tour-package',
+      testimage: '/home/chikmagalur.jpeg',
+      name: 'Chikmagalur Tour: A 3-Day Nature Escape',
       amount: 9999,
     },
     {
@@ -230,21 +231,20 @@ const page = () => {
       name: 'Goa Tour: A Captivating 3-Day Journey',
       amount: 9999,
     },
-    {
-      _id: '5',
-      urllink: '/tour/munnar-backpacking-tour-long-weekend-3-days-and-2-nights',
-      testimage: '/home/Munar.webp',
-      name: 'Munnar Tour: Paradise in the Western Ghats',
-      amount: 9999,
-    },
   ];
-  
+  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <div className='bg-black'>
-          <DynamicMetaTags
-        title="Backpackers United: Guided Tours for the Global Explorer"
-        description="Join our curated tours at Backpackers United and experience the world like never before. Tailored adventures await in every corner of the globe."
-      />
+          <Head>
+        {/* Set the page title */}
+        <title>Backpackers United Tours: Unique Journeys for the Avid Traveler</title>
+
+        {/* Set meta tags */}
+        <meta name="title" content="Backpackers United: Guided Tours for the Global Explorer" />
+        <meta name="description" content="Join our curated tours at Backpackers United and experience the world like never before. Tailored adventures await in every corner of the globe." />
+</Head>
+        {/* You can add more meta tags as needed */}
+
       <Header />
       <div className='h-[60px] '>
       </div>

@@ -41,7 +41,7 @@ const Footer = () => {
       transition={{ duration: 1.2 }}
       className="bg-black text-white "
     >
-      <div className="flex flex-col md:flex-row md:justify-around md:items-center py-6 px-4">
+      <div className="flex flex-col md:flex-row md:justify-around md:items-center pt-6 pb-2 px-4">
         {/* Logo and Social Media Icons */}
         <div className="flex flex-col items-start md:items-center mb-8 md:mb-0 space-y-4">
         <div className="flex flex-row items-center space-x-4">
@@ -154,7 +154,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faLinkedinIn} />
             </motion.a>
       </div>
-      <div className="text-center text-sm md:mt-6 mt-4 px-4">
+      <div className="text-center text-sm md:mt-0 mt-4 px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           2023 Backpackers United Copyright Information
         </motion.div>
