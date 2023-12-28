@@ -2,25 +2,33 @@ import dynamic from "next/dynamic";
 import Footer from "@/Components/Navbar/Footer/Footer";
 import Header from "@/Components/Navbar/Header/Header";
 import SignUpForm from "@/Components/Signup/Signup";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle, faSquareGooglePlus} from '@fortawesome/free-brands-svg-icons';
-import Image from "next/image";
 import Googlelogin from "@/Components/Signup/Google";
-import DynamicMetaTags from "@/Components/Dynamic/DynamicMetatag";
+import { Metadata } from "next";
 
 
-
+export const metadata:Metadata = {
+  title: 'Sign Up for Backpackers United - Join Our Community',
+  description: 'Create an account with Backpackers United and join a global community of backpacking enthusiasts. Access exclusive content, tips, and offers.',
+  openGraph: {
+    title: 'Backpackers United',
+    description: 'Sign Up for Backpackers United - Join Our Community',
+    url: 'https://backpackersunited.in/signup',
+    siteName: 'Backpackers United',
+    images: [
+      {
+        url: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/image.png',
+        width: 200,
+        height: 200,
+      }
+    ],
+    type: 'website',
+  },
+}
 const SignUp = () => {
-  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <>
 <div >
       <Header />
-      <DynamicMetaTags
-        title="Sign Up for Backpackers United - Join Our Community"
-        description="Create an account with Backpackers United and join a global community of backpacking enthusiasts. Access exclusive content, tips, and offers."
-        url={currentPageUrl}
-      />
       <section className="pt-24 pb-12 bg-yellow-100 flex justify-center items-center">
         <div className="container">
           <div className="flex justify-center">

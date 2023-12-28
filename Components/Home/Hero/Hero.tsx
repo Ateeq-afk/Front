@@ -163,14 +163,14 @@ const Hero = () => {
   <Image src="/home/Hero_image.jpg" alt="Description" layout="fill" objectFit="cover"  />
 </div>
       <div className="flex flex-col  items-start  md:w-1/2 absolute top-1/3 left-5 md:top-[40%] md:left-[10%]">
-        <motion.h1
+        <motion.h2
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-2xl font-bold text-white md:text-4xl"
         >
           IT'S TIME TO <span className="text-yellow-500">{changingText}</span>
-        </motion.h1>
+        </motion.h2>
         <motion.p
           initial={{ y: 100 }}
           animate={{ y: 0 }}

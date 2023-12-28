@@ -2,30 +2,36 @@ import PopularDestinations from '@/Components/Home/Destinations/PopularDestinati
 import Footer from '@/Components/Navbar/Footer/Footer'
 import Header from '@/Components/Navbar/Header/Header'
 import Hero from '@/Components/Home/Hero/Hero'
-import Image from 'next/image'
 import TestimonialSection from '@/Components/Home/Testimonials/Testimonials'
 import Promo from '@/Components/Home/Promo/Promo'
 import TrekSlider from '@/Components/Home/Trekslider/Trekslide'
 import Popular from '@/Components/Home/Popular/Popular'
 import LocationListSection from '@/Components/Home/Location/Location'
-import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
-import Head from 'next/head'
+import {Metadata} from "next"
+
+export const metadata:Metadata = {
+  title: 'Backpackers United: Connect with Global Travel Community',
+  description: 'Join Backpackers United: a vibrant community for travel enthusiasts. Discover tips, share experiences, and connect with fellow backpackers every weekend.',
+  openGraph: {
+    title: 'Backpackers United',
+    description: 'Join Backpackers United: a vibrant community for travel enthusiasts. Discover tips, share experiences, and connect with fellow backpackers every weekend.',
+    url: 'https://backpackersunited.in',
+    siteName: 'Backpackers United',
+    images: [
+      {
+        url: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/image.png',
+        width: 200,
+        height: 200,
+      }
+    ],
+    type: 'website',
+  },
+}
 
 export default function Home() {
   const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <main className="flex flex-col bg-black">
-         <Head>
-        {/* Set the page title */}
-        <title>Backpackers United: Your Gateway to Global Travel Adventures</title>
-
-        {/* Set meta tags */}
-        <meta name="title" content="Backpackers United: Connect with Global Travel Community" />
-        <meta name="description" content="Join Backpackers United: a vibrant community for travel enthusiasts. Discover tips, share experiences, and connect with fellow backpackers every weekend." />
-
-        {/* You can add more meta tags as needed */}
-      </Head>
-    
       <div >
     <Header />
     <Hero />

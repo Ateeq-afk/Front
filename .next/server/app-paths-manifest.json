@@ -1,3 +1,8 @@
 {
-  "/page": "app/page.js"
+  "/partner/page": "app/partner/page.js",
+  "/career/page": "app/career/page.js",
+  "/condition/page": "app/condition/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/page": "app/page.js",
+  "/tours/page": "app/tours/page.js"
 }

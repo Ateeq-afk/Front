@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Jost } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import ChatBot from '@/Components/Chatbot/ChatBot';
 
 
 
@@ -30,6 +31,7 @@ export default function RootLayout({
       </head>
       <body className={`${Jostr.className}`}>
         {children}
+        <ChatBot />
         <Analytics />
       </body>
     </html>
