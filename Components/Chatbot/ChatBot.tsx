@@ -1,14 +1,36 @@
 "use client"
 import { IoIosChatbubbles } from 'react-icons/io';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { FaPhoneAlt, FaWhatsapp, FaShareAlt } from 'react-icons/fa';
-import copy from 'copy-to-clipboard';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import EnquiryForm from '../Book/EnquiryForm';
+function useCurrentUrl(pollInterval = 1000) {
+    const [currentUrl, setCurrentUrl] = useState('');
+  
+    useEffect(() => {
+      const checkUrlChange = () => {
+        const newUrl = window.location.href;
+        if (newUrl !== currentUrl) {
+          setCurrentUrl(newUrl);
+        }
+      };
+  
+      // Check URL immediately and then set an interval
+      checkUrlChange();
+      const intervalId = setInterval(checkUrlChange, pollInterval);
+  
+      // Clean up interval on unmount
+      return () => clearInterval(intervalId);
+    }, [currentUrl, pollInterval]);
+  
+    return currentUrl;
+  }
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showEnquiry, setShowEnquiry] = useState(false);
-  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
+
+  const currentPageUrl = useCurrentUrl();
 //   const handleShareOnWhatsApp = () => {
 //     const url = 'https://api.whatsapp.com/send?text=Your%20message%20here';
 //     window.open(url, '_blank');
@@ -17,8 +39,7 @@ const toggleMenu = () => {
     setIsOpen(false);
   };
   const getWhatsAppShareLink = () => {
-    const message = "Get pumped for our next adventure! 🏞️ Backpackers United has your itinerary all mapped out: " + currentPageUrl +
-                   "\nCan't wait to embark? Share this with your friends and let the countdown begin! ⏳🎒 #BackpackersUnited";
+    const message ="Hello there!🏞️ Check out this incredible travel itinerary from Backpackers United:" + currentPageUrl + "\n.Adventure begins here! #ItsTimeToTravel #BackpackersUnited ⏳🎒" 
     return `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
   };
   const handleExecutiveChat = () => {

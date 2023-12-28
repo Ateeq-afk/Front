@@ -1,8 +1,6 @@
 {
-  "/partner/page": "app/partner/page.js",
-  "/career/page": "app/career/page.js",
-  "/condition/page": "app/condition/page.js",
-  "/contact/page": "app/contact/page.js",
   "/page": "app/page.js",
-  "/tours/page": "app/tours/page.js"
+  "/destinations/page": "app/destinations/page.js",
+  "/tours/page": "app/tours/page.js",
+  "/tour/[name]/page": "app/tour/[name]/page.js"
 }

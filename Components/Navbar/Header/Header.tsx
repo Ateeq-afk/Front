@@ -3,11 +3,12 @@ import React, { useState,useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import Image from 'next/image';
+
+
 const variants = {
   open: { opacity: 1, y: 0 },
   closed: { opacity: 0, y: '-100%' }
 };
-
 
 const Header = () => {
   
@@ -44,7 +45,7 @@ const Header = () => {
     e.stopPropagation(); // Stop event from propagating to other elements
     setIsOpen(prevState => !prevState);
   };
-  
+
   return (
     <>
       <motion.header
@@ -169,7 +170,7 @@ const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+      </>
   );
 };
 export default Header;

@@ -33,6 +33,7 @@ export default function Home() {
   return (
     <main className="flex flex-col bg-black">
       <div >
+        
     <Header />
     <Hero />
     <section className='mx-auto md:px-10 px-4' data-aos="fade-up">

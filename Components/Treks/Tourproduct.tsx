@@ -20,6 +20,7 @@ import DynamicStructuredData from '@/Components/Dynamic/DynamicStructuredData ';
 interface Data {
   name:String;
   amount: number;
+  maintype: String;
   metatitle: String;
   metades: String;
   batch: Batch[];
@@ -650,7 +651,7 @@ const Tourproduct : FC<TourProps> = ({ name })=> {
         { data && data.batch && data.batch.length >= 1 &&   <button className="bg-black text-white px-4 py-2 rounded-lg" onClick={() => setShowPopup(true)}>Book Now</button> }
       </div>
     </div>
-    {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.fromamount} name={data.name.toString()} testimage={data.testimage} /> }
+    {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.fromamount} name={data.name.toString()} testimage={data.testimage} maintype={data.maintype.toString()} /> }
     {showEnquiry && <EnquiryForm onClose={() => setShowEnquiry(false)} source={String(data.name)}/>}
     </div>
   )

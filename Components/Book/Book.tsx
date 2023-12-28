@@ -15,6 +15,7 @@ interface BookingProps {
   withoutamount: number;
   name: string;
   testimage: string;
+  maintype : string;
 }
 type RazorpayResponse = {
   razorpay_order_id: string;
@@ -27,8 +28,25 @@ declare global {
     Razorpay: any; // Use 'any' or a more specific type if available
   }
 }
+interface RequestBody {
+  eventName: string;
+  selecteddate: string;
+  username: string;
+  phonenumber: string;
+  email: string;
+  amount: string;
+  tickets: number;
+  payableamount: string;
+  pendingamount: number;
+  source: string;
+  gst: string;
+  withtransport: number;
+  withouttransport: number;
+  totalamount: string;
+  tcs?: string; // Optional TCS property
+}
 export {};
-const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name,testimage}: BookingProps) => {
+const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name,testimage, maintype}: BookingProps) => {
     const ticketPrice = foramount;
     const firstTicketPrice = reserveamount;
     const transportPrice = withoutamount;
@@ -63,14 +81,19 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
       
       return subtotal;
     };
-
+    const getTcs = () => {
+      if (maintype === 'international') {
+        return getSubtotal(ticketPrice, ticketCount, transportPrice, ticketCount1) * 0.05;
+      }
+      return 0;
+    };
     const getGst = () => {
       const gstValue = getSubtotal(ticketPrice, ticketCount, transportPrice, ticketCount1) * 0.05;
       return gstValue;
     };
     
     const getTotal = () => {
-      const totalValue = getSubtotal(ticketPrice, ticketCount, transportPrice, ticketCount1) + getGst();
+      const totalValue = getSubtotal(ticketPrice, ticketCount, transportPrice, ticketCount1) + getGst() + getTcs();;
       return totalValue;
     };
     const getSubtotalFirst = () => {
@@ -80,10 +103,15 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
       const getGstFirst = () => {
         return getSubtotalFirst() * 0.05;
       };
-    
+      const getTcsFirst = () => {
+        if (maintype === 'international') {
+          return getSubtotalFirst() * 0.05;
+        }
+        return 0;
+      }
       const getTotalFirst = () => {
-        return getSubtotalFirst() + getGstFirst();
-      };
+        return getSubtotalFirst() + getGstFirst() + getTcsFirst();
+    };
     const toggleDiv = () => {
         setIsShow(!isShow);
     };
@@ -165,7 +193,8 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
       };
     
       const initializePayment = async () => {
-        const requestBody = {
+        
+        const requestBody: RequestBody  = {
                         eventName: name,
                         selecteddate: inputValue.date,
                         username: inputValue.name,  // Replace with actual data
@@ -181,7 +210,9 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
                         withouttransport : ticketCount1,
                         totalamount:    isCheckboxTicked ? getTotalFirst().toFixed(2) : getTotal().toFixed(2) 
         };
-    
+        if (maintype === 'international') {
+          requestBody.tcs = isCheckboxTicked ? getTcsFirst().toFixed(2) : getTcs().toFixed(2);
+        }
         try {
           const resInitiate = await fetch('https://launch-api1.vercel.app/bookb/initiatePayment', {
             method: 'POST',
@@ -190,7 +221,11 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
           });
     
           const dataInitiate = await resInitiate.json();
-    
+          console.log('Initiate Payment Response:', dataInitiate);
+
+          if (!dataInitiate || !dataInitiate.order || typeof dataInitiate.order.amount !== 'number') {
+            throw new Error('Invalid response data');
+          }
           console.log('Initiate Payment Response:', dataInitiate);
           const options = {
             key: process.env.RAZORPAY_KEY_ID,
@@ -327,7 +362,7 @@ The world is a book, and those who do not travel read only one page.
     </div>
         </div>
         <div className={isShow ? 'block' : 'hidden'} >
-                 <div className='px-6 border-t-5 border-gray-400 border-t-4 mt-5  text-gray-600 h-[250px]' >
+                 <div className='px-6 border-t-5 border-gray-400 border-t-4 mt-5  text-gray-600 h-auto' >
                       <h3 className="text-xl font-semibold mb-3 mt-5 text-yellow-500"> Summary</h3>
 
 <div className="mb-2 flex flex-row">
@@ -341,7 +376,14 @@ The world is a book, and those who do not travel read only one page.
   <span>INR {getGst().toFixed(2)}/-</span>
 </div>
 
-
+{
+      maintype === 'international' && (
+        <div className="mb-2 flex flex-row">
+          <div className="w-[200px]">TCS (5%):</div>
+          <span>INR {getTcs().toFixed(2)}/-</span>
+        </div>
+      )
+    }
 
 <div className="mb-2 flex flex-row">
   <div className="w-[200px] font-bold">Final Payable Amount:</div>
