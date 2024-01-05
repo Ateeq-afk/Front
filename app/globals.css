@@ -145,9 +145,13 @@
   }
 }
 
+.swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
 
-
-
+.swiper-container {
+  transform: translate3d(0, 0, 0);
+}
 
 
 [label^=label-] {

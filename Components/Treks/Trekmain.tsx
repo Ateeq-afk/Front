@@ -7,7 +7,7 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import Trek from '@/Components/Treks/Trek'
 import Image from 'next/image'
 import Treka from '@/Components/Treks/Treka'
-import Head from 'next/head'
+
 interface Product {
   id: string;
   name: string;
