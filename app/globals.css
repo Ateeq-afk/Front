@@ -46,6 +46,13 @@
   bottom: 0px !important;
   width: auto !important;
 }
+.my-unique-swiper .swiper-pagination-bullet-active {
+  background: black !important;
+}
+
+.my-unique-swiper .swiper-pagination-bullet {
+  background: black !important;
+}
 .text-extra-small {
   font-size: 0.75rem; /* Adjust the size as needed */
 }
@@ -135,6 +142,8 @@
   transform-origin: left;
   animation: loadAnimation 1s ease forwards;
 }
+
+/* Rest of your styles for h3, .title, .testimony */
 
 @keyframes loadAnimation {
   from {

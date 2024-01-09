@@ -6,12 +6,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faGift, faPercent, faUserClock, faLock, faTag, faSuitcase, faCalendarCheck, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay,EffectCoverflow  } from 'swiper/modules';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/effect-coverflow"
 type FaqContent = {
     General: { question: string; answer: string }[];
     Safety: { question: string; answer: string }[];
@@ -21,10 +23,21 @@ type FaqContent = {
     Payment: { question: string; answer: string }[];
   };
   const tabs: (keyof FaqContent)[] = ['General', 'Safety', 'Service', 'Policy', 'Booking', 'Payment'];
+  type Benefit = {
+    icon: IconDefinition;
+    title: string;
+    description: string;
+  };
 const Travel = () => {
     // Titles and descriptions for each benefit card
     const [activeTab, setActiveTab] = useState(tabs[0]);
     const [isMobile, setIsMobile] = useState(false);
+    const [selectedBenefit, setSelectedBenefit] = useState<Benefit | null>(null);
+    const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0);
+    // Array of background images
+    const closePopup = () => {
+        setSelectedBenefit(null);
+      };
     useEffect(() => {
         // Update isMobile based on the actual window width
         const checkIfMobile = () => setIsMobile(window.innerWidth < 768);
@@ -34,7 +47,7 @@ const Travel = () => {
         window.addEventListener('resize', checkIfMobile);
         return () => window.removeEventListener('resize', checkIfMobile);
       }, []);
-const benefits = [
+const benefits: Benefit[] = [
     {
       icon: faGift,
       title: 'Giveaway',
@@ -91,7 +104,34 @@ const benefits = [
     { src: '/pass/12_Hampi.webp', alt: 'Tour6' },
     ];
   // JSX for each benefit card
-
+  const backgroundImages = [
+    'https://source.unsplash.com/random/?mountains',
+    'https://source.unsplash.com/random/?beach',
+    'https://source.unsplash.com/random/?jungle',
+  ];
+  // Animation variants for Framer Motion
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5,
+        delayChildren: 0.5,
+      },
+    },
+  };
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+  };
+  const RoundCounter = ({ count, label }) => (
+    <div className="flex flex-col items-center justify-center">
+      <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
+        <span className="text-2xl text-yellow-500 font-semibold">{count}</span>
+      </div>
+      <p className="text-sm text-white">{label}</p>
+    </div>
+  );
   
     const cardVariants = {
         offscreen: {
@@ -179,137 +219,178 @@ const benefits = [
             'Nishani Motte Trek', 'Kumara Parvatha Kukke Trek', 'Narasimha Parvatha Trek', 'Kodachadri Trek',
             'Galibeedu Trek', 'Meruthi Hill Trek', 'Belkal Theertha Falls Trek', 'Pandavara Betta Trek',
           ];
+          const tours = [
+            'Wayanad Weekend Getaway', 'Chikmagalur Weekend Getaway', 'Hampi Weekend Getaway', 'Kodaikanal Weekend Getaway',
+            'Munnar Weekend Getaway', 'Coorg Weekend Getaway', 'Ooty Weekend Getaway', 'Pondicherry Weekend Getaway'  ,
+            'Sakleshpur Weekend Getaway', 'Gokarna-Murudeshwar WG', 'Kannur Weekend Getaway', 'Udupi-Mangalore WG',
+            'Chikmagalur Backpacking Tour', 'Kodaikanal Backpacking Tour', 'Ooty Backpacking Tour', 'Valparai Weekend Getaway',
+            'Thekkady Weekend Getaway', 'BR Hills Weekend Getaway', 'Badami Weekend Getaway', 'Dandeli Weekend Getaway',
+            ];
           const imageContainerVariants = {
             hidden: { x: -100, opacity: 0 },
             visible: { x: 0, opacity: 1, transition: { type: 'spring', duration: 2 } }
           };
+        //   const testimonials = [
+        //     {
+        //       name: 'Maria Menounos',
+        //       title: 'Actress & TV Host',
+        //       testimony: 'I feel on top of the world. I feel incredibly '
+        //     },
+        //     {
+        //       name: 'Serena Williams',
+        //       title: 'American Professional Tennis Player',
+        //       testimony: 'Tony Robbins helped me discover what I am really made of. With Tony\'s help, I\'ve set new standards for myself, and I\'ve taken my tennis game—and my life—to a whole new level!'
+        //     },
+        //     {
+        //       name: 'Marc Benioff',
+        //       title: 'Founder, Chairman and CEO of Salesforce',
+        //       testimony: 'Tony Robbins and his strategies and his tools, have been at the core of our culture from the beginning. He has been one of the critical keys to Salesforce.com\'s leadership in cloud computing and its growth into an over $6 billion dollar company.'
+        //     }
+        //   ];
+        const bulletStyle = {
+            backgroundColor: '#D1D5DB', // Gray color for inactive bullets
+            width: '12px',
+            height: '12px',
+            display: 'inline-block',
+            borderRadius: '50%',
+          };
         
+          const bulletActiveStyle = {
+            backgroundColor: '#000000', // Black color for active bullets
+            width: '12px',
+            height: '12px',
+            display: 'inline-block',
+            borderRadius: '50%',
+          };
+            const testimonials = [
+    {
+      quote: "When it comes to digital marketing there are loads of commentators that talk a good game, but Sonja and Sharon help you make it happen...When it comes to digital marketing there are loads of commentators that talk a good game, but Sonja and Sharon help you make it happen...",
+      name: "Selena Rock",
+      title: "CTO",
+      image:"/home/ANDAMAN.jpg"
+    },
+     {
+        quote: "When it comes to digital marketing there are loads of commentators that talk a good game, but Sonja and Sharon help you make it happen...",
+        name: "Selena Rock",
+        title: "CTO"
+      },
+      {
+        quote: "When it comes to digital marketing there are loads of commentators that talk a good game, but Sonja and Sharon help you make it happen...",
+        name: "Selena Rock",
+        title: "CTO"
+      },
+    // ... more testimonials
+  ];
   return (
     <div className='bg-white text-black'>
         <Header />
-            <div className="flex  pt-[100px] mx-10">
-    {/* Left Side */}
-    <div className='flex  md:flex-row'>
-    <div className="w-[55%] p-4 md:block hidden">
-        <div className='w-full h-[400px] relative'>
-      <Image
-        src="/home/Travel.png"
-        alt="Travel Pass Image"
-        layout='fill'
-        objectFit='cover'
-      />
+        <div className="relative h-screen flex items-center justify-center pt-20">
+        {/* Dynamic background image */}
+        <motion.div
+          className="absolute inset-0 bg-no-repeat bg-cover bg-center transition-opacity duration-1000"
+          style={{ backgroundImage: `url(${backgroundImages[currentBackgroundIndex]})` }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-50" />
+        </motion.div>
+        {/* Hero content here */}
+        <div className="relative flex items-center justify-between w-full max-w-[1200px] px-4 mx-auto">
+     {/* Card 1: Trek Pass */}
+     <motion.div className="w-[350px] h-[500px] bg-gradient-to-b from-blue-200 via-blue-100 to-white rounded-2xl overflow-hidden shadow-xl"
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible">
+<div className="flex flex-col items-center justify-between h-full p-6">
+<div className="text-xl font-bold text-gray-600">TREK PASS</div>
+ <div className="text-s font-semibold justify-centre">The Trek Pass is a specialized pass designed for outdoor enthusiasts who love exploring nature through trekking. Our pass allows adventurers to experience everything from serene scenic paths to challenging terrains. Embracing our motto, "Create a Fitness Culture and Interact with Nature," the Trek Pass is more than just access to trails; it's an affordable gateway for everyone to outdoor adventures, ensuring that the joys and lessons of nature are accessible to all, regardless of budget.
+</div>
+<div className="space-y-4">
+<div className="flex justify-around items-center text-center">
+<div className="flex space-x-10">
+<div>
+ <p className="text-5xl text-yellow-500 font-semibold">6</p>
+ <p className="text-xs text-gray-500">TREKS</p>
+</div>
+<div>
+<p className="text-5xl text-yellow-500 font-semibold">
+12 <span className="text-xs -mr-0 text-yellow-500">months</span>
+</p>
+ <p className="text-xs text-gray-500">VALIDITY</p>
+</div>
+</div>
+</div>
+</div>
+<button className="mt-4 text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
+LEARN MORE
+</button>
+</div>
+</motion.div>
+     {/* Central content */}
+     <motion.div className="flex-1 mx-4 text-center z-10"
+                 variants={containerVariants}
+                 initial="hidden"
+                 animate="visible">
+       <h1 className="text-[40px] font-bold mb-4 text-white">Explore the Wonders</h1>
+       <p className="mb-4 text-white">What the journey brings to your life</p>
+       <button className="text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
+           JOIN NOW
+       </button>
+       {/* New section with round counters */}
+       <div className="flex justify-center space-x-8 mt-8">
+         <div>
+           <RoundCounter count="6" label="Treks" />
+           <RoundCounter count="20" label="Treks to Choose from" />
+           <RoundCounter count="50%" label="Flat Discount" />
+         </div>
+         <div className="self-center">
+           <div className="w-px h-20 bg-white bg-opacity-50"></div>
+         </div>
+         <div>
+           <RoundCounter count="6" label="Tours" />
+           <RoundCounter count="20" label="Tours to Choose from" />
+           <RoundCounter count="50%" label="Flat Discount" />
+         </div>
+       </div>
+     </motion.div>
+     <motion.div className="w-[350px] h-[500px] bg-gradient-to-b from-blue-200 via-blue-100 to-white rounded-2xl overflow-hidden shadow-xl"
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible">
+<div className="flex flex-col items-center justify-between h-full p-6">
+<div className="text-xl font-bold text-gray-600">TOUR PASS</div>
+ <div className="text-s font-semibold justify-centre">The Tour Pass is an ideal choice for those who seek to escape the hustle of daily life and find solace in diverse cultural experiences. This pass enables travelers to delve into the heart of various cities, experiencing their unique heritage, lively markets, and peaceful natural settings. In line with our principle, "Escape Daily Life, Depression, and Relax in Nature," the Tour Pass is more than just a travel ticket; it's an affordable opportunity for everyone to embark on journeys that rejuvenate the mind and spirit.
+</div>
+<div className="space-y-4">
+<div className="flex justify-around items-center text-center">
+<div className="flex space-x-10">
+<div>
+ <p className="text-5xl text-yellow-500 font-semibold">6</p>
+ <p className="text-xs text-gray-500">TOURS</p>
+</div>
+<div>
+<p className="text-5xl text-yellow-500 font-semibold">
+12 <span className="text-xs -mr-0 text-yellow-500">months</span>
+</p>
+ <p className="text-xs text-gray-500">VALIDITY</p>
+</div>
+</div>
+</div>
+</div>
+<button className="mt-4 text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
+LEARN MORE
+</button>
+</div>
+</motion.div>
+   </div>
       </div>
-    </div>
 
-    {/* Right Side */}
-    <div className="md:w-[50%] px-8 py-4  border shadow-xl rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out">
-      {/* Heading */}
-      <h2 className="text-5xl font-bold mb-4 text-yellow-500 text-center">What's a Travel Pass?</h2>
-
-      {/* Paragraph */}
-      <p className="mb-4 text-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        facilisi  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        facilisi  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        facilisi  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        facilisi
-      </p>
-
-      {/* Card 1 */}
-      <div className="flex md:flex-row gap-2 ">
-        
-          {cards.map((card, index) => (
-            <Link href='/travel-pass/book'>
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              initial="offscreen"
-              whileInView="onscreen"
-              viewport={{ once: true, amount: 0.8 }}
-              className="border border-black rounded-lg shadow-md w-[220px] transform hover:scale-105 transition duration-500 ease-in-out dark:bg-gray-700"
-            >
-              <div className="flex flex-col items-center justify-center bg-gradient-to-r from-yellow-200 to-yellow-600 rounded-lg">
-                
-                <div className="p-4 text-center">
-                  <h3 className="text-md font-semibold text-gray-800 dark:text-gray-100">{card.title}</h3>
-                  <p className="text-black text-sm">
-                    {index === 0 ? (
-                      <span>
-                        Venture into 6 Treks for just <span className="line-through">₹24,000</span> ₹12,000/-
-                      </span>
-                    ) : (
-                      <span>
-                        Explore 6 Tours for just <span className="line-through">₹42,000</span> ₹21,000/-
-                      </span>
-                    )}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            </Link>
-          ))}
-        </div>
-        <div className='flex justify-center items-center mt-5'>
-            
-        <Link href='/travel-pass/book'> <button className="text-white bg-black border border-yellow-500 font-bold py-2 px-4 rounded-full hover:text-yellow-500 hover:bg-black focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 transition-colors duration-300">
-              AVAIL NOW
-          </button></Link>
-
-        </div>
-  </div>
-  </div>
-  
-  </div>
-  <div className="bg-black text-white pl-auto pr-auto ">
-          <div className="container mx-auto md:my-12 mt-12 md:p-6 relative">
-          {/* Overlay Title */}
-          <div className="relative">
-          {/* Image Grid */}
-          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 md:gap-2 gap-1">
-          {adventures.slice(0, isMobile ? 6 : adventures.length).map((adventure, index) => (
-          <div key={index} className="relative w-full md:h-[150px] h-[100px] ">
-          {/* Ensure your images are square by providing the same width and height, or by using aspect-ratio classes */}
-          <Image
-          src={adventure.src}
-          alt={adventure.alt}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-lg"
-          />
-          </div>
-          ))}
-          </div>
-          
-          <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center">
-          <div className="text-white md:text-4xl text-2xl font-bold p-4 bg-black bg-opacity-50 rounded-lg">
-          40 DESTINATIONS
-          </div>
-          </div>
-          </div>
-          
-          
-          {/* Stats Section */}
-          <div className="flex justify-around md:mt-12 mt-6">
-            <div className="text-center">
-              <span className="md:text-6xl text-4xl font-bold text-yellow-500">20</span>
-              <p className="md:text-xl text-sm font-semibold">TREKS TO</p>
-              <p className="md:text-xl text-sm font-semibold">CHOOSE FROM</p>
-            </div>
-            <div className="text-center">
-              <span className="md:text-6xl text-4xl font-bold text-yellow-500">20</span>
-              <p className="md:text-xl text-sm font-semibold">TOURS TO</p>
-              <p className="md:text-xl text-sm font-semibold">CHOOSE FROM</p>
-            </div>
-            <div className="text-center">
-              <span className="md:text-6xl text-4xl font-bold text-yellow-500">50%</span>
-              <p className="md:text-xl text-sm font-semibold">DISCOUNTED</p>
-              <p className="md:text-xl text-sm font-semibold">RATES</p>
-            </div>
-          </div>
-
-          </div>
-          </div>
-  <div className='flex flex-row bg-black'>
+      {/* New About Section */}
+     
+     
+  <div className='flex flex-row bg-gray-100 mt-10'>
   <Swiper
       modules={[ Autoplay]}
       spaceBetween={0}
@@ -336,7 +417,7 @@ const benefits = [
     >
       {treks.map((trek, index) => (
         <SwiperSlide key={index}>
-          <div className="py-4 flex flex-row  text-white rounded-lg text-center text-sm justify-center items-center">
+          <div className="py-4 flex flex-row font-bold rounded-lg text-center text-sm justify-center items-center">
             <h3  style={{
   background: 'linear-gradient(to right, #FE5A1C, #FF9E28)',
   WebkitBackgroundClip: 'text',
@@ -350,51 +431,160 @@ const benefits = [
       ))}
     </Swiper>
     </div>
-  {/* <div className="bg-black">
-      <div id="slider" ref={sliderRef} className="flex overflow-hidden whitespace-nowrap ">
-        {[...treks, ...treks].map((trek, index) => (
-          <div key={index} className="inline-block p-4 text-white rounded-lg mr-4">
-            {trek}
+    
+    <div className='flex flex-row bg-gray-100 mt-5'>
+    <Swiper
+      modules={[ Autoplay]}
+      spaceBetween={0}
+      slidesPerView={1}
+      navigation={false} 
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 100, disableOnInteraction: false }}
+      loop={true}
+      speed={1000}
+      // Responsive breakpoints
+      breakpoints={{
+        // when window width is >= 640px
+        640: {
+          slidesPerView: 1,
+        },
+        // when window width is >= 768px
+         768: {
+          slidesPerView: 4,
+        },
+        1000: {
+            slidesPerView: 6,
+          },
+      }}
+    >
+      {tours.map((trek, index) => (
+        <SwiperSlide key={index}>
+          <div className="py-4 flex flex-row font-bold rounded-lg text-center text-sm justify-center items-center ">
+            <h3  style={{
+  background: 'linear-gradient(to right, #56CCF2, #2F80ED)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+  color: 'transparent', // Fallback for browsers that do not support background-clip
+  display: 'inline' // This is necessary for the gradient to apply correctly
+}}>{trek}</h3>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+    </div>
+   
+    <div className='w-full h-[150px] relative mt-5 '>
+        <Image src="/home/mountain.jpg" objectFit='cover' layout='fill' alt='mountain strip travel pass'/>
+    </div>
+    <div className="bg-black md:p-10 py-4">
+      <div className="max-w-6xl mx-auto rounded-2xl bg-black shadow-md overflow-hidden">
+        <div className="md:p-5">
+          <h1 className="md:text-3xl text-xl font-bold text-center text-yellow-500">What you get ?</h1>
+        </div>
+        <div className="md:grid grid-cols-2 md:grid-cols-4 gap-4 p-5 hidden">
+          {benefits.map((benefit, index) => (
+    <div key={index} className="flex flex-col items-center relative h-[200px] ">
+    {/* Outer circular shadow */}
+    <div className="relative bg-white rounded-full p-6 shadow-lg z-10">
+      {/* Circular gradient border */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-white to-gray-300 rounded-full  flex justify-center items-center">
+      <FontAwesomeIcon icon={benefit.icon} className=" text-xl text-yellow-500" />
+      </div>
+      {/* <div className="relative flex justify-center items-center">
+        <div className="bg-white rounded-full w-[70px] h-[70px] flex justify-center items-center text-center z-10">
+          <FontAwesomeIcon icon={benefit.icon} className=" text-3xl text-yellow-500" />
+        </div>
+      </div> */}
+    </div>
+
+    {/* Rectangular card */}
+    <div className="absolute top-[25px]  ">
+      <div className="h-[150px] w-[260px] bg-gradient-to-r from-white to-gray-300 rounded-lg  flex flex-col items-center justify-center ">
+      {/* Title and Description */}
+      <h2 className="mt-4 text-lg font-semibold">{benefit.title}</h2>
+      <div className="text-sm text-gray-600 w-[200px] text-center ">  {benefit.description}</div>
+      </div>
+    </div>
+  </div>
+          ))}
+        </div>
+     
+      <div>
+      <div className="grid grid-cols-2 gap-4 mx-6 my-4 md:hidden">
+        {benefits.map((benefit, index) => (
+          <div key={index} className="flex flex-col items-center justify-center bg-gradient-to-r from-white to-gray-300 rounded-xl h-[100px]" onClick={() => setSelectedBenefit(benefit)}>
+            {/* <div className="relative bg-white rounded-full p-5 shadow-lg flex items-center justify-center"> */}
+              <FontAwesomeIcon icon={benefit.icon} className="text-2xl text-yellow-500" />
+            {/* </div> */}
+            <div className="mt-2 text-center text-sm font-semibold">{benefit.title}</div>
           </div>
         ))}
       </div>
-    </div> */}
-  <div className='py-10'>
-  <h2 className="md:text-4xl text-3xl font-bold text-center mb-5 text-black">What you get ?</h2>
-      <div className="flex justify-center md:pb-10 pb-5">
-        <hr className="border-t-2 border-yellow-500 md:w-[60px] w-[30px]" />
-      </div>
-      <p className="text-justify md:mx-6 mb-10 break-words text-black">
-        Join the Backpackers United Member community once you avail the travel pass! ...
-      </p>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 md:gap-6 gap-3 text-white">
- {benefits.map((benefit, index) => (
-    <div key={index} className="rounded-lg shadow-md md:p-6 p-4 flex flex-col items-center border border-yellow-500" style={{ background: '#090f14', color: 'white' }}>
-      {/* Circle for the icon */}
-      <div className="mb-4 flex justify-center items-center bg-yellow-500 rounded-full w-16 h-16">
-        <FontAwesomeIcon icon={benefit.icon} className="text-black text-3xl" />
-      </div>
-      {/* Text */}
-      <div className="text-center">
-        <h3 className="text-lg font-semibold mb-2">{benefit.title}</h3>
-        <p>{benefit.description}</p>
-      </div>
+
+
+      {/* Popup */}
+      {selectedBenefit && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50" onClick={closePopup}>
+          <div className="flex justify-center items-center h-full">
+            <div className="bg-gradient-to-r from-white to-gray-300 rounded-lg p-5 flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+              {/* Selected Benefit Details */}
+              <FontAwesomeIcon icon={selectedBenefit.icon} className="text-2xl text-yellow-500 mb-4" />
+              <h2 className="text-lg font-semibold">{selectedBenefit.title}</h2>
+              <div className="text-sm text-gray-600 text-center">{selectedBenefit.description}</div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  ))}
-  </div>
-  </div>
-  <div className="flex justify-center items-center ">
-      <div className="relative p-10">
-        <p className="text-center relative">
-          <span className="absolute top-[-30px] left-0 text-6xl text-yellow-500">“</span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi...
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi...
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi...
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi...
-          <span className="absolute bottom-[-50px] right-0 text-6xl text-yellow-500">”</span>
-        </p>
-      </div>
     </div>
+    </div>
+  
+    <div className="mx-10 py-12">
+      <div className="flex flex-col md:flex-row items-center md:space-x-12">
+        {/* <div className='w-full'> */}
+        {/* Title with each word on a new line */}
+        <div className=" md:flex flex-col  w-3/4">
+          <h2 className="text-4xl font-bold text-black uppercase ml-14">
+            <span className="block">What they</span>
+            <span className="block">say</span>
+          </h2>
+          </div>
+          <div className="w-2 bg-yellow-500 h-24 "></div>
+        
+      <Swiper
+        modules={[Pagination]}
+        spaceBetween={50}
+        slidesPerView={1}
+        pagination={{
+          clickable: true,
+          bulletClass: 'swiper-pagination-bullet',
+          bulletActiveClass: 'swiper-pagination-bullet-active'
+        }}
+        className="mySwiper my-unique-swiper  w-full md:w-auto"
+      >
+        {testimonials.map((testimonial, index) => (
+          <SwiperSlide key={index} className="flex justify-center items-center">
+            <div className="flex justify-center items-center px-6 py-20 bg-white rounded-2xl shadow-xl w-full md:max-w-3xl mx-auto space-x-4">
+              <div className="flex justify-center items-center flex-col w-[200px]">
+                <div className="h-16 w-16 rounded-full relative">
+                  <Image src={testimonial.image} alt="Avatar of the testimonial author" layout='fill' objectFit='cover' className='rounded-full' />
+                </div>
+                <div className="text-lg font-semibold text-black mt-4">{testimonial.name}</div>
+                <p className="text-gray-500">{testimonial.title}</p>
+              </div>
+              <div className="ml-4 flex-1 relative">
+                <p className="text-gray-600 mt-2 before:content-['\201C'] before:absolute before:text-6xl before:-top-6 before:-left-4 before:text-yellow-500 after:content-['\201D'] after:absolute after:text-6xl after:-bottom-[55px] after:-right-4 after:text-yellow-500">{testimonial.quote}</p>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+    </div>
+
+
+  
     <div className="bg-black py-12">
           <div className="container mx-auto">
           <h2 className="md:text-4xl  text-3xl font-bold text-center mb-5 text-yellow-500">FAQ's</h2>
@@ -422,38 +612,73 @@ const benefits = [
           </div>
           </div>
           </div>
-          <div className="flex flex-col md:flex-row items-center justify-center pt-14 space-y-14 md:space-y-0 md:space-x-8">
-      {/* Image container with rounded corners and shadow */}
-      <motion.div
-        className="md:flex-1 flex justify-center items-center p-6"
-        variants={imageContainerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className="rounded-3xl overflow-hidden shadow-xl w-full">
-          <img src="/home/Kashmir.webp" alt="Descriptive Alt Text" className="w-full object-cover" style={{ maxHeight: '50vh' }} />
-        </div>
-      </motion.div>
-      {/* Info box container with similar style to the provided card and additional content */}
-      <div className="md:flex-1 bg-white text-black p-8 space-y-4 border-2 border-yellow-500 rounded-lg flex flex-col justify-between" style={{ maxHeight: '50vh' }}>
-        <div>
-          <h2 className="text-2xl font-bold">Why us</h2>
-          <p className="flex-grow">328° - How we managed to achieve this exceptional metric. We focus on providing the best user experience and seamless service.</p>
-          <ul className="list-disc space-y-2 pl-5">
-            <li>Unparalleled customer service</li>
-            <li>Innovative solutions</li>
-            <li>Expert team members</li>
-            <li>Positive user feedback</li>
-            <li>Continuous improvement</li>
-          </ul>
-        </div>
-        <div>
-          <div className="text-4xl font-bold">049.200</div>
-          <p>Benefit and feature description, emphasizing our strengths and core values.</p>
-        </div>
-        <button className="bg-yellow-500 text-gray-900 px-4 py-2 rounded self-start mt-4">Discover More</button>
+          <section className="bg-gray-100 py-10 px-6">
+        <div className="container mx-auto flex flex-wrap items-center justify-between">
+          {/* Content Area */}
+          <div className="w-full lg:w-1/2 px-4 mb-6 lg:mb-0">
+          <h2 className="text-5xl font-bold text-black mb-4">
+  Why should you avail the <span className="text-yellow-500">Tour Pass</span>.
+</h2>
+  <div className="flex items-center mb-6">
+    {/* <div className="flex-grow h-0.5 bg-yellow-500 w-0.5"></div> */}
+    {/* <div className="text-orange-600 font-semibold uppercase">About our Company</div> */}
+    {/* <div className="flex-grow h-0.5 bg-orange-600 ml-3"></div> */}
+  </div>
+  <div className="flex">
+  <div>
+    <p className="text-lg text-gray-800 mb-4">
+      Our team of engineers and technicians are professionally trained to fix. We aim to relieve the stress & inconvenience of a broken heating appliance, we are truly where quality meets excellence.
+    </p>
+    <p className="text-sm text-gray-600 mb-6">
+      Benefit of the socie where we operate. A success website obusly needs great design to be one of the top 10 IT companies in India.
+    </p>
+  </div>
+  <div className="flex flex-col ml-4">
+    <div className="h-full bg-yellow-500 w-1"></div>
+  </div>
+</div>
+  <Link href="/read-more">
+    <div className="text-blue-500 font-semibold hover:underline">Read More</div>
+  </Link>
+</div>
+          {/* Image Area */}
+  {/* Decorative shapes */}
+  {/* Image container */}
+  <div className="w-1/2">
+  <img src="/home/trp.png" alt="About our Company" className="w-full h-auto object-cover -py-4" />
+</div>
+  {/* Button */}
+  <button className="absolute bottom-0 left-0 bg-black text-white px-4 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+    More About Us
+  </button>
+</div>
+      </section>
+          <section className="bg-gray-100 py-10 px-6">
+  <div className="container mx-auto flex flex-wrap items-center justify-between">
+    {/* Content Area */}
+    <div className="w-full lg:w-1/2 flex lg:order-2">
+      <div className="bg-yellow-500 w-1 mr-4"></div>
+      <div className="flex-1">
+        <h2 className="text-5xl font-bold text-black mb-4">
+          Why should you avail the <span className="text-yellow-500">Tour Pass</span>.
+        </h2>
+        <p className="text-lg text-gray-800 mb-4">
+          Our team of engineers and technicians are professionally trained to fix. We aim to relieve the stress & inconvenience of a broken heating appliance, we are truly where quality meets excellence.
+        </p>
+        <p className="text-sm text-gray-600 mb-6">
+          Benefit of the socie where we operate. A success website obusly needs great design to be one of the top 10 IT companies in India.
+        </p>
+        <Link href="/read-more">
+          <div className="text-blue-500 font-semibold hover:underline">Read More</div>
+        </Link>
       </div>
     </div>
+    {/* Image container */}
+    <div className="w-full lg:w-1/2 mb-6 lg:mb-0 lg:order-1">
+      <img src="/home/trp.png" alt="About our Company" className="w-full h-auto object-cover" />
+    </div>
+  </div>
+</section>
   <Footer />
  </div>
   )

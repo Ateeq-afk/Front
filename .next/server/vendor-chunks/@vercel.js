@@ -11,35 +11,6 @@ exports.id = "vendor-chunks/@vercel";
 exports.ids = ["vendor-chunks/@vercel"];
 exports.modules = {
 
-/***/ "(rsc)/./node_modules/@vercel/analytics/dist/react/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@vercel/analytics/dist/react/index.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Analytics: () => (/* binding */ e0),
-/* harmony export */   track: () => (/* binding */ e1)
-/* harmony export */ });
-/* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
-
-const proxy = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`C:\Users\lenovo\Documents\BPUF\dino-main\node_modules\@vercel\analytics\dist\react\index.js`)
-
-// Accessing the __esModule property and exporting $$typeof are required here.
-// The __esModule getter forces the proxy target to create the default export
-// and the $$typeof value is for rendering logic to determine if the module
-// is a client boundary.
-const { __esModule, $$typeof } = proxy;
-const __default__ = proxy.default;
-
-const e0 = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`C:\Users\lenovo\Documents\BPUF\dino-main\node_modules\@vercel\analytics\dist\react\index.js#Analytics`);
-
-const e1 = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`C:\Users\lenovo\Documents\BPUF\dino-main\node_modules\@vercel\analytics\dist\react\index.js#track`);
-
-
-/***/ }),
-
 /***/ "(ssr)/./node_modules/@vercel/analytics/dist/react/index.js":
 /*!************************************************************!*\
   !*** ./node_modules/@vercel/analytics/dist/react/index.js ***!

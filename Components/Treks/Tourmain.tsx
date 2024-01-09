@@ -212,23 +212,30 @@ const Tourmain = () => {
       },
       {
         _id: '2',
-        urllink: '/tour/chikmagalur-tour-package',
-        testimage: '/home/chikmagalur.jpeg',
-        name: 'Chikmagalur Tour: A 3-Day Nature Escape',
-        amount: 9999,
+        urllink: '/tour/gokarna-dandeli-3day',
+        testimage: '/home/dandeliimagemain.jpg',
+        name: 'Gokarna - Dandeli Adventure tour',
+        amount: 7499,
       },
       {
         _id: '3',
-        urllink: '/tour/gokarna-murudeshwar-3day',
-        testimage: '/home/gokarnamuru.webp',
-        name: 'Gokarna - Murudeshwar: A Festive Retreat',
-        amount: 9999,
-      },
-      {
-        _id: '4',
         urllink: '/tour/goa-backpacking-tour',
         testimage: '/home/Goa.webp',
         name: 'Goa Tour: A Captivating 3-Day Journey',
+        amount: 11999,
+      },
+      {
+        _id: '4',
+        urllink: '/tour/munnar-backpacking-tour-long-weekend-3-days-and-2-nights',
+        testimage: '/home/munnarmain.webp',
+        name: 'Munnar Tour: Paradise in the Western Ghats',
+        amount: 9999,
+      },
+      {
+        _id: '5',
+        urllink: '/tour/hampi-heritage-tour',
+        testimage: '/home/Hampimain.webp',
+        name: 'Hampi Tour: A Journey Through History and Heritage',
         amount: 9999,
       },
     ];
@@ -277,7 +284,7 @@ const Tourmain = () => {
   </div>
         <div className=' mx-10 pt-10'>
    <div className="text-center md:text-center">
-            <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Christmas and New Years</h2>
+            <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Republic Day Long Weekend</h2>
             <div className="flex justify-center pt-2 md:pt-5">
           <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
         </div>

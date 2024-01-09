@@ -261,7 +261,7 @@ const Trekmain = () => {
     </div>
           </div>
     </div>
-    <div className=' mx-10 pt-10'>
+    {/* <div className=' mx-10 pt-10'>
      <div className="text-center md:text-center">
               <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Christmas and New Years</h2>
               <div className="flex justify-center pt-2 md:pt-5">
@@ -271,7 +271,7 @@ const Trekmain = () => {
         <div className='pt-10'>
           <Treka trek={newYearTrek}  uniqueId="NewYear" />
         </div>
-     </div>
+     </div> */}
           
      <div className=' mx-10 pt-10'>
      <div className="text-center md:text-center">

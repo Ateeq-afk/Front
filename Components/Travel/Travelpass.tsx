@@ -287,57 +287,7 @@ const Travelpass = () => {
             </Link>
           ))}
         </div>
-        {/* <div className="rounded-lg shadow-md text-black">
-          <p className="text-lg font-semibold mb-2 text-yellow-500">THE SALE ENDS IN</p>
-          {countdownTime && (
-            <div className="flex justify-center space-x-3">
-         
-              <div className="flex flex-col items-center">
-                <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
-                  <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.days} initial="hidden" animate="visible" variants={countdownVariants}>
-                    {[...Array(10)].map((_, num) => (
-                      <div key={num} style={{ height: '40px' }}>{num}</div>
-                    ))}
-                  </motion.div>
-                </div>
-                <p className="text-sm mt-1 text-white">DAYS</p>
-              </div>
-          
-              <div className="flex flex-col items-center">
-                <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
-                  <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.hours} initial="hidden" animate="visible" variants={countdownVariants}>
-                    {[...Array(24)].map((_, num) => (
-                      <div key={num} style={{ height: '40px' }}>{num}</div>
-                    ))}
-                  </motion.div>
-                </div>
-                <p className="text-sm mt-1 text-white">HOURS</p>
-              </div>
-           
-              <div className="flex flex-col items-center">
-                <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
-                  <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.minutes} initial="hidden" animate="visible" variants={countdownVariants}>
-                    {[...Array(60)].map((_, num) => (
-                      <div key={num} style={{ height: '40px' }}>{num}</div>
-                    ))}
-                  </motion.div>
-                </div>
-                <p className="text-sm mt-1 text-white">MINUTES</p>
-              </div>
-        
-              <div className="flex flex-col items-center">
-                <div className="bg-white rounded-lg px-3 py-2 overflow-hidden flex" style={{ height: '50px', width: '50px' }}>
-                  <motion.div className="text-2xl text-black font-bold" style={{ width: '50px' }} custom={countdownTime.seconds} initial="hidden" animate="visible" variants={countdownVariants}>
-                    {[...Array(60)].map((_, num) => (
-                      <div key={num} style={{ height: '40px' }}>{num}</div>
-                    ))}
-                  </motion.div>
-                </div>
-                <p className="text-sm mt-1 text-white">SECONDS</p>
-              </div>
-            </div>
-          )}
-        </div> */}
+       
           </div>
         
           </div>
