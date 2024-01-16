@@ -2,7 +2,7 @@
 
 const nextConfig = {
   images: {
-    domains: ['localhost', 'imgtr.ee', 'bpu-images-v1.s3.eu-north-1.amazonaws.com'],
+    domains: ['localhost', 'imgtr.ee', 'bpu-images-v1.s3.eu-north-1.amazonaws.com','lh3.googleusercontent.com'],
   },
 
   async redirects() {

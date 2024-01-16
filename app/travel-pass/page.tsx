@@ -1,6 +1,6 @@
 import React from 'react';
-import Travelpass from '@/Components/Travel/Travelpass';
 import { Metadata } from 'next';
+import Travel from '@/Components/Travel/Travel';
 
 
 export const metadata:Metadata = {
@@ -25,7 +25,7 @@ export const metadata:Metadata = {
 const Page = () => {
 return(
 <div>
-  <Travelpass />
+  <Travel />
 </div>
 )
   };

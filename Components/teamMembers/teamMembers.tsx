@@ -4,10 +4,16 @@ const teamMembers = [
       designation: 'CEO & Founder',
       photoUrl: '/profile/habeeb.jpeg'
     },
+
     {
         name: 'R Ashwin Kumar',
         designation: 'Human Resources',
         photoUrl: '/profile/aswin.jpeg'
+      },
+      {
+        name: 'Mohammed Ateeq',
+        designation: 'Senior Technical Manager',
+        photoUrl: '/profile/ateeq.jpeg'
       },
       {
         name: 'Tejas Ram',
@@ -24,11 +30,7 @@ const teamMembers = [
         designation: 'Sales Manager',
         photoUrl: '/profile/sahil.jpeg'
       },
-      {
-        name: 'Tahir Shariff',
-        designation: 'Quality Analyst',
-        photoUrl: '/profile/tahir.jpeg'
-      },
+ 
       {
         name: 'Aviral',
         designation: 'Content Creator',

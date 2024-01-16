@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faGift, faPercent, faUserClock, faLock, faTag, faSuitcase, faCalendarCheck, faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faGift, faPercent, faUserClock, faLock, faTag, faSuitcase, faCalendarCheck, faCreditCard, faHandPointer } from '@fortawesome/free-solid-svg-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay,EffectCoverflow  } from 'swiper/modules';
 import "swiper/css";
@@ -27,6 +27,10 @@ type FaqContent = {
     icon: IconDefinition;
     title: string;
     description: string;
+  };
+  type RoundCounterProps = {
+    count: string;
+    label: string;
   };
 const Travel = () => {
     // Titles and descriptions for each benefit card
@@ -61,7 +65,7 @@ const benefits: Benefit[] = [
     {
       icon: faUserClock,
       title: '24/7 Travel Concierge',
-      description: 'Journey nonstop with our 24/7 concierge service.'
+      description: 'Journey non-stop with our 24/7 concierge service.'
     },
     {
       icon: faLock,
@@ -89,20 +93,7 @@ const benefits: Benefit[] = [
       description: 'Budget-friendly with Monthly EMI Options.'
     }
   ];
-  const adventures = [
-    { src: '/pass/1_Kudremukh.webp', alt: 'Trek1' },
-    { src: '/pass/2_Ettina-Bhuja.webp', alt: 'Trek2' },
-    { src: '/pass/3_belkal theertha Falls Trek.webp', alt: 'Trek3' },
-    { src: '/pass/4_Bandaje_11zon.webp', alt: 'Trek4' },
-    { src: '/pass/5_Ermayi and Didupe Falls Trek.webp', alt: 'Trek5' },
-    { src: '/pass/6_Gokarna Beach Trek.webp', alt: 'Trek6 ' },
-    { src: '/pass/7_Thekkady.webp', alt: 'Tour1' },
-    { src: '/pass/8_Kodaikanal.webp', alt: 'Tour2' },
-    { src: '/pass/9_Pondicherry.webp', alt: 'Tour3' },
-    { src: '/pass/10_Goa.webp', alt: 'Tour4' },
-    { src: '/pass/11_gokarna-murudeshwara.webp', alt: 'Tour5' },
-    { src: '/pass/12_Hampi.webp', alt: 'Tour6' },
-    ];
+
   // JSX for each benefit card
   const backgroundImages = [
     'https://source.unsplash.com/random/?mountains',
@@ -124,15 +115,29 @@ const benefits: Benefit[] = [
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1 },
   };
-  const RoundCounter = ({ count, label }) => (
+
+  const RoundCounter: React.FC<RoundCounterProps> = ({ count, label }) => (
     <div className="flex flex-col items-center justify-center">
-      <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
-        <span className="text-2xl text-yellow-500 font-semibold">{count}</span>
+      <div className="w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center mb-1">
+        <span className="text-[26px] text-yellow-500 font-semibold">{count}</span>
       </div>
-      <p className="text-sm text-white">{label}</p>
+      <p className="text-sm text-white mb-2">{label}</p>
     </div>
   );
+//   const RoundCountera: React.FC<RoundCounterProps> = ({ originalPrice, discountedPrice, label }) => (
   
+//     <div className="flex flex-col items-center justify-center md:hidden">
+//           <div className=" bg-white rounded-full px-8 py-1 text-center shadow-4xl">
+//           <div className="text-lg line-through text-gray-500">{originalPrice}</div>
+//     <div className="text-lg font-semibold text-yellow-500 ">{discountedPrice}</div>
+   
+//   </div>
+//       {/* <div className="w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center mb-1">
+//         <span className="text-[26px] text-yellow-500 font-semibold">{discountedPrice}</span>
+//       </div> */}
+//       <p className="text-sm text-white">{label}</p>
+//     </div>
+//   );
     const cardVariants = {
         offscreen: {
           y: 50,
@@ -149,21 +154,10 @@ const benefits: Benefit[] = [
         }
       };
     // State for the active tab
-    const cards = [
-      {
-        title: "Trek Pass",
-        description: "Travel to 6 treks, originally at ₹24,000, now just ₹12,000!",
-        bgClass: "bg-purple-500" // Purple circle for Trek Pass
-      },
-      {
-        title: "Tour Pass",
-        description: "Access to 6 tours, slashed from ₹24,000 to only ₹12,000!",
-        bgClass: "bg-blue-500" // Blue circle for Tour Pass
-      }
-    ];
+
     const faqContent = {
         General: [
-        { question: ' How many participants are there on a trip?', answer: 'We typically host 12-20 travelers in a single batch for our tours, and for trekking adventures, groups usually consist of 20-30 travelers per batch. Larger groups are possible during long weekends, ensuring a better experience for all.' },
+        { question: ' How many participants are there on a trip?', answer: 'We typically host 12–20 travellers in a single batch for our tours, and for trekking adventures, groups usually consist of 20–30 travellers per batch. Larger groups are possible during long weekends, ensuring a better experience for all.' },
         { question: 'Do your trips have any age limitations?', answer: 'Yes, participants must be 18 years or older. However, guardians or parents accompanying the group are welcome to bring their children along for the trek or tour.' },
         {
         question: ' Is it possible to make last-minute modifications to the trek or trip?',
@@ -175,7 +169,7 @@ const benefits: Benefit[] = [
         },
         {
         question: 'Are the listed Treks suitable for beginners?',
-        answer: 'Absolutely! We cater to all levels of experience and provide detailed information on the difficulty level for each Trek.'
+        answer: 'Absolutely! We cater for all levels of experience and provide detailed information on the difficulty level for each Trek.'
         }
         ],
         Safety: [
@@ -199,7 +193,7 @@ const benefits: Benefit[] = [
         { question: 'What makes the experiences offered by your travel company unique?', answer: 'Our travel company stands out by offering first-hand experiences, ensuring our clients enjoy authentic and immersive journeys that are both memorable and personal.' },
         ],
         Policy: [
-        { question: 'What is the procedure if a trip or trek gets canceled?', answer: 'In case of cancellation, we follow specific policies for rescheduling due to circumstances like natural disasters, governmental actions, conflicts, public disturbances, national crises, rebellions, epidemics, strikes, transportation challenges, or delays.' },
+        { question: 'What is the procedure if a trip or trek gets cancelled?', answer: 'In case of cancellation, we follow specific policies for rescheduling due to circumstances like natural disasters, governmental actions, conflicts, public disturbances, national crises, rebellions, epidemics, strikes, transportation challenges, or delays.' },
         { question: ' Will I get a refund if I cancel my Travel pass?', answer: 'No, the Travel pass is non-refundable.' },
         { question: ' Are there Travel pass exclusive trips/treks?', answer: 'Yes, there are invite-only trips/treks exclusively for Travel pass owners.' },
         ],
@@ -209,75 +203,88 @@ const benefits: Benefit[] = [
         ],
         Payment: [
         { question: 'Are installment options like EMI available for payment?', answer: 'Yes, we offer EMI (Equated Monthly Installment) options on credit cards and select debit cards.' },
-        { question: 'What payment methods are accepted?', answer: 'We accept all credit cards, Debit cards, UPI payments, Netbanking, Wallets and EMI.' },
+        { question: 'What payment methods are accepted?', answer: 'We accept all credit cards, debit cards, UPI payments, Net banking, Wallets and EMI.' },
         ],
         };
+        // const treks = [
+        //     'Kudremukh Trek', 'Nethravathi Trek', 'Bandaje Falls Trek', 'Gangadikal Trek',
+        //     'Gokarna Beach Trek', 'Kumara Parvatha Coorg Trek', 'Tadiandamol Trek', 'Ethina Bhuja Trek',
+        //     'Ombattu Gudda Trek', 'Ermayi and Didupe Falls Trek', 'Karwar Beach Trek', 'Kurinjal Trek',
+        //     'Nishani Motte Trek', 'Kumara Parvatha Kukke Trek', 'Narasimha Parvatha Trek', 'Kodachadri Trek',
+        //     'Galibeedu Trek', 'Meruthi Hill Trek', 'Belkal Theertha Falls Trek', 'Pandavara Betta Trek',
+        //   ];
         const treks = [
-            'Kudremukh Trek', 'Nethravathi Trek', 'Bandaje Falls Trek', 'Gangadikal Trek',
-            'Gokarna Beach Trek', 'Kumara Parvatha Coorg Trek', 'Tadiandamol Trek', 'Ethina Bhuja Trek',
-            'Ombattu Gudda Trek', 'Ermayi and Didupe Falls Trek', 'Karwar Beach Trek', 'Kurinjal Trek',
-            'Nishani Motte Trek', 'Kumara Parvatha Kukke Trek', 'Narasimha Parvatha Trek', 'Kodachadri Trek',
-            'Galibeedu Trek', 'Meruthi Hill Trek', 'Belkal Theertha Falls Trek', 'Pandavara Betta Trek',
+            { name: 'Kudremukh Trek', link: 'kudremukh-trek' },
+            { name: 'Nethravathi Trek', link: 'nethravathi-trek' },
+            { name: 'Bandaje Falls Trek', link: 'bandaje-falls-trek' },
+            { name: 'Gangadikal Trek', link: 'gangadikal-trek' },
+            { name: 'Gokarna Beach Trek', link: 'gokarna-beach-trek' },
+            { name: 'Kumara Parvatha Coorg Trek', link: 'kumara-parvatha-coorg-trek' },
+            { name: 'Tadiandamol Trek', link: 'tadiandamol-trek' },
+            { name: 'Ethina Bhuja Trek', link: 'ethina-bhuja-trek' },
+            { name: 'Ombattu Gudda Trek', link: 'ombattu-gudda-trek' },
+            { name: 'Ermayi and Didupe Falls Trek', link: 'ermayi-and-didupe-falls-trek' },
+            { name: 'Karwar Beach Trek', link: 'karwar-beach-trek' },
+            { name: 'Kurinjal Trek', link: 'kurinjal-trek' },
+            { name: 'Nishani Motte Trek', link: 'nishani-motte-trek' },
+            { name: 'Kumara Parvatha Kukke Trek', link: 'kumara-parvatha-kukke-trek' },
+            { name: 'Narasimha Parvatha Trek', link: 'narasimha-parvatha-trek' },
+            { name: 'Kodachadri Trek', link: 'kodachadri-trek' },
+            { name: 'Galibeedu Trek', link: 'galibeedu-trek' },
+            { name: 'Meruthi Hill Trek', link: 'meruthi-hill-trek' },
+            { name: 'Belkal Theertha Falls Trek', link: 'belkal-theertha-falls-trek' },
+            { name: 'Pandavara Betta Trek', link: 'pandavara-betta-trek' },
           ];
+            
           const tours = [
-            'Wayanad Weekend Getaway', 'Chikmagalur Weekend Getaway', 'Hampi Weekend Getaway', 'Kodaikanal Weekend Getaway',
-            'Munnar Weekend Getaway', 'Coorg Weekend Getaway', 'Ooty Weekend Getaway', 'Pondicherry Weekend Getaway'  ,
-            'Sakleshpur Weekend Getaway', 'Gokarna-Murudeshwar WG', 'Kannur Weekend Getaway', 'Udupi-Mangalore WG',
-            'Chikmagalur Backpacking Tour', 'Kodaikanal Backpacking Tour', 'Ooty Backpacking Tour', 'Valparai Weekend Getaway',
-            'Thekkady Weekend Getaway', 'BR Hills Weekend Getaway', 'Badami Weekend Getaway', 'Dandeli Weekend Getaway',
-            ];
+            { name: 'Wayanad Weekend Getaway', link: 'wayanad-weekend-getaway' },
+            { name: 'Chikmagalur Weekend Getaway', link: 'chikmagalur-weekend-getaway' },
+            { name: 'Hampi Weekend Getaway', link: 'hampi-weekend-getaway' },
+            { name: 'Kodaikanal Weekend Getaway', link: 'kodaikanal-weekend-getaway' },
+            { name: 'Munnar Weekend Getaway', link: 'munnar-weekend-getaway' },
+            { name: 'Coorg Weekend Getaway', link: 'coorg-weekend-getaway' },
+            { name: 'Ooty Weekend Getaway', link: 'ooty-weekend-getaway' },
+            { name: 'Pondicherry Weekend Getaway', link: 'pondicherry-weekend-getaway' },
+            { name: 'Sakleshpur Weekend Getaway', link: 'sakleshpur-weekend-getaway' },
+            { name: 'Gokarna-Murudeshwar WG', link: 'gokarna-murudeshwar-weekend-getaway' },
+            { name: 'Kannur Weekend Getaway', link: 'kannur-weekend-getaway' },
+            { name: 'Udupi-Mangalore WG', link: 'udupi-mangalore-weekend-getaway' },
+            { name: 'Chikmagalur Backpacking Tour', link: 'chikmagalur-backpacking-tour' },
+            { name: 'Kodaikanal Backpacking Tour', link: 'kodaikanal-backpacking-tour' },
+            { name: 'Ooty Backpacking Tour', link: 'ooty-backpacking-tour' },
+            { name: 'Valparai Weekend Getaway', link: 'valparai-weekend-getaway' },
+            { name: 'Thekkady Weekend Getaway', link: 'thekkady-weekend-getaway' },
+            { name: 'BR Hills Weekend Getaway', link: 'br-hills-weekend-getaway' },
+            { name: 'Badami Weekend Getaway', link: 'badami-weekend-getaway' },
+            { name: 'Dandeli Weekend Getaway', link: 'dandeli-weekend-getaway' },
+          ];
+          
+          
+          
+       
           const imageContainerVariants = {
             hidden: { x: -100, opacity: 0 },
             visible: { x: 0, opacity: 1, transition: { type: 'spring', duration: 2 } }
           };
-        //   const testimonials = [
-        //     {
-        //       name: 'Maria Menounos',
-        //       title: 'Actress & TV Host',
-        //       testimony: 'I feel on top of the world. I feel incredibly '
-        //     },
-        //     {
-        //       name: 'Serena Williams',
-        //       title: 'American Professional Tennis Player',
-        //       testimony: 'Tony Robbins helped me discover what I am really made of. With Tony\'s help, I\'ve set new standards for myself, and I\'ve taken my tennis game—and my life—to a whole new level!'
-        //     },
-        //     {
-        //       name: 'Marc Benioff',
-        //       title: 'Founder, Chairman and CEO of Salesforce',
-        //       testimony: 'Tony Robbins and his strategies and his tools, have been at the core of our culture from the beginning. He has been one of the critical keys to Salesforce.com\'s leadership in cloud computing and its growth into an over $6 billion dollar company.'
-        //     }
-        //   ];
-        const bulletStyle = {
-            backgroundColor: '#D1D5DB', // Gray color for inactive bullets
-            width: '12px',
-            height: '12px',
-            display: 'inline-block',
-            borderRadius: '50%',
-          };
-        
-          const bulletActiveStyle = {
-            backgroundColor: '#000000', // Black color for active bullets
-            width: '12px',
-            height: '12px',
-            display: 'inline-block',
-            borderRadius: '50%',
-          };
+
             const testimonials = [
     {
-      quote: "When it comes to digital marketing there are loads of commentators that talk a good game, but Sonja and Sharon help you make it happen...When it comes to digital marketing there are loads of commentators that talk a good game, but Sonja and Sharon help you make it happen...",
-      name: "Selena Rock",
-      title: "CTO",
-      image:"/home/ANDAMAN.jpg"
+      quote: "As a solo traveller, opting for the Tour Pass was a no-brainer, especially since it was half the price of what I previously paid with Backpackers United. It's truly been worth every penny! The pass led me to unique and stunning locations with impressive safety measures for solo travellers. Having travelled before, I can confidently say that the overall experience has been fantastic. I highly recommend it to female solo travellers seeking safe and enriching adventures.",
+      name: "Riya Singh",
+      title: "Solo Traveler",
+      image:"/about/solo.jpg"
     },
      {
-        quote: "When it comes to digital marketing there are loads of commentators that talk a good game, but Sonja and Sharon help you make it happen...",
-        name: "Selena Rock",
-        title: "CTO"
+        quote: "Both my wife and I work in the IT industry and were looking for a lifestyle shift. We came across the Trek Pass for just 12k, an amazing deal. The experience has been rewarding with treks that are well-organized, boosting our fitness and easing stress. Some treks were overcrowded, likely due to the peak season, but despite this, the overall advantages and value we've gained make it an excellent investment for us.",
+        name: "Yogesh Waghmare",
+        title: "Corporate Profesional",
+        image:"/about/it.jpg"
       },
       {
-        quote: "When it comes to digital marketing there are loads of commentators that talk a good game, but Sonja and Sharon help you make it happen...",
-        name: "Selena Rock",
-        title: "CTO"
+        quote: "As a budget-conscious college student with a passion for trekking, the Trek Pass on EMI was an ideal choice. It's enabled affordable adventures with friends, offering a mix of thrilling and more relaxed treks. More challenging options would be welcome, but overall, it's a great fit for students who want to trek without overspending.",
+        name: "Sunil Gowda",
+        title: "College Student",
+        image:"/about/yogesh.jpg"
       },
     // ... more testimonials
   ];
@@ -299,33 +306,49 @@ const benefits: Benefit[] = [
         {/* Hero content here */}
         <div className="relative flex items-center justify-between w-full max-w-[1200px] px-4 mx-auto">
      {/* Card 1: Trek Pass */}
-     <motion.div className="w-[350px] h-[500px] bg-gradient-to-b from-blue-200 via-blue-100 to-white rounded-2xl overflow-hidden shadow-xl"
+     <motion.div className="hidden md:block w-[350px] h-[500px] bg-gradient-to-b from-orange-200 via-yellow-100 to-white rounded-2xl overflow-hidden shadow-xl"
           variants={itemVariants}
           initial="hidden"
           animate="visible">
 <div className="flex flex-col items-center justify-between h-full p-6">
-<div className="text-xl font-bold text-gray-600">TREK PASS</div>
- <div className="text-s font-semibold justify-centre">The Trek Pass is a specialized pass designed for outdoor enthusiasts who love exploring nature through trekking. Our pass allows adventurers to experience everything from serene scenic paths to challenging terrains. Embracing our motto, "Create a Fitness Culture and Interact with Nature," the Trek Pass is more than just access to trails; it's an affordable gateway for everyone to outdoor adventures, ensuring that the joys and lessons of nature are accessible to all, regardless of budget.
+<div className="text-xl font-bold text-yellow-800">TREK PASS</div>
+ <div className=" md:font-semibold text-justify">
+ The Trek Pass gives outdoor enthusiasts the chance to explore a variety of terrains, from tranquil scenic paths to challenging trails. Aligning with our motto "Create a Fitness Culture and Interact with Nature," it provides affordable access to the beauty of nature. With this pass, you can choose 6 treks from 20 destinations over 12 months, combining fitness with the exploration of nature's wonders.
 </div>
+{/* <div style={{ fontSize: '20px', fontWeight: '600', color: '#4B5563' }}>
+    Special Deal: <span className="line-through" style={{ color: '#9CA3AF', margin: '0 10px', fontWeight: '400' }}>₹24,000</span>
+    <span className='font-bold' style={{ fontSize: '26px', color: '#EF4444' }}>₹12,000/-</span>
+</div> */}
+
+<div>
+    <div style={{ fontSize: '20px', fontWeight: '600', color: '#4B5563' }}>Special Deal:<span className="line-through" style={{ color: '#9CA3AF', fontWeight: '400', fontSize: '20px' }}>₹24,000
+</span> </div> </div> 
+<div className='text-yellow-800 font-extrabold text-2xl '> ₹12,000/-
+                      </div>
 <div className="space-y-4">
 <div className="flex justify-around items-center text-center">
 <div className="flex space-x-10">
+
 <div>
+
  <p className="text-5xl text-yellow-500 font-semibold">6</p>
  <p className="text-xs text-gray-500">TREKS</p>
 </div>
 <div>
 <p className="text-5xl text-yellow-500 font-semibold">
-12 <span className="text-xs -mr-0 text-yellow-500">months</span>
+12 
+
 </p>
- <p className="text-xs text-gray-500">VALIDITY</p>
+ <p className="text-xs text-gray-500">MONTHS VALIDITY</p>
 </div>
 </div>
 </div>
 </div>
+<Link href="#trek-pass">
 <button className="mt-4 text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
 LEARN MORE
 </button>
+</Link>
 </div>
 </motion.div>
      {/* Central content */}
@@ -333,36 +356,81 @@ LEARN MORE
                  variants={containerVariants}
                  initial="hidden"
                  animate="visible">
-       <h1 className="text-[40px] font-bold mb-4 text-white">Explore the Wonders</h1>
-       <p className="mb-4 text-white">What the journey brings to your life</p>
-       <button className="text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
+       <h1 className="text-[48px] font-bold  text-white">Explore the Wonders</h1>
+       <p className="mb-4 text-[18px] text-white">What the journey brings to your life</p>
+       <Link href="/travel-pass/book">
+       <button className="text-black bg-yellow-400 border border-yellow-400 font-bold py-4 px-8 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
            JOIN NOW
        </button>
+       </Link>
        {/* New section with round counters */}
-       <div className="flex justify-center space-x-8 mt-8">
+       <div className="flex justify-center space-x-8 mt-4">
          <div>
-           <RoundCounter count="6" label="Treks" />
-           <RoundCounter count="20" label="Treks to Choose from" />
+         <div className="hidden md:inline">
+      <RoundCounter count="6" label="Treks" />
+    </div>
            <RoundCounter count="50%" label="Flat Discount" />
+           <RoundCounter count="20" label="Treks to Choose from" />
+ 
          </div>
          <div className="self-center">
            <div className="w-px h-20 bg-white bg-opacity-50"></div>
          </div>
          <div>
-           <RoundCounter count="6" label="Tours" />
-           <RoundCounter count="20" label="Tours to Choose from" />
+         <div className="hidden md:inline">
+      <RoundCounter count="6" label="Tours" />
+    </div>
            <RoundCounter count="50%" label="Flat Discount" />
+           <RoundCounter count="20" label="Tours to Choose from" />
+         
          </div>
        </div>
+       {/* <div className='md:hidden bg-gradient-to-r from-yellow-500 to-white  rounded-full px-2 py-2 flex items-center justify-center'>
+       <p className="text-lg font-semibold mr-4 ">Trek pass</p>
+    <div className="border-r-2 border-black h-6 mx-4"></div>
+    <div className="text-xl font-bold">
+        <span className="line-through text-gray-500">₹24000</span>
+        <span className="ml-2">₹12000/-</span>
+    </div>
+       </div> */}
+       <div className="md:hidden mb-4 flex items-center justify-center">
+    <div className="w-[35%] bg-black text-yellow-500 h-10 rounded-l-full flex items-center justify-center">
+        <p className="text-lg font-semibold mr-4">Trek pass</p>
+    </div>
+    <div className="w-[65%] bg-white h-10 rounded-r-full flex items-center justify-center">
+        <div className="text-xl font-bold">
+            <span className="line-through text-gray-500">₹24000</span>
+            <span className="ml-2 text-yellow-500 font-bold">₹12000/-</span>
+        </div>
+    </div>
+</div>
+<div className="md:hidden  flex items-center justify-center">
+    <div className="w-[35%] bg-black text-yellow-500 h-10 rounded-l-full flex items-center justify-center">
+        <p className="text-lg font-semibold mr-4">Tour pass</p>
+    </div>
+    <div className="w-[65%] bg-white h-10 rounded-r-full flex items-center justify-center">
+        <div className="text-xl font-bold">
+            <span className="line-through text-gray-500">₹42000</span>
+            <span className="ml-2 text-yellow-500 font-bold">₹21000/-</span>
+        </div>
+    </div>
+</div>
+  
      </motion.div>
-     <motion.div className="w-[350px] h-[500px] bg-gradient-to-b from-blue-200 via-blue-100 to-white rounded-2xl overflow-hidden shadow-xl"
+     <motion.div className="hidden md:block w-[350px] h-[500px] bg-gradient-to-b from-orange-200 via-yellow-100 to-white rounded-2xl overflow-hidden shadow-xl"
           variants={itemVariants}
           initial="hidden"
           animate="visible">
 <div className="flex flex-col items-center justify-between h-full p-6">
-<div className="text-xl font-bold text-gray-600">TOUR PASS</div>
- <div className="text-s font-semibold justify-centre">The Tour Pass is an ideal choice for those who seek to escape the hustle of daily life and find solace in diverse cultural experiences. This pass enables travelers to delve into the heart of various cities, experiencing their unique heritage, lively markets, and peaceful natural settings. In line with our principle, "Escape Daily Life, Depression, and Relax in Nature," the Tour Pass is more than just a travel ticket; it's an affordable opportunity for everyone to embark on journeys that rejuvenate the mind and spirit.
+<div className="text-xl font-bold text-yellow-800">TOUR PASS</div>
+ <div className=" font-semibold text-justify">
+ The Tour Pass offers an escape to diverse city cultures, from  historic landmarks to lively markets, perfect for those looking to break from routine and enjoy unique experiences.  In line with our ethos, "Escape Daily Life, Depression, and Relax in Nature," this pass is much more than just a ticket. It offers the flexibility to select 6 from 20 destinations for exploration over 12 months,  ensuring a relaxed travel experience.
 </div>
+<div>
+    <div style={{ fontSize: '20px', fontWeight: '600', color: '#4B5563' }}>Special Deal:<span className="line-through" style={{ color: '#9CA3AF', fontWeight: '400', fontSize: '20px' }}>₹42,000
+</span>  </div> </div> 
+<div className='text-yellow-800 font-extrabold text-2xl '> ₹21,000/-
+                      </div>
 <div className="space-y-4">
 <div className="flex justify-around items-center text-center">
 <div className="flex space-x-10">
@@ -372,16 +440,20 @@ LEARN MORE
 </div>
 <div>
 <p className="text-5xl text-yellow-500 font-semibold">
-12 <span className="text-xs -mr-0 text-yellow-500">months</span>
+12 
 </p>
- <p className="text-xs text-gray-500">VALIDITY</p>
+ <p className="text-xs text-gray-500"> MONTHS VALIDITY</p>
 </div>
 </div>
 </div>
 </div>
+{/* <Link href="#tour-pass"> */}
+<a href="#tour-pass">
 <button className="mt-4 text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
 LEARN MORE
 </button>
+</a>
+{/* </Link> */}
 </div>
 </motion.div>
    </div>
@@ -389,98 +461,110 @@ LEARN MORE
 
       {/* New About Section */}
      
-     
-  <div className='flex flex-row bg-gray-100 mt-10'>
-  <Swiper
-      modules={[ Autoplay]}
-      spaceBetween={0}
-      slidesPerView={1}
-      navigation={false} 
-      pagination={{ clickable: true }}
-      autoplay={{ delay: 100, disableOnInteraction: false }}
-      loop={true}
-      speed={1000}
-      // Responsive breakpoints
-      breakpoints={{
-        // when window width is >= 640px
-        640: {
-          slidesPerView: 1,
-        },
-        // when window width is >= 768px
-        768: {
-          slidesPerView: 4,
-        },
-        1000: {
-            slidesPerView: 6,
-          },
-      }}
-    >
-      {treks.map((trek, index) => (
-        <SwiperSlide key={index}>
-          <div className="py-4 flex flex-row font-bold rounded-lg text-center text-sm justify-center items-center">
-            <h3  style={{
-  background: 'linear-gradient(to right, #FE5A1C, #FF9E28)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
-  color: 'transparent', // Fallback for browsers that do not support background-clip
-  display: 'inline' // This is necessary for the gradient to apply correctly
-}}>{trek}</h3>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
-    </div>
-    
-    <div className='flex flex-row bg-gray-100 mt-5'>
-    <Swiper
-      modules={[ Autoplay]}
-      spaceBetween={0}
-      slidesPerView={1}
-      navigation={false} 
-      pagination={{ clickable: true }}
-      autoplay={{ delay: 100, disableOnInteraction: false }}
-      loop={true}
-      speed={1000}
-      // Responsive breakpoints
-      breakpoints={{
-        // when window width is >= 640px
-        640: {
-          slidesPerView: 1,
-        },
-        // when window width is >= 768px
-         768: {
-          slidesPerView: 4,
-        },
-        1000: {
-            slidesPerView: 6,
-          },
-      }}
-    >
-      {tours.map((trek, index) => (
-        <SwiperSlide key={index}>
-          <div className="py-4 flex flex-row font-bold rounded-lg text-center text-sm justify-center items-center ">
-            <h3  style={{
-  background: 'linear-gradient(to right, #56CCF2, #2F80ED)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
-  color: 'transparent', // Fallback for browsers that do not support background-clip
-  display: 'inline' // This is necessary for the gradient to apply correctly
-}}>{trek}</h3>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
-    </div>
    
-    <div className='w-full h-[150px] relative mt-5 '>
+    {/* <div className='w-full h-[150px] relative mt-5 '>
         <Image src="/home/mountain.jpg" objectFit='cover' layout='fill' alt='mountain strip travel pass'/>
-    </div>
-    <div className="bg-black md:p-10 py-4">
+    </div> */}
+       <motion.div className=" md:hidden w-auto h-auto bg-gradient-to-b from-orange-200 via-yellow-100 to-white overflow-hidden shadow-xl rounded-xl mx-2 mt-2"
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible">
+<div className="flex flex-col items-center justify-between h-full p-4 gap-2">
+<div className="text-xl font-bold text-yellow-800">TREK PASS</div>
+ <div className="text-justify">
+ The Trek Pass gives outdoor enthusiasts the chance to explore a variety of terrains, from tranquil scenic paths to challenging trails. Aligning with our motto "Create a Fitness Culture and Interact with Nature," it provides affordable access to the beauty of nature. With this pass, you can choose 6 treks from 20 destinations over 12 months, combining fitness with the exploration of nature's wonders.
+</div>
+{/* <div style={{ fontSize: '20px', fontWeight: '600', color: '#4B5563' }}>
+    Special Deal: <span className="line-through" style={{ color: '#9CA3AF', margin: '0 10px', fontWeight: '400' }}>₹24,000</span>
+    <span className='font-bold' style={{ fontSize: '26px', color: '#EF4444' }}>₹12,000/-</span>
+</div> */}
+
+<div>
+    <div style={{ fontSize: '20px', fontWeight: '600', color: '#4B5563' }}>Special Deal:<span className="line-through" style={{ color: '#9CA3AF', fontWeight: '400', fontSize: '20px' }}>₹24,000
+</span>  </div> </div> 
+<div className='text-yellow-800 font-extrabold text-2xl '> ₹12,000/-
+                      </div>
+<div className="space-y-4">
+<div className="flex justify-around items-center text-center">
+<div className="flex space-x-3">
+
+<div>
+
+ <p className="md:text-5xl text-4xl text-yellow-500 font-semibold">6</p>
+ <p className="text-xs text-gray-500">TREKS</p>
+</div>
+<div>
+<p className="md:text-5xl text-4xl text-yellow-500 font-semibold">
+12 
+
+</p>
+ <p className="text-xs text-gray-500">MONTHS VALIDITY</p>
+</div>
+<div className='flex justify-center items-center'>
+<Link href="#trek-pass">
+<button className=" text-black bg-yellow-400 border border-yellow-400 font-bold w-40 h-10 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
+Learn More
+</button>
+</Link>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</motion.div>
+<motion.div className=" md:hidden w-auto h-auto bg-gradient-to-b from-orange-200 via-yellow-100 to-white overflow-hidden shadow-xl m-2 rounded-xl"
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible">
+<div className="flex flex-col items-center justify-between h-full p-4 gap-2">
+<div className="text-xl font-bold text-yellow-800">TOUR PASS</div>
+ <div className="text-justify">
+ The Tour Pass offers an escape to diverse city cultures, from  historic landmarks to lively markets, perfect for those looking to break from routine and enjoy unique experiences.  In line with our ethos, "Escape Daily Life, Depression, and Relax in Nature," this pass is much more than just a ticket. It offers the flexibility to select 6 from 20 destinations for exploration over 12 months,  ensuring a relaxed travel experience.
+</div>
+{/* <div style={{ fontSize: '20px', fontWeight: '600', color: '#4B5563' }}>
+    Special Deal: <span className="line-through" style={{ color: '#9CA3AF', margin: '0 10px', fontWeight: '400' }}>₹24,000</span>
+    <span className='font-bold' style={{ fontSize: '26px', color: '#EF4444' }}>₹12,000/-</span>
+</div> */}
+
+<div>
+    <div style={{ fontSize: '20px', fontWeight: '600', color: '#4B5563' }}>Special Deal:<span className="line-through" style={{ color: '#9CA3AF', fontWeight: '400', fontSize: '20px' }}>₹42,000
+</span>  </div> </div> 
+<div className='text-yellow-800 font-extrabold text-2xl '> ₹21,000/-
+                      </div>
+<div className="space-y-4">
+<div className="flex justify-around items-center text-center">
+<div className="flex space-x-3">
+
+<div>
+
+ <p className="md:text-5xl text-4xl text-yellow-500 font-semibold">6</p>
+ <p className="text-xs text-gray-500">TOURS</p>
+</div>
+<div>
+<p className="md:text-5xl text-4xl text-yellow-500 font-semibold">
+12 
+
+</p>
+ <p className="text-xs text-gray-500">MONTHS VALIDITY</p>
+</div>
+<div className='flex justify-center items-center'>
+<a href="#tour-pass">
+<button className=" text-black bg-yellow-400 border border-yellow-400 font-bold w-40 h-10 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
+Learn More
+</button>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</motion.div>
+    <div className="bg-black md:p-10 py-5">
       <div className="max-w-6xl mx-auto rounded-2xl bg-black shadow-md overflow-hidden">
         <div className="md:p-5">
-          <h1 className="md:text-3xl text-xl font-bold text-center text-yellow-500">What you get ?</h1>
+          <h1 className="md:text-[40px] text-3xl font-bold text-center text-yellow-500">What you get ?</h1>
         </div>
         <div className="md:grid grid-cols-2 md:grid-cols-4 gap-4 p-5 hidden">
           {benefits.map((benefit, index) => (
@@ -511,13 +595,14 @@ LEARN MORE
         </div>
      
       <div>
-      <div className="grid grid-cols-2 gap-4 mx-6 my-4 md:hidden">
+      <div className="grid grid-cols-2 gap-4 mx-6 my-4 md:hidden relative">
         {benefits.map((benefit, index) => (
-          <div key={index} className="flex flex-col items-center justify-center bg-gradient-to-r from-white to-gray-300 rounded-xl h-[100px]" onClick={() => setSelectedBenefit(benefit)}>
+          <div key={index} className="flex flex-col items-center justify-center bg-gradient-to-r from-white to-gray-300 rounded-xl h-[100px] " onClick={() => setSelectedBenefit(benefit)}>
             {/* <div className="relative bg-white rounded-full p-5 shadow-lg flex items-center justify-center"> */}
               <FontAwesomeIcon icon={benefit.icon} className="text-2xl text-yellow-500" />
             {/* </div> */}
             <div className="mt-2 text-center text-sm font-semibold">{benefit.title}</div>
+            <div className='absolute left-2 top-1'><FontAwesomeIcon icon={faHandPointer} /></div>
           </div>
         ))}
       </div>
@@ -539,18 +624,108 @@ LEARN MORE
     </div>
     </div>
     </div>
-  
-    <div className="mx-10 py-12">
-      <div className="flex flex-col md:flex-row items-center md:space-x-12">
+    <div className='text-center md:mt-10 mt-5 '>
+        <h2 className='md:text-[40px] text-3xl ' >Select from 20 Amazing <span className='text-yellow-500 font-bold'>Treks</span> & <span className='text-yellow-500 font-bold'>Tours</span>  </h2>
+    </div>
+    <div className='flex flex-row bg-gray-100 md:mt-10 mt-5'>
+  <Swiper
+      modules={[ Autoplay]}
+      spaceBetween={0}
+      slidesPerView={1}
+      navigation={false} 
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 400, disableOnInteraction: false }}
+      loop={true}
+      speed={1000}
+      // Responsive breakpoints
+      breakpoints={{
+        // when window width is >= 640px
+        640: {
+          slidesPerView: 1,
+          autoplay: { delay: 200, disableOnInteraction: false }
+        },
+        // when window width is >= 768px
+        768: {
+          slidesPerView: 4,
+           autoplay: { delay: 200, disableOnInteraction: false }, 
+        },
+        1000: {
+            slidesPerView: 6,
+          },
+      }}
+    >
+      {treks.map((trek, index) => (
+        <SwiperSlide key={index}>
+          <div className="py-4 flex flex-row font-bold rounded-lg text-center text-sm justify-center items-center">
+          <Link href={`/trek/${trek.link}`}> <h3  style={{
+  background: 'linear-gradient(to right, #FE5A1C, #FF9E28)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+  color: 'transparent', // Fallback for browsers that do not support background-clip
+  display: 'inline' // This is necessary for the gradient to apply correctly
+}}>{trek.name}</h3></Link> 
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+    </div>
+    
+    <div className='flex flex-row bg-gray-100 mt-5'>
+    <Swiper
+      modules={[ Autoplay]}
+      spaceBetween={0}
+      slidesPerView={1}
+      navigation={false} 
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 400, disableOnInteraction: false }}
+      loop={true}
+      speed={1000}
+      // Responsive breakpoints
+      breakpoints={{
+        // when window width is >= 640px
+        640: {
+          slidesPerView: 1,
+          autoplay: { delay: 200, disableOnInteraction: false }, 
+        },
+        // when window width is >= 768px
+         768: {
+          slidesPerView: 4,
+          autoplay: { delay: 200, disableOnInteraction: false }, 
+        },
+        1000: {
+            slidesPerView: 6,
+          },
+      }}
+    >
+      {tours.map((tour, index) => (
+        <SwiperSlide key={index}>
+          <div className="py-4 flex flex-row font-bold rounded-lg text-center text-sm justify-center items-center ">
+          <Link href={`/tour/${tour.link}`}>    <h3  style={{
+  background: 'linear-gradient(to right, #56CCF2, #2F80ED)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+  color: 'transparent', // Fallback for browsers that do not support background-clip
+  display: 'inline' // This is necessary for the gradient to apply correctly
+}}>{tour.name}</h3></Link>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+    </div>
+   
+    <div className="md:mx-10 mx-4 md:py-10 py-5">
+      <div className="flex flex-col md:flex-row items-center  md:space-x-12">
         {/* <div className='w-full'> */}
         {/* Title with each word on a new line */}
-        <div className=" md:flex flex-col  w-3/4">
-          <h2 className="text-4xl font-bold text-black uppercase ml-14">
-            <span className="block">What they</span>
-            <span className="block">say</span>
+        <div className=" md:flex flex-col  md:w-3/4">
+          <h2 className="md:text-[40px] text-3xl flex justify-center items-center md:block font-bold text-black uppercase md:ml-14 ml-2">
+            <span className="block">What they</span> 
+            <span className="text-center ml-2 md:ml-0 text-yellow-500">say</span>
           </h2>
           </div>
-          <div className="w-2 bg-yellow-500 h-24 "></div>
+          <div className=" md:w-2 bg-yellow-500 md:h-24 w-10 h-1 ml-2 mt-4 md:ml-0 md:mt-0"></div>
         
       <Swiper
         modules={[Pagination]}
@@ -561,11 +736,11 @@ LEARN MORE
           bulletClass: 'swiper-pagination-bullet',
           bulletActiveClass: 'swiper-pagination-bullet-active'
         }}
-        className="mySwiper my-unique-swiper  w-full md:w-auto"
+        className="mySwiper my-unique-swiper  w-full md:w-auto mt-5 md:mt-0"
       >
         {testimonials.map((testimonial, index) => (
           <SwiperSlide key={index} className="flex justify-center items-center">
-            <div className="flex justify-center items-center px-6 py-20 bg-white rounded-2xl shadow-xl w-full md:max-w-3xl mx-auto space-x-4">
+            <div className="flex md:flex-row flex-col justify-center items-center px-6  md:py-20 py-10 bg-gray-100 rounded-2xl shadow-xl w-full md:max-w-3xl mx-auto ">
               <div className="flex justify-center items-center flex-col w-[200px]">
                 <div className="h-16 w-16 rounded-full relative">
                   <Image src={testimonial.image} alt="Avatar of the testimonial author" layout='fill' objectFit='cover' className='rounded-full' />
@@ -573,8 +748,8 @@ LEARN MORE
                 <div className="text-lg font-semibold text-black mt-4">{testimonial.name}</div>
                 <p className="text-gray-500">{testimonial.title}</p>
               </div>
-              <div className="ml-4 flex-1 relative">
-                <p className="text-gray-600 mt-2 before:content-['\201C'] before:absolute before:text-6xl before:-top-6 before:-left-4 before:text-yellow-500 after:content-['\201D'] after:absolute after:text-6xl after:-bottom-[55px] after:-right-4 after:text-yellow-500">{testimonial.quote}</p>
+              <div className=" flex-1 relative">
+                <p className="text-gray-600 mt-2 before:content-['\201C'] before:absolute before:text-6xl before:-top-6 before:-left-4 before:text-yellow-500 after:content-['\201D'] after:absolute after:text-6xl after:-bottom-[55px] md:after:-right-4 after:-right-1 after:text-yellow-500 text-justify">{testimonial.quote}</p>
               </div>
             </div>
           </SwiperSlide>
@@ -582,7 +757,93 @@ LEARN MORE
       </Swiper>
     </div>
     </div>
+    <section className="bg-gray-100 md:py-10 md:px-6 pl-4 pr-4 py-5 "id="trek-pass">
+        <div className="container mx-auto flex flex-wrap items-center justify-between">
+          {/* Content Area */}
+          <div className="w-full lg:w-1/2  mb-6 lg:mb-0">
+          <h2 className="md:text-[40px] text-3xl font-bold text-black mb-4">
+  Why should you avail the <br className='hidden md:block'/><span className="text-yellow-500">Trek Pass</span><span className='pl-1 '>?</span>
+</h2>
+  <div className="flex items-center md:mb-6">
+  </div>
+  <div className="flex">
+  <div className="md:hidden flex flex-col mr-4">
+    <div className="h-10 bg-yellow-500 w-[1px]"></div>
+  </div>
+  <div>
+    <p className="md:text-lg text-base text-gray-800 mb-4 text-justify">
+    Unlock a year of adventure and nature exploration with our Trek Pass, now available for only ₹12,000. This pass provides 12 months of access, allowing you to select any 6 treks from our range of 20 stunning options – each a 2-day, 1-night adventure – all at a remarkable 50% discount. Originally valued at ₹24,000, this pass is exclusively applicable to all our 2-day, 1-night treks, making it your ticket to unforgettable adventures at unbeatable value.
+    </p>
+    <p className="text-sm text-gray-600 mb-6 text-justify">
+    Dive into the beauty of nature and embark on extraordinary journeys while saving more. Explore more, spend less!
+    </p>
+  
+    <div >  <Link href="/travel-pass/book"><button className=" text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
+Avail Now
+</button></Link></div>
+ 
+  </div>
 
+  <div className="flex-col ml-4 hidden md:flex">
+    <div className="h-full bg-yellow-500 w-1"></div>
+  </div>
+</div>
+
+</div>
+          {/* Image Area */}
+  {/* Decorative shapes */}
+  {/* Image container */}
+  <div className="w-full md:w-1/2" >
+  <img src="/about/tour.png" alt="About our Company" className="w-full h-auto object-cover " />
+</div>
+  {/* Button */}
+  {/* <button className="absolute bottom-0 left-0 bg-black text-white px-4 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+    More About Us
+  </button> */}
+  <div ></div>
+</div>
+
+      </section>
+    
+          <section className="bg-gray-100 md:pb-10 py-5 md:px-6 pl-4 pr-4" id="tour-pass" >
+  <div className="container mx-auto flex flex-wrap items-center justify-between">
+    {/* Content Area */}
+    <div className="w-full lg:w-1/2 flex lg:order-2">
+   
+      <div className="flex-1">
+   
+        <h2 className="md:text-[40px] text-3xl font-bold text-black mb-4" >
+          Why should you avail the <br className='hidden md:block'/> <span className="text-yellow-500">Tour Pass</span><span className='pl-1'>?</span>
+        </h2>
+        <div className="flex items-center md:mb-6">
+  </div>
+        <div className="flex flex-row ">
+    <div className="md:h-auto h-10 bg-yellow-500 w-3 mr-3 "></div>
+ 
+      <div>
+        <p className="md:text-lg text-base text-gray-800 mb-4 text-justify">
+        Unlock a year of unforgettable travel experiences with our Tour Pass, now available for just ₹21,000. Delve into new cultures, indulge in diverse cuisines, and unwind from the hectic pace of life. This pass grants you 12 months of access to select any 6 tours from our specially curated list of 20 options, all at an exclusive 50% discount. Each tour is a 2-day, 1-night package, perfectly crafted for your exploration and relaxation. Originally valued at ₹42,000, this incredible offer is now available at half the price, applicable exclusively to all our 2-day, 1-night packages.
+        </p>
+        <p className="text-sm text-gray-600 mb-6 text-justify">
+        Create lasting memories as you discover unique destinations and indulge in the richness of travel experiences. Your journey to exploration and relaxation begins here – unlock more, create memories!
+        </p>
+  
+          <div> <Link href="/travel-pass/book"><button className=" text-black bg-yellow-400 border border-yellow-400 font-bold py-2 px-4 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
+Avail Now
+</button></Link></div>
+
+        </div>
+  
+      </div>
+   
+      </div>
+    </div>
+    {/* Image container */}
+    <div className="w-full lg:w-1/2 mb-6 lg:mb-0 lg:order-1">
+      <img src="/about/trek.png" alt="About our Company" className="w-full h-auto object-cover" />
+    </div>
+  </div>
+</section>
 
   
     <div className="bg-black py-12">
@@ -612,73 +873,7 @@ LEARN MORE
           </div>
           </div>
           </div>
-          <section className="bg-gray-100 py-10 px-6">
-        <div className="container mx-auto flex flex-wrap items-center justify-between">
-          {/* Content Area */}
-          <div className="w-full lg:w-1/2 px-4 mb-6 lg:mb-0">
-          <h2 className="text-5xl font-bold text-black mb-4">
-  Why should you avail the <span className="text-yellow-500">Tour Pass</span>.
-</h2>
-  <div className="flex items-center mb-6">
-    {/* <div className="flex-grow h-0.5 bg-yellow-500 w-0.5"></div> */}
-    {/* <div className="text-orange-600 font-semibold uppercase">About our Company</div> */}
-    {/* <div className="flex-grow h-0.5 bg-orange-600 ml-3"></div> */}
-  </div>
-  <div className="flex">
-  <div>
-    <p className="text-lg text-gray-800 mb-4">
-      Our team of engineers and technicians are professionally trained to fix. We aim to relieve the stress & inconvenience of a broken heating appliance, we are truly where quality meets excellence.
-    </p>
-    <p className="text-sm text-gray-600 mb-6">
-      Benefit of the socie where we operate. A success website obusly needs great design to be one of the top 10 IT companies in India.
-    </p>
-  </div>
-  <div className="flex flex-col ml-4">
-    <div className="h-full bg-yellow-500 w-1"></div>
-  </div>
-</div>
-  <Link href="/read-more">
-    <div className="text-blue-500 font-semibold hover:underline">Read More</div>
-  </Link>
-</div>
-          {/* Image Area */}
-  {/* Decorative shapes */}
-  {/* Image container */}
-  <div className="w-1/2">
-  <img src="/home/trp.png" alt="About our Company" className="w-full h-auto object-cover -py-4" />
-</div>
-  {/* Button */}
-  <button className="absolute bottom-0 left-0 bg-black text-white px-4 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-    More About Us
-  </button>
-</div>
-      </section>
-          <section className="bg-gray-100 py-10 px-6">
-  <div className="container mx-auto flex flex-wrap items-center justify-between">
-    {/* Content Area */}
-    <div className="w-full lg:w-1/2 flex lg:order-2">
-      <div className="bg-yellow-500 w-1 mr-4"></div>
-      <div className="flex-1">
-        <h2 className="text-5xl font-bold text-black mb-4">
-          Why should you avail the <span className="text-yellow-500">Tour Pass</span>.
-        </h2>
-        <p className="text-lg text-gray-800 mb-4">
-          Our team of engineers and technicians are professionally trained to fix. We aim to relieve the stress & inconvenience of a broken heating appliance, we are truly where quality meets excellence.
-        </p>
-        <p className="text-sm text-gray-600 mb-6">
-          Benefit of the socie where we operate. A success website obusly needs great design to be one of the top 10 IT companies in India.
-        </p>
-        <Link href="/read-more">
-          <div className="text-blue-500 font-semibold hover:underline">Read More</div>
-        </Link>
-      </div>
-    </div>
-    {/* Image container */}
-    <div className="w-full lg:w-1/2 mb-6 lg:mb-0 lg:order-1">
-      <img src="/home/trp.png" alt="About our Company" className="w-full h-auto object-cover" />
-    </div>
-  </div>
-</section>
+      
   <Footer />
  </div>
   )

@@ -1,8 +1,4 @@
 {
-  "/not-found": "app/not-found.js",
-  "/travel/page": "app/travel/page.js",
-  "/treks/page": "app/treks/page.js",
-  "/tours/page": "app/tours/page.js",
-  "/tour/[name]/page": "app/tour/[name]/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js"
 }
