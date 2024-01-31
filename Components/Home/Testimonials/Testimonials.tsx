@@ -57,17 +57,28 @@ const TestimonialSection = () => {
       transition={{ duration: 1 }}
       className=" md:mt-6 md:mx-6"
     >
-           <motion.h2
-        initial={{ opacity: 0, y: -50 }}
+          {/* <motion.h2 */}
+    {/*     initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-2xl md:text-4xl font-semibold mb-4 text-center text-yellow-500"
+        className="text-2xl md:text-4xl font-semibold  text-center text-yellow-500"
       >
         What Our Customers Say
-        <div className="flex justify-center pt-2 md:pt-5">
+
+       </motion.h2> */}
+      <div className="flex items-center justify-center  text-white font-semibold text-2xl md:text-4xl rounded-lg">
+  <div className="text-blue-500 rounded">G</div>
+  <div className="text-red-500  rounded">o</div>
+  <div className="text-yellow-500 rounded">o</div>
+  <div className="text-blue-500 rounded">g</div>
+  <div className="text-green-500  rounded">l</div>
+  <div className="text-red-500  rounded">e</div>
+  <span className=" font-semibold ml-2 text-yellow-500">Reviews</span>
+</div>
+
+<div className="flex justify-center pt-2 md:pt-4 mb-4">
         <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
       </div>
-      </motion.h2>
     <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -88,7 +99,7 @@ const TestimonialSection = () => {
         {googleReviews.map((test,index) => (
         <SwiperSlide key={index}>
         <div className='relative pt-10'>
-        <div className="text-center bg-white md:pt-12 pt-8 pb-8 px-3 md:h-[19rem] h-[18rem] rounded-lg shadow-lg"> {/* Add padding to the top */}
+        <div className="text-center bg-gray-900 md:pt-12 pt-8 pb-8 px-3 md:h-[19rem] h-[18rem] rounded-lg shadow-lg"> {/* Add padding to the top */}
   <div className="absolute top-[0px] left-1/2 transform -translate-x-1/2 md:w-20 md:h-20 w-16 h-16 mx-auto mb-4 overflow-hidden rounded-full shadow-lg z-10"> {/* Center the image */}
     <Image
       src={test.profile_photo_url}
@@ -98,16 +109,20 @@ const TestimonialSection = () => {
       layout='fill'
     />
   </div>
-  <h3 className="md:text-lg text-base font-bold text-gray-800">{test.author_name}</h3>
+  <h3 className="md:text-lg text-base font-bold text-gray-100">{test.author_name}</h3>
   {/* <p className="text-gray-500">Chicago, IL</p> */}
   <div className="text-yellow-500 flex justify-center">
               {Array.from({ length: test.rating }, (_, index) => (
                 <FontAwesomeIcon icon={faStar} key={index} className='text-xs' />
               ))}
             </div>
-  <blockquote className="overflow-auto md:h-[12rem] h-[13rem] mx-auto md:mt-4 mt-2 md:text-[15px] text-[13px] text-gray-600">
+             <div className="md:mt-4 mt-2 md:text-[15px] text-[13px] text-gray-300">
+            "{test.text}"
+        </div>
+        
+  {/* <blockquote className="overflow-auto mx-auto md:mt-4 mt-2 md:text-[15px] text-[13px] text-gray-600">
     "{test.text}"
-  </blockquote>
+  </blockquote> */}
 </div>
 </div>
         </SwiperSlide>

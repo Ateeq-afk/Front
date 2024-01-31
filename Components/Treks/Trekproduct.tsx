@@ -14,8 +14,7 @@ import Booking from '@/Components/Book/Book'
 import Footer from '@/Components/Navbar/Footer/Footer';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
 import { motion } from 'framer-motion';
-import MetaTags from '@/Components/Dynamic/Metatag';
-import DynamicStructuredData from '@/Components/Dynamic/DynamicStructuredData ';
+
 
 interface Data {
   name:String;
@@ -176,29 +175,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         answer: "We have multiple payment options on the website that you can refer to."
       }
     ];
-    const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
-
-    const defaultImageUrl = "/home/ANDAMAN.jpg"
-    const imageUrl = data ? `https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${data.testimage}` : defaultImageUrl;
-    const structuredData = {
-      "@context": "http://schema.org",
-      "@type": "Product",
-      "name": data?.name || "Default Trek Name",
-      "image": [
-        `https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${data?.testimage}`
-      ],
-      "description": data?.metades || "Default description",
-      "brand": {
-        "@type": "Brand",
-        "name": "Backpackers United" // Replace with your brand name
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "INR",
-        "price": data?.fromamount || 0,
-        "availability": "http://schema.org/InStock", // Update based on actual availability
-      },
-    };
+  
     if (!data) {
       return (
         <div>
@@ -208,7 +185,6 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
   }
   return (
     <div >
-       <DynamicStructuredData jsonLdData={structuredData} />
        <Header />
     <div className='flex flex-col'>
       
@@ -538,27 +514,29 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
     </div>
 </section>
 
- <section id='faq'>
-  <div className='md:p-10 md:pt-0 p-4 bg-white '>
-  <div className='border-b-2 border-gray-300 md:pb-8 pb-4'>
-  <div className="flex items-left">
-      <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
- <h2 className="text-2xl font-semibold mb-6 ">FAQs</h2>
- </div>
- {faq.map((faq, index) => (
-             <div key={index} className="mb-4 p-4 border rounded-lg shadow-md">
-             <div className="flex justify-start items-center cursor-pointer" onClick={() => toggleItem(index)}>
-               <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
-                 {openItem === index ? '−' : '+'}
-               </div>
-               <span className="font-medium text-lg">{faq.question}</span>
-             </div>
-             {openItem === index && <p className="mt-2 ml-14 text-gray-600">{faq.answer}</p>}
-           </div>
-      ))}
+<section id='faq'>
+  {data && data.faq && data.faq.some(faq => faq.answer) && (
+    <div className='md:p-10 md:pt-0 p-4 bg-white '>
+      <div className='border-b-2 border-gray-300 md:pb-8 pb-4'>
+        <div className="flex items-left">
+          <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
+          <h2 className="text-2xl font-semibold mb-6 ">FAQs</h2>
+        </div>
+        {data.faq.map((faq: FAQ, index: number) => (
+          <div key={index} className="mb-4 p-4 border rounded-lg shadow-md">
+            <div className="flex justify-start items-center cursor-pointer" onClick={() => toggleItem(index)}>
+              <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                {openItem === index ? '−' : '+'}
+              </div>
+              <h3 className="font-medium text-lg">{faq.question}</h3>
+            </div>
+            {openItem === index && <p className="mt-2 ml-14 text-gray-600">{faq.answer}</p>}
+          </div>
+        ))}
+      </div>
     </div>
-    </div>
- </section>
+  )}
+</section>
                 <section >
                 <div className="container mx-auto md:p-10 p-4 md:pt-0 bg-white">
                 <div className="flex items-left">
@@ -574,13 +552,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           }}
-        // scrollbar={{ draggable: true }}
-        // className="overflow-visible"
         modules={[ Navigation]}
-        // navigation={{
-        //   nextEl: ".js-destination-next",
-        //   prevEl: ".js-destination-prev",
-        // }}
         breakpoints={{
           100: {
             slidesPerView: 1,

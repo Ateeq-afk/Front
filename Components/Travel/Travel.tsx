@@ -360,7 +360,7 @@ LEARN MORE
        <p className="mb-4 text-[18px] text-white">What the journey brings to your life</p>
        <Link href="/travel-pass/book">
        <button className="text-black bg-yellow-400 border border-yellow-400 font-bold py-4 px-8 rounded-full hover:text-yellow-400 hover:bg-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50 transition-colors duration-300">
-           JOIN NOW
+           UNLOCK NOW
        </button>
        </Link>
        {/* New section with round counters */}

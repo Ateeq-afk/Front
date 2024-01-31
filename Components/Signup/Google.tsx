@@ -6,6 +6,7 @@ import { initializeApp, getApps } from 'firebase/app';
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast  } from 'react-toastify';
+import { useAuth } from "../../app/AuthContext"
 
 const firebaseConfig = {
     apiKey: "AIzaSyAo9cGsw6Tbo9nrbsdXcoVxY0SGWgrJ4L8",
@@ -26,12 +27,10 @@ const firebaseConfig = {
   
 const Googlelogin = () => {
     const router = useRouter();
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const { login } = useAuth();
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     const signInWithGoogle = async () => {
-      setLoading(true);
       try {
         const result = await signInWithPopup(auth, provider);
         const { displayName, email, photoURL } = result.user;
@@ -44,16 +43,15 @@ const Googlelogin = () => {
         
         console.log("Backend response:", res.data);
 
-        setLoading(false);
+
   
         // Set the JWT token here if needed
         // localStorage.setItem('token', res.data.token);
-  
+        login({ name: displayName, email: email, photoURL: photoURL });
         // Navigate to home page or dashboard
-        await router.push('/');
+        await  router.back(); 
       } catch (err) {
-        setLoading(false);
-        // toast.error("Invalid Credentials ", {
+   // toast.error("Invalid Credentials ", {
         //     position: "top-right",
         //     autoClose: 5000,
         //     hideProgressBar: false,

@@ -68,7 +68,7 @@ const Partner = () => {
                               </div>
                               <div>
                               
-                                  <p className="text-white">By partnering with Backpackers United, adventure providers benefit from a team of experts who evaluate operations based on safety standards, service excellence, and exceptional customer care. The goal is to ensure guests enjoy experiences that meet stringent parameters for hospitality and sustainability. The platform's commitment extends to championing partner operations or properties across various platforms, leveraging its extensive digital network for increased visibility.
+                                  <p className="text-white">By partnering with BACKPACKERS UNITED PRIVATE LIMITED, adventure providers benefit from a team of experts who evaluate operations based on safety standards, service excellence, and exceptional customer care. The goal is to ensure guests enjoy experiences that meet stringent parameters for hospitality and sustainability. The platform's commitment extends to championing partner operations or properties across various platforms, leveraging its extensive digital network for increased visibility.
     
     
     
@@ -82,7 +82,7 @@ const Partner = () => {
                               </div>
                               <div>
                                  
-                                  <p className="text-white">If you believe your adventure operation aligns with Backpackers United's high standards and commitment to safety and customer satisfaction, the platform welcomes you to join and scale your operation by reaching new, adventure-loving audiences through their established network
+                                  <p className="text-white">If you believe your adventure operation aligns with BACKPACKERS UNITED PRIVATE LIMITED 's high standards and commitment to safety and customer satisfaction, the platform welcomes you to join and scale your operation by reaching new, adventure-loving audiences through their established network
                           .</p>
                                   <p className="text-white">
                                       Email: <a href="mailto:info@backpackersunited.in" className="hover:text-yellow-500">info@backpackersunited.in</a><br />

@@ -32,46 +32,54 @@ const SignUpForm = () => {
           }
         );
         const json = await response.json();
-      
         if (json.success === false) {
-          console.log(json.succes)
-          toast.warn("Email Already Exists !", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
+          alert("Email Already Exists!");
         } else {
-        
-          toast.success("Acccount Created, You can now Login to your account!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            })
-            router.push('/login');
+          alert("Account Created.");
+          router.back(); // Navigates back to the previous page
         }
+      } catch (error) {
+        alert("Something went wrong!");
       }
-     catch (error) {
-      toast.error("Something went wrong!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        })
-    }
+  //       if (json.success === false) {
+  //         console.log(json.succes)
+  //         toast.warn("Email Already Exists !", {
+  //           position: "top-right",
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "dark",
+  //           })
+  //       } else {
+        
+  //         toast.success("Acccount Created, You can now Login to your account!", {
+  //           position: "top-right",
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "dark",
+  //           })
+  //           router.push('/login');
+  //       }
+  //     }
+  //    catch (error) {
+  //     toast.error("Something went wrong!", {
+  //       position: "top-right",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "dark",
+  //       })
+    // }
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });

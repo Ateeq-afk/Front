@@ -25,7 +25,7 @@ const Terms = () => {
           <motion.div className="w-full max-w-6xl mx-auto">
           <motion.h2  className="text-2xl font-bold pb-4">Acceptance of Terms
   </motion.h2>
-                      <p className="pb-4">These Terms of Use are a binding agreement between you, the user of the Backpackers United Website or App ("You"), and Backpackers United ("we", "us", or "our"). By accessing or using the Backpackers United website at backpackersunited.in ("Website") or our future mobile or desktop application ("App"), you agree to be bound by these Terms of Use, our Privacy Policy located at (privacy policy link), the Conditions for Backpackers United Experiences at (Terms and conditions link), and all documents incorporated by reference.
+                      <p className="pb-4">These Terms of Use are a binding agreement between you, the user of the Backpackers United Website or App ("You"), and BACKPACKERS UNITED PRIVATE LIMITED  ("we", "us", or "our"). By accessing or using the Backpackers United website at backpackersunited.in ("Website") or our future mobile or desktop application ("App"), you agree to be bound by these Terms of Use, our Privacy Policy located at (privacy policy link), the Conditions for Backpackers United Experiences at (Terms and conditions link), and all documents incorporated by reference.
   </p>
                       <p className="pb-4">Please read these Terms of Use before using our Website or App. By using the Website or App, clicking to accept or agree to these Terms when prompted, or creating an account, you accept and agree to abide by these Terms of Use.
   
@@ -154,7 +154,7 @@ const Terms = () => {
   
   
   </motion.h2>
-  <p className="pb-4">Backpackers United is not liable for any damages arising from your use of the Website or App.
+  <p className="pb-4">BACKPACKERS UNITED PRIVATE LIMITED  is not liable for any damages arising from your use of the Website or App.
   </p>
   <motion.h2  className="text-2xl font-bold pb-4">Indemnification
   
@@ -164,7 +164,7 @@ const Terms = () => {
   
   
   </motion.h2>
-  <p className="pb-4">You agree to indemnify and hold harmless Backpackers United and its affiliates from any claims arising from your use of the Website or App.
+  <p className="pb-4">You agree to indemnify and hold harmless Backpackers United  and its affiliates from any claims arising from your use of the Website or App.
   </p>
   <motion.h2  className="text-2xl font-bold pb-4">Governing Law and Dispute Resolution
   
@@ -191,7 +191,7 @@ const Terms = () => {
   
   
   </motion.h2>
-  <p className="pb-4">No waiver of these Terms by Backpackers United shall be considered a further or continuing waiver. If any provision is deemed unenforceable, the remaining provisions will remain in effect.
+  <p className="pb-4">No waiver of these Terms by BACKPACKERS UNITED PRIVATE LIMITED  shall be considered a further or continuing waiver. If any provision is deemed unenforceable, the remaining provisions will remain in effect.
   </p>
   <motion.h2  className="text-2xl font-bold pb-4">Entire Agreement
   

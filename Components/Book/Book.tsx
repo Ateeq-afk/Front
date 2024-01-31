@@ -1,12 +1,13 @@
 'use client'
 import React,{useState,useEffect} from 'react'
-import {IoIosArrowDropleft} from 'react-icons/io'
+import {IoIosArrowDropleft, IoMdCheckmark} from 'react-icons/io'
 import {MdOutlineKeyboardArrowRight} from 'react-icons/md'
-import {FaRupeeSign} from 'react-icons/fa'
+import {FaPhone, FaRupeeSign} from 'react-icons/fa'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAnglesLeft, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faAnglesLeft, faPlay, faCheck  } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion} from "framer-motion";
 interface BookingProps {
   onClose: () => void;
   Batch: { date: string }[]; // Modify according to the actual structure of Batch
@@ -45,7 +46,195 @@ interface RequestBody {
   totalamount: string;
   tcs?: string; // Optional TCS property
 }
-export {};
+const passData ={
+  "passes": [
+    {
+      "type": "Tour Pass",
+      "name":"United Tour Pass",
+      "description": "Craft Unforgettable Memories: Avail Your Tour Pass now",
+      "sm":"Tours",
+      "image":"/about/tour.jpeg",
+      "offers": [
+        {
+          "feature": "Price",
+          "original": "₹42,000",
+          "discounted": "₹21,000"
+        },
+        {
+          "feature": "Usage",
+          "value": "One Tour per month"
+        },
+        {
+          "feature": "Duration",
+          "value": "12 months"
+        },
+        {
+          "feature": "Access",
+          "value": "Select 6 tours from 20 options"
+        },
+        {
+          "feature": "Each Tour",
+          "value": "2 days, 1 night"
+        },
+        {
+          "feature": "Original Value",
+          "value": "₹42,000"
+        },
+        {
+          "feature": "Discount",
+          "value": "50%"
+        },
+      
+      ],
+    },
+    {
+      "type": "Trek Pass",
+      "name":"United Trek Pass",
+      "description": "Unlock the Wilderness: Your Trek Pass Awaits",
+      "sm":"Treks",
+      "image":"/about/trek.webp",
+      "offers": [
+        {
+          "feature": "Price",
+          "original": "₹24,000",
+          "discounted": "₹12,000"
+        },
+        {
+          "feature": "Duration",
+          "value": "12 months"
+        },
+        {
+          "feature": "Usage",
+          "value": "One Trek per month"
+        },
+        {
+          "feature": "Access",
+          "value": "Select 6 treks from 20 options"
+        },
+        {
+          "feature": "Each Trek",
+          "value": "2 days, 1 nights"
+        },
+        {
+          "feature": "Original Value",
+          "value": "₹24,000"
+        },
+        {
+          "feature": "Discount",
+          "value": "50%"
+        },
+       
+      ],
+    }
+  ]
+}
+interface TrekPassPopupProps {
+  setIsTrekPassPopupVisible: (isVisible: boolean) => void;
+  ticketPrice: number;
+  IoMdCheckmark: React.ComponentType;
+}
+const TrekPassPopup: React.FC<TrekPassPopupProps> = ({ setIsTrekPassPopupVisible,IoMdCheckmark, ticketPrice }) => {
+  const passType = ticketPrice == 3999 ? "Trek Pass" : "Tour Pass";
+  // Find the corresponding pass details from the JSON data
+  const passDetails = passData.passes.find(pass => pass.type === passType);
+  if (!passDetails) {
+    // Return null or some placeholder content if no passDetails were found
+    return <div>Loading...</div>; // or null if you prefer not to render anything
+  }
+  return (
+<div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-200 mt-[55px] overflow-auto rounded-lg">
+        <div className=" p-5 shadow-lg  rounded-lg overflow-hidden" style={{ maxWidth: '800px', width: '100%' }}>
+      
+          {/* Your content here. Example: */}
+          {/* <h2 className="text-lg font-bold mb-4">Trek Pass Details</h2> */}
+          <div className=" flex justify-center items-center relative ">
+          <button onClick={() => setIsTrekPassPopupVisible(false)} className="absolute top-[-5px] right-[5px] text-white text-2xl">
+            {/* Icon or text for closing the popup */}
+            x
+          </button>
+        <div className="">
+      <div className="bg-black text-white rounded-lg">
+        <div className=" flex flex-row">
+        <div className="h-auto w-[400px] relative hidden md:block ">
+      <Image
+        src={passDetails.image} // Corrected src with quotes and leading slash
+        alt="Banner"
+    // Set the desired height
+    className='rounded-l-lg'
+        layout="fill" // This will make the image responsive
+        objectFit="cover" // This will cover the area of the image, you can change it to "contain" if you want to see the whole image
+      />
+    </div>
+    <div className='px-2'>
+          <h1 className="text-4xl font-bold my-2 text-center text-yellow-500 mt-[20px] ">{passDetails.name}</h1>
+          <p className="mb-4 text-center">{passDetails.description}</p>
+          {/* Assuming the presence of icons or images for the visual statistics */}
+          <div className="flex  justify-around items-center">
+
+            <div className="flex flex-col items-center">
+              {/* Placeholder for an image/icon */}
+              <div className="bg-blue-800 p-2 rounded-full mb-2">
+                {/* Replace with actual image/icon */}
+                <span className="text-2xl">🌄</span>
+              </div>
+              <p className="text-sm">{passDetails.type}</p>
+              <p className="font-bold text-lg text-yellow-500">6 {passDetails.sm}</p>
+              <p className="text-xs">of your choice</p>
+            </div>
+            <div className="flex flex-col items-center">
+            <a     href="tel:+919364099489">
+              <motion.button
+                initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className="px-8 py-2 bg-yellow-500 rounded-full text-black border border-yellow-500"
+              >
+      Call Us</motion.button> </a>
+      <motion.button
+                initial={{ backgroundColor: "#FBBF24", color: "#000" }}
+                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className="px-5 py-2 bg-yellow-500  mt-2 rounded-full text-black border border-yellow-500"
+                onClick={() => setIsTrekPassPopupVisible(false)}
+              >
+   Avail Now</motion.button>
+          </div>
+   
+            <div className="flex flex-col items-center">
+              {/* Placeholder for an image/icon */}
+              <div className="bg-blue-800 p-2 rounded-full mb-2">
+                {/* Replace with actual image/icon */}
+             
+                <span className="text-2xl">🗺️</span>
+              </div>
+              <p className="text-sm">Flat 50% Discounts</p>
+              <p className="font-bold text-lg text-yellow-500">20 Destinations</p>
+              <p className="text-xs"> to choose from </p>
+            </div>
+          </div>
+ 
+    <h2 className='text-center my-2 text-yellow-500 '>{passDetails.type} Offer:</h2>
+      <ul style={{ listStyle: 'none', paddingLeft: 0 }} className='w-[280px] flex ml-[70px] flex-col mb-[60px]'>
+          {passDetails.offers.map((offer, index) => (
+            <li key={index} className="flex items-center">
+             <FontAwesomeIcon icon={faCheck} className="mr-2 text-yellow-500" />
+              {offer.feature}: {offer.value ? offer.value : <>
+  <s>{offer.original}</s>  now {offer.discounted}
+</>}
+            </li>
+          ))}
+        </ul>
+        </div>
+      </div>
+      </div>
+      
+      </div>
+     
+      </div>
+        </div>
+      </div>
+  )
+          }
 const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name,testimage, maintype}: BookingProps) => {
     const ticketPrice = foramount;
     const firstTicketPrice = reserveamount;
@@ -57,7 +246,17 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
     const [isCheckboxTicked, setIsCheckboxTicked] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [subtractedAmount, setSubtractedAmount] = useState(0);
+    const [isMembershipCheckboxTicked, setIsMembershipCheckboxTicked] = useState(false);
+    const [isTrekPassPopupVisible, setIsTrekPassPopupVisible] = useState(false);
+    useEffect(() => {
+      const shouldCheck = ticketPrice == 3999 || ticketPrice == 6999;
+      setIsMembershipCheckboxTicked(shouldCheck);
+    }, [ticketPrice]);
+    // useEffect(() => {
+    //   setIsMembershipCheckboxTicked(ticketPrice === 3999 || ticketPrice === 6999);
+    // }, [ticketPrice]);
     // Function to handle the checkbox change event
+    console.log("ticketPrice",ticketPrice)
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked(e.target.checked);
     }
@@ -191,7 +390,7 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
         script.onload = initializePayment; // Call the payment initialization function when the script is loaded
         document.head.appendChild(script);
       };
-    
+            
       const initializePayment = async () => {
         
         const requestBody: RequestBody  = {
@@ -250,7 +449,95 @@ const Booking = ({ onClose, Batch, reserveamount, foramount, withoutamount ,name
       loadRazorpayScript();
     };
   
+// Calculate today's date as the activation date
+const activationDate = new Date().toISOString().split('T')[0]; // Format as YYYY-MM-DD
 
+// Calculate the expiry date (one year from today)
+const expiryDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0];
+
+const calculateMembershipAmountWithGst = () => {
+  let baseAmount = 0;
+  if (ticketPrice == 3999) {
+    baseAmount = 12000 * ticketCount; // Multiplied by ticketCount
+  } else if (ticketPrice == 6999) {
+    baseAmount = 21000 * ticketCount; // Multiplied by ticketCount
+  }
+  const gstAmount = baseAmount * 0.05; // Assuming 5% GST
+  return baseAmount + gstAmount; // Total amount including GST
+};
+
+const baseAmount = calculateMembershipAmountWithGst() / 1.05; // Reverse the GST addition to get the base amount
+const gstAmount = baseAmount * 0.05
+    const initiateAndPayMembership = async () => {
+      const loadRazorpayScript = () => {
+          const script = document.createElement('script');
+          script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+          script.onload = () => initializeMembershipPayment().catch(console.error);
+          document.head.appendChild(script);
+      };
+    
+      const initializeMembershipPayment = async () => {
+          try {
+            const membershipAmountWithGst = calculateMembershipAmountWithGst();
+            let passtype = '';
+
+            if (ticketPrice == 3999) {
+                passtype = 'Trek Pass';
+            } else if (ticketPrice == 6999) {
+                passtype = 'Tour Pass';
+            } else {
+                passtype = 'Unknown Pass'; // Handle other cases if needed
+            }
+              const requestBody = {
+                  // Update with the correct data for initiating payment
+                  passtype,
+                  activationdate: activationDate,
+                  expiringdate: expiryDate, 
+                  firstname: inputValue.name,
+                  lastname:'',
+                  phonenumber: inputValue.number,
+                  selecteddate: inputValue.date,
+                  ticket: ticketCount,
+                  email: inputValue.email,
+                  amount:baseAmount.toFixed(2), 
+                  gst: gstAmount.toFixed(2), // Assuming this calculates GST correctly
+                  totalamount: membershipAmountWithGst.toFixed(2),
+              };
+    
+              // const resInitiate = await fetch('https://launch-api1.vercel.app/membera/initiatePayment', {
+                const resInitiate = await fetch('https://launch-api1.vercel.app/membera/initiatePayment', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(requestBody),
+              });
+    
+              const dataInitiate = await resInitiate.json();
+    
+              console.log('Initiate Payment Response:', dataInitiate);
+    
+              const options = {
+                  key: process.env.RAZORPAY_KEY_ID,
+                  amount: dataInitiate.order.amount,
+                  currency: dataInitiate.order.currency,
+                  name: 'Backpackers United Pvt Ltd',
+                  description: 'Travel Pass Transaction',
+                  order_id: dataInitiate.order.id,
+                  handler: (response: any) => {
+                    alert('Travel Pass is unlocked, You can check mail for further details');
+                    onClose();
+                  },
+              };
+    
+              const rzp = new window.Razorpay(options);
+              rzp.open();
+          } catch (error) {
+              console.error('Error during payment initiation:', error);
+              alert('Travel Pass payment verification failed.');
+          }
+      };
+    
+      loadRazorpayScript();
+    };
     return (
         <div className="fixed top-0 left-0 w-full h-full   flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto z-10">
             <div className="bg-black text-white rounded-xl shadow-lg mt-32 mb-2">
@@ -361,10 +648,32 @@ The world is a book, and those who do not travel read only one page.
 
     </div>
         </div>
-        <div className={isShow ? 'block' : 'hidden'} >
-                 <div className='px-6 border-t-5 border-gray-400 border-t-4 mt-5  text-gray-600 h-auto' >
-                      <h3 className="text-xl font-semibold mb-3 mt-5 text-yellow-500"> Summary</h3>
+        <div className={isShow ? 'block' : 'hidden'}>
+  <div className='px-6 border-t-5 border-gray-400 border-t-4 mt-5 text-gray-600 h-auto'>
+    <h3 className="text-xl font-semibold mb-3 mt-5 text-yellow-500">Summary</h3>
 
+    {/* Conditional rendering based on membership checkbox */}
+    {isMembershipCheckboxTicked ? (
+      <>
+        <div className="mb-2 flex flex-row">
+          <div className="w-[200px]">Membership Price:</div>
+          <span>INR {baseAmount.toFixed(2)}</span>
+        </div>
+
+        <div className="mb-2 flex flex-row">
+          <div className="w-[200px]">GST (5%):</div>
+          <span>INR {gstAmount.toFixed(2)}</span>
+        </div>
+
+        <div className="mb-2 flex flex-row">
+          <div className="w-[200px] font-bold text-green-500">Final Payable Amount:</div>
+          <span className='font-bold text-green-500'>INR {(baseAmount + gstAmount).toFixed(2)}</span>
+        </div>
+      </>
+    ) : (
+      // Existing details for non-membership option
+      <>
+       
 <div className="mb-2 flex flex-row">
   <div className="w-[200px]">Total Price:</div>
   {/* <span>INR {getSubtotal().toFixed(2)}/-</span> */}
@@ -401,8 +710,10 @@ The world is a book, and those who do not travel read only one page.
 <div>To ensure your reservation is not cancelled, please ensure that the remaining balance is paid at least one day before your scheduled departure.
 
   </div>
-                 </div>
-</div>
+</>
+    )}
+    </div>
+    </div>
                     <div className={isShow ? 'hidden' : 'block'}>
                     <div  className='border border-gray-400 rounded-xl m-2'>
                     <div className=" p-4 ">
@@ -429,7 +740,7 @@ The world is a book, and those who do not travel read only one page.
                     </div>
              
 }    
-                  <div className="flex items-center justify-between   text-sm">
+                  <div className="flex items-center justify-between text-sm">
                   <label>
                       <input type="checkbox" className="mr-2 " onChange={() => setIsCheckboxTicked(!isCheckboxTicked)}/>
                      Reserve your slot by paying : INR  {getSubtotalFirst().toFixed(2)}/-
@@ -441,24 +752,66 @@ The world is a book, and those who do not travel read only one page.
                       I have read and accept the Refunds, <Link href='/condition' className='text-yellow-500 hover:underline'>Cancellation Policy & Terms & Conditions</Link>
                     </label>
                   </div>
+                  {ticketPrice == 3999 && (
+    <p className='text-base mb-2'>
+<div className="flex items-center justify-between mt-2 text-sm">
+  <label>
+    <input
+      type="checkbox"
+      className="mr-2"
+      checked={isMembershipCheckboxTicked}
+      onChange={() => setIsMembershipCheckboxTicked(!isMembershipCheckboxTicked)}
+    />
+    Opt in for <button onClick={() => setIsTrekPassPopupVisible(true)} className="text-yellow-500 hover:underline">
+   Trek Pass 
+</button>(6 Treks) for INR 2000.00/- per trek, allowing me 1 trek per month.
+  </label>
+</div>
+    </p>
+  )}
+  {ticketPrice == 6999 && (
+    <p className=' mb-2'>
+<div className="flex items-center justify-between mt-2 text-sm">
+  <label>
+    <input
+      type="checkbox"
+      className="mr-2"
+      checked={isMembershipCheckboxTicked}
+      onChange={() => setIsMembershipCheckboxTicked(!isMembershipCheckboxTicked)}
+    />
+     I opt for <button onClick={() => setIsTrekPassPopupVisible(true)} className="text-yellow-500 hover:underline">
+     Tour Pass
+</button>  (6 Tours) for INR 3500.00/- per tour, allowing me 1 tour per month.
+  </label>
+</div>
+    </p>
+  )}
+
+                  <div>
                   </div>
                   </div>
+                  </div>
+  
                   </div> 
              
                   <div className='p-4 flex justify-between bg-form1'>
                     <div className='flex flex-col '> 
-                        <div > {isCheckboxTicked ? (
-    <div><FaRupeeSign className='float-left text-xl pt-1 font-bold'/>{getTotalFirst().toFixed(2)} </div>
+                    <div>
+  {isMembershipCheckboxTicked ? (
+    <div><FaRupeeSign className='float-left text-xl pt-1 font-bold'/>{calculateMembershipAmountWithGst().toFixed(2)}</div>
   ) : (
-    <div><FaRupeeSign className='float-left text-xl pt-1 font-bold'/>{getTotal().toFixed(2)}</div>
-  )}</div>
+    <div><FaRupeeSign className='float-left text-xl pt-1 font-bold'/>{isCheckboxTicked ? getTotalFirst().toFixed(2) : getTotal().toFixed(2)}</div>
+  )}
+</div>
+
                         <div className='text-xs text-green-500 pl-2 cursor-pointer'   onClick={toggleDiv}>   {isShow ? 'Hide Details' : 'Show Details'} </div>
                     </div>
-                  <button className= {`${isChecked ? 'bg-yellow-500' : 'bg-yellow-200'}  text-black w-40 h-10 rounded-lg `} onClick={initiateAndPay}  disabled={!isChecked} >Pay Now</button>
+                  <button className= {`${isChecked ? 'bg-yellow-500' : 'bg-yellow-200'}  text-black w-40 h-10 rounded-lg `} onClick={isMembershipCheckboxTicked ? initiateAndPayMembership : initiateAndPay} disabled={!isChecked} >Pay Now</button>
                 </div>
                   </div>
                 )}
             </div>
+            {isTrekPassPopupVisible && <TrekPassPopup setIsTrekPassPopupVisible={setIsTrekPassPopupVisible} IoMdCheckmark={IoMdCheckmark}  ticketPrice={ticketPrice} />}
             </div>
     );
 

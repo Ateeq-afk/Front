@@ -27,6 +27,7 @@ const Travelpassmain = () => {
     passtype: '',
   });
 
+
   // Generate an array of 20 items for the MembershipCard lists
   const formatDate = (date: Date) => {
     let dd: number | string = date.getDate();
@@ -322,6 +323,7 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
   title="Terms of Conditions "
   points={[
     "Passholders must read and agree to the terms and conditions before purchasing the United Trek or Tour Pass.    ",
+    "Passholders are entitled to use their United Trek or Tour Pass for one trek/tour per calendar month.",
     "Passholders are responsible for their own safety during treks/tours and must adhere to safety guidelines provided by Backpackers United.    ",
     "Passholders should inform Backpackers United of any health conditions or special requirements that may affect their participation in treks. ",
     "Changes to Itinerary: Backpackers United reserves the right to make changes to the trek itineraries due to unforeseen circumstances such as weather conditions, natural disasters, or other safety concerns.",

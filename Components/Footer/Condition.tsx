@@ -21,7 +21,7 @@ const Condition = () => {
         {/* Centered content */}
         <motion.div className="w-full max-w-6xl mx-auto">
         <motion.h2  className="text-2xl font-bold pb-4">Important Notice</motion.h2>
-                    <p className="pb-4">Your engagement with Backpackers United is governed by these essential Terms and Conditions, shaping the foundation of our collaboration.They outline your rights, obligations, and restrictions you may face. Please review them carefully. By ordering products or services from our website, you signify your agreement to these terms.
+                    <p className="pb-4">Your engagement with BACKPACKERS UNITED PRIVATE LIMITED is governed by these essential Terms and Conditions, shaping the foundation of our collaboration.They outline your rights, obligations, and restrictions you may face. Please review them carefully. By ordering products or services from our website, you signify your agreement to these terms.
 </p>
                     <p className="pb-4">
 
@@ -145,7 +145,7 @@ Cancellation charges are detailed on our product pages and are due to potential 
 
 
 </motion.h2>
-<p className="pb-4">These Terms, along with our Website Terms of Use and Privacy Policy, constitute the entire agreement between you and Backpackers United.
+<p className="pb-4">These Terms, along with our Website Terms of Use and Privacy Policy, constitute the entire agreement between you and BACKPACKERS UNITED PRIVATE LIMITED.
 
 
 </p>

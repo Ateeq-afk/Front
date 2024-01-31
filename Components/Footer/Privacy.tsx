@@ -19,7 +19,7 @@ const Privacy = () => {
         {/* Centered content */}
         <motion.div className="w-full max-w-6xl mx-auto">
         <motion.h2  className="text-2xl font-bold pb-4">Introduction</motion.h2>
-                    <p className="pb-4">Backpackers United ("we"/"our"/"us") recognizes the importance of your personal and financial information. We are committed to protecting your privacy in compliance with this policy when you use BU’s Website or App.
+                    <p className="pb-4">BACKPACKERS UNITED PRIVATE LIMITED  ("we"/"our"/"us") recognizes the importance of your personal and financial information. We are committed to protecting your privacy in compliance with this policy when you use BU’s Website or App.
 </p>
                     <p className="pb-4">
 
@@ -180,7 +180,7 @@ const Privacy = () => {
 
 
 </motion.h2>
-<p className="pb-4">Backpackers United is dedicated to safeguarding your privacy and ensuring your personal information is protected. This policy is effective upon your acceptance and continued use of our Website or App signifies agreement with its terms.
+<p className="pb-4">BACKPACKERS UNITED PRIVATE LIMITED  is dedicated to safeguarding your privacy and ensuring your personal information is protected. This policy is effective upon your acceptance and continued use of our Website or App signifies agreement with its terms.
 
 
 </p>

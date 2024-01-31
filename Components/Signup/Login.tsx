@@ -5,61 +5,78 @@ import axios from 'axios';
 import ForgotPasswordModal from './Forgotpassword';
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast  } from 'react-toastify';
+import { useAuth } from "../../app/AuthContext"
 
 const LoginForm = () => {
     const router = useRouter();
+    const { login } = useAuth();
     const [isModalOpen, setModalOpen] = useState(false);
-    const [login, setLogin] = useState({
+    const [logina, setLogina] = useState({
         email: "",
         password: ""
       });
     const handleLogin = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-          const response = await axios.post("https://launch-api1.vercel.app/auth/signin", { email: login.email, password: login.password});
-          if(response.data.users === false){
-            toast.error("Email is not registered !", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "dark",
-              })
-            }
-              else if( response.data.password === false){
-                toast.error("Incorrect Password !", {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "dark",
-                  })
-              }
-              else{
-                    toast("Login Successfull !", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "dark",
-                      })
-                      router.push('/');
-              }
+          const response = await axios.post("https://launch-api1.vercel.app/auth/signin", { email: logina.email, password: logina.password});
+          if (response.data.users === false) {
+            alert("Email is not registered!");
+          } else if (response.data.password === false) {
+            alert("Incorrect Password!");
+          } else {
+            const userData = {
+              name: response.data.name, // Or username if that's what you have
+              email: response.data.email,
+              photoURL: '/about/user.png' // A default image since email login doesn't have a photo URL
+            };
+            login(userData);
+            alert("Login Successful!");
+         
+            router.back(); 
+          }
+          // if(response.data.users === false){
+          //   toast.error("Email is not registered !", {
+          //     position: "top-right",
+          //     autoClose: 5000,
+          //     hideProgressBar: false,
+          //     closeOnClick: true,
+          //     pauseOnHover: true,
+          //     draggable: true,
+          //     progress: undefined,
+          //     theme: "dark",
+          //     })
+          //   }
+          //     else if( response.data.password === false){
+          //       toast.error("Incorrect Password !", {
+          //         position: "top-right",
+          //         autoClose: 5000,
+          //         hideProgressBar: false,
+          //         closeOnClick: true,
+          //         pauseOnHover: true,
+          //         draggable: true,
+          //         progress: undefined,
+          //         theme: "dark",
+          //         })
+          //     }
+          //     else{
+          //           toast("Login Successfull !", {
+          //             position: "top-right",
+          //             autoClose: 5000,
+          //             hideProgressBar: false,
+          //             closeOnClick: true,
+          //             pauseOnHover: true,
+          //             draggable: true,
+          //             progress: undefined,
+          //             theme: "dark",
+          //             })
+          //             router.push('/');
+          //     }
         } catch (err) {
           
         }
       };
       const onChangea = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLogin({ ...login, [e.target.name]: e.target.value });
+        setLogina({ ...logina, [e.target.name]: e.target.value });
       };
   return (
     <form className="flex flex-col gap-5" onSubmit={handleLogin}>
@@ -75,13 +92,13 @@ const LoginForm = () => {
       </div>
       <div>
         <div className="relative">
-          <input type="email" id="email" placeholder=" " name='email' value={login.email} onChange={onChangea}   required className="w-full h-full px-4 pt-8 pb-2 border focus:outline-none text-black input-phoneno"/>
+          <input type="email" id="email" placeholder=" " name='email' value={logina.email} onChange={onChangea}   required className="w-full h-full px-4 pt-8 pb-2 border focus:outline-none text-black input-phoneno"/>
           <label htmlFor="email" className="label-phoneno absolute left-4 bottom-5 transform transition-transform duration-200 text-gray-500" >Email</label>
         </div>
       </div>
       <div>
         <div className="relative">
-          <input type="password" id="password"  placeholder=" " name='password' value={login.password} onChange={onChangea} required className="w-full h-full px-4 pt-8 pb-2 border focus:outline-none text-black input-email" />
+          <input type="password" id="password"  placeholder=" " name='password' value={logina.password} onChange={onChangea} required className="w-full h-full px-4 pt-8 pb-2 border focus:outline-none text-black input-email" />
           <label htmlFor="password" className="label-email absolute left-4 bottom-5 transform transition-transform duration-200 text-gray-500">Password</label>
         </div>
       </div>

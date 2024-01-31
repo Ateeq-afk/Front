@@ -3,7 +3,7 @@ import React, { useState,useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import Image from 'next/image';
-
+import { useAuth } from "../../../app/AuthContext"
 
 const variants = {
   open: { opacity: 1, y: 0 },
@@ -15,7 +15,12 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [animateTravelPass, setAnimateTravelPass] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
+  // const { user, logout } = useAuth();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true); // This will be true only on the client side
+  }, []);
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimateTravelPass(true);
@@ -45,7 +50,8 @@ const Header = () => {
     e.stopPropagation(); // Stop event from propagating to other elements
     setIsOpen(prevState => !prevState);
   };
-
+  // const placeholderImage =  '/about/user.png'
+  // const userImageSrc = user?.photoURL || placeholderImage;
   return (
     <>
       <motion.header
@@ -105,7 +111,22 @@ const Header = () => {
                 <Link href={link === 'Home' ? '/' : link === 'Contact Us' ? '/contact'  : link === 'Travel Pass' ? '/travel-pass'  : `/${link.toLowerCase()}`}>{ link}</Link>
               </motion.div>
             ))} */}
-            <Link href='/signup'>
+                  {/* {isClient  && user ? (
+          // If user is logged in, show user image and dropdown
+          <div className="relative" onMouseLeave={() => setShowDropdown(false)} >
+          <Image   src={userImageSrc}   alt={user.name || 'Default User Name'} width={30} height={30} className="rounded-full cursor-pointer" onMouseEnter={() => setShowDropdown(true)} />
+   
+          {showDropdown && (
+          <div className="absolute right-0  w-[150px] bg-white rounded-md shadow-lg py-1 px-2  z-50 " >
+            <div className="block  text-xs text-gray-500  border-gray-300 border-b-[1px]">{user.name || 'User'}</div>
+            <a href="#" className="block  text-sm text-gray-700 hover:bg-gray-100 mt-1">User Dashboard</a>
+            <button onClick={logout} className="block  text-sm text-gray-700 hover:bg-gray-100 w-full text-left">Sign out</button>
+          </div>
+                  )}
+        </div>
+        ) : ( */}
+          <div>
+            <Link href='/login'>
               <motion.button
                 initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                 whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
@@ -115,6 +136,8 @@ const Header = () => {
                 Sign In / Register
               </motion.button>
             </Link>
+            </div>
+        {/* )} */}
           </div>
           <div className="md:hidden flex items-center pr-2" onClick={toggleMenu}>
             <div className="hamburger-icon flex flex-col space-y-1">
@@ -156,7 +179,7 @@ const Header = () => {
               ))}
             </motion.div>
             <motion.div variants={variants}>
-              <Link href='/signup'>
+              <Link href='/login'>
                 <motion.button
                   initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                   whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}

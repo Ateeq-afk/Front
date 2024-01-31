@@ -105,9 +105,8 @@ const Dest: React.FC<DestProps> = ({ name }) => {
       <div className="bg-yellow-500 w-1 h-16 mr-8 self-center md:block hidden"></div>
       <h1 className="text-7xl inline-block align-middle"  >
       {destination.name}
-        <span className="text-yellow-500 text-9xl inline-block align-middle relative" style={{top: '-0.2em'}}>.</span>
       </h1>
-     
+      <span className="text-yellow-500 text-9xl inline-block align-middle relative" style={{top: '-0.2em'}}>.</span>
     </div>
     <div className="md:ml-9 ml-2">
       {destination && destination.over && destination.over.map((over, index) => (

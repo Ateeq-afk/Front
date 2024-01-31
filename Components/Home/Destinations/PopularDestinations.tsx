@@ -28,21 +28,18 @@ const PopularDestinations = () => {
       <Swiper
         spaceBetween={30}
         slidesPerView={4}
+        className="overflowswiper"
         navigation={{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           }}
         // scrollbar={{ draggable: true }}
-        // className="overflow-visible"
+   
         scrollbar={{
           el: "#swiper-scrollbar",
           draggable: true,
         }}
         modules={[Scrollbar, Navigation]}
-        // navigation={{
-        //   nextEl: ".js-destination-next",
-        //   prevEl: ".js-destination-prev",
-        // }}
         breakpoints={{
           100: {
             slidesPerView: 1,
@@ -104,7 +101,7 @@ const PopularDestinations = () => {
 </button>
       {/* <button className="swiper-button-prev bg-black text-black !important"></button>
 <button className="swiper-button-next"></button> */}
-<div className=" bg-black-200  " id="swiper-scrollbar"></div>
+<div className=" bg-white  " id="swiper-scrollbar"></div>
 
       </div>
       {/* </div> */}

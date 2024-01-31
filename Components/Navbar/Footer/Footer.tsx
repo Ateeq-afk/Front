@@ -39,9 +39,9 @@ const Footer = () => {
       initial={{ y: 200, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1.2 }}
-      className="bg-black text-white "
+      className="bg-black text-white flex-shrink z-10"
     >
-      <div className="flex flex-col md:flex-row md:justify-around md:items-center pt-6 pb-2 px-4">
+      <div className="flex flex-col md:flex-row md:justify-around md:items-center pt-6 pb-2 px-4 ">
         {/* Logo and Social Media Icons */}
         <div className="flex flex-col items-start md:items-center mb-8 md:mb-0 space-y-4">
         <div className="flex flex-row items-center space-x-4">

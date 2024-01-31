@@ -1,16 +1,13 @@
 'use client'
 import './globals.css';
-import type { Metadata } from 'next';
 import { Jost } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import ChatBot from '@/Components/Chatbot/ChatBot';
 import React, { useEffect } from 'react';
-
+import { AuthProvider } from '../app/AuthContext';
 
 const Jostr = Jost({ weight: '400', subsets: ['latin'] });
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID; // Ensure this is set in your .env.local file
-declare var dataLayer: any[];
+
 
 declare global {
   interface Window {
@@ -64,6 +61,7 @@ export default function RootLayout({ children }:  { children: React.ReactNode })
     }
   }, []);
   return (
+    <AuthProvider>
     <html lang="en">
       <head>
         {/* Google Tag Manager */}
@@ -82,5 +80,6 @@ export default function RootLayout({ children }:  { children: React.ReactNode })
         <Analytics />
       </body>
     </html>
+     </AuthProvider>
   )
 }
