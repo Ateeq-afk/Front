@@ -38,6 +38,54 @@
   /* color: white !important;  */
 
 }
+.react-calendar {
+  background-color: black !important;
+  color: white;
+  width: 450px !important;  /* Adjust width as needed, or set a specific width like 800px */
+  max-width: 500px; /* Ensure it doesn't overflow its container */
+  font-size: 20px;
+}
+
+.react-calendar__tile {
+  color: white;
+}
+
+/* For highlighted (active) date */
+.react-calendar__tile--active {
+  background-color: #FCB418 !important;
+}
+.react-calendar__tile--now {
+  background: black !important; /* Same as the calendar background */
+  color: white; /* Same as other dates */
+}
+/* Adjust colors for navigation buttons */
+.react-calendar__navigation button {
+  color: white;
+}
+
+/* You might need to adjust hover states as well */
+.react-calendar__tile:hover,
+.react-calendar__navigation button:hover {
+  background-color: #555 !important;
+}
+.react-calendar,
+.react-calendar__tile,
+.react-calendar__navigation button {
+  border: none !important;
+}
+.react-calendar__tile--active {
+  background-color: #555 !important; /* Dark yellow color */
+  color: black; /* Text color for the active date */
+}
+.highlight {
+  /* background: #FCB418!important;  */
+  color: #FCB418 !important;
+ /* White text */
+}
+.react-calendar__month-view__days__day--weekend:not(.react-calendar__month-view__days__day--neighboringMonth) {
+  color: white !important; /* Change text color to white */
+}
+
 .mySwipergot {
   height: auto;
   padding: 2rem 0;

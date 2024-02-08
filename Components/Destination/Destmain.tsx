@@ -1,13 +1,10 @@
 "use client"
-import Destination from '@/Components/Destination/Destination'
-import Footer from '@/Components/Navbar/Footer/Footer'
-import Header from '@/Components/Navbar/Header/Header'
+ 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Link from 'next/link'
 import React, { useState,useEffect } from 'react'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image'
-import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
+import dynamic from 'next/dynamic';
 interface Product {
   id: string;
   name: string;
@@ -22,6 +19,12 @@ interface BaseProduct {
   urllink: string;
   type: 'trek' | 'tour' | 'destinations'; 
 }
+const Destination = dynamic(() => import('@/Components/Destination/Destination'), {
+  ssr: false,
+  loading: () => <div>Loading Destinations...</div>, // Optional loading component
+});
+const Footer = dynamic(() => import('@/Components/Navbar/Footer/Footer')); // Dynamically import Footer component
+const Header = dynamic(() => import('@/Components/Navbar/Header/Header'));
 const Destmain = () => {
     const [southIndiaDestinations, setSouthIndiaDestinations] = useState([]);
     const [northIndiaDestinations, setNorthIndiaDestinations] = useState([]);

@@ -57,15 +57,6 @@ const TestimonialSection = () => {
       transition={{ duration: 1 }}
       className=" md:mt-6 md:mx-6"
     >
-          {/* <motion.h2 */}
-    {/*     initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-2xl md:text-4xl font-semibold  text-center text-yellow-500"
-      >
-        What Our Customers Say
-
-       </motion.h2> */}
       <div className="flex items-center justify-center  text-white font-semibold text-2xl md:text-4xl rounded-lg">
   <div className="text-blue-500 rounded">G</div>
   <div className="text-red-500  rounded">o</div>
@@ -77,7 +68,7 @@ const TestimonialSection = () => {
 </div>
 
 <div className="flex justify-center pt-2 md:pt-4 mb-4">
-        <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
+        <hr className="border-t-2 border-white md:w-[30PX] w-[20px]" />
       </div>
     <Swiper
         effect={'coverflow'}
@@ -119,10 +110,7 @@ const TestimonialSection = () => {
              <div className="md:mt-4 mt-2 md:text-[15px] text-[13px] text-gray-300">
             "{test.text}"
         </div>
-        
-  {/* <blockquote className="overflow-auto mx-auto md:mt-4 mt-2 md:text-[15px] text-[13px] text-gray-600">
-    "{test.text}"
-  </blockquote> */}
+
 </div>
 </div>
         </SwiperSlide>

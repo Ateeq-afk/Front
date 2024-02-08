@@ -14,6 +14,7 @@ interface TrekItem {
   _id: string;
   urllink: string;
   testimage: string;
+  testimagealt:string;
   name: string;
   amount: number;
   badge?: string; // Optional property
@@ -24,6 +25,18 @@ interface TrekProps {
   trek: TrekItem[];
   uniqueId: string;
   name: string;
+}
+const getBadgeColor = (badge: string) => {
+  const lowercaseBadge = badge.toLowerCase(); // Convert badge to lowercase for case-insensitive comparison
+  if (lowercaseBadge === 'honeymoon special' || lowercaseBadge === 'romantic getaway') {
+    return 'bg-red-500';
+  } else if (lowercaseBadge === 'group') {
+    return 'bg-yellow-500';
+  } else if (lowercaseBadge === 'customized') {
+    return 'bg-blue-500';
+  } else {
+    return 'bg-yellow-500';
+  }
 }
 const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
   return (
@@ -69,7 +82,7 @@ const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
        <div className="overflow-hidden relative rounded-xl h-72 w-full">
          <Image
            src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${item.testimage}`} 
-           alt={item.name}
+           alt={item.testimagealt}
            objectFit="cover"
            layout="fill"
            className="transform transition-transform duration-300"
@@ -77,10 +90,10 @@ const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> {/* Gradient overlay */}
        </div>
        {item.badge && (
-         <span className="absolute top-0 left-0 bg-yellow-500 text-white uppercase text-xs p-1 m-2 rounded">
-           {item.badge}
-         </span>
-       )}
+                  <span className={`absolute top-0 left-0 uppercase text-xs p-1 m-2 rounded ${getBadgeColor(item.badge)}`}>
+                    {item.badge}
+                  </span>
+                )}
        <div className="p-4 text-center">
          <h4 className="text-lg mb-1">{item.name}</h4>
    

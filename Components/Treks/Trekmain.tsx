@@ -1,12 +1,10 @@
 "use client"
-import Footer from '@/Components/Navbar/Footer/Footer'
-import Header from '@/Components/Navbar/Header/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState,useEffect } from 'react'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
-import Trek from '@/Components/Treks/Trek'
+// import Trek from '@/Components/Treks/Trek'
 import Image from 'next/image'
-import Treka from '@/Components/Treks/Treka'
+import dynamic from 'next/dynamic';
 
 interface Product {
   id: string;
@@ -22,6 +20,10 @@ interface BaseProduct {
   urllink: string;
   type: 'trek' | 'tour' | 'destinations'; 
 }
+const Trek = dynamic(() => import('@/Components/Treks/Trek'), {
+  ssr: false,
+  loading: () => <div>Loading Trek...</div>, // Optional loading component
+});
 const Trekmain = () => {
     const [northIndiaTrekTreks, setNorthIndiaTrekTreks] = useState([]);
     const [karnatakaTrekTreks, setKarnatakaTrekTreks] = useState([]);

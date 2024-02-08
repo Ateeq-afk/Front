@@ -125,7 +125,7 @@ const Header = () => {
                   )}
         </div>
         ) : ( */}
-          <div>
+          {/* <div>
             <Link href='/login'>
               <motion.button
                 initial={{ backgroundColor: "#FBBF24", color: "#000" }}
@@ -136,7 +136,7 @@ const Header = () => {
                 Sign In / Register
               </motion.button>
             </Link>
-            </div>
+            </div> */}
         {/* )} */}
           </div>
           <div className="md:hidden flex items-center pr-2" onClick={toggleMenu}>
@@ -178,7 +178,7 @@ const Header = () => {
                 </motion.div>
               ))}
             </motion.div>
-            <motion.div variants={variants}>
+            {/* <motion.div variants={variants}>
               <Link href='/login'>
                 <motion.button
                   initial={{ backgroundColor: "#FBBF24", color: "#000" }}
@@ -189,7 +189,7 @@ const Header = () => {
                   Sign In / Register
                 </motion.button>
               </Link>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         )}
       </AnimatePresence>

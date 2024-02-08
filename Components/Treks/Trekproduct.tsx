@@ -10,10 +10,12 @@ import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupeeSign,faCircle, faMountainSun, faPersonHiking, faHotel, faMapLocationDot, faAngleDown, faAngleUp, faCaretUp, faCaretDown} from '@fortawesome/free-solid-svg-icons';
-import Booking from '@/Components/Book/Book'
+// import Booking from '@/Components/Book/Book'
 import Footer from '@/Components/Navbar/Footer/Footer';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+import FAQStructuredData from './StructuredData';
 
 
 interface Data {
@@ -93,6 +95,9 @@ type OpenDays = {
 interface TrekProps {
     name: string; // Added explicit type for 'name'
   }
+  const Booking = dynamic(() => import('@/Components/Book/Book'), {
+    loading: () => <div>Loading...</div>, // Optional loading component
+  });
 const Trekproduct : FC<TrekProps> = ({ name })=> {
   const [openDay, setOpenDay] = useState<OpenDays>({});
     const [openItem, setOpenItem] = useState<null | number>(null);
@@ -186,7 +191,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
   return (
     <div >
        <Header />
-    <div className='flex flex-col'>
+    <div className='flex flex-col '>
       
       <div className=" h-screen w-full relative ">
         <Image src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${data.testimage}`}  alt="kudremukha" layout="fill" objectFit="cover" className='absolute' /> 
@@ -247,10 +252,10 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
       </div>
       </div>
    
-     
-      
-      <div className="flex md:h-screen md:sticky md:top-0 ">
-            <div className="hidden md:block md:w-1/4 min-h-screen bg-gray-200 text-black p-4  " >
+      <div className="flex flex-grow">
+        {/* Sidebar */}
+        <aside className="hidden md:block md:w-1/4 bg-gray-200 p-4 text-black overflow-auto sticky top-[80px] h-[100vh]">
+
           
                 <Link href="#expedition-overview">
                     <span className="block  hover:font-bold p-2">Overview</span>
@@ -283,8 +288,8 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
       <div className="text-center mt-6">Call <a href="tel:+918310180609" className='text-yellow-500 font-bold hover:underline '>+91 83101-80609</a></div>
       <button className="w-full my-4 mt-4  text-xl text-yellow-500 font-bold hover:underline " onClick={() => setShowEnquiry(true)}>Send Enquiry</button>
                 {/* Add other links similarly */}
-            </div>
-            <div className="ml-1/4 md:w-3/4 w-full overflow-y-auto text-black">
+            </aside>
+                        <main className=" flex-1 overflow-y-auto">
             <section id="expedition-overview">
                 <div className="bg-white md:p-10 p-4 text-black">
                     <div className="border-b-2 border-gray-300 md:py-8 py-2"  >
@@ -416,7 +421,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         <div className="mx-auto bg-white md:p-10 p-4 pt-0 md:pt-0">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
           <div className="flex justify-between  md:hidden" onClick={() => toggleSection("expect")} >
-            <h2 className="text-2xl  font-bold pb-2 ">WHAT TO EXPECT</h2>
+            <h2 className="text-2xl  font-bold pb-2 text-black">WHAT TO EXPECT</h2>
             <button className="text-xl">
               {openSection.includes("expect") ? (
                 <FontAwesomeIcon icon={faAngleUp} />
@@ -433,7 +438,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
           <div className="hidden md:block">
           <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-            <div className="text-3xl font-bold mb-6">WHAT TO EXPECT</div>
+            <div className="text-3xl font-bold mb-6 text-black">WHAT TO EXPECT</div>
             </div>
             <ExpectContent data={data} />
           </div>
@@ -444,7 +449,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0">
     <div className="border-b-2 border-gray-300 md:pb-8 py-1">
         <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("date")}> {/* hidden on medium and above screens */}
-            <h2 className="text-2xl font-bold mb-2">DATES & PRICES</h2>
+            <h2 className="text-2xl font-bold mb-2 text-black">DATES & PRICES</h2>
             <button  className='text-xl'>
                 {openSection.includes("date")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
             </button>
@@ -457,7 +462,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         <div className="hidden md:block"> 
         <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-            <div className="text-3xl font-bold mb-6">DATES & PRICES</div>
+            <div className="text-3xl font-bold mb-6 text-black">DATES & PRICES</div>
             </div>
             <DateContent data={data} expanded={expanded} toggleExpanded={toggleExpanded} displayedBatches={displayedBatches} setShowEnquiry={setShowEnquiry} setShowPopup={setShowPopup} />
         </div>
@@ -468,7 +473,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
  <div className="flex justify-between md:p-10 md:pt-0 p-4 pt-0 mx-auto bg-white">
  <div className='border-b-2 border-gray-300 md:pb-8 py-1'>
  <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("inclu")}> 
- <h2 className="text-2xl font-bold mb-4">INCLUSIONS AND EXCLUSIONS</h2>
+ <h2 className="text-2xl font-bold mb-4 text-black">INCLUSIONS AND EXCLUSIONS</h2>
  <button  className='text-xl'>
                 {openSection.includes("inclu")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
             </button>
@@ -481,7 +486,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         <div className="hidden md:block"> 
         <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-            <div className="text-3xl font-bold mb-6">INCLUSIONS AND EXCLUSIONS</div>
+            <div className="text-3xl font-bold mb-6 text-black">INCLUSIONS AND EXCLUSIONS</div>
             </div>
             <IncluContent data={data} />
         </div>
@@ -493,7 +498,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
             <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("things")}> {/* hidden on medium and above screens */}
-                <h2 className="text-2xl font-bold mb-2">THINGS TO CARRY</h2>
+                <h2 className="text-2xl font-bold mb-2 text-black">THINGS TO CARRY</h2>
                 <button  className='text-xl'>
                     {openSection.includes("things") ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                 </button>
@@ -506,7 +511,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
             <div className="hidden md:block">
             <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-                <div className="text-3xl font-bold mb-6">THINGS TO CARRY</div>
+                <div className="text-3xl font-bold mb-6 text-black">THINGS TO CARRY</div>
                 </div>
                 <ThingsContent data={data} />
             </div>
@@ -520,7 +525,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
       <div className='border-b-2 border-gray-300 md:pb-8 pb-4'>
         <div className="flex items-left">
           <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-          <h2 className="text-2xl font-semibold mb-6 ">FAQs</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-black">FAQs</h2>
         </div>
         {data.faq.map((faq: FAQ, index: number) => (
           <div key={index} className="mb-4 p-4 border rounded-lg shadow-md">
@@ -528,9 +533,9 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
               <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
                 {openItem === index ? '−' : '+'}
               </div>
-              <h3 className="font-medium text-lg">{faq.question}</h3>
+              <h3 className="font-medium text-lg text-black">{faq.question}</h3>
             </div>
-            {openItem === index && <p className="mt-2 ml-14 text-gray-600">{faq.answer}</p>}
+            {openItem === index && <p className="mt-2 ml-14 text-gray-600 ">{faq.answer}</p>}
           </div>
         ))}
       </div>
@@ -541,7 +546,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
                 <div className="container mx-auto md:p-10 p-4 md:pt-0 bg-white">
                 <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-      <h2 className="text-2xl font-semibold mb-6 ">RELATED TRIPS</h2>
+      <h2 className="text-2xl font-semibold mb-6 text-black ">RELATED TRIPS</h2>
       </div>
       <div className='relative px-6'>
         {/* Trip 1 */}
@@ -582,11 +587,11 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
             width={400} 
             height={300} 
           />
-          <div className="p-4 bg-white">
+          <div className="p-4 bg-white text-black">
             <div className="mb-4 border-b pb-2 flex justify-between">
-              <div className="text-lg font-semibold">{related.day}</div> <div><FontAwesomeIcon icon={faIndianRupeeSign} className='text-sm w-4 h-4 pt-1 ' />{related.amount}</div> 
+              <div className="text-lg font-semibold text-black">{related.day}</div> <div><FontAwesomeIcon icon={faIndianRupeeSign} className='text-sm w-4 h-4 pt-1 ' />{related.amount}</div> 
             </div>
-            <h3 className="font-semibold text-xl mb-3">{related.name}</h3>
+            <h3 className="font-semibold text-xl mb-3 text-black">{related.name}</h3>
             {related.service &&   <p><strong>{related.service}</strong> : {related.servicename}</p>}
             {related.level &&   <p><strong>{related.level}</strong> : {related.levelname}</p>}
             {related.state &&   <p><strong>{related.state}</strong> : {related.statename}</p>}
@@ -608,9 +613,9 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
 
                 </section>
                 {/* Add other content sections similarly */}
-            </div>
+            </main>
         </div>
-    </div>
+        </div>
     <Footer />
     <div className="fixed bottom-0 left-0 w-full bg-yellow-500 p-4 md:hidden z-10">
       <div className="flex justify-center space-x-4">
@@ -620,7 +625,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
     </div>
     {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.fromamount} name={data.name.toString()} testimage={data.testimage} maintype={data.maintype.toString()} /> }
     {showEnquiry && <EnquiryForm onClose={() => setShowEnquiry(false)} source={String(data.name)}/>}
- 
+    <FAQStructuredData faqItems={data.faq} />
     </div>
   )
 }
@@ -648,11 +653,11 @@ const ExpectContent: FC<ExpectProps> = ({ data }) => (
   <>
     <p className="text-gray-600 mb-6">{data.expectpara}</p>
     <div className="mb-6">
-      <h2 className="text-xl font-semibold mb-4">{data.expecthead1}</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black">{data.expecthead1}</h2>
       <p className="text-gray-600 mb-6">{data.expecthead1para}</p>
     </div>
     <div>
-      <h2 className="text-xl font-semibold mb-4">{data.expecthead2}</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black">{data.expecthead2}</h2>
       <p className="text-gray-600">{data.expecthead2para}</p>
     </div>
   </>
@@ -670,17 +675,17 @@ const  DateContent: FC<DateContentProps> = ({ displayedBatches, toggleExpanded, 
   <div>
      { data && data.batch && data.batch.length >= 1 && (
       <div>
-      <div className="border-b border-gray-300 mb-4 p-2">
+      <div className="border-b border-gray-300 text-black mb-4 p-2">
           <h3>Batches</h3>
       </div>
       {displayedBatches.map((batch, idx) => (
         <div key={idx} className="flex md:justify-between md:items-center flex-col md:flex-row border-b border-gray-300 bg-gray-200 mb-4 p-4 gap-2">
           <div>
-            <p className="text-lg font-bold">{batch.date}</p>
+            <p className="text-lg font-bold text-black">{batch.date}</p>
           </div>
           <div>
-            <div className='flex flex-row'>  
-              <FontAwesomeIcon icon={faIndianRupeeSign} className='text-sm w-4 h-4 pt-1 ' />
+            <div className='flex flex-row text-black'>  
+              <FontAwesomeIcon icon={faIndianRupeeSign} className='text-sm w-4 h-4 pt-1 text-black' />
               {batch.amount} /- Per Person
             </div>
           </div>
@@ -719,19 +724,19 @@ interface IncluContentProps {
 const IncluContent: FC<IncluContentProps> = ({ data }) => (
   <div className='flex flex-col md:flex-row m-2 md:m-0'>
       <div className="md:w-1/2 w-full pr-4">
-        <h2 className="mb-4 text-lg font-bold">WHAT'S INCLUDED</h2>
+        <h2 className="mb-4 text-lg font-bold text-black">WHAT'S INCLUDED</h2>
         <div>
            {data && data.included && data.included.map((included, idx) => (
-            <div key={idx} className="mb-2 list-decimal flex flex-row "><FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px] text-yellow-500' />{included}</div>
+            <div key={idx} className="mb-2 list-decimal flex flex-row text-black"><FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px] text-yellow-500' />{included}</div>
           ))}
         </div>
       </div>
       <div className="hidden md:block border-l-2 border-gray-300 mx-4"></div>
       <div className="md:w-1/2 w-full md:pl-4 ">
-        <h2 className="mb-4 text-lg font-bold">WHAT'S NOT INCLUDED</h2>
+        <h2 className="mb-4 text-lg font-bold text-black">WHAT'S NOT INCLUDED</h2>
         <div>
         {data && data.notincluded && data.notincluded.map((notincluded, idx) => (
-            <div key={idx} className="mb-2 list-decimal flex flex-row "><FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px] text-yellow-500' />{notincluded}</div>
+            <div key={idx} className="mb-2 list-decimal flex flex-row text-black"><FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px] text-yellow-500' />{notincluded}</div>
           ))}
         </div>
         </div>
@@ -744,7 +749,7 @@ const ThingsContent: FC<ThingsContentProps> = ({ data }) => (
   <div className="md:mt-10 m-2 md:m-0">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
           {data && data.things && data.things.map((things, idx) => (
-              <div key={idx} className="flex flex-row">
+              <div key={idx} className="flex flex-row text-black">
                   <FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px] text-yellow-500' />{things}
               </div>
           ))}

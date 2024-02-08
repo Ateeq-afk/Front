@@ -41,7 +41,7 @@ const RelatedDestinations = () => {
       >
         {destinations.map((dest, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col border-[1px] border-white rounded-lg">
+            <div className="flex flex-col  rounded-lg">
               <div className="relative overflow-hidden rounded-lg h-48">
                 <Image
                   src={dest.image}

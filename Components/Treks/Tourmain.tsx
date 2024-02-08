@@ -4,12 +4,9 @@ import Header from '@/Components/Navbar/Header/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState,useEffect } from 'react'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
-import Trek from '@/Components/Treks/Trek'
+// import Trek from '@/Components/Treks/Trek'
 import Image from 'next/image'
-import Link from 'next/link'
-import Treka from '@/Components/Treks/Treka'
-import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag'
-import Head from 'next/head'
+import dynamic from 'next/dynamic'
 interface Product {
   id: string;
   name: string;
@@ -24,7 +21,10 @@ interface BaseProduct {
   urllink: string;
   type: 'trek' | 'tour' | 'destinations'; 
 }
-
+const Trek = dynamic(() => import('@/Components/Treks/Trek'), {
+  ssr: false,
+  loading: () => <div>Loading Tour...</div>, // Optional loading component
+});
 const Tourmain = () => {
     const [groupTourTreks, setGroupTourTreks] = useState([]);
     const [longTourTreks, setLongTourTreks] = useState([]);
@@ -282,7 +282,7 @@ const Tourmain = () => {
   </div>
         </div>
   </div>
-        <div className=' mx-10 pt-10'>
+        {/* <div className=' mx-10 pt-10'>
    <div className="text-center md:text-center">
             <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Republic Day Long Weekend</h2>
             <div className="flex justify-center pt-2 md:pt-5">
@@ -292,7 +292,7 @@ const Tourmain = () => {
       <div className='pt-10'>
         <Treka trek={newYearTrek}  uniqueId="NewYear" />
       </div>
-   </div>
+   </div> */}
    <div className=' mx-10 pt-10'>
    <div className="text-center md:text-center">
             <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Weekend Group Tours</h2>

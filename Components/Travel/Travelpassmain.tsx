@@ -6,7 +6,6 @@ import AccordionItem from '@/Components/Member/Accordian/Accordianitem';
 import Footer from '@/Components/Navbar/Footer/Footer';
 import Header from '@/Components/Navbar/Header/Header';
 import Link from 'next/link';
-import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
 
 interface FormData {
     title: string;
@@ -276,7 +275,7 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
         {/* Membership Cards Section */}
             <div className="bg-white p-8 hidden md:block rounded-lg text-black">
             <div className='flex flex-col items-center justify-center'>
-    <h2 className="text-3xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
+    <h1 className="text-3xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h1>
     <hr className="border-t-2 border-yellow-500 w-16 mb-10" /> {/* Fixed width for all viewports */}
 </div>
               <div className="flex gap-4">
@@ -457,7 +456,7 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
     <ul className="list-disc pl-1">
   <li className="mb-2">
     <span className="block font-medium">
-    The United Travel Pass 2023 offers a semi-annual trekking and backpacking experience priced at ₹12,000 and ₹21,000, respectively, plus a 5% GST.
+    The United Travel Pass 2024 offers a semi-annual trekking and backpacking experience priced at ₹12,000 and ₹21,000, respectively, plus a 5% GST.
     </span>
   </li>
   <li className="mb-2">

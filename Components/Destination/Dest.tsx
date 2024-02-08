@@ -15,6 +15,7 @@ interface Product {
   // ... other properties of Product
   fromamount: number;
   over: string[];
+  badge?: string;
   urllink: string;
 }
 
@@ -41,7 +42,18 @@ interface Destination {
 interface DestProps {
     name: string; // Added explicit type for 'name'
   }
-
+  const getBadgeColor = (badge: string) => {
+    const lowercaseBadge = badge.toLowerCase(); // Convert badge to lowercase for case-insensitive comparison
+    if (lowercaseBadge === 'honeymoon special' || lowercaseBadge === 'romantic getaway') {
+      return 'bg-red-500';
+    } else if (lowercaseBadge === 'group') {
+      return 'bg-yellow-500';
+    } else if (lowercaseBadge === 'customized') {
+      return 'bg-blue-500';
+    } else {
+      return 'bg-yellow-500';
+    }
+  }
 const Dest: React.FC<DestProps> = ({ name }) => {
       
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -99,11 +111,12 @@ const Dest: React.FC<DestProps> = ({ name }) => {
     <div className="bg-black font-jost text-white">
           <Header />
           <div>
+          {destination.name && (
         <div className="bg-black text-white md:p-10 p-2">
   <div className="flex flex-col items-start">
     <div className="flex items-center md:mb-8 pt-10">
       <div className="bg-yellow-500 w-1 h-16 mr-8 self-center md:block hidden"></div>
-      <h1 className="text-7xl inline-block align-middle"  >
+      <h1 className="md:text-7xl text-5xl" >
       {destination.name}
       </h1>
       <span className="text-yellow-500 text-9xl inline-block align-middle relative" style={{top: '-0.2em'}}>.</span>
@@ -127,6 +140,7 @@ const Dest: React.FC<DestProps> = ({ name }) => {
     </div>
   </div>
 </div>
+)}
   {/* Main content */}
   <div className="pt-10 pb-10"> {/* Reduced top padding */}
   <div className="text-center mb-4"></div>
@@ -157,6 +171,11 @@ const Dest: React.FC<DestProps> = ({ name }) => {
         objectFit="cover"
         className="rounded-xl"
       />
+         {products?.badge && (
+                  <span className={`absolute top-0 left-[-20px] uppercase px-4 py-1 text-xs p-1 m-2 rounded ${getBadgeColor(products.badge)}`}>
+                    {products.badge}
+                  </span>
+                )}
     </div>
     <motion.div
       className="md:absolute md:left-[45%] md:top-[18%] z-10 md:p-6 md:w-[55%]  bg-black rounded-xl shadow-2xl"

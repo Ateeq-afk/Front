@@ -526,8 +526,8 @@ const Travelpass = () => {
           <div ref={topOfTreksListRef} className="treks-section">
           <div className="relative text-white text-center py-12" style={{ background: 'linear-gradient(to right, #662D8C, #ED1E79)' }}>
           {/* Title */}
-          <h1 className="md:text-4xl text-3xl font-bold mb-6">TREK PASS</h1>
-          <h2 className="md:text-2xl text-xl font-semibold mb-8">20 TREKS TO CHOOSE FROM </h2>
+          <h2 className="md:text-4xl text-3xl font-bold mb-6">TREK PASS</h2>
+          <h3 className="md:text-2xl text-xl font-semibold mb-8">20 TREKS TO CHOOSE FROM </h3>
           
           {/* Treks grid */}
           
@@ -561,8 +561,8 @@ const Travelpass = () => {
           style={{ background: 'linear-gradient(to right, #2E3192, #00CDAC)' }}>
           {/* Title */}
           
-          <h1 className="md:text-4xl text-3xl font-bold mb-6">TOUR PASS </h1>
-          <h2 className="md:text-2xl text-xl font-semibold mb-8">20 TOURS TO CHOOSE FROM</h2>
+          <h2 className="md:text-4xl text-3xl font-bold mb-6">TOUR PASS </h2>
+          <h3 className="md:text-2xl text-xl font-semibold mb-8">20 TOURS TO CHOOSE FROM</h3>
           
           {/* Tours grid */}
           

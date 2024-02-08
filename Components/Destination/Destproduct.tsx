@@ -140,7 +140,7 @@ const Destproduct = () => {
           <div className="absolute px-4 py-3 bg-gray-200 text-black top-[170px] left-8 min-h-[140px] rounded-xl flex justify-between flex-col">
             <div className="flex justify-between flex-col">
               <div>
-                <h3 className="text-xl font-semibold w-[260px] line-clamp-2">{tour.title}</h3>
+                <h3 className="text-lg font-semibold w-[260px] line-clamp-2">{tour.title}</h3>
                 <p className="text-gray-500  text-sm">{tour.duration}</p>
               </div>
             </div>

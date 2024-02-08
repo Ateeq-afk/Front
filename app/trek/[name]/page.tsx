@@ -1,6 +1,7 @@
 import { FC  } from 'react';
-import Trekproduct from '@/Components/Treks/Trekproduct';
+// import Trekproduct from '@/Components/Treks/Trekproduct';
 import { Metadata, ResolvingMetadata } from 'next';
+import Trekproduct from '@/Components/Treks/Trekproduct';
  
 interface PageProps {
   params: {
@@ -32,6 +33,7 @@ export async function generateMetadata( { params }: PageProps, parent: Resolving
     },
   };
 }
+
 const page : FC<PageProps> = ({ params })=> {
   const name = params.name
   return (

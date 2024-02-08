@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation,Scrollbar,Pagination  } from 'swiper/modules';
+import { Navigation,Scrollbar,Pagination,FreeMode  } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
@@ -21,6 +21,29 @@ interface TrekSliderProps {
   destination: DestinationItem[];
   sliderId: string;
 }
+const getBadgeColor = (badge: string) => {
+  // Exact case-sensitive comparison
+  if (badge === 'Honeymoon Special' || badge === 'Romantic Getaway') {
+    return 'bg-red-500'; // Red color for honeymoon and romantic badges
+  } else if(badge === "Group") {
+    return 'bg-yellow-500'; 
+  } else if(badge === "Customized") {
+    return 'bg-blue-500'; 
+  }else{
+    return 'bg-yellow-500'; 
+  }
+}
+// const getBadgeColor = (badge: string) => {
+//   switch (badge.toUpperCase()) { // Convert to uppercase for case-insensitive comparison
+//     case 'BEST SELLER':
+//       return 'bg-red-500';
+//     case 'TOP RATED':
+//       return 'bg-blue-500';
+//     // Add more cases as needed
+//     default:
+//       return 'bg-gray-800'; // Default color
+//   }
+// }
 const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
   const nextButtonClass = `swiper-button-next-${sliderId}`;
   const prevButtonClass = `swiper-button-prev-${sliderId}`;
@@ -47,7 +70,8 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
           el: "#swiper-scrollbar",
           draggable: true,
         }}
-        modules={[Scrollbar, Navigation, Pagination]}
+        freeMode={{ enabled: true, minimumVelocity: 0.1 }}
+        modules={[Scrollbar, Navigation, Pagination,FreeMode]}
         breakpoints={{
           100: {
             slidesPerView: 1,
@@ -81,10 +105,10 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> {/* Gradient overlay */}
        </div>
        {item.badge && (
-         <span className="absolute top-0 left-0 bg-yellow-500 text-white uppercase text-xs p-1 m-2 rounded">
-           {item.badge}
-         </span>
-       )}
+                  <span className={`absolute top-0 left-0 uppercase text-xs p-1 m-2 rounded ${getBadgeColor(item.badge)}`}>
+                    {item.badge}
+                  </span>
+                )}
        <div className="p-4 pb-0 text-center">
   <h4 className="text-lg mb-1">{item.title}</h4>
   <p className="text-sm mb-2">{item.location}</p>

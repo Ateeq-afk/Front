@@ -217,7 +217,7 @@ const Hero = () => {
     </div>
     <div className="text-center">
       <p className="md:text-4xl text-sm font-bold">
-        <CountUp end={100141} duration={2.75} separator="," />
+        <CountUp end={200397} duration={2.75} separator="," />
       </p>
       <p className="text-yellow-400 md:text-base text-xs">Satisfied Travelers</p>
     </div>

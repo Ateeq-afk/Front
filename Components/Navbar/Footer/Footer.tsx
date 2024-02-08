@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faWhatsapp, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
+
 const sections = [
   {
     title: 'LEGAL',
@@ -39,9 +40,10 @@ const Footer = () => {
       initial={{ y: 200, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1.2 }}
-      className="bg-black text-white flex-shrink z-10"
+      className="bg-black text-white flex-shrink z-10 pt-10"
     >
-      <div className="flex flex-col md:flex-row md:justify-around md:items-center pt-6 pb-2 px-4 ">
+  
+      <div className="flex flex-col md:flex-row md:justify-around md:items-center  pb-2 px-4 ">
         {/* Logo and Social Media Icons */}
         <div className="flex flex-col items-start md:items-center mb-8 md:mb-0 space-y-4">
         <div className="flex flex-row items-center space-x-4">
@@ -140,6 +142,7 @@ const Footer = () => {
 </motion.div>
       </div>
       </div>
+
       <div className="md:hidden flex space-x-6  text-lg items-center justify-center pt-4 border-t-2 border-white" >
       <motion.a href="https://www.facebook.com/backpackersunited1/" className="text-white hover:text-yellow-500" whileHover={{ scale: 1.4 }}>
               <FontAwesomeIcon icon={faFacebookF} />
@@ -156,7 +159,7 @@ const Footer = () => {
       </div>
       <div className="text-center text-sm md:mt-0 mt-4 px-4">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-          2023 Backpackers United Copyright Information
+          2024 Backpackers United Copyright Information
         </motion.div>
         </div> 
     </motion.footer>

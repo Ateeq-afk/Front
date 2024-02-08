@@ -25,18 +25,12 @@ export const destinations2 = [
     },
     {
       id: 5,
-      city: "Nepal",
-      img: "/destination/nepal.jpg",
-      url:"nepal"
-    },
-    {
-      id: 6,
       city: "Bhutan",
       img: "/destination/bhutan.jpg",
       url:"bhutan"
     },
     {
-      id: 7,
+      id: 6,
       city: "Sri Lanka",
       img: "/destination/srilanka.jpg",
       url:"sri-lanka"

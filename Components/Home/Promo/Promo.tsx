@@ -22,12 +22,17 @@ const Promo = () => {
         />
         <div className="absolute inset-x-0 bottom-0 p-6 w-full h-full bg-black bg-opacity-30 text-base md:text-lg lg:text-xl">
           <h2 className="text-xl md:text-3xl font-semibold text-white mb-2">Why we Travel?</h2>
-         <Link href='/blogs' > <motion.button
-            whileHover={{ scale: 1.1 }}
-            className="mt-2 px-4 py-2 bg-yellow-400 text-black font-bold rounded-full border-2 border-transparent hover:bg-black hover:text-yellow-400 hover:border-yellow-400 shadow-lg transition duration-300"
-          >
-            Learn More
-          </motion.button></Link>
+         
+  <motion.button
+    whileHover={{ scale: 1.1 }}
+    className="mt-2 px-4 py-2 bg-yellow-400 text-black font-bold rounded-full border-2 border-transparent hover:bg-black hover:text-yellow-400 hover:border-yellow-400 shadow-lg transition duration-300"
+  >
+     <Link href='/blogs' >
+    Explore
+    </Link>
+  </motion.button>
+
+
         </div>
       </motion.div>
       {/* Right Section */}

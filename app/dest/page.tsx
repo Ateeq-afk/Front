@@ -306,8 +306,6 @@ const cards = [
        <Image
         src="/home/valley.jpg" // Note how we reference from the root
         alt="Wayanad"
-        // width={500}  // Set the desired width
-        // height={300} // Set the desired height
         layout="fill"
         objectFit="cover"
         className="opacity-50" // This darkens the image for better text visibility
@@ -345,20 +343,20 @@ const cards = [
       </div>
     </div>
     </div>
-    <div className="bg-gray-200 text-white py-3">
+    <div className="bg-black text-white py-3">
   <div className="container mx-auto max-w-6xl -pl-8">
-    <nav className="text-black font-semibold" aria-label="Breadcrumb">
+    <nav className="text-black " aria-label="Breadcrumb">
       <ol className="list-none p-0 inline-flex">
         <li className="flex items-center">
-          <Link href="/" className="text-gray-500 hover:text-yellow-500">HOME</Link>
+          <Link href="/" className="text-gray-500 hover:text-yellow-500">Home</Link>
           <span className="text-gray-500 mx-2">/</span>
         </li>
         <li className="flex items-center">
-          <Link href="/destinations" className="text-gray-500 hover:text-yellow-500">DESTINATIONS</Link>
+          <Link href="/destinations" className="text-gray-500 hover:text-yellow-500">Destinations</Link>
           <span className="text-gray-500 mx-2">/</span>
         </li>
-        <li className="flex items-center">
-               WAYANAD
+        <li className="flex items-center text-white">
+               Wayanad
         </li>
       </ol>
     </nav>

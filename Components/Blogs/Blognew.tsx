@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import Destproduct from '../Destination/Destproduct';
 import RelatedDestinations from '../Destination/RelatedDest';
+import Link from 'next/link';
 
 const Blognew = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -98,15 +99,15 @@ const Blognew = () => {
     <nav className="text-black " aria-label="Breadcrumb">
       <ol className="list-none p-0 inline-flex">
         <li className="flex items-center">
-          <a href="#" className="text-gray-400 ">Home</a>
+          <a href="#" className="text-gray-400 hover:text-yellow-500 ">Home</a>
           <span className="text-gray-400 mx-2">/</span>
         </li>
         <li className="flex items-center">
-          <a href="#" className="text-gray-400 ">Destinations</a>
-          <span className="text-gray-400 mx-2">/</span>
+          <a href="#" className="text-gray-400 hover:text-yellow-500">Destinations</a>
+          <span className="text-gray-400 mx-2">/</span> 
         </li>
         <li className="flex items-center">
-          <a href="#" className="text-gray-400 ">Wayanad</a>
+          <a href="#" className="text-gray-400 hover:text-yellow-500">Wayanad</a>
           <span className="text-gray-400 mx-2">/</span>
         </li>
         <li className="flex items-center text-white">
@@ -154,7 +155,7 @@ const Blognew = () => {
 <div className="flex justify-center bg-black text-white mx-20">
     <div className='flex flex-col'>
 
-      <div className="flex w-[100%] max-w-screen-xl mt-8 mb-4 h-[500px]">
+      <div className="flex w-[100%] max-w-screen-xl mt-8 mb-4 h-[400px]">
         {/* Left column for the content */}
         <div className="bg-gray-200 rounded-lg shadow-md overflow-hidden  mx-auto flex">
   {/* Left column for the image and the descriptive paragraph */}
@@ -183,10 +184,10 @@ const Blognew = () => {
       <FontAwesomeIcon icon={faClock} /> 2D/1N
     </p>
       <div className="flex items-center space-x-2 mb-4">
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
+        <span className="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
       Free, Sightseeing
         </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+        <span className="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
           1 to 2 hours TIME TO SPEND
         </span>
       </div>
@@ -201,22 +202,14 @@ const Blognew = () => {
         Book Now
       </button>
     </div>
-    <div className={`transition-all ease-in-out duration-300 ${paragraphClass}`}>
-    <p className="text-gray-700 text-sm mb-4 ">
-          {sentences.map((sentence, index) => (
-            <span key={index}>
-              {index >= blurThreshold && !isParagraphExpanded ? (
-                <span className="blur">{sentence} </span>
-              ) : (
-                <span>{sentence} </span>
-              )}
-            </span>
-          ))}
+    <div className={`transition-all ease-in-out duration-300 `}>
+    <p className="text-gray-700 text-sm  line-clamp-5">
+    Your full paragraph text goes here.It contains several sentences. full paragraph text  Your full paragraph text  Your full paragraph text  Your full paragraph text Your full paragraph text Your full paragraph text You want some of these sentences  It contains several sentences. You want some of these sentences  It contains several sentences. You want some of these sentences  It contains several sentences. You want some of these sentences to be blurred until the user clicks 'Read More'. The first few sentences will always be visible. 
         </p>
+        <Link href="/path-to-detailed-activity-page" className="text-yellow-500 hover:underline transition duration-300 ease-in-out font-bold text-sm">
+            Read More
+          </Link>
         </div>
-        <button onClick={toggleReadMore} className="mt-4 bg-blue-500 text-white hover:bg-blue-700 transition duration-300 ease-in-out font-bold py-2 px-4 rounded-full">
-          {isParagraphExpanded ? 'Read Less' : 'Read More'}
-        </button>
     </div>
     {/* Rest of the content */}
   </div>
@@ -226,7 +219,7 @@ const Blognew = () => {
         {/* Right column for the form */}
     
     </div>
-    <div className="flex w-[100%] max-w-screen-xl mb-4 h-[500px]">
+    <div className="flex w-[100%] max-w-screen-xl mb-4 h-[400px]">
         {/* Left column for the content */}
         <div className="bg-gray-200 rounded-lg shadow-md overflow-hidden  mx-auto flex">
   {/* Left column for the image and the descriptive paragraph */}
@@ -255,10 +248,10 @@ const Blognew = () => {
       <FontAwesomeIcon icon={faClock} /> 2D/1N
     </p>
       <div className="flex items-center space-x-2 mb-4">
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
+        <span className="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
       Free, Sightseeing
         </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+        <span className="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
           1 to 2 hours TIME TO SPEND
         </span>
       </div>
@@ -274,21 +267,13 @@ const Blognew = () => {
       </button>
     </div>
     <div className={`transition-all ease-in-out duration-300 ${paragraphClass}`}>
-    <p className="text-gray-700 text-sm mb-4 ">
-          {sentences.map((sentence, index) => (
-            <span key={index}>
-              {index >= blurThreshold && !isParagraphExpanded ? (
-                <span className="blur">{sentence} </span>
-              ) : (
-                <span>{sentence} </span>
-              )}
-            </span>
-          ))}
+    <p className="text-gray-700 text-sm  line-clamp-5">
+    Your full paragraph text goes here.It contains several sentences. full paragraph text  Your full paragraph text  Your full paragraph text  Your full paragraph text Your full paragraph text Your full paragraph text You want some of these sentences  It contains several sentences. You want some of these sentences  It contains several sentences. You want some of these sentences  It contains several sentences. You want some of these sentences to be blurred until the user clicks 'Read More'. The first few sentences will always be visible. 
         </p>
+        <Link href="/path-to-detailed-activity-page" className="text-yellow-500 hover:underline transition duration-300 ease-in-out font-bold text-sm">
+            Read More
+          </Link>
         </div>
-        <button onClick={toggleReadMore} className="mt-4 bg-blue-500 text-white hover:bg-blue-700 transition duration-300 ease-in-out font-bold py-2 px-4 rounded-full">
-          {isParagraphExpanded ? 'Read Less' : 'Read More'}
-        </button>
     </div>
     {/* Rest of the content */}
   </div>
@@ -298,7 +283,7 @@ const Blognew = () => {
         {/* Right column for the form */}
     
     </div>
-    <div className="flex w-[100%] max-w-screen-xl  mb-4 h-[500px]">
+    <div className="flex w-[100%] max-w-screen-xl  mb-4 h-[400px]">
         {/* Left column for the content */}
         <div className="bg-gray-200 rounded-lg shadow-md overflow-hidden  mx-auto flex">
   {/* Left column for the image and the descriptive paragraph */}
@@ -327,10 +312,10 @@ const Blognew = () => {
       <FontAwesomeIcon icon={faClock} /> 2D/1N
     </p>
       <div className="flex items-center space-x-2 mb-4">
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
+        <span className="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 ">
       Free, Sightseeing
         </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+        <span className="inline-block bg-gray-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
           1 to 2 hours TIME TO SPEND
         </span>
       </div>
@@ -346,21 +331,13 @@ const Blognew = () => {
       </button>
     </div>
     <div className={`transition-all ease-in-out duration-300 ${paragraphClass}`}>
-    <p className="text-gray-700 text-sm mb-4 ">
-          {sentences.map((sentence, index) => (
-            <span key={index}>
-              {index >= blurThreshold && !isParagraphExpanded ? (
-                <span className="blur">{sentence} </span>
-              ) : (
-                <span>{sentence} </span>
-              )}
-            </span>
-          ))}
+    <p className="text-gray-700 text-sm  line-clamp-5">
+    Your full paragraph text goes here.It contains several sentences. full paragraph text  Your full paragraph text  Your full paragraph text  Your full paragraph text Your full paragraph text Your full paragraph text You want some of these sentences  It contains several sentences. You want some of these sentences  It contains several sentences. You want some of these sentences  It contains several sentences. You want some of these sentences to be blurred until the user clicks 'Read More'. The first few sentences will always be visible. 
         </p>
+        <Link href="/path-to-detailed-activity-page" className="text-yellow-500 hover:underline transition duration-300 ease-in-out font-bold text-sm">
+            Read More
+          </Link>
         </div>
-        <button onClick={toggleReadMore} className="mt-4 bg-blue-500 text-white hover:bg-blue-700 transition duration-300 ease-in-out font-bold py-2 px-4 rounded-full">
-          {isParagraphExpanded ? 'Read Less' : 'Read More'}
-        </button>
     </div>
     {/* Rest of the content */}
   </div>
@@ -393,13 +370,13 @@ const Blognew = () => {
               <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Your Email" />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="email">
+              <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="phoneno">
                 Phone No
               </label>
               <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="number" placeholder="Your Phone Number" />
             </div>
             <div className="">
-              <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="email">
+              <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="message">
                 Message
               </label>
               <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email"  placeholder="Your Message" />
@@ -483,7 +460,8 @@ const Blognew = () => {
       <div className="">
         <img className="w-full h-96 object-cover rounded-lg" src="/home/Wayanaddrew.jpg" alt="Featured story image" />
         <div className="mt-2">
-          <h3 className="text-xl font-semibold">Venice introduces new tourist rules for 2024, including an entry fee and </h3>
+          <h3 className="text-xl font-semibold">
+             introduces new tourist rules for 2024, including an entry fee and </h3>
           <p className="text-gray-600 mt-2 line-clamp-2">In an effort to regulate the number of tourists within the city, Venice is introducing a new booking system for visitors.</p>
         </div>
       </div>
