@@ -5,15 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar} from '@fortawesome/free-solid-svg-icons';
 import { faQuoteLeft, faQuoteRight} from '@fortawesome/free-solid-svg-icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import Image from 'next/image';
-
-
 interface Review {
   rating: number;
 }
@@ -25,12 +21,9 @@ interface Review {
 }
 const TestimonialSection = () => {
   const [googleReviews, setGoogleReviews] = useState<Review[]>([]);
-
   useEffect(() => {
     const fetchGoogleReviews = async () => {
       try {
-        // const placeId = 'ChIJq4TTOeYVrjsRpIFDsBNjFqQ';
-        // const googleApiKey = 'AIzaSyBfYxAN1KegvpCKE-Thil_9LF8ELlkKigE'; // Replace with your actual API key
         const response = await fetch('https://launch-api1.vercel.app/fetch-reviews');
         const data = await response.json(); 
         const filteredReviews = data.result.reviews.filter((review: Review)=> review.rating >= 4);
@@ -39,24 +32,15 @@ const TestimonialSection = () => {
         console.error('Error fetching reviews:', error);
       }
     };
-
     fetchGoogleReviews();
-
-    // Existing scroll effect code
-    // ...
   }, []);
-
- 
-
      return (
       <div>
-
 <motion.div
   initial={{ backgroundColor: 'white' }}
       animate={{ backgroundColor: 'black' }}
       transition={{ duration: 1 }}
-      className=" md:mt-6 md:mx-6"
-    >
+      className=" md:mt-6 md:mx-6">
       <div className="flex items-center justify-center  text-white font-semibold text-2xl md:text-4xl rounded-lg">
   <div className="text-blue-500 rounded">G</div>
   <div className="text-red-500  rounded">o</div>
@@ -66,7 +50,6 @@ const TestimonialSection = () => {
   <div className="text-red-500  rounded">e</div>
   <span className=" font-semibold ml-2 text-yellow-500">Reviews</span>
 </div>
-
 <div className="flex justify-center pt-2 md:pt-4 mb-4">
         <hr className="border-t-2 border-white md:w-[30PX] w-[20px]" />
       </div>
@@ -81,12 +64,10 @@ const TestimonialSection = () => {
           stretch: 0,
           depth: 200,
           modifier: 1,
-          // slideShadows: true,
         }}
         pagination={ { el: '.swiper-pagination', clickable: true }}
         modules={[EffectCoverflow, Pagination]}
-        className="mySwipergot"
-      >
+        className="mySwipergot">
         {googleReviews.map((test,index) => (
         <SwiperSlide key={index}>
         <div className='relative pt-10'>
@@ -101,7 +82,6 @@ const TestimonialSection = () => {
     />
   </div>
   <h3 className="md:text-lg text-base font-bold text-gray-100">{test.author_name}</h3>
-  {/* <p className="text-gray-500">Chicago, IL</p> */}
   <div className="text-yellow-500 flex justify-center">
               {Array.from({ length: test.rating }, (_, index) => (
                 <FontAwesomeIcon icon={faStar} key={index} className='text-xs' />
@@ -110,12 +90,10 @@ const TestimonialSection = () => {
              <div className="md:mt-4 mt-2 md:text-[15px] text-[13px] text-gray-300">
             "{test.text}"
         </div>
-
 </div>
 </div>
         </SwiperSlide>
         ))}
-        
       </Swiper>
     </motion.div>
     </div>

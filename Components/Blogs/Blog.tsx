@@ -4,8 +4,6 @@ import Header from '@/Components/Navbar/Header/Header';
 import { useState,useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
-
 interface BlogDetail {
   _id: string;     
   image: string;   
@@ -13,7 +11,6 @@ interface BlogDetail {
   title: string;   
   para: string;   
 }
-
 interface BlogItem {
   _id: string;      
   name: string;      
@@ -34,17 +31,13 @@ useEffect(() => {
     console.log("ata",data)
     setBlogs(data.data);
   };
-
     fetchData();
-  
 }, [])
 const totalCards = blogs.length;
 const totalPages = Math.ceil(totalCards / cardsPerPage);
-
 const startIndex = (currentPage - 1) * cardsPerPage;
 const endIndex = currentPage * cardsPerPage;
 const currentCards = blogs.slice(startIndex, endIndex);
-
 const goToPage = (pageNumber:number) => {
   if (pageNumber >= 1 && pageNumber <= totalPages) {
     setCurrentPage(pageNumber);
@@ -52,14 +45,16 @@ const goToPage = (pageNumber:number) => {
 };
 return (
   <div className="bg-black text-white min-h-screen">
-      
     <Header />
     <main className="p-5 pt-10">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center pt-8 mb-8">
+        <div className="flex items-center pt-8 ">
           <div className="bg-yellow-500 w-1 md:h-16 h-10  md:mr-8 mr-4"></div>
           <h1 className="md:text-7xl text-5xl font-bold">Blogs</h1>
           <span className="text-yellow-500 text-9xl md:block hidden relative" style={{ top: '-15px' }}>.</span>
+        </div>
+        <div>
+        <h2 className='md:mb-8 mb-2 mt-2 md:mt-0'>Journey With Us: Tales and Travel Tips</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
           {Array.isArray(currentCards) &&  currentCards.map((blog, index) => (
@@ -97,5 +92,4 @@ return (
   </div>
 );
 }
-
 export default Blog

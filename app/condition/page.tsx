@@ -1,13 +1,11 @@
 import Condition from "@/Components/Footer/Condition";
 import { Metadata } from "next";
-
-// AboutUs Component
 export const metadata:Metadata = {
-  title: 'Terms & Conditions - Backpackers United | Booking & Service Policies',
-  description: 'Understand the Terms & Conditions at Backpackers United. Get detailed information on booking policies, service terms, and user responsibilities.',
+  title: 'Backpackers United | Terms & Conditions',
+  description: 'Explore Backpackers Uniteds Terms & Conditions for booking, cancellations, and policies. Plan your adventure responsibly',
   openGraph: {
     title: 'Backpackers United',
-    description: 'Terms & Conditions - Backpackers United | Booking & Service Policies',
+    description: 'Backpackers United | Terms & Conditions',
     url: 'https://backpackersunited.in/condition',
     siteName: 'Backpackers United',
     images: [
@@ -19,10 +17,11 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/condition',
+  }
 }
-
 const page = () => {
- 
   return (
    <div>
     <Condition />

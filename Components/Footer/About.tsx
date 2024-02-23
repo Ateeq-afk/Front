@@ -5,9 +5,6 @@ import Header from '@/Components/Navbar/Header/Header';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import teamMembers from '@/Components/teamMembers/teamMembers';
-import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
-
-
 const aboutUsVariants = {
   initial: { 
     opacity: 0, 
@@ -18,29 +15,21 @@ const aboutUsVariants = {
     y: 0
   },
 };
-
 const teamMemberVariants = {
   initial: { scale: 0.9, opacity: 0 },
   animate: { scale: 1, opacity: 1 }
 };
-
 const parentVariants = {
   animate: {
     transition: { staggerChildren: 0.1, ease: "easeOut" }
   }
 };
-
 const imageHoverVariants = {
   hover: { scale: 1.1 }
 };
-
 const AboutUs = () => {
-
-  const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
-
   return (
     <div>
-      
       <Header />
       <div className='bg-black text-white'>
         <motion.div 
@@ -96,5 +85,4 @@ const AboutUs = () => {
     </div>
   );
 };
-
 export default AboutUs;

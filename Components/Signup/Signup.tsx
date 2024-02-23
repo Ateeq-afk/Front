@@ -13,9 +13,7 @@ const SignUpForm = () => {
   });
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
-
         const response = await fetch(
           "https://launch-api1.vercel.app/auth/signup",
           {
@@ -41,45 +39,6 @@ const SignUpForm = () => {
       } catch (error) {
         alert("Something went wrong!");
       }
-  //       if (json.success === false) {
-  //         console.log(json.succes)
-  //         toast.warn("Email Already Exists !", {
-  //           position: "top-right",
-  //           autoClose: 5000,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //           theme: "dark",
-  //           })
-  //       } else {
-        
-  //         toast.success("Acccount Created, You can now Login to your account!", {
-  //           position: "top-right",
-  //           autoClose: 5000,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //           theme: "dark",
-  //           })
-  //           router.push('/login');
-  //       }
-  //     }
-  //    catch (error) {
-  //     toast.error("Something went wrong!", {
-  //       position: "top-right",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "dark",
-  //       })
-    // }
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -96,14 +55,12 @@ const SignUpForm = () => {
           Log in
         </Link>
       </p>
-
       <div >
 <div className="relative">
   <input type="text" id="fullName" placeholder=" "  name="name" value={credentials.name} onChange={onChange} required className="w-full h-full px-4 pt-8 pb-2 border focus:outline-none text-black input-fullName"/>
   <label htmlFor="fullName" className="label-fullName absolute left-4 bottom-5 transform transition-transform duration-200 text-gray-500">Full Name</label>
 </div>
 </div>
-
       <div>
         <div className="relative">
           <input type="tel"  id="phoneno" placeholder=" "  name="phone" value={credentials.phone} onChange={onChange} required className="w-full h-full px-4 pt-8 pb-2 border focus:outline-none text-black input-phoneno"/>
@@ -116,16 +73,12 @@ const SignUpForm = () => {
           <label htmlFor="email" className="label-email absolute left-4 bottom-5 transform transition-transform duration-200 text-gray-500">Email</label>
         </div>
       </div>
-
       <div>
         <div className="relative">
           <input type="password"  id="password" placeholder=" " name="password" value={credentials.password} onChange={onChange} required className="w-full h-full px-4 pt-8 pb-2 border focus:outline-none text-black input-password" />
           <label htmlFor="password" className="label-password absolute left-4 bottom-5 transform transition-transform duration-200 text-gray-500">Password</label>
         </div>
       </div>
-
-  
-     
       <button
         type="submit"
         className="btn bg-yellow-500 text-white w-full py-3"
@@ -135,5 +88,4 @@ const SignUpForm = () => {
     </form>
   );
 };
-
 export default SignUpForm;

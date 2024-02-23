@@ -27,24 +27,16 @@ const Hero = () => {
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const fetchData = async () => {
     try {
-      // Fetching treks, tours, and destinations
       const trekResponse = await fetch('https://launch-api1.vercel.app/trek/trek');
       const tourResponse = await fetch('https://launch-api1.vercel.app/trek/tour');
       const destinationResponse = await fetch('https://launch-api1.vercel.app/dest');
-  
-      // Assuming all responses are in the correct format
       const treks = await trekResponse.json();
       const tours = await tourResponse.json();
- 
       const destinations = await destinationResponse.json();
-  
       const destWithType = destinations.data.map((item: BaseProduct) => ({ ...item, type: 'destinations' })) || [];
       const toursWithType = tours?.map((item: BaseProduct) => ({ ...item, type: 'tour' })) || [];
       const treksWithType = treks?.map((item: BaseProduct) => ({ ...item, type: 'trek' })) || [];
-
-      setProducts([...destWithType, ...toursWithType, ...treksWithType,]);
-
-      // console.log("Combined Data: ", combinedData); 
+      setProducts([...destWithType, ...toursWithType, ...treksWithType,]); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -53,7 +45,6 @@ const Hero = () => {
     setSearchInput(input);
     setHighlightedIndex(-1);
   };
-
   const findClosestMatch = (input: string): Product | null => {
     if (input.length <= 2) {
       return null;
@@ -63,22 +54,15 @@ const Hero = () => {
     );
     return filteredProducts.length > 0 ? filteredProducts[0] : null;
   };
-  
-
-
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    // Get the list of filtered products based on the current search input
     const filteredProducts = products.filter(product => 
       product.name.toLowerCase().includes(searchInput.toLowerCase())
     );
     const maxIndex = filteredProducts.length - 1;
-  
     if (event.key === 'ArrowDown') {
-      // Prevent default to stop scrolling the entire page
       event.preventDefault();
       setHighlightedIndex(prevIndex => (prevIndex < maxIndex ? prevIndex + 1 : 0));
     } else if (event.key === 'ArrowUp') {
-      // Prevent default to stop scrolling the entire page
       event.preventDefault();
       setHighlightedIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : maxIndex));
     } else if (event.key === 'Enter') {
@@ -87,7 +71,6 @@ const Hero = () => {
         const selectedProduct = filteredProducts[highlightedIndex];
         navigateToProductPage(`/${selectedProduct.type}/${selectedProduct.urllink}`);
       } else {
-        // If no item is highlighted, find the closest match or navigate to destinations
         const closestMatch = findClosestMatch(searchInput);
         if (closestMatch) {
           navigateToProductPage(`/${closestMatch.type}/${closestMatch.urllink}`);
@@ -97,9 +80,6 @@ const Hero = () => {
       }
     }
   };
-  // ... [rest of the functions]
-
-  // Function to render the product list
   const renderProductList = () => {
     return Array.isArray(products) && searchInput.length >= 2 && products
       .filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()))
@@ -117,7 +97,6 @@ const Hero = () => {
         </div>
       ));
   };
-
   const handleNavigateBasedOnInput = () => {
     const closestMatch = findClosestMatch(searchInput);
     if (closestMatch) {
@@ -126,22 +105,14 @@ const Hero = () => {
       navigateToProductPage('/destinations');
     }
   };
-  // Updated navigateToProductPage function to accept URL parameter
   const navigateToProductPage = (url = selectedUrl) => {
     const navigateUrl = url || '/destinations';
     console.log('Navigating to URL:', navigateUrl);
     window.location.href = navigateUrl;
   };
-
-
-
-
-  
-  useEffect(() => {
+useEffect(() => {
     fetchData();
   }, []);
-
-
   useEffect(() => {
     let i = 0;
     const timer = setInterval(() => {
@@ -150,7 +121,6 @@ const Hero = () => {
     }, 2000);
     return () => clearInterval(timer);
   }, []);
- 
   return (
     <div className='relative' onKeyDown={handleKeyPress} tabIndex={0} >
     <motion.div
@@ -163,14 +133,14 @@ const Hero = () => {
   <Image src="/home/Hero_image.jpg" alt="Description" layout="fill" objectFit="cover"  />
 </div>
       <div className="flex flex-col  items-start  md:w-1/2 absolute top-1/3 left-5 md:top-[40%] md:left-[10%]">
-        <motion.h2
+        <motion.div
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-2xl font-bold text-white md:text-4xl"
         >
           IT'S TIME TO <span className="text-yellow-500">{changingText}</span>
-        </motion.h2>
+        </motion.div>
         <motion.p
           initial={{ y: 100 }}
           animate={{ y: 0 }}
@@ -186,23 +156,17 @@ const Hero = () => {
           placeholder="Search"
           className="bg-white  text-black outline-none w-full pl-3"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchInputAndResetHighlight(e.target.value)}
-          value={searchInput}
-        
-        />
+          value={searchInput}/>
       <div className="search-results-list">
               {renderProductList()}
             </div>
-
-
       </div>
       <motion.button
                initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
                transition={{ duration: 0.3 }}
             className="border border-yellow-500  w-[80px] h-[40px] md:w-[90px] rounded-lg ml-2 text-black shadow-lg"
-            onClick={handleNavigateBasedOnInput}
-          
->
+            onClick={handleNavigateBasedOnInput}>
   Explore
       </motion.button>
     </div>

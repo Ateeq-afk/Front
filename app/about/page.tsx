@@ -1,7 +1,6 @@
 import AboutUs from '@/Components/Footer/About'
 import { Metadata } from 'next'
 import React from 'react'
-
 export const metadata:Metadata = {
   title: 'About Backpackers United - Learn About Our Mission & Team',
   description: 'Discover the story behind Backpackers United. Learn about our mission to empower backpackers and our teams passion for making travel accessible to all.',
@@ -19,6 +18,9 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/about',
+  }
 }
 const page = () => {
   return (
@@ -27,5 +29,4 @@ const page = () => {
     </div>
   )
 }
-
 export default page

@@ -1,28 +1,21 @@
 'use client'
 import { useState } from 'react';
-
-// Define an interface for each item
 interface FaqItem {
   title: string;
-  content: string; // or React.ReactNode if the content includes JSX elements
+  content: string; 
 }
-
-// Define an interface for the component's props
 interface FaqProps {
   items: FaqItem[];
 }
-
 const Faq: React.FC<FaqProps> = ({ items }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
-
     const toggleItem = (index: number) => {
       if (index === openIndex) {
-        setOpenIndex(null); // Close accordion if the same title is clicked
+        setOpenIndex(null); 
       } else {
-        setOpenIndex(index); // Open the clicked accordion item
+        setOpenIndex(index); 
       }
     };
-  
     return (
         <div className="flex flex-col w-full">
         {items.map((item, index) => (
@@ -52,5 +45,4 @@ const Faq: React.FC<FaqProps> = ({ items }) => {
       </div>
     )
 }
-
 export default Faq;

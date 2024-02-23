@@ -4,9 +4,8 @@ import Link from "next/link";
 import axios from 'axios';
 import ForgotPasswordModal from './Forgotpassword';
 import { useRouter } from 'next/navigation';
-import { ToastContainer, toast  } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useAuth } from "../../app/AuthContext"
-
 const LoginForm = () => {
     const router = useRouter();
     const { login } = useAuth();
@@ -34,45 +33,7 @@ const LoginForm = () => {
          
             router.back(); 
           }
-          // if(response.data.users === false){
-          //   toast.error("Email is not registered !", {
-          //     position: "top-right",
-          //     autoClose: 5000,
-          //     hideProgressBar: false,
-          //     closeOnClick: true,
-          //     pauseOnHover: true,
-          //     draggable: true,
-          //     progress: undefined,
-          //     theme: "dark",
-          //     })
-          //   }
-          //     else if( response.data.password === false){
-          //       toast.error("Incorrect Password !", {
-          //         position: "top-right",
-          //         autoClose: 5000,
-          //         hideProgressBar: false,
-          //         closeOnClick: true,
-          //         pauseOnHover: true,
-          //         draggable: true,
-          //         progress: undefined,
-          //         theme: "dark",
-          //         })
-          //     }
-          //     else{
-          //           toast("Login Successfull !", {
-          //             position: "top-right",
-          //             autoClose: 5000,
-          //             hideProgressBar: false,
-          //             closeOnClick: true,
-          //             pauseOnHover: true,
-          //             draggable: true,
-          //             progress: undefined,
-          //             theme: "dark",
-          //             })
-          //             router.push('/');
-          //     }
-        } catch (err) {
-          
+        } catch (err) {   
         }
       };
       const onChangea = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,7 +68,6 @@ const LoginForm = () => {
           Forgot your password?
           </button>
       </div>
-
       <div>
         <button type="submit" className="bg-yellow-500 text-white w-full py-4">
           Sign In 
@@ -117,5 +77,4 @@ const LoginForm = () => {
     </form>
   );
 };
-
 export default LoginForm;

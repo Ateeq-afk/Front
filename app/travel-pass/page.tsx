@@ -1,14 +1,12 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Travel from '@/Components/Travel/Travel';
-
-
 export const metadata:Metadata = {
-  title: 'Backpackers United Travel Pass/Book: Your Gateway to Endless Adventures',
-  description: 'Embark on unforgettable journeys with the Backpackers United Travel Pass/Book. Gain exclusive access to travel deals, comprehensive guides, and personalized itineraries. Start exploring today!',
+  title: 'United Travel Pass| Explore 6 Trips & Tours at Flat 50% Off ',
+  description: "Get exclusive access to 6 treks and tours with Backpackers United's Trek Pass and Tour Pass. Avail the pass and enjoy flat 50% off on your adventures!",
   openGraph: {
     title: 'Backpackers United',
-    description: 'Backpackers United Travel Pass/Book: Your Gateway to Endless Adventures',
+    description: 'United Travel Pass| Explore 6 Trips & Tours at Flat 50% Off',
     url: 'https://backpackersunited.in/travel-pass',
     siteName: 'Backpackers United',
     images: [
@@ -20,8 +18,10 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/travel-pass',
+  }
 }
- 
 const Page = () => {
 return(
 <div>

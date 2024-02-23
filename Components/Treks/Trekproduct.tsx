@@ -1,6 +1,6 @@
 'use client'
 import Header from '@/Components/Navbar/Header/Header'
-import { useState, useEffect,  FC  } from 'react';
+import { useState,  FC  } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,20 +10,22 @@ import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupeeSign,faCircle, faMountainSun, faPersonHiking, faHotel, faMapLocationDot, faAngleDown, faAngleUp, faCaretUp, faCaretDown} from '@fortawesome/free-solid-svg-icons';
-// import Booking from '@/Components/Book/Book'
 import Footer from '@/Components/Navbar/Footer/Footer';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import FAQStructuredData from './StructuredData';
-
-
+import YouTube from 'react-youtube';
 interface Data {
   name:String;
+  h2: String;
+  video: string;
   amount: number;
   maintype:String;
+  testimagealt:string;
   metatitle: String;
   metades: String;
+  withoutamount: number;
   batch: Batch[];
   day: string;
   days: DayDetail[];
@@ -32,7 +34,7 @@ interface Data {
   expecthead1para: string;
   expecthead2: string;
   expecthead2para: string;
-  // Include all other fields as per your data structure
+  originalprice?: number; 
   faq: FAQ[];
   for: string;
   fromamount: number;
@@ -43,8 +45,7 @@ interface Data {
   lead1name: string;
   level:string;
   levelname:string;
-  // ... continue for all fields
-  relatedtreks: Product[]; // If related treks are similar to products
+  relatedtreks: Product[]; 
   reserveamount: number;
   service: string;
   servicename: string;
@@ -79,7 +80,7 @@ interface Batch {
 interface DayDetail {
   day: string;
   cityName: string;
-  description: string[]; // or a more detailed object if needed
+  description: string[]; 
   image: string;
   imagealt:string;
   meals: string;
@@ -93,58 +94,30 @@ type OpenDays = {
   [key: number]: boolean;
 };
 interface TrekProps {
-    name: string; // Added explicit type for 'name'
+    data: Data; 
   }
   const Booking = dynamic(() => import('@/Components/Book/Book'), {
     loading: () => <div>Loading...</div>, // Optional loading component
   });
-const Trekproduct : FC<TrekProps> = ({ name })=> {
+const Trekproduct : FC<TrekProps> = ({ data })=> {
   const [openDay, setOpenDay] = useState<OpenDays>({});
     const [openItem, setOpenItem] = useState<null | number>(null);
     const [showPopup, setShowPopup] = useState(false);
-    const [data, setData] = useState<Data | null>(null);
     const [openSection, setOpenSection] = useState<string[]>([]);
     const [showEnquiry, setShowEnquiry] = useState(false);
     const toggleSection = (sectionName: string) => {
       if (openSection.includes(sectionName)) {
-        // If the section is already open, close it
         setOpenSection(openSection.filter((section) => section !== sectionName));
       } else {
-        // If the section is closed, open it
         setOpenSection([...openSection, sectionName]);
       }
     };
     const [expanded, setExpanded] = useState(false);
-
-    // Function to toggle the expanded state
     const toggleExpanded = () => {
       setExpanded(!expanded);
     };
-  
-    // Determine the number of batches to show
     const batches = data?.batch || [];
     const displayedBatches = expanded ? batches : batches.slice(0, 2);
-    // const toggleSection = (section) => {
-    //     if (openSection === section) {
-    //         setOpenSection(null);
-    //     } else {
-    //         setOpenSection(section);
-    //     }
-    // }
-    console.log(name,"id")
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        const response = await fetch(`https://launch-api1.vercel.app/trek/trek/${name}`);
-        const data = await response.json();
-        console.log("ata",data)
-        setData(data);
-      };
-  
-      if (name) {
-        fetchData();
-      }
-    }, [name])
     const toggleItem = (index:number) => {
       if (openItem === index) {
         setOpenItem(null);
@@ -152,35 +125,20 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         setOpenItem(index);
       }
     };
+    const opts = {
+      playerVars: {
+        autoplay: 1,
+      },
+    };
+    // Adjust dimensions for mobile devices
+  
+    const videoId = "oRGhqUjWF6U"
     const toggleOpen = (index: number) => {
       setOpenDay((prevOpenDays: { [key: number]: boolean }) => ({
         ...prevOpenDays,
-        [index]: !prevOpenDays[index] // Toggle the boolean value for this day
+        [index]: !prevOpenDays[index] 
       }));
     }
-    const faq = [
-      {
-        question: "What is the number of participants on a trip?",
-        answer: "For our tours, we typically host 12-20 travelers in a single batch. If the number of travelers exceeds this range, we organize them into multiple batches for a better experience. For trekking adventures, our groups usually consist of 20-30 travelers per batch, with the possibility of slightly larger groups during long weekends."
-      },
-      {
-        question: "Do your trips have any age limitations?",
-        answer: "Yes, we have an age restriction in place, requiring participants to be 18 years or older. However, if guardians or parents are accompanying the group, they are welcome to bring their children along for the trek or tour."
-      },
-      {
-        question: "How can I reserve my slot?",
-        answer: "You can directly reserve your slots by booking on the website, please ensure proper dates are selected before confirming your booking."
-      },
-      {
-        question: "Is it safe for Women travelers?",
-        answer: " Safety and Security Guidelines are followed at all times, and it is our topmost priority. We have certified trek leads (Male/Female) accompanying the participants at all times and our stay follows well-rounded safety measures."
-      },
-      {
-        question: "What payment options do I have?",
-        answer: "We have multiple payment options on the website that you can refer to."
-      }
-    ];
-  
     if (!data) {
       return (
         <div>
@@ -192,24 +150,24 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
     <div >
        <Header />
     <div className='flex flex-col '>
-      
       <div className=" h-screen w-full relative ">
-        <Image src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${data.testimage}`}  alt="kudremukha" layout="fill" objectFit="cover" className='absolute' /> 
+        <Image src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${data.testimage}`}  alt={data.testimagealt} layout="fill" objectFit="cover" className='absolute' /> 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> 
            <div className='absolute left-0 bottom-0 w-full' >
-
            <h1 className='text-3xl md:text-5xl text-white font-bold pl-10 pb-5'>{data.name}</h1>
             <div className="flex flex-col md:flex-row items-center justify-center py-4 md:pl-10 px-4 w-full bg-black mx-auto">
-          {/* <div className='flex flex-row pb-4 md:pb-0'> */}
           <div className="text-white md:w-[15rem] w-auto mt-6 md:mt-0 ">
             <div className='flex flex-row md:flex-col' >
             <div className="font-bold md:text-xl text-lg">{data.day}</div>
-            <div className="flex flex-row  items-center md:text-base text-lg md:pl-0 pl-2 text-yellow-500">{data.for} <FontAwesomeIcon icon={faIndianRupeeSign} className='text-sm w-4 h-4 ' /> {data.fromamount}</div>
-            </div>
+            {
+  data.fromamount &&  ( <div className="flex flex-row  items-center md:text-base text-lg md:pl-0 pl-2 text-yellow-500"> {data.for} {data.originalprice && (
+    <p className="text-[18px] line-through mx-2 text-white" >
+   ₹{data.originalprice}
+    </p>
+  )} <FontAwesomeIcon icon={faIndianRupeeSign} className='text-sm w-4 h-4 ' /><p className='text-[18px]'>{data.fromamount}</p> </div>) }
+            </div> 
            <Link href="#date"> <div className="underline">View All Dates & Prices</div></Link>
           </div>
-      
-            {/* </div> */}
           <div className="grid grid-cols-2 md:grid-cols-4  p-1  text-white rounded-lg">
           <div className="flex flex-row items-center md:w-[13rem] mt-6 md:mt-0">
             <FontAwesomeIcon icon={faMountainSun} className='md:w-8 md:h-8 w-6 h-6' /> 
@@ -234,7 +192,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
             </div>
             <div className="flex flex-row items-center md:w-[6rem] mt-6 md:mt-0">
             <FontAwesomeIcon icon={faMapLocationDot} className='md:w-8 md:h-8 w-6 h-6' /> 
-            <div className='flex flex-col pl-4' >{/* Replace with your icon */}
+            <div className='flex flex-col pl-4' >
               <span className='text-yellow-500'>{data.state}</span>
               <span>{data.statename}</span>
               </div>
@@ -251,12 +209,8 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         </div>
       </div>
       </div>
-   
       <div className="flex flex-grow">
-        {/* Sidebar */}
         <aside className="hidden md:block md:w-1/4 bg-gray-200 p-4 text-black overflow-auto sticky top-[80px] h-[100vh]">
-
-          
                 <Link href="#expedition-overview">
                     <span className="block  hover:font-bold p-2">Overview</span>
                 </Link>
@@ -275,11 +229,15 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
                 <Link href="#things">
                     <span className="block mb-2 hover:font-bold px-2">Things to Carry</span>
                 </Link>
+                {data.video && (
+                     <Link href="#video">
+                         <span className="block mb-2 hover:font-bold px-2">Glimpses</span>
+                     </Link>
+                    )}
                 <Link href="#faq">
                     <span className="block  hover:font-bold px-2">FAQ's</span>
                 </Link>
                         <div className="border-t-2 border-gray-300 mt-4 mb-1"></div>
-
                         { data && data.batch && data.batch.length >= 1 &&    <motion.button
                initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
@@ -287,31 +245,27 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
                className="w-full py-4  border  border-yellow-500 text-black rounded"   onClick={() => setShowPopup(true)}>BOOK NOW</motion.button> }
       <div className="text-center mt-6">Call <a href="tel:+918310180609" className='text-yellow-500 font-bold hover:underline '>+91 83101-80609</a></div>
       <button className="w-full my-4 mt-4  text-xl text-yellow-500 font-bold hover:underline " onClick={() => setShowEnquiry(true)}>Send Enquiry</button>
-                {/* Add other links similarly */}
             </aside>
                         <main className=" flex-1 overflow-y-auto">
             <section id="expedition-overview">
                 <div className="bg-white md:p-10 p-4 text-black">
                     <div className="border-b-2 border-gray-300 md:py-8 py-2"  >
                         <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("expedition")}>
-                           {/* hidden on medium and above screens */}
-                            <h2 className="text-2xl font-bold md:mb-6 mb-2">OVERVIEW</h2>
+                            <div className="text-2xl font-bold md:mb-6 mb-2">OVERVIEW</div>
                             <button className='text-xl'>
                             {openSection.includes("expedition")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                             </button>
                         </div>
                         {openSection.includes("expedition")  && (
-                            <div className="md:hidden"> {/* hidden on medium and above screens */}
-                                <SpecialOffers />
+                            <div className="md:hidden"> 
                                 <FeatureList data={data} />
                             </div>
                         )}
-                        <div className="hidden md:block"> {/* shown only on medium and above screens */}
+                        <div className="hidden md:block"> 
                         <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
                             <div className="text-3xl font-bold mb-6">OVERVIEW</div>
                             </div>
-                            <SpecialOffers />
                             <FeatureList data={data} />
                         </div>
                     </div>
@@ -321,13 +275,13 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0 text-black">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
             <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("itinerary")}> {/* hidden on medium and above screens */}
-                <h2 className="text-2xl font-bold md:mb-6 mb-2">ITINERARY</h2>
+                <div className="text-2xl font-bold md:mb-6 mb-2">ITINERARY</div>
                 <button  className='text-xl'>
                     {openSection.includes("itinerary")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                 </button>
             </div>
             {openSection.includes("itinerary") && (
-                <div className="md:hidden"> {/* hidden on medium and above screens */}
+                <div className="md:hidden"> 
                     <p className="text-gray-600 mb-10">{data.itinerary}</p>
                     <div className="container mx-auto">
                         {data && data.days && data.days.map((days, index) => (
@@ -379,7 +333,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
                     {data && data.days && data.days.map((days, index) => (
                           <div key={index} className="border-b pb-4 mb-4">
                           <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleOpen(index)}>
-                            <h3 className="text-xl font-semibold">{days.day} : {days.cityName}</h3>
+                            <div className="text-xl font-semibold">{days.day} : {days.cityName}</div>
                             <span>
                               {openDay[index] ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
                             </span>
@@ -421,7 +375,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         <div className="mx-auto bg-white md:p-10 p-4 pt-0 md:pt-0">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
           <div className="flex justify-between  md:hidden" onClick={() => toggleSection("expect")} >
-            <h2 className="text-2xl  font-bold pb-2 text-black">WHAT TO EXPECT</h2>
+            <div className="text-2xl  font-bold pb-2 text-black">WHAT TO EXPECT</div>
             <button className="text-xl">
               {openSection.includes("expect") ? (
                 <FontAwesomeIcon icon={faAngleUp} />
@@ -448,14 +402,14 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
                 <section id="date">
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0">
     <div className="border-b-2 border-gray-300 md:pb-8 py-1">
-        <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("date")}> {/* hidden on medium and above screens */}
-            <h2 className="text-2xl font-bold mb-2 text-black">DATES & PRICES</h2>
+        <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("date")}>
+            <div className="text-2xl font-bold mb-2 text-black">DATES & PRICES</div>
             <button  className='text-xl'>
                 {openSection.includes("date")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
             </button>
         </div>
         {openSection.includes("date") && (
-            <div className="md:hidden"> {/* hidden on medium and above screens */}
+            <div className="md:hidden"> 
                 <DateContent data={data} expanded={expanded} toggleExpanded={toggleExpanded} displayedBatches={displayedBatches} setShowEnquiry={setShowEnquiry} setShowPopup={setShowPopup} />
             </div>
         )}
@@ -473,13 +427,13 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
  <div className="flex justify-between md:p-10 md:pt-0 p-4 pt-0 mx-auto bg-white">
  <div className='border-b-2 border-gray-300 md:pb-8 py-1'>
  <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("inclu")}> 
- <h2 className="text-2xl font-bold mb-4 text-black">INCLUSIONS AND EXCLUSIONS</h2>
+ <div className="text-2xl font-bold mb-4 text-black">INCLUSIONS AND EXCLUSIONS</div>
  <button  className='text-xl'>
                 {openSection.includes("inclu")  ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
             </button>
         </div>
         {openSection.includes("inclu") && (
-            <div className="md:hidden"> {/* hidden on medium and above screens */}
+            <div className="md:hidden"> 
                 <IncluContent data={data} />
             </div>
         )}
@@ -492,19 +446,18 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         </div>
       </div>
     </div>
-   
  </section>
  <section id="things">
     <div className="bg-white md:p-10 p-4 pt-0 md:pt-0">
         <div className="border-b-2 border-gray-300 md:pb-8 py-1">
             <div className="flex justify-between items-center md:hidden" onClick={() => toggleSection("things")}> {/* hidden on medium and above screens */}
-                <h2 className="text-2xl font-bold mb-2 text-black">THINGS TO CARRY</h2>
+                <div className="text-2xl font-bold mb-2 text-black">THINGS TO CARRY</div>
                 <button  className='text-xl'>
                     {openSection.includes("things") ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} />}
                 </button>
             </div>
             {openSection.includes("things") && (
-                <div className="md:hidden"> {/* hidden on medium and above screens */}
+                <div className="md:hidden">
                     <ThingsContent data={data} />
                 </div>
             )}
@@ -518,14 +471,28 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         </div>
     </div>
 </section>
-
+<section id='video'>
+{data.video && (
+<div className='md:p-10 md:pt-0 p-4 bg-white '>
+  <div className='border-b-2 border-gray-300 md:pb-8 pb-4 bg-white'>
+  <div className="flex items-left">
+          <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
+          <div className="text-2xl font-semibold mb-6 text-black">Glimpses</div>
+        </div>
+        <div className="youtube-responsive-wrapper">
+  <YouTube videoId={data.video} opts={opts} className="youtube-player"/>
+  </div>
+  </div>
+  </div>
+)}
+</section>
 <section id='faq'>
   {data && data.faq && data.faq.some(faq => faq.answer) && (
     <div className='md:p-10 md:pt-0 p-4 bg-white '>
       <div className='border-b-2 border-gray-300 md:pb-8 pb-4'>
         <div className="flex items-left">
           <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-          <h2 className="text-2xl font-semibold mb-6 text-black">FAQs</h2>
+          <div className="text-2xl font-semibold mb-6 text-black">FAQs</div>
         </div>
         {data.faq.map((faq: FAQ, index: number) => (
           <div key={index} className="mb-4 p-4 border rounded-lg shadow-md">
@@ -546,10 +513,9 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
                 <div className="container mx-auto md:p-10 p-4 md:pt-0 bg-white">
                 <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-6 mr-4 mt-[6px]"></div>
-      <h2 className="text-2xl font-semibold mb-6 text-black ">RELATED TRIPS</h2>
+      <div className="text-2xl font-semibold mb-6 text-black ">RELATED TRIPS</div>
       </div>
       <div className='relative px-6'>
-        {/* Trip 1 */}
         <Swiper
         spaceBetween={30}
         slidesPerView={4}
@@ -573,10 +539,8 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
           1200: {
             slidesPerView: 3,
           },
-        }}
-      >
+        }}>
         {data && data.relatedtreks && data.relatedtreks.map((related, index) => (
-       
             <SwiperSlide key={index}>
                  <Link  href={`/trek/${related.urllink}`} >
         <div className="border rounded-lg overflow-hidden ">
@@ -599,7 +563,6 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
         </div>
         </Link> 
         </SwiperSlide>
-     
         ))}
              </Swiper>
              <div className="flex justify-between mt-4">
@@ -610,9 +573,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
       </div>
     </div>
     </div>
-
                 </section>
-                {/* Add other content sections similarly */}
             </main>
         </div>
         </div>
@@ -623,7 +584,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
        { data && data.batch && data.batch.length >= 1 &&   <button className="bg-black text-white px-4 py-2 rounded-lg" onClick={() => setShowPopup(true)}>Book Now</button> }
       </div>
     </div>
-    {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.fromamount} name={data.name.toString()} testimage={data.testimage} maintype={data.maintype.toString()} /> }
+    {showPopup && <Booking  onClose={() => setShowPopup(false)} Batch={data.batch} reserveamount={data.reserveamount} foramount={data.amount} withoutamount={data.withoutamount} name={data.name.toString()} testimage={data.testimage} maintype={data.maintype.toString()} /> }
     {showEnquiry && <EnquiryForm onClose={() => setShowEnquiry(false)} source={String(data.name)}/>}
     <FAQStructuredData faqItems={data.faq} />
     </div>
@@ -631,7 +592,7 @@ const Trekproduct : FC<TrekProps> = ({ name })=> {
 }
 const SpecialOffers = () => (
   <div className="shadow-md p-4 md:p-6 rounded-md mb-6 relative border border-gray-400">
-      <h2 className="text-sm font-semibold mb-2">SPECIAL OFFERS</h2>
+      <div className="text-sm font-semibold mb-2">SPECIAL OFFERS</div>
       <p>Experience Unbeatable Prices: Unleash exclusive travel advantages and Enjoy Up to 50% Off On Your Next Weekend Getaway!</p>
      <Link href='/travel-pass'> <button className="mt-2 text-yellow-500 hover:underline">AVAIL NOW</button></Link>
   </div>
@@ -641,8 +602,9 @@ interface FeatureListProps {
 }
 const FeatureList: FC<FeatureListProps> =({ data }) => (
   <>
+   {data && data.h2 && <h2 className='font-semibold md:mb-4 text-lg '>{data.h2}</h2>}
       {data && data.over && data.over.map((over, index) => (
-          <div key={index} className='mb-2'>{over}</div>
+          <p key={index} className='mb-2'>{over}</p>
       ))}
   </>
 );
@@ -653,11 +615,11 @@ const ExpectContent: FC<ExpectProps> = ({ data }) => (
   <>
     <p className="text-gray-600 mb-6">{data.expectpara}</p>
     <div className="mb-6">
-      <h2 className="text-xl font-semibold mb-4 text-black">{data.expecthead1}</h2>
+      <div className="text-xl font-semibold mb-4 text-black">{data.expecthead1}</div>
       <p className="text-gray-600 mb-6">{data.expecthead1para}</p>
     </div>
     <div>
-      <h2 className="text-xl font-semibold mb-4 text-black">{data.expecthead2}</h2>
+      <div className="text-xl font-semibold mb-4 text-black">{data.expecthead2}</div>
       <p className="text-gray-600">{data.expecthead2para}</p>
     </div>
   </>
@@ -670,7 +632,6 @@ interface DateContentProps {
   setShowEnquiry: (show: boolean) => void;
   setShowPopup: (show: boolean) => void;
 }
-
 const  DateContent: FC<DateContentProps> = ({ displayedBatches, toggleExpanded, data, expanded, setShowEnquiry, setShowPopup }) => (
   <div>
      { data && data.batch && data.batch.length >= 1 && (
@@ -699,7 +660,6 @@ const  DateContent: FC<DateContentProps> = ({ displayedBatches, toggleExpanded, 
           </div>
         </div>
       ))}
-
       {data && data.batch && data.batch.length > 2 && (
         <div className="text-center my-4">
           <button
@@ -724,7 +684,7 @@ interface IncluContentProps {
 const IncluContent: FC<IncluContentProps> = ({ data }) => (
   <div className='flex flex-col md:flex-row m-2 md:m-0'>
       <div className="md:w-1/2 w-full pr-4">
-        <h2 className="mb-4 text-lg font-bold text-black">WHAT'S INCLUDED</h2>
+        <div className="mb-4 text-lg font-bold text-black">WHAT'S INCLUDED</div>
         <div>
            {data && data.included && data.included.map((included, idx) => (
             <div key={idx} className="mb-2 list-decimal flex flex-row text-black"><FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px] text-yellow-500' />{included}</div>
@@ -733,7 +693,7 @@ const IncluContent: FC<IncluContentProps> = ({ data }) => (
       </div>
       <div className="hidden md:block border-l-2 border-gray-300 mx-4"></div>
       <div className="md:w-1/2 w-full md:pl-4 ">
-        <h2 className="mb-4 text-lg font-bold text-black">WHAT'S NOT INCLUDED</h2>
+        <div className="mb-4 text-lg font-bold text-black">WHAT'S NOT INCLUDED</div>
         <div>
         {data && data.notincluded && data.notincluded.map((notincluded, idx) => (
             <div key={idx} className="mb-2 list-decimal flex flex-row text-black"><FontAwesomeIcon icon={faCircle} className='w-[5px] h-[5px] pr-2 pt-[9px] text-yellow-500' />{notincluded}</div>
@@ -756,6 +716,5 @@ const ThingsContent: FC<ThingsContentProps> = ({ data }) => (
       </div>
   </div>
 );
-
 export default Trekproduct
 

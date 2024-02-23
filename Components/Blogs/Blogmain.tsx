@@ -1,10 +1,9 @@
 "use client"
-import { useState,useEffect,FC } from 'react';
+import { useState,FC } from 'react';
 import Image from 'next/image';
 import BlogSlider from '@/Components/Blogs/Blogsslider/BlogSlider';
 import Header from '@/Components/Navbar/Header/Header';
 import Footer from '@/Components/Navbar/Footer/Footer';
-
 interface Blog {
   name: string;
   over: string[];
@@ -13,7 +12,7 @@ interface Blog {
   blogs: BlogDetail[];
   products: Product[];
 }
-interface Product {// Adjust the type as needed
+interface Product {
   testimage: string;
   testimagealt: string;
   _id: string;
@@ -22,7 +21,6 @@ interface Product {// Adjust the type as needed
   amount: number;
   urllink: string;
   badge?: string;
-  // ... other properties
 }
 interface BlogDetail {
   _id: string;
@@ -33,9 +31,6 @@ interface BlogDetail {
   statename: string; 
   amount: number;   
   urllink: string;  
-}
-interface PageProps {
-      name: string;
 }
 interface DataProps {
   products: {
@@ -49,28 +44,14 @@ interface DataProps {
     badge?: string;
   }[];
 }
-const Blogmain : FC <PageProps> = ({ name })=> {
-  // State to track which activity's description is expanded
+interface BlogProps {
+  blog: Blog;
+}
+const Blogmain : FC <BlogProps> = ({ blog })=> {
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [blog, setBlog] = useState<Blog | null>(null);
-
   const toggleExpanded = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`
-      https://launch-api1.vercel.app/blog/${name}`);
-      const data = await response.json();
-      console.log("ata",data)
-      setBlog(data);
-    };
-
-    if (name) {
-      fetchData();
-    }
-  }, [name])
   const transformBlogToDataProps = (blog: Blog): DataProps => {
     return {
       products: blog.products // Directly use the products array from Blog
@@ -99,9 +80,6 @@ const Blogmain : FC <PageProps> = ({ name })=> {
      </p>
       ))} 
     </div> 
-  
-       {/* Activity Section */}
-       {/* Activity Section */}
        <div className="bg-black py-8 pb-0">
   <div className="container mx-auto md:px-16 px-4 grid grid-cols-1 md:grid-cols-2 md:gap-5">
   {blog && blog.blogs && blog.blogs.map((blogs, index) => (
@@ -130,9 +108,7 @@ const Blogmain : FC <PageProps> = ({ name })=> {
           ))}
         </div>
       </div>
-      {/* BlogSlider Component */}
  {blog && <BlogSlider data={transformBlogToDataProps(blog)} />}
-
       <Footer />
       </div> 
     </>

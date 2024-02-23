@@ -1,17 +1,13 @@
 'use client'
 import React from 'react';
-
 interface FAQItem {
   question: string;
   answer: string;
 }
-
 interface FAQStructuredDataProps {
   faqItems: FAQItem[];
 }
-
 const FAQStructuredData: React.FC<FAQStructuredDataProps> = ({ faqItems = [] }) => {
-    // Default FAQs if faqItems is not present
     const defaultFAQs: FAQItem[] = [
       {
         question: "What is the number of participants on a trip?",
@@ -34,11 +30,7 @@ const FAQStructuredData: React.FC<FAQStructuredDataProps> = ({ faqItems = [] }) 
         answer: "We have multiple payment options on the website that you can refer to."
       }
     ];
-  
-    // Use default FAQs if faqItems is not present
     const finalFAQs = faqItems.length > 0 ? faqItems : defaultFAQs;
-  
-  // Generate the structured data object
   const generateFAQSchema = () => {
     const faqSchema = {
       '@context': 'https://schema.org',
@@ -52,7 +44,6 @@ const FAQStructuredData: React.FC<FAQStructuredDataProps> = ({ faqItems = [] }) 
         };
       }[],
     };
-
     finalFAQs.forEach((faq, index) => {
       faqSchema.mainEntity.push({
         '@type': 'Question',
@@ -63,29 +54,21 @@ const FAQStructuredData: React.FC<FAQStructuredDataProps> = ({ faqItems = [] }) 
         },
       });
     });
-
     return JSON.stringify(faqSchema);
   };
-
-  // Create a script element and set its content to the structured data
   const createScriptElement = () => {
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.innerHTML = generateFAQSchema();
     return script;
   };
-
-  // Append the script element to the document's head on component mount
   React.useEffect(() => {
     const script = createScriptElement();
     document.head.appendChild(script);
-    // Cleanup function to remove the script element on component unmount
     return () => {
       document.head.removeChild(script);
     };
   }, []);
-
-  return null; // No need to render anything in the component
+  return null; 
 };
-
 export default FAQStructuredData;

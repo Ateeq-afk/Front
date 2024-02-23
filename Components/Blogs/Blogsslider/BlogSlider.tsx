@@ -4,11 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation,Scrollbar,Pagination  } from 'swiper/modules';
+import { Navigation,Pagination  } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
-// SwiperCore.use([Navigation, Scrollbar]);
 interface DataProps {
   products: {
     _id: string;
@@ -81,7 +80,7 @@ const  BlogSlider =({ data }: { data: DataProps }) => {
          </span>
        )}
        <div className="p-4 text-center">
-  <h4 className="text-lg mb-1">{item.name}</h4>
+  <h3 className="text-lg mb-1">{item.name}</h3>
   <p className="text-sm mb-2">{item.statename}</p>
        </div>
        <div className="flex flex-col sm:flex-row justify-between items-center mt-4 space-x-0 sm:space-x-4"> {/* Adjusted margin-top and space between price and button */}

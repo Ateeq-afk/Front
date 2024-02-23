@@ -4,11 +4,7 @@ import { Jost } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import React, { useEffect } from 'react';
 import { AuthProvider } from '../app/AuthContext';
-
 const Jostr = Jost({ weight: '400', subsets: ['latin'] });
-
-
-
 declare global {
   interface Window {
     gbwawc: {
@@ -27,12 +23,9 @@ declare global {
     };
   }
 }
-
 export default function RootLayout({ children }:  { children: React.ReactNode }){
   useEffect(() => {
-    // Check if the script is already loaded to avoid re-loading it
     if (!document.getElementById("whatsapp-widget-script")) {
-      // Define the script content in a function
       const setupScript = () => {
         window.gbwawc = {
           url: "https://waw.gallabox.com",
@@ -48,15 +41,12 @@ export default function RootLayout({ children }:  { children: React.ReactNode })
             replyOptions: ['I want to talk to a sales person.',' I have a support request!',"I'm just browsing through."],
           },
         };
-
         const script = document.createElement('script');
         script.id = "whatsapp-widget-script";
         script.async = true;
         script.src = "https://waw.gallabox.com/whatsapp-widget.min.js?_=" + Math.random();
         document.body.appendChild(script);
       };
-
-      // Execute the script setup function
       setupScript();
     }
   }, []);
@@ -64,7 +54,6 @@ export default function RootLayout({ children }:  { children: React.ReactNode })
     <AuthProvider>
     <html lang="en">
       <head>
-        {/* Google Tag Manager */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-TRW1BNQ5YR"></script>
         <script dangerouslySetInnerHTML={{__html: `
           window.dataLayer = window.dataLayer || [];
@@ -72,11 +61,9 @@ export default function RootLayout({ children }:  { children: React.ReactNode })
           gtag('js', new Date());
           gtag('config', 'G-TRW1BNQ5YR');
         `}} />
-        {/* End Google Tag Manager */}
       </head>
       <body className={`${Jostr.className}`}>
         {children}
-   
         <Analytics />
       </body>
     </html>

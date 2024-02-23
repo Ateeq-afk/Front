@@ -1,10 +1,67 @@
-// next.config.js
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
+const cspHeader = `
+    default-src 'self';
+    script-src 'self' https://www.googletagmanager.com https://va.vercel-scripts.com https://waw.gallabox.com https://checkout.razorpay.com https://maps.googleapis.com 'unsafe-eval' 'unsafe-inline';
+    style-src 'self' https://maps.gstatic.com https://fonts.googleapis.com 'unsafe-inline';
+    img-src 'self' blob: data: https://www.google.co.in/ads/ga-audiences https://maps.gstatic.com https://maps.googleapis.com https://www.googletagmanager.com;
+    font-src 'self' data: https://maps.googleapis.com https://fonts.gstatic.com; 
+    object-src 'self' data:;
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    block-all-mixed-content;
+    upgrade-insecure-requests;
+    connect-src 'self' https://launch-api1.vercel.app https://analytics.google.com https://lumberjack-cx.razorpay.com https://lumberjack.razorpay.com https://maps.googleapis.com;
+    frame-src 'self' https://waw.gallabox.com https://api.razorpay.com;
+`;
+
 
 const nextConfig = {
   images: {
     domains: ['localhost', 'imgtr.ee', 'bpu-images-v1.s3.eu-north-1.amazonaws.com','lh3.googleusercontent.com'],
   },
-
+  async headers() {
+    return [
+      {
+        source: '/:path*', 
+        headers: [
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          {
+            key: 'Content-Security-Policy',
+            value: cspHeader.replace(/\n/g, ' ').trim(), 
+          },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        ],
+      },
+      {
+        source: '/_next/image(.*)', 
+        headers: [
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        ],
+      },
+      {
+        source: '/_next/image', 
+        headers: [
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        ],
+        has: [
+          {
+            type: 'query',
+            key: 'url',
+          },
+        ],
+      },
+    ];
+  },
+  
+  
   async redirects() {
     return [
       {
@@ -204,8 +261,52 @@ const nextConfig = {
       },
     ];
   },
-  reactStrictMode: true,
-  experimental: { optimizeCss: true }
+  webpack: (config, { isServer, dev }) => {
+    // Do not perform custom minification in development mode
+    if (dev) {
+      return config;
+    }
+
+    // Ensure the Webpack 5 is used
+    config.resolve.fallback = { fs: false, path: false };
+
+    // Modify existing minimizer configuration or add if not present
+    if (!isServer) {
+      config.optimization.minimize = true; // Ensure minimizing is enabled
+
+      // Find and replace TerserPlugin and CssMinimizerPlugin if they exist, or add them
+      const terserIndex = config.optimization.minimizer.findIndex(minimizer => minimizer.constructor.name === 'TerserPlugin');
+      if (terserIndex > -1) {
+        config.optimization.minimizer[terserIndex] = new TerserPlugin({
+          terserOptions: {
+            compress: { drop_console: true },
+            format: { comments: false },
+          },
+          extractComments: false,
+        });
+      } else {
+        config.optimization.minimizer.push(new TerserPlugin({
+          terserOptions: {
+            compress: { drop_console: true },
+            format: { comments: false },
+          },
+          extractComments: false,
+        }));
+      }
+
+      const cssMinimizerIndex = config.optimization.minimizer.findIndex(minimizer => minimizer.constructor.name === 'CssMinimizerPlugin');
+      if (cssMinimizerIndex > -1) {
+        // Replace existing CssMinimizerPlugin with custom configuration
+        config.optimization.minimizer[cssMinimizerIndex] = new CssMinimizerPlugin();
+      } else {
+        // Add CssMinimizerPlugin if it doesn't exist
+        config.optimization.minimizer.push(new CssMinimizerPlugin());
+      }
+    }
+
+    return config;
+  },
+  
 };
 
 module.exports = nextConfig;

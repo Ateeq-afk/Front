@@ -6,7 +6,6 @@ import AccordionItem from '@/Components/Member/Accordian/Accordianitem';
 import Footer from '@/Components/Navbar/Footer/Footer';
 import Header from '@/Components/Navbar/Header/Header';
 import Link from 'next/link';
-
 interface FormData {
     title: string;
     firstName: string;
@@ -17,7 +16,6 @@ interface FormData {
   }
 const Travelpassmain = () => {
   const [formData, setFormData] = useState<FormData>({
-    // State for form data (as an example)
     title: '',
     firstName: '',
     lastName: '',
@@ -25,56 +23,31 @@ const Travelpassmain = () => {
     phonenumber: '',
     passtype: '',
   });
-
-
-  // Generate an array of 20 items for the MembershipCard lists
   const formatDate = (date: Date) => {
     let dd: number | string = date.getDate();
-    let mm: number | string = date.getMonth() + 1; // January is 0!
+    let mm: number | string = date.getMonth() + 1; 
     const yyyy = date.getFullYear();
-  
     if (dd < 10) {
       dd = '0' + dd;
     }
     if (mm < 10) {
       mm = '0' + mm;
     }
-  
     return dd + '/' + mm + '/' + yyyy;
   };
-  
-
-// Calculate today's date
-// const today = new Date();
-// const activationDate = formatDate(today);
-
-// // Calculate expiring date (6 months from today)
-// today.setMonth(today.getMonth() + 6);
-// const expiringDate = formatDate(today);
-// Calculate today's date
 const today = new Date();
 const defaultActivationDate = today.toISOString().split('T')[0];
-// const defaultActivationDate = formatDate(today);
-
-// State for activation and expiring dates
 const [activationDate, setActivationDate] = useState(defaultActivationDate);
 const [expiringDate, setExpiringDate] = useState('');
-
-// Effect to update expiring date when activation date changes
 useEffect(() => {
   const activation = new Date(activationDate);
-  activation.setMonth(activation.getMonth() + 12); // Add 6 months to the activation date
+  activation.setMonth(activation.getMonth() + 12); 
   setExpiringDate(formatDate(activation));
 }, [activationDate]);
-
-
-  const [membershipPrice, setMembershipPrice] = useState(0); // Default price for BACKPACKER
-
-//   const [gstRate, setGstRate] = useState(0.05);
+  const [membershipPrice, setMembershipPrice] = useState(0); 
   const getGstFirst = () => {
     return membershipPrice * 0.05;
   };
-  
   const getTotalFirst = () => {
     return membershipPrice + getGstFirst();
   };
@@ -82,21 +55,20 @@ useEffect(() => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if (name === 'activationdate') {
-      setActivationDate(value); // Update activation date
+      setActivationDate(value); 
     }
     if (name === 'passtype') {
         if (value === 'Trek Pass') {
-          setMembershipPrice(12000); // Updated Trek Pass price
+          setMembershipPrice(12000); 
         } else if (value === 'Tour Pass') {
-          setMembershipPrice(21000); // Updated Tour Pass price
+          setMembershipPrice(21000); 
         } else {
           setMembershipPrice(0);
         }
       }
-      
   };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
     await initiateAndPayMembership();
 };
 const initiateAndPayMembership = async () => {
@@ -106,11 +78,9 @@ const initiateAndPayMembership = async () => {
       script.onload = () => initializeMembershipPayment().catch(console.error);
       document.head.appendChild(script);
   };
-
   const initializeMembershipPayment = async () => {
       try {
           const requestBody = {
-              // Update with the correct data for initiating payment
               passtype: formData.passtype,
               activationdate: activationDate,
               expiringdate: expiringDate, 
@@ -123,17 +93,12 @@ const initiateAndPayMembership = async () => {
               gst: getGstFirst().toFixed(2), 
               totalamount: getTotalFirst().toFixed(2) ,
           };
-
           const resInitiate = await fetch('https://launch-api1.vercel.app/membera/initiatePayment', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(requestBody),
           });
-
           const dataInitiate = await resInitiate.json();
-
-          console.log('Initiate Payment Response:', dataInitiate);
-
           const options = {
               key: process.env.RAZORPAY_KEY_ID,
               amount: dataInitiate.order.amount,
@@ -145,7 +110,6 @@ const initiateAndPayMembership = async () => {
                 alert('Travel Pass is unlocked, You can check mail for further details');
               },
           };
-
           const rzp = new window.Razorpay(options);
           rzp.open();
       } catch (error) {
@@ -153,28 +117,19 @@ const initiateAndPayMembership = async () => {
           alert('Travel Pass payment verification failed.');
       }
   };
-
   loadRazorpayScript();
 };
-
-const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
-
     <>
-     
    <Header />
    <div className='md:pt-20 pt-14 bg-black'></div>
    <div className='w-full bg-black'>
    <div className="container mx-auto md:p-8 p-2">
         <div >
-          {/* Guest Details Section  onSubmit={initiateAndPayMembership} */}
           <form onSubmit={handleSubmit} className="flex flex-col md:flex-row text-black">
           <div id="targetDiv"  className="md:w-2/3 md:p-4 py-4 px-2 pb-0">
   <div className="bg-white md:p-6 p-4 shadow rounded-lg mb-4">
-    <h2 className="text-xl font-bold text-yellow-500 mb-4">Traveller's Details</h2>
-
-  
-      {/* Title Field */}
+    <h1 className="text-xl font-bold text-yellow-500 mb-4">Traveller's Details</h1>
       <div className="mb-4 md:mb-0 md:col-span-2">
   <label htmlFor="title" className="block  mt-2 text-sm font-medium text-black">
     Title
@@ -191,12 +146,8 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
     <option value="Mr.">Mr.</option>
     <option value="Ms.">Ms.</option>
     <option value="Mrs.">Mrs.</option>
-   
-    {/* Add more options as needed */}
   </select>
 </div>
-
-      {/* First Name Field */}
       <div className='flex flex-row gap-4'>
       <div className="mb-4 md:mb-0 w-1/2 ">
         <label htmlFor="firstName" className="block mt-2 text-sm font-medium text-black ">
@@ -212,8 +163,6 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
           required
         />
       </div>
-
-      {/* Last Name Field */}
       <div className="mb-4 md:mb-0 w-1/2 ">
         <label htmlFor="lastName" className="block  mt-2 text-sm font-medium text-black ">
           Last Name
@@ -229,10 +178,7 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
         />
       </div>
       </div>
-      {/* Email Field */}
-      {/* Email Field */}
       <div className="flex flex-col md:flex-row gap-4">
-        {/* Email Field */}
         <div className="flex-1">
           <label htmlFor="email" className="block  mt-2 text-sm font-medium text-black">
             Email
@@ -247,8 +193,6 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
             required
           />
         </div>
-
-        {/* Phone Number Field */}
         <div className="flex-1">
           <label htmlFor="phonenumber" className="block  mt-2 text-sm font-medium text-black">
             Phone Number
@@ -264,18 +208,10 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
           />
         </div>
       </div>
-
-
-                {/* Other input fields */}
-                {/* ... */}
-       
               </div>
-           
-          {/* Membership Cards Section */}
-        {/* Membership Cards Section */}
             <div className="bg-white p-8 hidden md:block rounded-lg text-black">
             <div className='flex flex-col items-center justify-center'>
-    <h1 className="text-3xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h1>
+    <h2 className="text-3xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
     <hr className="border-t-2 border-yellow-500 w-16 mb-10" /> {/* Fixed width for all viewports */}
 </div>
               <div className="flex gap-4">
@@ -313,10 +249,7 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
                 </div>
                 </div>
               </div>
-            {/* ... (other sections) */}
           </div>
-
-          {/* ... (other sections) */}
                   <div className='mt-5 hidden md:block text-black '>
           <AccordionItem
   title="Terms of Conditions "
@@ -332,8 +265,6 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
      "Pass Revocation: Backpackers United reserves the right to revoke the Pass at any time if a passholder is found to be in violation of these terms and conditions. ",
      "Changes to Terms and Conditions: Backpackers United reserves the right to modify these terms and conditions at any time. Passholders will be notified of changes, and continued use of the Pass constitutes acceptance of the updated terms. ",
      "Force Majeure: Backpackers United is not liable for any failure to perform its obligations under these terms and conditions due to unforeseen circumstances beyond its control, including but not limited to acts of God, war, terrorism, or government regulations. ",
-
-
   ]}
 />
 <AccordionItem
@@ -341,27 +272,16 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
   points={[
     "Refunds are not available once the Pass has been purchased.  ",
     "In exceptional circumstances, such as medical emergencies, passholders may request a deferral to the next month. Approval is at the discretion of Backpackers United.   ",
-    
   ]}
 />
 </div>
-
-       {/* Room Options Section */}
-            {/* ... */}
-            {/* Add room option cards here */}
           </div>
-
-          {/* Summary Section */}
-               {/* Summary Section */}
                <div className="md:w-1/3 md:p-4 p-4 px-2 pt-0">
-  {/* Summary Section */}
   <div className="bg-white shadow rounded-lg p-6 text-black">
               <div className="flex justify-between items-center">
-                <h2 className="text-xl text-yellow-500 font-bold">SUMMARY</h2>
+                <h3 className="text-xl text-yellow-500 font-bold">SUMMARY</h3>
                 <button  className="text-yellow-300 hover:text-yellow-200"></button>
               </div>
-
-              {/* New dropdown for pass type */}
               <div className="mt-4">
                 <label htmlFor="passtype" className="block mb-2 text-sm font-medium text-black">
                   Select Pass Type
@@ -379,7 +299,6 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
                   <option value="Tour Pass">Tour Pass</option>
                 </select>
               </div>
-
               <div className='mt-4'>
               <label htmlFor="passtype" className="block mb-2 text-sm font-medium text-black">
                 Pass Activation Date
@@ -393,7 +312,6 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
   className="bg-grey-500 border border-gray-600 text-black sm:text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-3"
   required
 />
-
               </div>
               <div className="mt-4">
                 <div className="flex justify-between">
@@ -401,9 +319,7 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
                   <span>₹{membershipPrice.toFixed(2)}</span>
                 </div>
                 <div className="text-sm">valid till: {expiringDate}</div>
-          
               </div>
-
               <div className="mt-4">
                 <div className="flex justify-between">
                   <span>Membership Charges</span>
@@ -414,14 +330,12 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
                   <span>₹{getGstFirst().toFixed(2)}</span>
                 </div>
               </div>
-
               <div className="mt-4">
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-bold">Total Price</span>
                   <span className="text-lg font-bold">₹{getTotalFirst().toFixed(2)}</span>
                 </div>
               </div>
-
               <div className="mt-6">
                 <div className="flex items-center mb-2">
                   <input id="confirmation" type="checkbox" className="w-4 h-4 text-blue-600 rounded" required />
@@ -436,7 +350,6 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
                   </label>
                 </div>
               </div>
-
               <motion.button
                initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
@@ -448,11 +361,10 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
           <p>For more information, please dont hesitate to give us a call at <a href="tel:+919364099494" className='text-yellow-500 font-bold hover:underline '>+91 93640-99494</a></p>
       </div>
             </div>
-          
             <div className="bg-white p-6 rounded-lg shadow-md text-grey-800 mt-4 text-black">
-            <h2 className="text-lg font-semibold mb-4 border-b border-gray-600 pb-2 text-yellow-500">
+            <h3 className="text-lg font-semibold mb-4 border-b border-gray-600 pb-2 text-yellow-500">
             Pass Details:
-    </h2>
+    </h3>
     <ul className="list-disc pl-1">
   <li className="mb-2">
     <span className="block font-medium">
@@ -510,14 +422,12 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
     </span>
   </li>
 </ul>
-
-
   </div>
           </div>
           </form>
           <div className="bg-white p-4 px-3 md:hidden block rounded-lg mx-2 text-black">
             <div className='flex flex-col items-center justify-center'>
-    <h2 className="md:text-3xl text-2xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h2>
+    <h3 className="md:text-3xl text-2xl font-bold mb-4 text-center">THE UNITED TRAVEL PASS</h3>
     <hr className="border-t-2 border-yellow-500 w-16 mb-5" /> {/* Fixed width for all viewports */}
 </div>
               <div className="flex flex-col gap-4">
@@ -555,7 +465,6 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
                 </div>
                 </div>
               </div>
-            {/* ... (other sections) */}
           </div>
           <div className='mt-5 md:hidden block px-2'>
           <AccordionItem
@@ -571,8 +480,6 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
      "Pass Revocation: Backpackers United reserves the right to revoke the Pass at any time if a passholder is found to be in violation of these terms and conditions. ",
      "Changes to Terms and Conditions: Backpackers United reserves the right to modify these terms and conditions at any time. Passholders will be notified of changes, and continued use of the Pass constitutes acceptance of the updated terms. ",
      "Force Majeure: Backpackers United is not liable for any failure to perform its obligations under these terms and conditions due to unforeseen circumstances beyond its control, including but not limited to acts of God, war, terrorism, or government regulations. ",
-
-
   ]}
 />
 <AccordionItem
@@ -580,20 +487,14 @@ const currentPageUrl = typeof window !== 'undefined' ? window.location.href : ''
   points={[
     "Refunds are not available once the Pass has been purchased.  ",
     "In exceptional circumstances, such as medical emergencies, passholders may request a deferral to the next month. Approval is at the discretion of Backpackers United.   ",
-    
   ]}
 />
 </div>
-            {/* SignUpSection */}
-  
-
         </div>
       </div>
       </div>
       <Footer />
     </>
   );
-    
 }
-
 export default Travelpassmain

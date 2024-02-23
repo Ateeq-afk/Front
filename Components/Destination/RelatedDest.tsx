@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { FreeMode } from 'swiper/modules';
-
 const RelatedDestinations = () => {
   const destinations = [
     { name: 'Wayanad', image: '/home/KASHMIR.jpg' },
@@ -12,9 +11,7 @@ const RelatedDestinations = () => {
     { name: 'Ooty', image: '/home/MUNAR.jpg' },
     { name: 'Coorg', image: '/home/Coorg.jpg' },
     { name: 'Kodaikanal', image: '/home/Kodaikanal.webp' },
-    // ... more destinations
   ];
-
   return (
     <div className="mx-auto p-5 md:p-10">
       <Swiper
@@ -24,7 +21,6 @@ const RelatedDestinations = () => {
         modules={[FreeMode]}
         className="relatedslider"
         breakpoints={{
-            // when window width is <= 640px
             500: {
                 slidesPerView: 3,
                 initialSlide: 0
@@ -58,6 +54,5 @@ const RelatedDestinations = () => {
       </Swiper>
     </div>
   );
-};
-
+}
 export default RelatedDestinations;

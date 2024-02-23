@@ -1,12 +1,11 @@
 import Destmain from "@/Components/Destination/Destmain"
 import { Metadata } from "next"
-
 export const metadata:Metadata = {
-  title: 'Explore Global Destinations with Backpackers United | Travel Guide',
-  description: 'Discover and plan your next adventure with Backpackers United. Explore our comprehensive guides on global destinations for backpackers and travelers.',
+  title: 'Explore Exciting Destinations | Backpackers United',
+  description: 'Discover diverse destinations with Backpackers United. Find your next adventure in stunning locations. Start exploring now!',
   openGraph: {
     title: 'Backpackers United',
-    description: 'Explore Global Destinations with Backpackers United | Travel Guide',
+    description: 'Explore Exciting Destinations | Backpackers United',
     url: 'https://backpackersunited.in/login',
     siteName: 'Backpackers United',
     images: [
@@ -18,8 +17,10 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/destinations',
+  }
 }
-
 const page = () => {
 return(
   <div>
@@ -27,5 +28,4 @@ return(
   </div>
 )
 }
-
 export default page

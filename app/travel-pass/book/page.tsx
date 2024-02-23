@@ -1,9 +1,8 @@
 import Travelpassmain from '@/Components/Travel/Travelpassmain';
 import { Metadata } from 'next';
-
 export const metadata:Metadata = {
-  title: 'Get 50% Off with Backpackers United Travel Pass | Start Your Adventure',
-  description: 'Unlock a world of adventures with the Backpackers United Travel Pass/Book and enjoy a flat 50% discount on your travels. Gain access to exclusive deals, detailed guides, exclusive travel benefits, merchandise, and dedicated travel assistance. Begin your journey towards unforgettable experiences today!',
+  title: 'Get 50% Off with Backpackers United Travel Pass',
+  description: 'Get 50% off with our Travel Pass! Exclusive deals, guides, benefits, and support await. Start your adventure now!',
   openGraph: {
     title: 'Backpackers United',
     description: 'Get 50% Off with Backpackers United Travel Pass | Start Your Adventure',
@@ -18,6 +17,9 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/travel-pass/book',
+  }
 }
 const page = () => {
 return (
@@ -26,5 +28,4 @@ return (
 </div>
 )
 }
-
 export default page

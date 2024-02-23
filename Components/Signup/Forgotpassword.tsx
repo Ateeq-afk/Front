@@ -2,18 +2,14 @@
 'use client'
 import { useState } from 'react';
 import { toast  } from 'react-toastify';
-
 interface ForgotPasswordModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 const ForgotPasswordModal : React.FC<ForgotPasswordModalProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
-
   const sendLink = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-
     if (email === "") {
         toast.error("email is required!", {
           position: "top-right",
@@ -44,9 +40,7 @@ const ForgotPasswordModal : React.FC<ForgotPasswordModalProps> = ({ isOpen, onCl
             },
             body: JSON.stringify({ email })
         });
-
         const data = await res.json();
-
         if (data.users === false) {
           toast.error("Email is not registered, Please Sign Up with your Email",{
             position: "top-right",
@@ -76,16 +70,8 @@ const setVal = (e: React.ChangeEvent<HTMLInputElement>)=> {
   setEmail(e.target.value)
 }
   if (!isOpen) return null;
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Call API to send reset password email
-//     console.log(`Send reset password link to ${email}`);
-//   };
-
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40 borders shadow-2xl">
-       
       <div className="flex flex-col p-2 bg-black text-white rounded w-[24rem] h-[19rem]">
         <div className='justify-end'>
       <button onClick={onClose} className="float-right rounded-full bg-white text-black w-5 h-5 flex justify-center items-center">

@@ -1,9 +1,8 @@
 import Privacy from '@/Components/Footer/Privacy';
 import { Metadata } from 'next';
-
 export const metadata:Metadata = {
-  title: 'Privacy Policy - Backpackers United | Your Privacy Matters ',
-  description: 'Read our Privacy Policy to learn how Backpackers United protects your data and privacy. We are committed to transparent and secure handling of user information.',
+  title: 'Backpackers United | Your Privacy Matters',
+  description: 'Learn how we protect your data in our Privacy Policy. Committed to secure, transparent handling.',
   openGraph: {
     title: 'Backpackers United',
     description: 'Privacy Policy - Backpackers United | Your Privacy Matters ',
@@ -18,9 +17,11 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/privacy',
+  }
 }
 const page = () => {
-
   return (
    <div>
     <Privacy />

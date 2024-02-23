@@ -1,6 +1,5 @@
 import Blog from "@/Components/Blogs/Blog";
 import { Metadata } from "next";
-
 export const metadata:Metadata = {
   title: 'Backpackers United Blog - Insights, Tips & Travel Stories',
   description: 'Dive into the Backpackers United Blog for the latest travel insights, tips, and inspiring stories. Stay updated with our regular backpacking adventures.',
@@ -18,10 +17,11 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/blogs',
+  }
 }
-
 const Page = () => {
-
   return (
     <div>
       <Blog />

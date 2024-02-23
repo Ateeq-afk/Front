@@ -7,7 +7,6 @@ import "swiper/css/pagination";
 import { Navigation,FreeMode } from 'swiper/modules';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-
 const Destproduct = () => {
     const tourData = [
         {
@@ -94,7 +93,6 @@ const Destproduct = () => {
   return (
     <div className='bg-black text-white '>
         <div className='mx-5'>
-  
        <Swiper
       spaceBetween={0}
       slidesPerView={1}
@@ -104,7 +102,6 @@ const Destproduct = () => {
       modules={[Navigation,FreeMode]}
       className="destslider"
       breakpoints={{
-        // when window width is <= 640px
         500: {
             slidesPerView: 2,
             initialSlide: 0
@@ -121,9 +118,7 @@ const Destproduct = () => {
     >
            {tourData.map(tour => (
       <SwiperSlide>
-   
         <div key={tour.id} className="relative h-[350px] flex justify-center ">
-          {/* ... rest of the card structure */}
           <div className='relative w-[330px] h-[230px]'>
             <Image
               src={tour.imageSrc}
@@ -133,7 +128,6 @@ const Destproduct = () => {
               layout='fill'
             />
           </div>
-          {/* ... */}
           <div className="absolute top-10 left-0 transform -translate-y-1/2 bg-gray-200 font-bold text-black px-4 py-1 rounded-br-lg ">
             {tour.discount}
           </div>
@@ -145,7 +139,6 @@ const Destproduct = () => {
               </div>
             </div>
             <div>
-            
               <div className='flex justify-between flex-row items-center mt-2'> 
                 <p className="font-bold text-xl">{tour.price}</p>
                 <motion.button
@@ -160,19 +153,13 @@ const Destproduct = () => {
             </div>
           </div>
         </div>
-
         </SwiperSlide>
         ))}
-        
-      {/* ... additional slides */}
     </Swiper>
-
 <div>
-    
 </div>
 </div>
      </div>
   )
 }
-
 export default Destproduct

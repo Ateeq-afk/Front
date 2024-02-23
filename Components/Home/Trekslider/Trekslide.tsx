@@ -4,27 +4,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation,Scrollbar,Pagination,FreeMode  } from 'swiper/modules';
+import { Navigation,Pagination,FreeMode  } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
-// SwiperCore.use([Navigation, Scrollbar]);
+import { motion } from "framer-motion";
 type DestinationItem = {
   title: string;
   location: string;
   img: string;
   url: string;
-  badge?: string; // Optional property
+  badge?: string; 
   price: number;
+  originalprice?: number; 
 };
 interface TrekSliderProps {
   destination: DestinationItem[];
   sliderId: string;
 }
 const getBadgeColor = (badge: string) => {
-  // Exact case-sensitive comparison
   if (badge === 'Honeymoon Special' || badge === 'Romantic Getaway') {
-    return 'bg-red-500'; // Red color for honeymoon and romantic badges
+    return 'bg-red-500'; 
   } else if(badge === "Group") {
     return 'bg-yellow-500'; 
   } else if(badge === "Customized") {
@@ -33,17 +33,11 @@ const getBadgeColor = (badge: string) => {
     return 'bg-yellow-500'; 
   }
 }
-// const getBadgeColor = (badge: string) => {
-//   switch (badge.toUpperCase()) { // Convert to uppercase for case-insensitive comparison
-//     case 'BEST SELLER':
-//       return 'bg-red-500';
-//     case 'TOP RATED':
-//       return 'bg-blue-500';
-//     // Add more cases as needed
-//     default:
-//       return 'bg-gray-800'; // Default color
-//   }
-// }
+const calculateDiscountPercentage = (originalPrice: number, price: number) => {
+  if (!originalPrice || !price) return 0; 
+  const discount = ((originalPrice - price) / originalPrice) * 100;
+  return Math.round(discount); 
+}
 const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
   const nextButtonClass = `swiper-button-next-${sliderId}`;
   const prevButtonClass = `swiper-button-prev-${sliderId}`;
@@ -66,12 +60,8 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
               return '<span class="' + className + ' bg-black"></span>';
             },
         }}
-        scrollbar={{
-          el: "#swiper-scrollbar",
-          draggable: true,
-        }}
         freeMode={{ enabled: true, minimumVelocity: 0.1 }}
-        modules={[Scrollbar, Navigation, Pagination,FreeMode]}
+        modules={[ Navigation, Pagination,FreeMode]}
         breakpoints={{
           100: {
             slidesPerView: 1,
@@ -91,7 +81,6 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
       >
          {destination.map((item, idx) => (
    <SwiperSlide key={idx}>
-{/* Make the entire card a link */}
 <Link href={`${item.url}`} className="block"> 
      <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white p-4 h-[400px]">
        <div className="overflow-hidden relative rounded-xl h-60 w-full">
@@ -109,16 +98,46 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
                     {item.badge}
                   </span>
                 )}
+                {(item.originalprice && item.price) && (
+  <motion.div
+    initial={{ scale: 0.9, opacity: 0 }}
+    animate={{ scale: [0.9, 1.1, 1], opacity: 1 }}
+    transition={{
+      scale: { delay: 0.5, duration: 0.2 },
+      opacity: { delay: 0.5, duration: 0.1 },
+      type: "spring",
+      stiffness: 260,
+      damping: 20
+    }}
+    whileHover={{ scale: 1.05 }}
+    onHoverStart={e => {}}
+    onHoverEnd={e => {}}
+    className="absolute top-3 right-2 bg-yellow-500 text-black transform translate-x-2 -translate-y-2 rounded-tr-md rounded-bl-md p-1 shadow-md"
+   
+    style={{
+      background: "linear-gradient(45deg, #ffd700, #ffae00)",
+      textShadow: "0px 0px 8px rgba(255, 255, 255, 0.6)",
+      fontFamily: "'Montserrat', sans-serif",
+      fontWeight: 700,
+    }}
+  >
+    FLAT {calculateDiscountPercentage(item.originalprice, item.price)}% OFF
+  </motion.div>
+)}
        <div className="p-4 pb-0 text-center">
   <h4 className="text-lg mb-1">{item.title}</h4>
   <p className="text-sm mb-2">{item.location}</p>
        </div>
        <div className="flex flex-row justify-between items-center mt-2 space-x-4 "> {/* Adjusted margin-top and space between price and button */}
-  <div className="flex flex-col items-start mb-2 sm:mb-0">
-    <p className="text-xs text-gray-400">Starting from</p>
-    <p className="text-lg font-bold">INR {item.price}</p>
-  </div>
-
+       <div className="flex flex-col items-start mb-2 sm:mb-0">
+  <p className="text-xs text-gray-400">Starting from</p>
+  {item.originalprice && (
+    <p className="text-[16px] line-through " >
+      INR {item.originalprice}
+    </p>
+  )}
+  <p className="text-[16px] font-bold text-yellow-500" >INR {item.price}</p>
+</div>
   <button className="px-4 py-2 bg-yellow-500 text-black font-semibold rounded-full border-2 border-yellow-500 hover:bg-transparent hover:text-yellow-500 transition duration-300"> {/* Adjusted padding and hover effect for button */}
     Book Now
   </button>   

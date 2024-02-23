@@ -1,12 +1,11 @@
 import Contact from "@/Components/Footer/Contact";
 import { Metadata } from "next";
-
 export const metadata:Metadata = {
-    title: 'Contact Backpackers United - Get in Touch for Travel Support & Queries',
-    description: 'Reach out to Backpackers United on our Contact Us page. Whether you have questions about trips, need travel support, or want to connect with our team, we are here to help. Get in touch for prompt and friendly assistance.',
+    title: 'Contact Backpackers United | Get in Touch with Us',
+    description: "Reach out to Backpackers United for inquiries, support, or collaborations. We're here to assist you on your travel journey. Contact us now!",
     openGraph: {
       title: 'Backpackers United',
-      description: 'Contact Backpackers United - Get in Touch for Travel Support & Queries',
+      description: 'Contact Backpackers United | Get in Touch with Us',
       url: 'https://backpackersunited.in/contact',
       siteName: 'Backpackers United',
       images: [
@@ -18,8 +17,10 @@ export const metadata:Metadata = {
       ],
       type: 'website',
     },
-  }
-  
+    alternates: {
+      canonical: 'https://backpackersunited.in/contact',
+    }
+  } 
 const Page = () => {
    return(
     <div>
@@ -27,4 +28,4 @@ const Page = () => {
     </div>
    )
   };
-  export default Page;
+export default Page;

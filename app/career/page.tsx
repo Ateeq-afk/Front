@@ -1,12 +1,11 @@
 import Career from "@/Components/Footer/Career";
 import { Metadata } from "next";
-
 export const metadata:Metadata = {
-    title: 'Backpackers United: Connect with Global Travel CommunityCareers at Backpackers United | Join Our Travel-Enthusiast Team',
-    description: 'Looking for a career in travel? Join the Backpackers United team and turn your passion into a profession. Explore current openings and be part of our journey.',
+    title: 'Join Our Team | Careers at Backpackers United',
+    description: 'Explore career opportunities at Backpackers United. Join our team and embark on a rewarding journey in the travel industry!',
     openGraph: {
       title: 'Backpackers United',
-      description: 'Backpackers United: Connect with Global Travel CommunityCareers at Backpackers United | Join Our Travel-Enthusiast Team',
+      description: 'Join Our Team | Careers at Backpackers United',
       url: 'https://backpackersunited.in/condition',
       siteName: 'Backpackers United',
       images: [
@@ -18,10 +17,11 @@ export const metadata:Metadata = {
       ],
       type: 'website',
     },
+    alternates: {
+      canonical: 'https://backpackersunited.in/career',
+    }
   }
-  
 const Page = () => {
-
   return (
     <div>
         <Career />

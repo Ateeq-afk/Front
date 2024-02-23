@@ -1,12 +1,11 @@
 import Terms from '@/Components/Footer/Terms';
 import { Metadata } from 'next';
-
 export const metadata:Metadata = {
-  title: 'Terms of Use - Backpackers United | User Guidelines & Policies',
-  description: 'Review the Terms of Use for Backpackers United. Understand the guidelines and policies for using our backpacking resources and community platform.',
+  title: 'Terms of Use | Backpackers United',
+  description: 'Read the Terms of Use for Backpackers United. Learn about our policies regarding website usage, bookings, and more.',
   openGraph: {
     title: 'Backpackers United',
-    description: 'Terms of Use - Backpackers United | User Guidelines & Policies',
+    description: 'Terms of Use | Backpackers United',
     url: 'https://backpackersunited.in/terms',
     siteName: 'Backpackers United',
     images: [
@@ -18,9 +17,10 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/terms',
+  }
 }
- 
-
 const page = () => {
 return(
   <div>

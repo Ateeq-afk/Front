@@ -1,23 +1,36 @@
-import Header from '@/Components/Navbar/Header/Header';
-import Footer from '@/Components/Navbar/Footer/Footer';
 import Dest from '@/Components/Destination/Dest';
-import { FC  } from 'react';
 import type { Metadata, ResolvingMetadata } from 'next'
-
-
+import { notFound } from 'next/navigation';
 interface PageProps {
   params: {
       name: string;
   }
 }
+interface DestinationItem {
+  name: string;
+}
+export const dynamicParams = true
+export async function generateStaticParams() {
+  const res = await fetch('https://launch-api1.vercel.app/dest');
+  const dest = await res.json();
+  return dest.data.map((item:DestinationItem) => ({
+    name: item.name
+  }));
+}
+async function getDest(name:string) {
+  const res = await fetch(`https://launch-api1.vercel.app/dest/${name}`,{
+    next:{
+      revalidate: 60
+    }
+  })
+  if(!res.ok){
+    notFound()
+  }
+  return res.json()
+}
 export async function generateMetadata( { params }: PageProps, parent: ResolvingMetadata ): Promise<Metadata> {
-  // read route params
   const name = params.name;
-
-  // fetch data
   const product = await fetch(`https://launch-api1.vercel.app/dest/${name}`).then((res) => res.json());
-
-  // optionally access and extend (rather than replace) parent metadata
   return {
     title: product.metatitle,
     description: product.metades,
@@ -33,17 +46,16 @@ export async function generateMetadata( { params }: PageProps, parent: Resolving
       }],
       type: 'website',
     },
+    alternates: {
+      canonical: `https://backpackersunited.in/destinations/${product.urllink}`,
+    }
   };
 }
-
-const page : FC<PageProps> = ({ params })=> {
-  const name = params.name
+export default async function destination({ params }: { params: PageProps['params'] }) {
+  const destination = await getDest(params.name);
     return (
       <div >
-       <Dest name={name}/>
-
-   
+       <Dest destination={destination}/>
     </div>
   )
 }
-export default page;

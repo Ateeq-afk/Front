@@ -1,9 +1,8 @@
 import Partner from "@/Components/Footer/Partner";
 import { Metadata } from "next";
-
 export const metadata:Metadata = {
-    title: 'Partner with Backpackers United | Collaborate in the Travel Industry',
-    description: 'Collaborate with Backpackers United. Discover partnership opportunities for travel industry professionals and brands. Let’s create amazing travel experiences together.',
+    title: 'Partner with Us | Travel Industry Collaboration',
+    description: 'Collaborate with Backpackers United. Explore travel industry partnerships and create amazing experiences together.',
     openGraph: {
       title: 'Backpackers United',
       description: 'Partner with Backpackers United | Collaborate in the Travel Industry',
@@ -18,6 +17,9 @@ export const metadata:Metadata = {
       ],
       type: 'website',
     },
+    alternates: {
+      canonical: 'https://backpackersunited.in/partner',
+    }
   }
 const Page = () => {
 return(
@@ -26,4 +28,4 @@ return(
 </div>
 )
   };
-  export default Page;
+export default Page;

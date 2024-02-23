@@ -9,7 +9,6 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -17,7 +16,6 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
 .react-datepicker__day--highlight {
   background-color: yellow !important;
   color: black !important;
@@ -27,43 +25,32 @@
   margin-top: 40px !important;
   background-color: white !important;
   color: black !important;
-  /* color: white !important;  */
-
 }
 .swiper-button-prev {
   height: 30px !important;
   margin-top: 150px !important;
   background-color: white !important;
   color: black !important;
-  /* color: white !important;  */
-
 }
 .react-calendar {
   background-color: black !important;
   color: white;
-  width: 450px !important;  /* Adjust width as needed, or set a specific width like 800px */
-  max-width: 500px; /* Ensure it doesn't overflow its container */
+  width: 450px !important;  
   font-size: 20px;
 }
-
 .react-calendar__tile {
   color: white;
 }
-
-/* For highlighted (active) date */
 .react-calendar__tile--active {
   background-color: #FCB418 !important;
 }
 .react-calendar__tile--now {
-  background: black !important; /* Same as the calendar background */
-  color: white; /* Same as other dates */
+  background: black !important; 
+  color: white; 
 }
-/* Adjust colors for navigation buttons */
 .react-calendar__navigation button {
   color: white;
 }
-
-/* You might need to adjust hover states as well */
 .react-calendar__tile:hover,
 .react-calendar__navigation button:hover {
   background-color: #555 !important;
@@ -73,25 +60,37 @@
 .react-calendar__navigation button {
   border: none !important;
 }
-.react-calendar__tile--active {
-  background-color: #555 !important; /* Dark yellow color */
-  color: black; /* Text color for the active date */
+.react-calendar__tile--active{
+  background-color: #555 !important; 
+  color: black; 
+}
+.react-calendar__navigation button:disabled {
+  background: #555 !important; 
 }
 .highlight {
-  /* background: #FCB418!important;  */
   color: #FCB418 !important;
- /* White text */
+}
+.react-calendar__month-view__days button[disabled] {
+  background-color: black !important;
+}
+.react-calendar__navigation__label {
+  pointer-events: none !important; 
 }
 .react-calendar__month-view__days__day--weekend:not(.react-calendar__month-view__days__day--neighboringMonth) {
-  color: white !important; /* Change text color to white */
+  color: white !important; 
 }
-
+.react-calendar__month-view__days__day--weekend.highlight {
+  color: #FCB418 !important; 
+}
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  display: none; 
+}
 .mySwipergot {
   height: auto;
   padding: 2rem 0;
   position: relative;
 }
-
 .mySwipergot .swiper-slide {
   width: 38rem !important;
   height: auto !important; 
@@ -107,19 +106,12 @@
 .mySwipergot .swiper-pagination-bullet {
   background: white !important;
 }
-/* .mySwipergot {
-  background-position: center;
-  background-size: cover;
-  width: 300px;
-  height: 300px;
-} */
-
 .mySwipergot .swiper-slide img {
   display: block;
   width: 100%;
 }
 .destslider .swiper-button-next, .swiper-button-prev {
-  top: 30% !important; /* Override the top position */
+  top: 30% !important; 
 }
 .swiper-but-prev, .swiper-but-next {
   color: white !important;
@@ -145,13 +137,17 @@
   background: black !important;
 }
 .text-extra-small {
-  font-size: 0.75rem; /* Adjust the size as needed */
+  font-size: 0.75rem; 
 }
-
-/* Custom media query for small screens like Galaxy Fold */
 @media screen and (max-width: 280px) { 
   .text-extra-small {
-    font-size: 0.5rem; /* Further reduce the font size for very small screens */
+    font-size: 0.5rem; 
+  }
+}
+@media screen and (min-width: 1468px) {
+  .react-calendar {
+    width: 650px !important; 
+    font-size: 24px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -171,7 +167,7 @@
   }
 }
 .swiper-button-prev::after, .swiper-button-next::after {
-  font-size: 12px !important; /* Adjust this size as per your requirements */
+  font-size: 12px !important; 
 }
 .hover-effect > a::after {
   content: "";
@@ -181,37 +177,30 @@
   background: yellow;
   transition: width .3s;
 }
-
 .hover-effect:hover > a::after {
   width: 100%;
 }
-
 .hover-effect > a {
   transition: font-size .3s;
 }
-
 .hover-effect:hover > a {
   font-size: 1.05em;
 }
-
 .hover-effect a {
   position: relative;
   text-decoration: none;
   display: inline-block;
 }
 .sidebar {
-  height: calc(100vh - 100px); /* Adjust 100px to the height of your footer */
-  padding-bottom: 100px; /* Or use padding-bottom if that works better */
+  height: calc(100vh - 100px); 
+  padding-bottom: 100px; 
 }
-
 .hover-effect a span {
   transition: font-size 0.3s ease;
 }
-
 .hover-effect a:hover span {
   font-size: 110%;
 }
-
 .hover-effect a::after {
   content: "";
   position: absolute;
@@ -224,32 +213,43 @@
   transition: transform 0.3s ease;
   transform-origin: left;
 }
-
 .hover-effect a:hover::after {
   transform: scaleX(1);
 }
-
 .hover-effect a.travel-pass::after {
   width: 100%;
 }
 .travel-pass-special-effect {
   position: relative;
 }
-
 .travel-pass-special-effect::after {
   content: "";
   position: absolute;
   width: 72px;
   height: 4px;
-  background: #FFD700;/* or any other color for the line */
+  background: #FFD700;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
   transform-origin: left;
   animation: loadAnimation 1s ease forwards;
 }
+/* Default player size */
+.youtube-responsive-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
 
-/* Rest of your styles for h3, .title, .testimony */
+.youtube-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 @keyframes loadAnimation {
   from {
@@ -259,21 +259,15 @@
     transform: scaleX(1);
   }
 }
-
 .swiper-wrapper {
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-
 .swiper-container {
   transform: translate3d(0, 0, 0);
 }
-
-
 [label^=label-] {
   @apply absolute left-4 bottom-5 transform transition-transform duration-200 text-gray-500;
 }
-
-
 .input-fullName:not(:placeholder-shown) + .label-fullName,
 .input-phoneno:not(:placeholder-shown) + .label-phoneno,
 .input-email:not(:placeholder-shown) + .label-email,
@@ -281,7 +275,6 @@
   @apply -translate-y-2;
 }
 body {
-  /* font-family: 'Lato', sans-serif; */
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -289,4 +282,23 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+.holi-text {
+  @apply text-center font-bold;
+  color: #111827; /* This is Tailwind's 'gray-900' for text color */
+  text-shadow:
+    1px 1px 0 #ff0000, /* Red shadow */
+    -1px -1px 0 #00ff00, /* Green shadow */
+    1px -1px 0 #0000ff, /* Blue shadow */
+    -1px 1px 0 #ff00ff; /* Purple shadow */
+}
+.holi-text-effect {
+  background-clip: text;
+  text-fill-color: transparent;
+  background-image: linear-gradient(
+    to left,
+    #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

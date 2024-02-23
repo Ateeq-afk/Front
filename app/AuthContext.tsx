@@ -1,25 +1,19 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-
 interface User {
     name: string | null;
     email: string | null;
     photoURL: string | null;
   }
-
 interface AuthContextType {
   user: User | null;
   login: (userData: User) => void;
   logout: () => void;
 }
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
 interface AuthProviderProps {
   children: ReactNode;
 }
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  // Initialize state from localStorage if available
   const [user, setUser] = useState<User | null>(() => {
     if (typeof window !== 'undefined') {
       const savedUser = localStorage.getItem('user');
@@ -27,8 +21,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
     return null;
   });
-
-  // Save to localStorage when user changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (user) {
@@ -38,22 +30,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
     }
   }, [user]);
-
   const login = (userData: User) => {
     setUser(userData);
   };
-
   const logout = () => {
     setUser(null);
   };
-
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
-
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {

@@ -1,12 +1,11 @@
 import Tourmain from "@/Components/Treks/Tourmain"
 import { Metadata } from "next"
-
 export const metadata:Metadata = {
-  title: 'Backpackers United Tours: Unique Journeys for the Avid Traveler',
-  description: 'Join our curated tours at Backpackers United and experience the world like never before. Tailored adventures await in every corner of the globe.',
+  title: 'Unique Adventure Tours | Backpackers United Tours',
+  description: 'Embark on unforgettable adventure tours with Backpackers United. Explore our unique tours and start your next journey today!',
   openGraph: {
     title: 'Backpackers United',
-    description: 'Backpackers United Tours: Unique Journeys for the Avid Traveler',
+    description: 'Unique Adventure Tours | Backpackers United Tours',
     url: 'https://backpackersunited.in/tours',
     siteName: 'Backpackers United',
     images: [
@@ -18,6 +17,9 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/tours',
+  }
 }
 const page = () => {
  return(
@@ -26,5 +28,4 @@ const page = () => {
   </div>
  )
 }
-
 export default page

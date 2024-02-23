@@ -5,8 +5,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faWhatsapp, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-
-
 const sections = [
   {
     title: 'LEGAL',
@@ -33,18 +31,14 @@ const sections = [
     ],
   },
 ];
-
 const Footer = () => {
   return (
     <motion.footer
       initial={{ y: 200, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1.2 }}
-      className="bg-black text-white flex-shrink z-10 pt-10"
-    >
-  
+      className="bg-black text-white flex-shrink z-10 pt-10">
       <div className="flex flex-col md:flex-row md:justify-around md:items-center  pb-2 px-4 ">
-        {/* Logo and Social Media Icons */}
         <div className="flex flex-col items-start md:items-center mb-8 md:mb-0 space-y-4">
         <div className="flex flex-row items-center space-x-4">
   <Link href='/'>
@@ -57,28 +51,16 @@ const Footer = () => {
         <motion.div whileHover={{ scale: 1.05 }} className="text-[22px] font-semibold text-white">
           BACKPACKERS
         </motion.div>
-      
-  
       <div className="flex items-center absolute inset-x-0 bottom-[-10px] ">
-            <div className="flex-1 h-0.5 bg-white"></div> {/* Left line */}
+            <div className="flex-1 h-0.5 bg-white"></div> 
             <motion.div whileHover={{ scale: 1.05 }} className="text-[12px] font-semibold uppercase tracking-widest text-red-600 mx-[2px]">
               United
             </motion.div>
-            <div className="flex-1 h-0.5 bg-white"></div> {/* Right line */}
+            <div className="flex-1 h-0.5 bg-white"></div> 
           </div>
       </Link>
-     
   </div>
 </div>
-       
-   {/* <div className="flex items-center">
-          <div className="border-t border-white flex-grow"></div> 
-          <motion.div whileHover={{ scale: 1.05 }} className="text-sm font-bold text-red-600 px-2">
-            UNITED
-          </motion.div>
-          <div className="border-t border-red-600 flex-grow"></div>
-        </div> */}
-          {/* Social Media Icons */}
           <div className="hidden md:flex md:space-x-6 md:text-xl md:pt-4">
             <motion.a href="https://www.facebook.com/backpackersunited1/" className="text-white hover:text-yellow-500" whileHover={{ scale: 1.4 }}>
               <FontAwesomeIcon icon={faFacebookF} />
@@ -94,11 +76,10 @@ const Footer = () => {
             </motion.a>
           </div>
        </div>
-       
           <div className="grid grid-cols-2 md:grid-cols-4  " >
         {sections.map((section, index) => (
   <motion.div key={section.title} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }} className="flex flex-col md:items-center md:mb-8 mb-4 md:space-y-2 space-y-0">
-    <h2 className="font-semibold md:text-xl text-lg ">{section.title}</h2>
+    <div className="font-semibold md:text-xl text-lg ">{section.title}</div>
     <div className="flex md:justify-center items-start pb-2">
         <hr className="border-t-2 border-yellow-500 md:w-[30PX] w-[10px] mt-2" />
       </div>
@@ -119,7 +100,7 @@ const Footer = () => {
 <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.7 }} className="flex flex-col  md:space-y-4 space-y-2 overflow-x-hidden">
 <div className="flex items-left">
       <div className="bg-yellow-500 w-1 h-5 mr-4 mt-1"></div>
-  <h2 className="font-semibold md:text-xl  text-lg md:mb-1">CONTACT US</h2>
+  <div className="font-semibold md:text-xl  text-lg md:mb-1">CONTACT US</div>
   </div>
   <Link href="tel:+918310180586" >
   <div className="flex flex-col md:items-left relative group p-1">
@@ -142,7 +123,6 @@ const Footer = () => {
 </motion.div>
       </div>
       </div>
-
       <div className="md:hidden flex space-x-6  text-lg items-center justify-center pt-4 border-t-2 border-white" >
       <motion.a href="https://www.facebook.com/backpackersunited1/" className="text-white hover:text-yellow-500" whileHover={{ scale: 1.4 }}>
               <FontAwesomeIcon icon={faFacebookF} />
@@ -165,5 +145,4 @@ const Footer = () => {
     </motion.footer>
   );
 }
-
 export default Footer;

@@ -38,11 +38,6 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://backpackersunited.in/signup</loc>
-  <lastmod>2023-12-06T06:27:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://backpackersunited.in/destinations/wayanad</loc>
   <lastmod>2023-12-06T06:27:52+00:00</lastmod>
   <priority>0.80</priority>
@@ -98,11 +93,6 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://backpackersunited.in/destinations/nepal</loc>
-  <lastmod>2023-12-06T06:27:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://backpackersunited.in/destinations/bhutan</loc>
   <lastmod>2023-12-06T06:27:52+00:00</lastmod>
   <priority>0.80</priority>
@@ -133,11 +123,6 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://backpackersunited.in/trek/kumara-parvatha-trek</loc>
-  <lastmod>2023-12-06T06:27:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://backpackersunited.in/trek/hampta-pass-trek</loc>
   <lastmod>2023-12-06T06:27:52+00:00</lastmod>
   <priority>0.80</priority>
@@ -153,22 +138,12 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://backpackersunited.in/destinations/indonesia</loc>
-  <lastmod>2023-12-06T06:27:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://backpackersunited.in/destinations/singapore</loc>
   <lastmod>2023-12-06T06:27:52+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://backpackersunited.in/destinations/agra</loc>
-  <lastmod>2023-12-06T06:27:52+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://backpackersunited.in/destinations/bir</loc>
   <lastmod>2023-12-06T06:27:52+00:00</lastmod>
   <priority>0.80</priority>
 </url>
@@ -424,11 +399,6 @@
 </url>
 <url>
   <loc>https://backpackersunited.in/trek/kurinjal-trek</loc>
-  <lastmod>2023-12-06T06:27:52+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://backpackersunited.in/trek/nishani-motte-trek-</loc>
   <lastmod>2023-12-06T06:27:52+00:00</lastmod>
   <priority>0.64</priority>
 </url>

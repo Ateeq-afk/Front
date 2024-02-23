@@ -5,12 +5,9 @@ import Image from 'next/image';
 import Header from '@/Components/Navbar/Header/Header';
 import Footer from '@/Components/Navbar/Footer/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import Link from 'next/link';
 import { faGift, faPercent, faConciergeBell, faCalendarCheck, faMapMarkedAlt, faPlaneDeparture, faCreditCard, faUserClock, faLock, faTag, faSuitcase } from '@fortawesome/free-solid-svg-icons';
 import EnquiryForm from '@/Components/Book/EnquiryForm';
-import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
-
 type FaqContent = {
   General: { question: string; answer: string }[];
   Safety: { question: string; answer: string }[];
@@ -24,23 +21,20 @@ interface TimeLeft {
   days: number;
   hours: number;
   minutes: number;
-  seconds: number; // Add seconds here
+  seconds: number; 
 }
-
 const calculateTimeLeft = (endDate: Date): TimeLeft => {
   const now = new Date();
   const difference = endDate.getTime() - now.getTime();
-
   if (difference > 0) {
     return {
       days: Math.floor(difference / (1000 * 60 * 60 * 24)),
       hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
       minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60), // Add seconds here
+      seconds: Math.floor((difference / 1000) % 60), 
     };
   }
-
-  return { days: 0, hours: 0, minutes: 0, seconds: 0 }; // Add seconds here
+  return { days: 0, hours: 0, minutes: 0, seconds: 0 }; 
 };
 const Travelpass = () => {
     const backgroundImages = [
@@ -49,67 +43,35 @@ const Travelpass = () => {
         'https://source.unsplash.com/random/?jungle',
         ];
         const endDate = new Date('December 16, 2023 00:00:00');
-        
-        
         const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0);
         const [showEnquiry, setShowEnquiry] = useState(false);
         const [isMobile, setIsMobile] = useState(false);
         const [showAllTreks, setShowAllTreks] = useState(false);
         const [showAllTours, setShowAllTours] = useState(false);
-        const [countdownTime, setCountdownTime] = useState<TimeLeft | null>(null);
-        
-        
-        
-        // Initialize countdown time
-        
-        
-        useEffect(() => {
-          setCountdownTime(calculateTimeLeft(endDate)); // Initialize the countdown time on client-side
-        
-          const intervalId = setInterval(() => {
-            setCountdownTime(calculateTimeLeft(endDate));
-          }, 1000); // Update every second
-        
-          return () => clearInterval(intervalId);
-        }, []);
         useEffect(() => {
         const intervalId = setInterval(() => {
         setCurrentBackgroundIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
         }, 3000);
         return () => clearInterval(intervalId);
         }, []);
-        
-        
-        // States and refs for tours
-        
         const topOfTreksListRef = useRef<HTMLDivElement | null>(null);
         const topOfToursListRef = useRef<HTMLDivElement | null>(null);
-        
         useEffect(() => {
-          // Update isMobile based on the actual window width
           const checkIfMobile = () => setIsMobile(window.innerWidth < 768);
           checkIfMobile();
-        
-          // Handle window resize
           window.addEventListener('resize', checkIfMobile);
           return () => window.removeEventListener('resize', checkIfMobile);
         }, []);
-        
-        
-        
          const handleViewChangeTreks = () => {
             const shouldScroll = showAllTreks;
             setShowAllTreks(!showAllTreks);
-        
             if (shouldScroll && topOfTreksListRef.current) {
               (topOfTreksListRef.current as HTMLDivElement).scrollIntoView({ behavior: 'smooth' });
             }
           };
-        
           const handleViewChangeTours = () => {
             const shouldScroll = showAllTours;
             setShowAllTours(!showAllTours);
-        
             if (shouldScroll && topOfToursListRef.current) {
               (topOfToursListRef.current as HTMLDivElement).scrollIntoView({ behavior: 'smooth' });
             }
@@ -135,7 +97,6 @@ const Travelpass = () => {
           'Nishani Motte Trek ', 'Kumara Parvatha Kukke Trek', 'Narasimha Parvatha Trek', 'Kodachadri Trek',
           'Galibeedu Trek', 'Meruthi Hill Trek', 'Belkal Theertha Falls Trek', 'Pandavara Betta Trek' ,
           ];
-          
           const tours = [
           'Wayanad Weekend Getaway', 'Chikmagalur Weekend Getaway', 'Hampi Weekend Getaway', 'Kodaikanal Weekend Getaway',
           'Munnar Weekend Getaway', 'Coorg Weekend Getaway', 'Ooty Weekend Getaway', 'Pondicherry Weekend Getaway'  ,
@@ -198,8 +159,6 @@ const Travelpass = () => {
             { question: 'What payment methods are accepted?', answer: 'We accept all credit cards, Debit cards, UPI payments, Netbanking, Wallets and EMI.' },
             ],
             };
-          
-          // State for the active tab
           const [activeTab, setActiveTab] = useState(tabs[0]);
           const cardVariants = {
             offscreen: {
@@ -216,39 +175,25 @@ const Travelpass = () => {
               }
             }
           };
-        // State for the active tab
         const cards = [
           {
             title: "Trek Pass",
             description: "Travel to 6 treks, originally at ₹24,000, now just ₹12,000!",
-            bgClass: "bg-purple-500" // Purple circle for Trek Pass
+            bgClass: "bg-purple-500" 
           },
           {
             title: "Tour Pass",
             description: "Access to 6 tours, slashed from ₹24,000 to only ₹12,000!",
-            bgClass: "bg-blue-500" // Blue circle for Tour Pass
+            bgClass: "bg-blue-500" 
           }
         ];
-        
-        const countdownVariants = {
-          hidden: { y: 0 },
-          visible: (custom: number) => ({
-            y: -40 * custom, // Adjust based on the height of each number
-            transition: { duration: 1, ease: "easeInOut" }
-          })
-        };
-        const currentPageUrl = typeof window !== 'undefined' ? window.location.href : '';
           return (
-          <div className='bg-gradient-to-r from-gray-900 to-gray-800 text-white'>
-             
+          <div className='bg-gradient-to-r from-gray-900 to-gray-800 text-white'> 
           <Header />
-          
-          {/* Dynamic background section */}
           <div className="relative h-screen">
           <div className="absolute inset-0 bg-black bg-opacity-50" /> {/* Overlay */}
           <div className="flex items-center justify-center bg-no-repeat bg-cover bg-center transition-opacity duration-1000 h-full"
           style={{ backgroundImage: `url(${backgroundImages[currentBackgroundIndex]})` }}>
-          {/* Content for the dynamic background section */}
           <div className="text-center text-white md:pt-20 pt-10 z-10">
           <h1 className="md:text-5xl text-4xl font-bold mb-6"><span className='text-yellow-500'>Explore South India:</span> Your Pass, Backpackers Style</h1>
           <p className="text-xl mb-6 hidden md:block">Embark on amazing expeditions with our Backpackers United Community with the United Travel Pass. One stop shop for amazing experiences and a lifetime of memories.</p>
@@ -264,10 +209,8 @@ const Travelpass = () => {
               initial="offscreen"
               whileInView="onscreen"
               viewport={{ once: true, amount: 0.8 }}
-              className="border border-black rounded-lg shadow-md w-64 transform hover:scale-105 transition duration-500 ease-in-out dark:bg-gray-700"
-            >
+              className="border border-black rounded-lg shadow-md w-64 transform hover:scale-105 transition duration-500 ease-in-out dark:bg-gray-700" >
               <div className="flex flex-col items-center justify-center bg-gradient-to-r from-yellow-200 to-yellow-600 rounded-lg">
-                {/* Title and Description */}
                 <div className="p-4 text-center">
                   <h3 className="text-md font-semibold text-gray-800 dark:text-gray-100">{card.title}</h3>
                   <p className="text-black text-sm">
@@ -287,68 +230,49 @@ const Travelpass = () => {
             </Link>
           ))}
         </div>
-       
           </div>
-        
           </div>
-        
           </div>
           <div className="bg-black">
           <div className="py-8 px-4 md:px-4">
-          {/* Changed text-white to text-black */} {/* Added text-white class */}
           <h2 className="md:text-4xl  text-3xl font-bold text-center mb-5 text-yellow-500">Exclusive Benefits</h2>
           <div className="flex justify-center  md:pb-10 pb-5">
                   <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
                 </div>
           <p className="text-justify md:mx-6 mb-10 break-words">
-          Join the Backpackers United Member community once you avail the travel pass!  It offers you a choice of either 20 treks or tours, each promising unforgettable experiences under Trek pass and Tour passes respectively. You'll also get additional benefits like round-the-clock travel concierge, member only trips, fixed discounts on trips other than the ones included in the pass, customised travel plans, and more. Embrace the extraordinary with Backpackers United, where each experience enriches your travel with amazing perks, making every getaway more than just a trip – it's a journey of discovery and a world full of backpacking enthusiasts!
-          </p>
+          Join the Backpackers United Member community once you avail the travel pass!  It offers you a choice of either 20 treks or tours, each promising unforgettable experiences under Trek pass and Tour passes respectively. You'll also get additional benefits like round-the-clock travel concierge, member only trips, fixed discounts on trips other than the ones included in the pass, customised travel plans, and more. Embrace the extraordinary with Backpackers United, where each experience enriches your travel with amazing perks, making every getaway more than just a trip – it's a journey of discovery and a world full of backpacking enthusiasts! </p>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 md:gap-6 gap-3 text-black">
-          {/* Welcome Bonus Card */}
           <div className="rounded-lg shadow md:p-6 p-4 flex flex-col items-end" style={{ background: 'linear-gradient(to right, #fff59d, #ffeb3b)', color: '#333333' }}>
-           
-          {/* Image on the right */}
           <div className="mb-4">
           <FontAwesomeIcon icon={faGift} className="text-black text-3xl" />
           </div>
-          {/* Text on the left */}
           <div className="text-left">
           <h3 className="text-lg font-semibold mb-2">Giveaway</h3>
           <p>Unlock your adventure with our exclusive giveaway.</p>
-          
           </div>
           </div>
           <div className="rounded-lg shadow md:p-6 p-4  flex flex-col items-end h-[250px] md:h-auto" style={{ background: 'linear-gradient(to right, #fff59d, #ffeb3b)', color: '#333333' }}>
-           
-          {/* Image on the right */}
           <div className="mb-4">
           <FontAwesomeIcon icon={faPercent} className=" text-black text-3xl" />
           </div>
-          {/* Text on the left */}
           <div className="text-left text-black ">
           <h3 className="text-lg font-semibold mb-2">Save 50% Today</h3>
           <p>Save 50% Today: Half Price, Full Value!</p>
           </div>
           </div>
           <div className="rounded-lg shadow md:p-6 p-4  flex flex-col items-end h-[250px] md:h-auto" style={{ background: 'linear-gradient(to right, #fff59d, #ffeb3b)', color: '#333333' }}>
-           
-          {/* Image on the right */}
           <div className="mb-4">
           <FontAwesomeIcon icon={faUserClock} className="text-black text-3xl" />
           </div>
-          {/* Text on the left */}
           <div className="text-left text-black">
           <h3 className="text-lg font-semibold mb-2">24/7 Travel Concierge</h3>
           <p>Journey nonstop with our 24/7 concierge service.</p>
           </div>
           </div>
           <div className="rounded-lg shadow md:p-6 p-4 flex flex-col items-end h-[250px] md:h-auto" style={{ background: 'linear-gradient(to right, #fff59d, #ffeb3b)', color: '#333333' }}>
-            
-          {/* Image on the right */}
           <div className="mb-4">
           <FontAwesomeIcon icon={faLock} className="text-black text-3xl" />
           </div>
-          {/* Text on the left */}
           <div className="text-left text-black">
           <h3 className="text-lg font-semibold mb-2">Member Only Invites
           </h3>
@@ -356,11 +280,9 @@ const Travelpass = () => {
           </div>
           </div>
           <div className="rounded-lg shadow md:p-6 p-4 flex flex-col items-end h-[250px] md:h-auto" style={{ background: 'linear-gradient(to right, #fff59d, #ffeb3b)', color: '#333333' }}>
-            {/* Image on the right */}
           <div className="mb-4">
           <FontAwesomeIcon icon={faTag} className="text-black text-3xl" />
           </div>
-          {/* Text on the left */}
           <div className="text-left text-black">
           <h3 className="text-lg font-semibold mb-2">Fixed Discounts
           </h3>
@@ -368,12 +290,9 @@ const Travelpass = () => {
           </div>
           </div>
           <div className="rounded-lg shadow md:p-6 p-4 flex flex-col items-end h-[250px] md:h-auto" style={{ background: 'linear-gradient(to right, #fff59d, #ffeb3b)', color: '#333333' }}>
-           
-          {/* Image on the right */}
           <div className="mb-4">
           <FontAwesomeIcon icon={faSuitcase} className="text-black text-3xl" />
           </div>
-          {/* Text on the left */}
           <div className="text-left text-black">
           <h3 className="text-lg font-semibold mb-2">Customized Travel Plans
           </h3>
@@ -381,12 +300,9 @@ const Travelpass = () => {
           </div>
           </div>
           <div className="rounded-lg shadow md:p-6 p-4 flex flex-col items-end h-[250px] md:h-auto" style={{ background: 'linear-gradient(to right, #fff59d, #ffeb3b)', color: '#333333' }}>
-           
-          {/* Image on the right */}
           <div className="mb-4">
           <FontAwesomeIcon icon={faCalendarCheck} className="text-black text-3xl" />
           </div>
-          {/* Text on the left */}
           <div className="text-left text-black">
           <h3 className="text-lg font-semibold mb-2">No Blackout Dates
           </h3>
@@ -394,12 +310,9 @@ const Travelpass = () => {
           </div>
           </div>
           <div className="rounded-lg shadow md:p-6 p-4  flex flex-col items-end h-[250px] md:h-auto" style={{ background: 'linear-gradient(to right, #fff59d, #ffeb3b)', color: '#333333' }}>
-           
-          {/* Image on the right */}
           <div className="mb-4">
           <FontAwesomeIcon icon={faCreditCard} className="text-black text-3xl" />
           </div>
-          {/* Text on the left */}
           <div className="text-left text-black">
           <h3 className="text-lg font-semibold mb-2">EMI Option Available
           </h3>
@@ -409,13 +322,10 @@ const Travelpass = () => {
           </div>
           <div className="bg-black text-white pl-auto pr-auto ">
           <div className="container mx-auto md:my-12 mt-12 md:p-6 relative">
-          {/* Overlay Title */}
           <div className="relative">
-          {/* Image Grid */}
           <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 md:gap-2 gap-1">
           {adventures.slice(0, isMobile ? 6 : adventures.length).map((adventure, index) => (
           <div key={index} className="relative w-full md:h-[150px] h-[100px] ">
-          {/* Ensure your images are square by providing the same width and height, or by using aspect-ratio classes */}
           <Image
           src={adventure.src}
           alt={adventure.alt}
@@ -426,16 +336,12 @@ const Travelpass = () => {
           </div>
           ))}
           </div>
-          
           <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center">
           <div className="text-white md:text-4xl text-2xl font-bold p-4 bg-black bg-opacity-50 rounded-lg">
           40 DESTINATIONS
           </div>
           </div>
           </div>
-          
-          
-          {/* Stats Section */}
           <div className="flex justify-around md:mt-12 mt-6">
             <div className="text-center">
               <span className="md:text-6xl text-4xl font-bold text-yellow-500">20</span>
@@ -460,7 +366,6 @@ const Travelpass = () => {
                        transition={{ duration: 0.3 }} className="px-6 py-2  font-semibold rounded-full border border-yellow-500  text-black  " onClick={() => setShowEnquiry(true)}>
               Send Enquiry
             </motion.button>
-          
           <Link href='/travel-pass/book'>   <motion.button
                        initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                        whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}
@@ -476,14 +381,13 @@ const Travelpass = () => {
           <div className="bg-white py-12">
           <div className="container mx-auto md:px-4">
           <div className="text-center md:mb-10 mb-5 text-black">
-          <h2 className="text-2xl font-semibold ">Unlock a World of Adventure with Backpackers United Travel Pass</h2>
+          <div className="text-2xl font-semibold ">Unlock a World of Adventure with Backpackers United Travel Pass</div>
           <div className="flex justify-center  pt-3">
                   <hr className="border-t-2 border-yellow-500 md:w-[60PX] w-[30px]" />
                 </div>
           <p className="mt-4 text-gray-600 text-justify break-words md:mx-6 mx-4">
           Embark on an extraordinary journey with our exclusive Travel Pass. Gain access to over 40 unique travel experiences, designed for adventurous souls seeking exploration, connection, and unforgettable moments. Whether you're yearning for a thrilling trek through breathtaking landscapes or a cultural tour that unveils hidden gems, our Trek and Tour Pass is your key to a seamless backpacking adventure tailored to your wanderlust. More than just a pass, it's your ticket to a world of discovery.</p>
           </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-6 px-4" >
           <div className="flex flex-col items-center text-center">
           <h3 className="text-xl font-semibold text-black">Exclusive Travel Deals for Pass holders</h3>
@@ -494,7 +398,6 @@ const Travelpass = () => {
           Unlock savings with our Travel Pass! As a valued member, access exclusive deals on flights, hotels, and vacation packages tailored for memorable and affordable journeys. Our commitment to unbeatable value ensures your membership pays for itself with each incredible adventure.
           </p>
           </div>
-          
           <div className="flex flex-col items-center text-center">
           <h3 className="text-xl font-semibold text-black">Personalized Travel Concierge Services</h3>
           <div className="flex justify-center  pt-3">
@@ -504,7 +407,6 @@ const Travelpass = () => {
           Elevate your travel with our concierge! Our dedicated team curates bespoke itineraries, offers insider tips, and assists with queries, ensuring a seamless, stress-free experience for romantic getaways, family vacations, or solo adventures.
           </p>
           </div>
-          
           <div className="flex flex-col items-center text-center">
           <h3 className="text-xl font-semibold text-black">Priority Access and Invite only Trips</h3>
           <div className="flex justify-center  pt-3">
@@ -517,21 +419,10 @@ const Travelpass = () => {
           </div>
           </div>
           </div>
-          
-          
-          {/* Rest of the page content */}
-          {/* ... */}
-          {/* Make sure to replace < /> with the actual Faq component call and pass the necessary props */}
-          {/* <Faq faqItems={faqItems} /> */}
           <div ref={topOfTreksListRef} className="treks-section">
           <div className="relative text-white text-center py-12" style={{ background: 'linear-gradient(to right, #662D8C, #ED1E79)' }}>
-          {/* Title */}
-          <h2 className="md:text-4xl text-3xl font-bold mb-6">TREK PASS</h2>
+          <div className="md:text-4xl text-3xl font-bold mb-6">TREK PASS</div>
           <h3 className="md:text-2xl text-xl font-semibold mb-8">20 TREKS TO CHOOSE FROM </h3>
-          
-          {/* Treks grid */}
-          
-          
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
                   {displayedTreks.map((trek, index) => (
                     <div key={index} className="bg-white bg-opacity-20 rounded-full px-6 h-[60px] flex justify-center items-center">
@@ -553,19 +444,11 @@ const Travelpass = () => {
                 )}
           </div>
           </div>
-          {/* Title */}
-          
-          {/* Tours grid */}
           <div ref={topOfToursListRef} className="tours-section">
           <div className="relative text-white text-center py-12"
           style={{ background: 'linear-gradient(to right, #2E3192, #00CDAC)' }}>
-          {/* Title */}
-          
-          <h2 className="md:text-4xl text-3xl font-bold mb-6">TOUR PASS </h2>
+          <div className="md:text-4xl text-3xl font-bold mb-6">TOUR PASS </div>
           <h3 className="md:text-2xl text-xl font-semibold mb-8">20 TOURS TO CHOOSE FROM</h3>
-          
-          {/* Tours grid */}
-          
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
                   {displayedTours.map((tour, index) => (
                     <div key={index} className="bg-white bg-opacity-20 rounded-full px-6 h-[60px] flex justify-center items-center">
@@ -589,7 +472,7 @@ const Travelpass = () => {
           </div>
           <div className="bg-black py-12">
           <div className="container mx-auto">
-          <h2 className="md:text-4xl  text-3xl font-bold text-center mb-5 text-yellow-500">FAQ's</h2>
+          <div className="md:text-4xl  text-3xl font-bold text-center mb-5 text-yellow-500">FAQ's</div>
           <div className="flex justify-center  md:pb-10 pb-5">
                   <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
                 </div>
@@ -619,5 +502,4 @@ const Travelpass = () => {
           </div>
           );
 }
-
 export default Travelpass

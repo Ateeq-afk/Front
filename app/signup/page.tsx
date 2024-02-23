@@ -4,8 +4,6 @@ import Header from "@/Components/Navbar/Header/Header";
 import SignUpForm from "@/Components/Signup/Signup";
 import Googlelogin from "@/Components/Signup/Google";
 import { Metadata } from "next";
-
-
 export const metadata:Metadata = {
   title: 'Sign Up for Backpackers United - Join Our Community',
   description: 'Create an account with Backpackers United and join a global community of backpacking enthusiasts. Access exclusive content, tips, and offers.',
@@ -23,6 +21,9 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/signup',
+  }
 }
 const SignUp = () => {
   return (
@@ -54,12 +55,9 @@ const SignUp = () => {
           </div>
         </div>
       </section>
-
-
       <Footer />
       </div>
     </>
   );
 };
-
 export default dynamic(() => Promise.resolve(SignUp), { ssr: false });

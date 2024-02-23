@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupeeSign, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
 import { motion } from "framer-motion";
-// SwiperCore.use([Navigation, Scrollbar]);
 interface TrekItem {
   _id: string;
   urllink: string;
@@ -17,16 +16,15 @@ interface TrekItem {
   testimagealt: string;
   name: string;
   amount: number;
-  badge?: string; // Optional property
+  originalprice?: number; 
+  badge?: string; 
 }
-
-// Define the props for the Trek component
 interface TrekProps {
   trek: TrekItem[];
   uniqueId: string;
 }
 const getBadgeColor = (badge: string) => {
-  const lowercaseBadge = badge.toLowerCase(); // Convert badge to lowercase for case-insensitive comparison
+  const lowercaseBadge = badge.toLowerCase(); 
   if (lowercaseBadge === 'honeymoon special' || lowercaseBadge === 'romantic getaway') {
     return 'bg-red-500';
   } else if (lowercaseBadge === 'group') {
@@ -37,8 +35,8 @@ const getBadgeColor = (badge: string) => {
     return 'bg-yellow-500';
   }
 }
-
 const Treka: React.FC<TrekProps> = ({ trek, uniqueId }) => {
+  const originalprice = 8999
   return (
     <div className=" relative">
       <Swiper
@@ -77,7 +75,7 @@ const Treka: React.FC<TrekProps> = ({ trek, uniqueId }) => {
       >
          {trek && trek.map((item) => (
    <SwiperSlide key={item._id}>
-   <Link href={`${item.urllink}`} className="block"> {/* Make the entire card a link */}
+   <Link href={`${item.urllink}`} className="block"> 
      <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white p-4 h-[410px]">
        <div className="overflow-hidden relative rounded-xl h-72 w-full">
          <Image
@@ -87,7 +85,7 @@ const Treka: React.FC<TrekProps> = ({ trek, uniqueId }) => {
            layout="fill"
            className="transform transition-transform duration-300"
          />
-         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> {/* Gradient overlay */}
+         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> 
        </div>
        {item.badge && (
                   <span className={`absolute top-0 left-0 uppercase text-xs p-1 m-2 rounded ${getBadgeColor(item.badge)}`}>
@@ -98,7 +96,11 @@ const Treka: React.FC<TrekProps> = ({ trek, uniqueId }) => {
          <h4 className="text-lg mb-1">{item.name}</h4>
    
        <div className="flex justify-between w-full mt-2 mx-4">
-       <p className="text-md pt-1"><FontAwesomeIcon icon={faIndianRupeeSign} className="pr-1"/>{item.amount}</p>
+       <p className="text-md pt-1">  {originalprice && (
+    <p className="text-[16px] line-through " >
+    <FontAwesomeIcon icon={faIndianRupeeSign} className="pr-1"/>{originalprice}
+    </p>
+  )}<FontAwesomeIcon icon={faIndianRupeeSign} className="pr-1"/>{item.amount}</p>
        <motion.button
                initial={{ backgroundColor: "#FBBF24", color: "#000" }}
                whileHover={{ backgroundColor: "#000", color: "#FBBF24", scale: 1.05 }}

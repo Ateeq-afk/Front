@@ -1,5 +1,4 @@
 import Blognew from '@/Components/Blogs/Blognew'
-
 const page = () => {
   return (
     <div>
@@ -7,5 +6,4 @@ const page = () => {
     </div>
   )
 }
-
 export default page

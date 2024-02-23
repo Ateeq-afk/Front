@@ -7,24 +7,16 @@ import { Navigation,Scrollbar } from 'swiper/modules';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
-import { destinations2 } from "./data"; // Make sure the path is correct
-// import SwiperCore, { Navigation, Scrollbar } from 'swiper';
-// TypeScript type definitions
-
-// SwiperCore.use([Navigation, Scrollbar]);
+import { destinations2 } from "./data"; 
 const PopularDestinations = () => {
   useEffect(() => {
-    // Importing AOS and initializing inside useEffect
     const AOS = require('aos');
     AOS.init({
-      // Optionally, you can define AOS settings here, for example:
       duration: 1000,
-      // once: true,
     });
   }, []);
   return (
     <>
-    {/* <div className="mx-10" > */}
       <Swiper
         spaceBetween={30}
         slidesPerView={4}
@@ -33,8 +25,6 @@ const PopularDestinations = () => {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
           }}
-        // scrollbar={{ draggable: true }}
-   
         scrollbar={{
           el: "#swiper-scrollbar",
           draggable: true,
@@ -79,7 +69,6 @@ const PopularDestinations = () => {
                   <h4 className="text-2xl md:text-xl leading-snug text-white mb-4">
                     {item.city}
                   </h4>
-
                     <button className="w-full py-3  bg-yellow-500 text-black rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       Discover
                     </button>
@@ -88,23 +77,17 @@ const PopularDestinations = () => {
               </div>
               <div className="absolute inset-0 bg-gradient-to-b  via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-all ease-out duration-300"></div>
             </div>
-           
             </Link>
           </SwiperSlide>
         ))}
       </Swiper>
-
       <div className="flex justify-between mt-4">
       <button className="swiper-button-prev flex items-center justify-center w-5 h-5  shadow-md rounded-full ">
 </button>
 <button className="swiper-button-next flex items-center justify-center w-10 h-5  shadow-md rounded-full ">
 </button>
-      {/* <button className="swiper-button-prev bg-black text-black !important"></button>
-<button className="swiper-button-next"></button> */}
 <div className=" bg-white  " id="swiper-scrollbar"></div>
-
       </div>
-      {/* </div> */}
     </>
   );
 };

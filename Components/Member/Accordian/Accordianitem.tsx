@@ -3,7 +3,6 @@ interface AccordionItemProps {
   title: string;
   points?: string[]; 
 }
-
 const AccordionItem: React.FC<AccordionItemProps> = ({ title, points }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleAccordion = () => {
@@ -13,8 +12,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, points }) => {
     <div className="mb-4 text-black rounded-lg">
     <div
       className="flex justify-between items-center bg-gray-300 p-2 cursor-pointer rounded-lg"
-      onClick={toggleAccordion}
-    >
+      onClick={toggleAccordion}>
       <h3 className="text-lg font-semibold">{title}</h3>
       <span>{isOpen ? '▲' : '▼'}</span>
     </div>

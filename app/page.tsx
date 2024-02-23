@@ -1,7 +1,6 @@
 import TrekDate from "@/Components/Home/Date/TrekDate";
 import {Metadata} from "next"
 import dynamic from "next/dynamic";
-
 const Header = dynamic(() => import('@/Components/Navbar/Header/Header'));
 const Hero = dynamic(() => import('@/Components/Home/Hero/Hero'));
 const TestimonialSection = dynamic(() => import('@/Components/Home/Testimonials/Testimonials'));
@@ -28,6 +27,9 @@ export const metadata:Metadata = {
     ],
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://backpackersunited.in/',
+  }
 }
 const destinations = [
   {
@@ -35,10 +37,8 @@ const destinations = [
     location: "Singtur Range, Uttarakhand",
     price: 5999,
     img: "/home/kedarkanta.webp",
-    badge: "BEST SELLER",
     url:"/trek/kedarkantha-trek"
   },
-
   {
     title: "Brahmatal Trek",
     location: "Kuling, Uttarakhand",
@@ -51,7 +51,6 @@ const destinations = [
     location: "Chikamagalur, Karnataka",
     price: 2999,
     img: "/home/kudremukh.webp",
-    badge: "TOP RATED",
     url:"/trek/kudremukh-trek"
   },
   {
@@ -59,7 +58,6 @@ const destinations = [
     location: "Kukke Subramanya, ",
     price: 2999,
     img: "/home/kp.webp",
-    badge: "TOP RATED",
     url:"/trek/kumara-parvatha-kukke-trek"
   },
   {
@@ -74,80 +72,88 @@ const destinations2 = [
   {
     title: "Wayanad Weekend Getaway",
     location: "Kerala",
-    price: 6999,
+    price: 5599,
+    originalprice:6999,
     img: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--wayanad (2).jpg',
-    badge: "BEST SELLER",
     url:"/tour/wayanad-weekend-getaway"
   },
   {
     title: "Chikmagalur Weekend Getaway",
     location: "Karnataka",
-    price: 6999,
+    price: 5499,
+    originalprice:6999,
     img: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/siri_11zon.webp',
     url:"/tour/chikmagalur-weekend-getaway"
   },
   {
     title: "Gokarna-Murudeshwar Weekend Getaway",
     location:"Karnataka",
-    price: 6999,
+    price: 5499,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--tharun-kumar-u-uY0n8FV_ds0-unsplash_11zon.webp",
-    badge: "TOP RATED",
     url:"/tour/gokarna-murudeshwar-weekend-getaway"
   },
   {
     title: "Kodaikanal Weekend Getaway",
     location: "Tamilnadu",
-    price: 6999,
+    price: 6499,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--69_39_11zon.webp",
-    badge: "BEST SELLER",
     url:"/tour/kodaikanal-weekend-getaway"
   },
   {
     title: "Ooty Weekend Getaway",
     location: "Tamilnadu",
-    price: 6999,
+    price: 5599,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/IMG20220410121642_11zon.webp",
     url:"/tour/ooty-weekend-getaway"
   },
   {
     title: "Coorg Weekend Getaway",
     location: "Karnataka",
-    price:6999,
+    price:5499,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--88_50_11zon.webp",
     url:"/tour/coorg-weekend-getaway"
   },
     {
     title: "Pondicherry Weekend Getaway",
     location: "India",
-    price:6999,
+    price:5499,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--pondi_11zon.webp",
     url:"/tour/pondicherry-weekend-getaway"
   },
 {
     title: "Munnar Weekend Getaway",
     location: "Tamilnadu",
-    price:6999,
+    price:6499,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--munnar_11zon.webp",
     url:"/tour/munnar-weekend-getaway"
   },
 {
     title: "Hampi Weekend Getaway",
     location: "Karnataka",
-    price:6999,
+    price:5599,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/adarsh-sudheesan-yADr4J5jzOM-unsplash_11zon.webp",
     url:"/tour/hampi-weekend-getaway"
   },
 {
     title: "Dandeli Weekend Getaway",
     location: "Karnataka",
-    price:6999,
+    price:5199,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--chandan-chaurasia-z32bIS5O1KQ-unsplash_11zon.webp",
     url:"/tour/dandeli-weekend-getaway"
   },
 {
     title: "Sakleshpur Weekend Getaway",
     location: "Karnataka",
-    price:6999,
+    price:5499,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/sak_11zon.webp",
     url:"/tour/sakleshpur-weekend-getaway"
   },
@@ -155,7 +161,7 @@ const destinations2 = [
     title: "Kannur Weekend Getaway",
     location: "Kerala",
     price:6999,
-    img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/nahel-abdul-hadi-3ye0on5cMpQ-unsplash_11zon.webp",
+        img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/nahel-abdul-hadi-3ye0on5cMpQ-unsplash_11zon.webp",
     url:"/tour/kannur-weekend-getaway"
   },
 {
@@ -182,26 +188,26 @@ const destinations2 = [
 {
     title: "Chikmagalur Backpacking Tour",
     location: "Karnataka",
-    price:6999,
+    price:5499,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/3_3_11zon.webp",
     url:"/tour/chikmagalur-backpacking-tour",
-    badge: "OFF-BEAT",
   },
 {
     title: "Kodaikanal Backpacking Tour",
     location: "Tamilnadu",
-    price:6999,
+    price:6499,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/balaji-malliswamy-KDIBZFIw-wQ-unsplash_11zon.webp",
     url:"/tour/kodaikanal-backpacking-tour",
-    badge: "OFF-BEAT",
   },
 {
     title: "Ooty Backpacking Tour",
     location: "Tamilnadu",
-    price:6999,
+    price:5599,
+    originalprice:6999,
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/chaitanya-rayampally-XhYP3T-telg-unsplash (1)_11zon.webp",
     url:"/tour/ooty-backpacking-tour",
-    badge: "OFF-BEAT",
   },
 {
     title: "BR Hills Weekend Getaway",
@@ -217,24 +223,21 @@ const destinations2 = [
     img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/badami_11zon.webp",
     url:"/tour/badami-weekend-getaway"
   },
-{
-    title: "Mysore Weekend Getaway",
-    location: "Karnataka",
-    price:4999,
-    img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage-chaitanya-rayampally-wUKv2IN5w2U-unsplash.webp",
-    url:"/tour/mysore-tour"
-  },
-];
+]
 export default function Home() {
-
   return (
+
     <main className="flex flex-col bg-black ">
       <div >
- 
     <Header />
     <Hero />
     <section className="md:pt-10 pt-5" data-aos="fade-up">
-    <h2 className="text-center text-xl md:text-3xl font-bold text-white md:pb-5"><span className="text-yellow-500">Community</span> Trips from <span className="text-yellow-500">Bangalore</span></h2>
+    <div className="text-center md:text-center">
+    <h1 className="text-center text-xl md:text-3xl font-bold text-white md:pb-2"><span className="text-yellow-500">Community</span> Trips from <span className="text-yellow-500">Bangalore</span></h1>
+          <div className="flex justify-center pt-2 md:pb-5">
+        <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
+      </div>
+   </div>
 <TrekDate />
 </section>
      <section className="md:pt-10 pt-5" data-aos="fade-up">
@@ -249,18 +252,14 @@ export default function Home() {
         </div>
       </div>
     </div>
-    
     <div className="md:pt-3 px-3">
-
       <PopularDestinations  />
-  
     </div>
   </div>
-
 </section> 
 <div className='md:mx-10 mx-6 mt-4'>
 <div className="text-center md:text-center">
-          <h2 className="text-xl md:text-3xl font-bold text-yellow-500  ">South Indian Tours</h2>
+          <div className="text-xl md:text-3xl font-bold text-yellow-500  ">South Indian Tours</div>
           <div className="flex justify-center pt-2 md:pt-5 md:pb-10">
         <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
       </div>
@@ -272,7 +271,7 @@ export default function Home() {
     </section>
 <div className='md:mx-10 mx-6 mt-4'>
 <div className="text-center md:text-center">
-          <h2 className="text-xl md:text-3xl font-bold text-yellow-500  ">Adventure Explorations</h2>
+          <div className="text-xl md:text-3xl font-bold text-yellow-500  ">Adventure Explorations</div>
           <div className="flex justify-center pt-2 md:pt-5 md:pb-10">
         <hr className="border-t-2 border-white md:w-[60PX] w-[30px]" />
       </div>
@@ -283,7 +282,6 @@ export default function Home() {
 <div className='mx-4'>
     <Promo />
   </div>
-
 </section>
 <section data-aos="fade-up">
 <TestimonialSection />

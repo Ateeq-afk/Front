@@ -1,13 +1,11 @@
 'use client'
 import Image from 'next/image'
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { initializeApp, getApps } from 'firebase/app';
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast  } from 'react-toastify';
 import { useAuth } from "../../app/AuthContext"
-
 const firebaseConfig = {
     apiKey: "AIzaSyAo9cGsw6Tbo9nrbsdXcoVxY0SGWgrJ4L8",
     authDomain: "backpack-b1f98.firebaseapp.com",
@@ -16,7 +14,6 @@ const firebaseConfig = {
     messagingSenderId: "520329530780",
     appId: "1:520329530780:web:7da6a30492c1a9fa9d0c59"
   };
-  // Initialize Firebase
   try {
     if (!getApps().length) {
       initializeApp(firebaseConfig);
@@ -24,7 +21,6 @@ const firebaseConfig = {
   } catch (error) {
     console.error("Firebase initialization error:", error);
   }
-  
 const Googlelogin = () => {
     const router = useRouter();
     const { login } = useAuth();
@@ -34,37 +30,17 @@ const Googlelogin = () => {
       try {
         const result = await signInWithPopup(auth, provider);
         const { displayName, email, photoURL } = result.user;
-        
         const res = await axios.post('https://launch-api1.vercel.app/auth/google', {
           name: displayName,
           email: email,
           image: photoURL,
         });
-        
-        console.log("Backend response:", res.data);
-
-
-  
-        // Set the JWT token here if needed
-        // localStorage.setItem('token', res.data.token);
         login({ name: displayName, email: email, photoURL: photoURL });
-        // Navigate to home page or dashboard
         await  router.back(); 
       } catch (err) {
-   // toast.error("Invalid Credentials ", {
-        //     position: "top-right",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "dark",
-        //     })
             alert("Invalid Credentials ")
       }
     }
-
   return (
     <div >
     <ToastContainer />
@@ -79,5 +55,4 @@ Sign In with Google Account
 </div>
   )
 }
-
 export default Googlelogin

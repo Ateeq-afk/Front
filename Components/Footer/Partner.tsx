@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF,  faWhatsapp, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Header from '@/Components/Navbar/Header/Header';
 import Footer from '@/Components/Navbar/Footer/Footer';
-import DynamicMetaTags from '@/Components/Dynamic/DynamicMetatag';
-
 const Partner = () => {
     useEffect(() => {
         const script = document.createElement('script');
@@ -14,7 +12,6 @@ const Partner = () => {
         script.async = true;
         script.defer = true;
         script.onload = function () {
-            // Ensure the 'map' element is present before initializing the map
             const mapElement = document.getElementById('map');
             if (window.google && window.google.maps && mapElement) {
                 new window.google.maps.Map(mapElement as HTMLElement, {
@@ -24,18 +21,13 @@ const Partner = () => {
             }
         };
         document.head.appendChild(script);
-    
-        // Make sure to remove the script when the component unmounts
         return () => {
             document.head.removeChild(script);
         };
     }, []);
-
         return (
             <div className='flex flex-col min-h-screen bg-black'>
-              
               <Header />
-              {/* Added top padding and centered content */}
               <motion.div 
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
@@ -50,50 +42,32 @@ const Partner = () => {
                      Partner With Us
                   </motion.h1>
                   <div className="bg-yellow-500 h-1 w-24 mx-auto mb-10"></div>
-                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       <motion.div
                           initial={{ x: -100, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
                           transition={{ duration: 0.5 }}
                       >
-                          {/* Content sections have additional padding */}
                           <div className="space-y-8 mb-8 p-4 bg-gray-800 rounded-lg shadow-md">
-                              {/* Each section now has its own card-like container for better visual separation */}
                               <div>
-                                  
-                                  <p className="text-white">Backpackers United, India's premier adventure platform, invites providers of thrilling experiences such as trekking, rafting, paragliding, rock climbing, safaris, camping, and outdoor holidays to join their growing network. As a partner, you can expect comprehensive scrutiny of your operations, ensuring safety, quality, and sustainability. The platform prioritizes guest satisfaction and leverages its social media reach and vendor network to offer partners unmatched visibility.
-    
+                                  <p className="text-white">Backpackers United, India's top adventure platform, is looking for partners! If you offer exciting activities like trekking, rafting, paragliding, rock climbing, safaris, camping, or outdoor holidays, we'd love to have you. We'll check your operations for safety, quality, and eco-friendliness. Our goal is to make sure our guests have great experiences, and we offer our partners great visibility through our social media and vendor networks.
      </p>
                               </div>
                               <div>
-                              
-                                  <p className="text-white">By partnering with BACKPACKERS UNITED PRIVATE LIMITED, adventure providers benefit from a team of experts who evaluate operations based on safety standards, service excellence, and exceptional customer care. The goal is to ensure guests enjoy experiences that meet stringent parameters for hospitality and sustainability. The platform's commitment extends to championing partner operations or properties across various platforms, leveraging its extensive digital network for increased visibility.
-    
-    
-    
-    
-    
-    
-    
-    
-    
+                                  <p className="text-white">Join us at BACKPACKERS UNITED PRIVATE LIMITED, and benefit from our expertise in ensuring safety and exceptional service. We help our partners grow by promoting their operations on various digital platforms, reaching adventure seekers everywhere.
     </p>
                               </div>
                               <div>
-                                 
-                                  <p className="text-white">If you believe your adventure operation aligns with BACKPACKERS UNITED PRIVATE LIMITED 's high standards and commitment to safety and customer satisfaction, the platform welcomes you to join and scale your operation by reaching new, adventure-loving audiences through their established network
-                          .</p>
+                                  <p className="text-white">If your adventure service meets our high standards for safety and customer happiness, come and grow with us. Reach new audiences and scale your business with BACKPACKERS UNITED.</p>
                                   <p className="text-white">
-                                      Email: <a href="mailto:info@backpackersunited.in" className="hover:text-yellow-500">info@backpackersunited.in</a><br />
-                                      Phone: <a href="tel:+919364099494" className="hover:text-yellow-500">+91 9364099494</a>
+                                  Contact us at <a href="mailto:info@backpackersunited.in" className="hover:text-yellow-500">info@backpackersunited.in</a><br />
+                                  or call<a href="tel:+919364099494" className="hover:text-yellow-500">+91 9364099494</a>
                                   </p>
                               </div>
                               <div>
                                   <h2 className="text-2xl text-yellow-500 mb-2">Stay Connected:-</h2>
                                   <p className="text-white mb-4">Follow us on social media to stay updated on the latest adventures, offers, and travel stories.</p>
                                   <div className="flex space-x-4">
-                                      {/* Social icons now have a background hover effect */}
                                       <a href="https://www.facebook.com/backpackersunited1/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-yellow-500 transition-colors">
                                           <FontAwesomeIcon icon={faFacebookF} className="text-white text-3xl" />
                                       </a>
@@ -107,16 +81,14 @@ const Partner = () => {
                               </div>
                           </div>
                       </motion.div>
-      
                       <motion.div
                           initial={{ x: 100, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
                           transition={{ duration: 0.5 }}
                           className="flex flex-col space-y-8 p-4 bg-gray-800 rounded-lg shadow-md"
                       >
-                          {/* Form and map also have their own card-like container */}
                           <div>
-                              <h2 className="text-3xl text-yellow-500 mb-4">Get in Touch</h2>
+                              <div className="text-3xl text-yellow-500 mb-4">Get in Touch</div>
                               <form className="flex flex-col gap-4 max-w-md">
                                   <input type="text" placeholder="Your Name" className="p-2 bg-white rounded-md shadow-md" />
                                   <input type="email" placeholder="Your Email" className="p-2 bg-white rounded-md shadow-md" />
@@ -134,5 +106,4 @@ const Partner = () => {
             </div>
           );
 }
-
 export default Partner

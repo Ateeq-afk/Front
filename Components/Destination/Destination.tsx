@@ -7,16 +7,13 @@ import "swiper/css/grid";
 import { Scrollbar,Pagination,Grid  } from 'swiper/modules';
 import Image from 'next/image';
 import Link from "next/link";
-
 interface DestinationType {
-  id: string | number; // Adjust the type based on your data
+  id: string | number; 
   urllink: string;
   coverimage: string;
   imagealt: string;
   name: string;
 }
-
-// Define the type for the props
 interface DestinationProps {
   dest: DestinationType[];
   uniqueId: string;
@@ -24,7 +21,6 @@ interface DestinationProps {
   height: number;
 }
 const Destination: React.FC<DestinationProps> = ({ dest, uniqueId, row, height }) => {
-
   return (
     <div>
        <Swiper
@@ -72,9 +68,7 @@ const Destination: React.FC<DestinationProps> = ({ dest, uniqueId, row, height }
                 objectFit="cover"
                 className="rounded-lg"
               />
-              {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-50"></div>
-              {/* Text at top left */}
               <div className="absolute md:top-5 md:left-5 md:text-xl text-lg top-2 left-2 text-white">
                 {destination.name}
                 <hr className="border-t-2 border-yellow-500 md:w-[20px] w-[20px]" />
@@ -90,5 +84,4 @@ const Destination: React.FC<DestinationProps> = ({ dest, uniqueId, row, height }
     </div>
   )
 }
-
 export default Destination

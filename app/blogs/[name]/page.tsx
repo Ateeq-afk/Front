@@ -1,20 +1,37 @@
 import Blogmain from '@/Components/Blogs/Blogmain'
 import { Metadata, ResolvingMetadata } from 'next';
-import React, { FC } from 'react'
-
+import { notFound } from 'next/navigation';
+import React from 'react'
 interface PageProps {
   params: {
       name: string;
   }
 }
+interface BlogItem {
+  name: string;
+}
+export const dynamicParams = true
+export async function generateStaticParams() {
+  const res = await fetch('https://launch-api1.vercel.app/blog');
+  const blog = await res.json();
+  return blog.data.map((item:BlogItem) => ({
+    name: item.name
+  }));
+}
+async function getBlog(name:string) {
+  const res = await fetch(`https://launch-api1.vercel.app/blog/${name}`,{
+    next:{
+      revalidate: 60
+    }
+  })
+  if(!res.ok){
+    notFound()
+  }
+  return res.json()
+}
 export async function generateMetadata( { params }: PageProps, parent: ResolvingMetadata ): Promise<Metadata> {
-  // read route params
   const name = params.name;
-
-  // fetch data
   const product = await fetch(`https://launch-api1.vercel.app/blog/${name}`).then((res) => res.json());
-
-  // optionally access and extend (rather than replace) parent metadata
   return {
     title: product.metatitle,
     description: product.metades,
@@ -30,16 +47,17 @@ export async function generateMetadata( { params }: PageProps, parent: Resolving
       }],
       type: 'website',
     },
+    alternates: {
+      canonical: `https://backpackersunited.in/blogs/${product.urllink}`,
+    }
   };
 }
-
-const Page : FC<PageProps> = ({ params })=> {
-  const name = params.name
+export default async function Blog({ params }: { params: PageProps['params'] }) {;
+  const blog = await getBlog(params.name);
   return (
     <div>
-      <Blogmain name={name}/>
+      <Blogmain blog={blog}/>
     </div>
   )
 }
 
-export default Page
