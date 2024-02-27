@@ -218,7 +218,7 @@ const Tourmain = () => {
   </div>
         </div>
   </div>
-   <div className=' mx-10 pt-10'>
+   <div className=' md:mx-10 pt-10 mx-4'>
    <div className="text-center md:text-center">
             <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Weekend <span className='text-white'>Group Tours From </span>Bangalore</h2>
             <div className="flex justify-center pt-2 md:pt-5">
@@ -229,7 +229,7 @@ const Tourmain = () => {
         <Trek trek={groupTourTreks} name="tour" uniqueId="Karnataka" />
       </div>
    </div>
-   <div className=' mx-10 pt-10'>
+   <div className='md:mx-10 pt-10 mx-4'>
    <div className="text-center md:text-center">
             <div className="text-center text-xl md:text-3xl font-bold text-yellow-500">Long Weekend Tours</div>
             <div className="flex justify-center pt-2 md:pt-5">
@@ -240,7 +240,7 @@ const Tourmain = () => {
       <Trek trek={longTourTreks} name="tour"  uniqueId="kerala" />
       </div>
    </div>
-   <div className=' mx-10 py-10'>
+   <div className='md:mx-10 mx-4 py-10'>
    <div className="text-center md:text-center">
             <div className="text-center text-xl md:text-3xl font-bold text-yellow-500">International Tours</div>
             <div className="flex justify-center pt-2 md:pt-5">
@@ -251,7 +251,7 @@ const Tourmain = () => {
       <Trek trek={internationalTreks} name="tour"  uniqueId="tamilnadu" />
       </div>
    </div>
-   <div className=' mx-10 py-10'>
+   <div className='md:mx-10 mx-4 py-10'>
    <div className="text-center md:text-center">
             <div className="text-center text-xl md:text-3xl font-bold text-yellow-500">North Indian Tours</div>
             <div className="flex justify-center pt-2 md:pt-5">

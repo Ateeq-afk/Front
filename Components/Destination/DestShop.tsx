@@ -71,14 +71,14 @@ const DestShop = () => {
     <div >
                <Swiper
       spaceBetween={20}
-      slidesPerView={2.5}
+      slidesPerView={2.3}
       initialSlide= {0}
       freeMode={{ enabled: true, minimumVelocity: 0.1 }}
       modules={[FreeMode]}
       className="destslidershop"
       breakpoints={{
         500: {
-            slidesPerView: 3.5,
+            slidesPerView: 3.3,
             initialSlide: 0
           },
         1000: {
@@ -95,7 +95,7 @@ const DestShop = () => {
           <SwiperSlide key={index} className="py-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="relative overflow-hidden rounded-lg w-full h-[255px] md:h-[350px] "
+              className="relative overflow-hidden rounded-2xl w-full md:h-[350px] h-[200px] lg:h-[300px]"
             >
               <Link href={dest.href}>
                 <Image
@@ -106,8 +106,8 @@ const DestShop = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                 <div className="absolute bottom-0 p-3 md:p-5">
-                  <div className="text-yellow-500 md:text-lg text-base">{dest.secondaryText}</div>
-                  <div className="text-white  md:text-xl text-lg">{dest.mainText}</div>
+                  <div className="text-yellow-500 md:text-lg text-sm">{dest.secondaryText}</div>
+                  <div className="text-white  md:text-xl text-xs">{dest.mainText}</div>
                 </div>
               </Link>
             </motion.div>

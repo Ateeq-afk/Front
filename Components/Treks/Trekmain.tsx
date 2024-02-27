@@ -238,7 +238,7 @@ const Trekmain = () => {
     </div>
           </div>
     </div> 
-     <div className=' mx-10 pt-10'>
+     <div className='md:mx-10 pt-10 mx-4'>
      <div className="text-center md:text-center">
               <h2 className="text-center text-xl md:text-3xl font-bold text-yellow-500">Treks in Karnataka</h2>
               <div className="flex justify-center pt-2 md:pt-5">
@@ -249,7 +249,7 @@ const Trekmain = () => {
           <Trek trek={karnatakaTrekTreks} name="trek" uniqueId="Karnataka" />
         </div>
      </div>
-     <div className=' mx-10 pt-10'>
+     <div className='md:mx-10 pt-10 mx-4'>
      <div className="text-center md:text-center">
               <div className="text-center text-xl md:text-3xl font-bold text-yellow-500">Treks in Kerala</div>
               <div className="flex justify-center pt-2 md:pt-5">
@@ -260,7 +260,7 @@ const Trekmain = () => {
         <Trek trek={keralaTrekTreks} name="trek" uniqueId="kerala" />
         </div>
      </div>
-     <div className=' mx-10 py-10'>
+     <div className='md:mx-10 mx-4 py-10'>
      <div className="text-center md:text-center">
               <div className="text-center text-xl md:text-3xl font-bold text-yellow-500">Treks in Tamil Nadu</div>
               <div className="flex justify-center pt-2 md:pt-5">
@@ -271,7 +271,7 @@ const Trekmain = () => {
         <Trek trek={tnTrekTreks}  name="trek" uniqueId="tamilnadu" />
         </div>
      </div>
-     <div className=' mx-10 py-10'>
+     <div className='md:mx-10 mx-4 py-10'>
      <div className="text-center md:text-center">
               <div className="text-center text-xl md:text-3xl font-bold text-yellow-500">Treks of North India</div>
               <div className="flex justify-center pt-2 md:pt-5">

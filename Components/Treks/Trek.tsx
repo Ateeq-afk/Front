@@ -63,8 +63,8 @@ const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
         modules={[ Navigation, Pagination]}
         breakpoints={{
           100: {
-            slidesPerView: 1,
-            spaceBetween: 20,
+            slidesPerView: 1.3,
+            spaceBetween: 0,
           },
           768: {
             slidesPerView: 2,
@@ -81,7 +81,7 @@ const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
          {trek && trek.map((item) => (
    <SwiperSlide key={item._id}>
    <Link href={`${name}/${item.urllink}`} className="block"> 
-     <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white p-4 h-[410px]">
+     <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white  md:h-[410px] h-[350px] p-4">
        <div className="overflow-hidden relative rounded-xl h-72 w-full">
          <Image
            src={`https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/${item.testimage}`} 
@@ -93,7 +93,7 @@ const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> 
        </div>
        {item.badge && (
-                  <span className={`absolute top-0 left-0 uppercase text-xs p-1 m-2 rounded ${getBadgeColor(item.badge)}`}>
+                  <span className={`absolute top-0 left-0  uppercase text-xs p-1 m-2 rounded ${getBadgeColor(item.badge)}`}>
                     {item.badge}
                   </span>
                 )}

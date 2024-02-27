@@ -13,7 +13,7 @@ const RelatedDestinations = () => {
     { name: 'Kodaikanal', image: '/home/Kodaikanal.webp' },
   ];
   return (
-    <div className="mx-auto p-5 md:p-10">
+    <div className="mx-auto p-5 pb-0 md:p-10 md:pt-0">
       <Swiper
         spaceBetween={10}
         slidesPerView={2}
@@ -38,7 +38,7 @@ const RelatedDestinations = () => {
         {destinations.map((dest, index) => (
           <SwiperSlide key={index}>
             <div className="flex flex-col  rounded-lg">
-              <div className="relative overflow-hidden rounded-lg h-48">
+              <div className="relative overflow-hidden rounded-lg md:h-48 h-32">
                 <Image
                   src={dest.image}
                   alt={dest.name}
@@ -47,7 +47,7 @@ const RelatedDestinations = () => {
                   className="transition duration-500 ease-in-out transform hover:scale-105"
                 />
               </div>
-              <p className="mt-2 text-center text-xl font-semibold text-white">{dest.name}</p>
+              <p className="mt-2 text-center md:text-xl text-sm font-semibold text-white">{dest.name}</p>
             </div>
           </SwiperSlide>
         ))}

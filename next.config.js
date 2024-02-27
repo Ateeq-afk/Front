@@ -5,15 +5,15 @@ const cspHeader = `
     default-src 'self';
     script-src 'self' https://www.googletagmanager.com https://va.vercel-scripts.com https://waw.gallabox.com https://checkout.razorpay.com https://maps.googleapis.com 'unsafe-eval' 'unsafe-inline';
     style-src 'self' https://maps.gstatic.com https://fonts.googleapis.com 'unsafe-inline';
-    img-src 'self' blob: data: https://www.google.co.in/ads/ga-audiences https://maps.gstatic.com https://maps.googleapis.com https://www.googletagmanager.com;
-    font-src 'self' data: https://maps.googleapis.com https://fonts.gstatic.com; 
+    img-src 'self' blob: data: https://www.google.co.in/ads/ga-audiences https://maps.gstatic.com https://maps.googleapis.com https://www.googletagmanager.com https://source.unsplash.com https://images.unsplash.com; 
+    font-src 'self' data: https://maps.googleapis.com https://fonts.gstatic.com;
     object-src 'self' data:;
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
     block-all-mixed-content;
     upgrade-insecure-requests;
-    connect-src 'self' https://launch-api1.vercel.app https://analytics.google.com https://lumberjack-cx.razorpay.com https://lumberjack.razorpay.com https://maps.googleapis.com;
+    connect-src 'self' https://launch-api1.vercel.app https://analytics.google.com https://lumberjack-cx.razorpay.com https://lumberjack.razorpay.com https://maps.googleapis.com https://vitals.vercel-insights.com;
     frame-src 'self' https://waw.gallabox.com https://api.razorpay.com;
 `;
 

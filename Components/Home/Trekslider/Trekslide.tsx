@@ -64,8 +64,8 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
         modules={[ Navigation, Pagination,FreeMode]}
         breakpoints={{
           100: {
-            slidesPerView: 1,
-            spaceBetween: 20,
+            slidesPerView: 1.5,
+            spaceBetween: 0,
           },
           768: {
             slidesPerView: 2,
@@ -82,8 +82,8 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
          {destination.map((item, idx) => (
    <SwiperSlide key={idx}>
 <Link href={`${item.url}`} className="block"> 
-     <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white p-4 h-[400px]">
-       <div className="overflow-hidden relative rounded-xl h-60 w-full">
+     <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white md:p-4 p-2 md:h-[400px] h-[320px]">
+       <div className="overflow-hidden relative rounded-xl md:h-60 h-40 w-full">
          <Image
            src={item.img}
            alt={item.title}
@@ -93,11 +93,6 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
          />
          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> {/* Gradient overlay */}
        </div>
-       {item.badge && (
-                  <span className={`absolute top-0 left-0 uppercase text-xs p-1 m-2 rounded ${getBadgeColor(item.badge)}`}>
-                    {item.badge}
-                  </span>
-                )}
                 {(item.originalprice && item.price) && (
   <motion.div
     initial={{ scale: 0.9, opacity: 0 }}
@@ -112,7 +107,7 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
     whileHover={{ scale: 1.05 }}
     onHoverStart={e => {}}
     onHoverEnd={e => {}}
-    className="absolute top-3 right-2 bg-yellow-500 text-black transform translate-x-2 -translate-y-2 rounded-tr-md rounded-bl-md p-1 shadow-md"
+    className="absolute md:top-3 top-1 md:right-2 right-1 bg-yellow-500 text-black transform translate-x-2 -translate-y-2 rounded-tr-md rounded-bl-md p-1 shadow-md md:text-base text-xs"
    
     style={{
       background: "linear-gradient(45deg, #ffd700, #ffae00)",
@@ -125,20 +120,20 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
   </motion.div>
 )}
        <div className="p-4 pb-0 text-center">
-  <h4 className="text-lg mb-1">{item.title}</h4>
-  <p className="text-sm mb-2">{item.location}</p>
+  <h4 className="md:text-lg text-sm mb-1">{item.title}</h4>
+  <p className="md:text-sm  text-sm mb-2">{item.location}</p>
        </div>
-       <div className="flex flex-row justify-between items-center mt-2 space-x-4 "> {/* Adjusted margin-top and space between price and button */}
+       <div className="flex flex-row justify-between items-center md:mt-2 md:space-x-4 space-x-2"> {/* Adjusted margin-top and space between price and button */}
        <div className="flex flex-col items-start mb-2 sm:mb-0">
   <p className="text-xs text-gray-400">Starting from</p>
   {item.originalprice && (
-    <p className="text-[16px] line-through " >
+    <p className="md:text-[16px] text-[12px] line-through " >
       INR {item.originalprice}
     </p>
   )}
-  <p className="text-[16px] font-bold text-yellow-500" >INR {item.price}</p>
+  <p className="md:text-[16px] text-[12px] font-bold text-yellow-500" >INR {item.price}</p>
 </div>
-  <button className="px-4 py-2 bg-yellow-500 text-black font-semibold rounded-full border-2 border-yellow-500 hover:bg-transparent hover:text-yellow-500 transition duration-300"> {/* Adjusted padding and hover effect for button */}
+  <button className="md:px-4 md:py-2 px-2 py-1 md:text-[16px] text-[12px]  bg-yellow-500 text-black font-semibold rounded-full border-2 border-yellow-500 hover:bg-transparent hover:text-yellow-500 transition duration-300"> {/* Adjusted padding and hover effect for button */}
     Book Now
   </button>   
 </div>
