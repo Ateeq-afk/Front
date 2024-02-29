@@ -17,70 +17,175 @@ import 'swiper/css/free-mode';
 import SwiperCore from 'swiper';
 const destinations2 = [
     {
-      title: "Wayanad Weekend Getaway",
-      location: "Kerala",
-      price: 5599,
-      originalprice:6999,
-      img: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--wayanad (2).jpg',
-      url:"/tour/wayanad-weekend-getaway"
-    },
-    {
       title: "Chikmagalur Weekend Getaway",
-      location: "Karnataka",
+    //   location: "Karnataka",
       price: 5499,
       originalprice:6999,
       img: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/siri_11zon.webp',
+      url:"/tour/wayanad-weekend-getaway"
+    },
+    {
+      title: "Chikmagalur Backpacking Tour",
+    //   location: "Karnataka",
+      price: 5499,
+      originalprice:6999,
+      img: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/3_3_11zon.webp',
       url:"/tour/chikmagalur-weekend-getaway"
     },
     {
-      title: "Gokarna-Murudeshwar Weekend Getaway",
-      location:"Karnataka",
-      price: 5499,
-      originalprice:6999,
-      img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--tharun-kumar-u-uY0n8FV_ds0-unsplash_11zon.webp",
+      title: "Chikmagalur Tour: A 3-Day Nature Escape",
+    //   location:"Karnataka",
+      price: 7199,
+      img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/Jhari_11zon.webp",
+      url:"/tour/gokarna-murudeshwar-weekend-getaway"
+    },
+]
+const destinations3 = [
+    {
+      title: "Java Rain Resort",
+      price: 8999,
+      img: '/dest/Shamb.avif',
+      url:"/tour/wayanad-weekend-getaway"
+    },
+    {
+      title: "Stuga Homestay",
+      price: 8999,
+      img: '/dest/Stuga.jpg',
+      url:"/tour/chikmagalur-weekend-getaway"
+    },
+    {
+      title: "Rain Raga Homestay",
+      price: 9999,
+      img: "/dest/Rain.jpg",
       url:"/tour/gokarna-murudeshwar-weekend-getaway"
     },
     {
-      title: "Kodaikanal Weekend Getaway",
-      location: "Tamilnadu",
-      price: 6499,
-      originalprice:6999,
-      img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--69_39_11zon.webp",
-      url:"/tour/kodaikanal-weekend-getaway"
+        title: "The Serai - Chikmagalur",
+        price: 25999,
+        img: "/dest/Serai.jpg",
+        url:"/tour/gokarna-murudeshwar-weekend-getaway"
+      },
+      {
+        title: "Vismitha County Resort",
+        price: 9999,
+        img: "/dest/Vismitha.jpg",
+        url:"/tour/gokarna-murudeshwar-weekend-getaway"
+      },
+]
+const destinations4 = [
+    {
+      title: "Kudremukh Trek",
+      price: 3999,
+      img: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--56_26_11zon.webp',
+      url:"/tour/wayanad-weekend-getaway"
     },
     {
-      title: "Ooty Weekend Getaway",
-      location: "Tamilnadu",
-      price: 5599,
-      originalprice:6999,
-      img: "https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/IMG20220410121642_11zon.webp",
-      url:"/tour/ooty-weekend-getaway"
+      title: "Netravati Trek",
+      price: 3999,
+      img: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/testimage--126_17_11zon.webp',
+      url:"/tour/chikmagalur-weekend-getaway"
     },
+    {
+      title: "Ethina Bhuja Trek",
+      price: 3999,
+      img: 'https://bpu-images-v1.s3.eu-north-1.amazonaws.com/uploads/eth_11zon.webp',
+      url:"/tour/gokarna-murudeshwar-weekend-getaway"
+    },
+    {
+        title: "Bhadra River Rafting",
+        price: 800,
+        img: "/dest/bhadra.jpg",
+        url:"/tour/gokarna-murudeshwar-weekend-getaway"
+      },
+      {
+        title: "Yagachi water Sports",
+        price: 500,
+        img: "/dest/Yagachi.jpg",
+        url:"/tour/gokarna-murudeshwar-weekend-getaway"
+      },
+      {
+        title: "Bhadra wildlife safari",
+        price: 3000,
+        img: "/dest/wildlife.jpg",
+        url:"/tour/gokarna-murudeshwar-weekend-getaway"
+      },
+      {
+        title: "Kudremukh wildlife safari",
+        price: 1300,
+        img: "/dest/tiger.jpg",
+        url:"/tour/gokarna-murudeshwar-weekend-getaway"
+      },
+]
+const destinations5 = [
+    {
+      title: "Bhagavathi Nature Camp",
+      price: 8999,
+      img: '/dest/bhaga.jpg',
+      url:"/tour/wayanad-weekend-getaway"
+    },
+    {
+      title: "The River Tern Resort Bhadra",
+      price: 8999,
+      img: '/dest/river.jpg',
+      url:"/tour/chikmagalur-weekend-getaway"
+    },
+    {
+      title: "Rivermist Resort",
+      price: 9999,
+      img: "/dest/rivermist.jpg",
+      url:"/tour/gokarna-murudeshwar-weekend-getaway"
+    },
+    {
+        title: "Villa Urvinkhan Luxury Resort",
+        price: 25999,
+        img: "/dest/Villa.jpg",
+        url:"/tour/gokarna-murudeshwar-weekend-getaway"
+      },
+      {
+        title: "Honeydewwz Exoticaa Hotel & Resort",
+        price: 9999,
+        img: "/dest/honey.jpg",
+        url:"/tour/gokarna-murudeshwar-weekend-getaway"
+      },
 ]
 const NavLinks = [
     { href: '#overview', label: 'Overview', icon: '/food/searching.png' },
-    { href: '#travel', label: 'Travel', icon: '/food/travel.png' },
+    { href: '#travel', label: 'Tour', icon: '/food/travel.png' },
     { href: '#attraction', label: 'Attraction', icon: '/food/attract.png' },
-    { href: '#food', label: 'Food', icon: '/food/food.png' },
-    { href: '#culture', label: 'Culture', icon: '/food/culture.png' },
     { href: '#activities', label: 'Activities', icon: '/food/act.png' },
-    { href: '#shopping', label: 'Shopping', icon: '/food/shop.png' },
-    { href: '#religioussites', label: 'Religious Sites', icon: '/food/religious.png' },
+    { href: '#food', label: 'Food', icon: '/food/food.png' },
     { href: '#stays', label: 'Stays', icon: '/food/hotel.png' },
+    { href: '#shopping', label: 'Shopping', icon: '/food/shop.png' },
+    { href: '#culture', label: 'Culture', icon: '/food/culture.png' },
+    { href: '#religioussites', label: 'Religious Sites', icon: '/food/religious.png' },
     { href: '#camping', label: 'Camping', icon: '/food/camp.png' },
     { href: '#blogs', label: 'Blogs', icon: '/food/blog.png' },
   ];
 
 const Destmainn = () => {
     const [activeSection, setActiveSection] = useState('overview');
-    const [isShown, setIsShown] = useState(false);
     const [readMore, setReadMore] = useState(false);
-    
-    const text = `Bangalore, officially known as Bengaluru, is the capital city of the southern Indian state of Karnataka. Known as the "Silicon Valley of India", Bangalore is a hub for the country's information technology industry. The city boasts a vibrant and diverse culture, with a mix of traditional and modern elements. Bangalore is also known for its beautiful parks, historic landmarks, and vibrant nightlife. The city is home to numerous universities and research institutions, making it...`;
-    const maxLength= 300
-   
-    const displayText = isShown ? text : text.substring(0, maxLength) + '...';
-    const toggleShown = () => setIsShown(!isShown);
+
+    const [isShown, setIsShown] = useState(false);
+  const maxLength = 300;
+  // Assume this is the text you want to display
+  const fullText = `Discover the amazing attractions in Chikmagalur, a hidden gem nestled in the heart of Karnataka's coffee district. From the beauty of the Baba Budangiri hills to the breathtaking views atop Mullayanagiri, the highest peak in Karnataka, Chikmagalur offers a wide range of experiences for every traveler. Dive into the rich history and culture at the Chikmagalur Coffee Museum, where the story of coffee unfolds, or find peace within the ancient walls of the Sharadamba Temple. For nature enthusiasts, Hebbe Falls and the wildlife sanctuary at Bhadra are must-visit places. Whether it's exploring the lush coffee plantations, engaging in adventurous treks, or enjoying the hospitality of coffee plantation stays, Chikmagalur is a destination that promises unforgettable memories. Perfect for those seeking an escape into nature or a deep dive into the world of coffee, Chikmagalur's attractions are as diverse as they are captivating. Ready to explore the wonders of Chikmagalur? Plan your adventure today and immerse yourself in the unparalleled beauty and culture of Karnataka's coffee heartland. Book your tour, find the perfect stay, or get more information on our exclusive Chikmagalur travel packages.`;
+
+  const displayText = isShown ? fullText : `${fullText.substring(0, maxLength)}...`;
+
+  const toggleShown = () => {
+    setIsShown(!isShown);
+  };
+  const [isShowna, setIsShowna] = useState(false);
+  // Assume this is the text you want to display
+  const fullTexta = `Dive into the heart of Chikmagalur, where the thrill of adventure and the peace of nature blend seamlessly. Known for its sprawling coffee estates and towering peaks, this gem in the Western Ghats invites you to explore its diverse activities. From challenging treks up Mullayanagiri, the tallest peak in Karnataka, to leisurely walks through aromatic coffee plantations, each experience in Chikmagalur is a doorway to the extraordinary. Get ready to embark on an adventure that captures the essence of Chikmagalur's breathtaking landscapes and rich heritage.`;
+
+  const displayTexta = isShowna ? fullTexta : `${fullText.substring(0, maxLength)}...`;
+
+  const toggleShowna = () => {
+    setIsShowna(!isShowna);
+  };
+
     const swiperRef = useRef<SwiperCore | null>(null);
     const checkActiveSection = () => {
         const offset = 170; // Height of your fixed header or any other offset
@@ -158,14 +263,183 @@ const Destmainn = () => {
           imageUrl: '/destination/vietname.jpg',
         }
       ];
-      
+      const dest1 = [
+        {
+          href: '/destinations/gokarna',
+          src: '/dest/coffee.jpg',
+          alt: 'Coffee Museum',
+          mainText: 'Explore Traditional Markets',
+          secondaryText: 'Coffe Museum',
+        },
+        {
+          href: '/destinations/mysore',
+          src: '/dest/jahari.jpg',
+          alt: 'Mysore Silk',
+          mainText: 'Discover Silk and Spices',
+          secondaryText: 'Jahari Waterfalls',
+        },
+        {
+          href: '/destinations/jaipur',
+          src: '/dest/baba.jpg',
+          alt: 'Traditional Jewelry',
+          mainText: 'Find Handcrafted Jewels',
+          secondaryText: 'Baba Budangiri',
+        },
+        {
+          href: '/destinations/goa',
+          src: '/dest/Hire.jpg',
+          alt: 'Goan Cashews',
+          mainText: 'Taste Local Delicacies',
+          secondaryText: 'Hirekolale Lake',
+        },
+        {
+          href: '/destinations/kochi',
+          src: '/dest/mulan.jpg',
+          alt: 'Kochi Spices',
+          mainText: 'Spice Up Your Life',
+          secondaryText: 'Mullayanagiri',
+        },
+        {
+          href: '/destinations/leh',
+          src: '/dest/hebbe.jpg',
+          alt: 'Leh Woolens',
+          mainText: 'Warm Up with Woolens',
+          secondaryText: 'Hebbe WaterFalls',
+        },
+        {
+          href: '/destinations/agra',
+          src: '/dest/Siri.jpg',
+          alt: 'Agra Marble',
+          mainText: 'Marvel at Marble Crafts',
+          secondaryText: 'Siri Cafe',
+        },
+        // Add more destinations as needed
+      ];
+      const dest2 = [
+        {
+          href: '/destinations/gokarna',
+          src: '/dest/koda.jpg',
+          alt: 'Coffee Museum',
+          mainText: 'Explore Traditional Markets',
+          secondaryText: 'Shri Kodanda Ramaswamy Temple Hiremagalur',
+        },
+        {
+          href: '/destinations/mysore',
+          src: '/dest/Sringeri.jpg',
+          alt: 'Mysore Silk',
+          mainText: 'Discover Silk and Spices',
+          secondaryText: 'Sringeri Temple',
+        },
+        {
+          href: '/destinations/jaipur',
+          src: '/dest/babaa.jpg',
+          alt: 'Traditional Jewelry',
+          mainText: 'Find Handcrafted Jewels',
+          secondaryText: 'Baba Budangiri',
+        },
+        {
+          href: '/destinations/goa',
+          src: '/dest/hora.jpg',
+          alt: 'Goan Cashews',
+          mainText: 'Taste Local Delicacies',
+          secondaryText: 'Horanadu Annapoorneshwari Temple',
+        },
+        {
+          href: '/destinations/kochi',
+          src: '/dest/jamia.jpg',
+          alt: 'Kochi Spices',
+          mainText: 'Spice Up Your Life',
+          secondaryText: 'Jamia Masjid Chikmagalur',
+        },
+        {
+          href: '/destinations/leh',
+          src: '/dest/joseph.jpg',
+          alt: 'Leh Woolens',
+          mainText: 'Warm Up with Woolens',
+          secondaryText: 'St. Josephs Cathedral',
+        },
+        {
+          href: '/destinations/agra',
+          src: '/dest/parsawan.jpg',
+          alt: 'Agra Marble',
+          mainText: 'Marvel at Marble Crafts',
+          secondaryText: 'Sri Parsawanath Tirthankara Jain Temple',
+        },
+        {
+            href: '/destinations/agra',
+            src: '/dest/devi.jpg',
+            alt: 'Agra Marble',
+            mainText: 'Marvel at Marble Crafts',
+            secondaryText: 'Deviramma Temple',
+          },
+        // Add more destinations as needed
+      ];
+      const dest3 = [
+        {
+          href: '/destinations/gokarna',
+          src: '/dest/beans.jpg',
+          alt: 'Coffee Museum',
+          mainText: 'Explore Traditional Markets',
+          secondaryText: 'Where to purchase the best Coffe beans ?',
+        },
+        {
+          href: '/destinations/mysore',
+          src: '/dest/street.jpg',
+          alt: 'Mysore Silk',
+          mainText: 'Discover Silk and Spices',
+          secondaryText: 'What to buy in Chikmagalur ?',
+        },
+        {
+          href: '/destinations/jaipur',
+          src: '/dest/sandal.webp',
+          alt: 'Traditional Jewelry',
+          mainText: 'Find Handcrafted Jewels',
+          secondaryText: 'where to buy Sandalwood in Chikmagalur ?',
+        },
+        {
+          href: '/destinations/kochi',
+          src: '/dest/spices.jpg',
+          alt: 'Kochi Spices',
+          mainText: 'Spice Up Your Life',
+          secondaryText: 'Where do you get the Best spices in Chikmagalur',
+        },
+        {
+          href: '/destinations/leh',
+          src: '/dest/coffeeseeds.jpg',
+          alt: 'Leh Woolens',
+          mainText: 'Warm Up with Woolens',
+          secondaryText: 'Types of Coffe beans in Karnataka',
+        },
+        {
+          href: '/destinations/agra',
+          src: '/dest/girl.jpg',
+          alt: 'Agra Marble',
+          mainText: 'Marvel at Marble Crafts',
+          secondaryText: 'Unravelling the Timeless Charm of Soft Silk Sarees',
+        },
+        {
+            href: '/destinations/agra',
+            src: '/dest/handicraft.jpg',
+            alt: 'Agra Marble',
+            mainText: 'Marvel at Marble Crafts',
+            secondaryText: 'Best Places to Buy Handicraft',
+          },
+        {
+            href: '/destinations/goa',
+            src: '/dest/temple.jpg',
+            alt: 'Goan Cashews',
+            mainText: 'Taste Local Delicacies',
+            secondaryText: 'Buy cultural ornaments in Chikmagalur',
+          },
+        // Add more destinations as needed
+      ];
   return (
     <div className='bg-black'>
       <Header />
       <div className='h-10'></div>
       <div  className="relative h-[50vh] flex items-center justify-center bg-black text-white" >
        <Image
-        src="/home/valley.jpg" 
+        src="/dest/chikmagalur.jpg" 
         alt="Wayanad"
         layout="fill"
         objectFit="cover"
@@ -176,20 +450,19 @@ const Destmainn = () => {
           Discover
         </h1>
         <h1 className="md:text-7xl text-5xl font-bold mb-4 text-yellow-500 ">
-          WAYANAD
+          CHIKMAGALUR
         </h1>
         </div>
       </div>
       <div id="top-bar" className="sticky top-[60px] z-30 bg-black bg-opacity-100 border-b-2 border-gray-700">
       <nav className="flex justify-center items-center space-x-4 md:py-4 py-2 md:px-5 px-2 w-full text-white">
         <Swiper
-        // ref={swiperRef}
         onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
           modules={[FreeMode]}
           spaceBetween={0}
-          slidesPerView={4} // Default to 3 for mobile
+          slidesPerView={3.5} // Default to 3 for mobile
           freeMode={true}
           breakpoints={{
             // when window width is >= 640px
@@ -203,7 +476,8 @@ const Destmainn = () => {
             },
             1300:{
                 slidesPerView: 11,
-                initialSlide: 0
+                initialSlide: 0,
+                spaceBetween: 10
             }
           }}
         >
@@ -211,8 +485,8 @@ const Destmainn = () => {
             <SwiperSlide key={index}>
               <Link href={link.href}>
                 <div onClick={(e) => handleNavLinkClick(e, link.href)}
-                  className={`flex flex-col md:flex-row  items-center justify-center text-sm space-x-2 transition duration-150 cursor-pointer md:pb-1 ${activeSection === link.href.substring(1) ? 'border-b-2 border-yellow-500' : ''}`}>
-                  <img src={link.icon} alt={link.label} className="w-5 h-5 md:mr-2" />
+                  className={`flex flex-col md:flex-row  items-center justify-center md:text-sm text-base space-x-2 transition duration-150 cursor-pointer md:pb-1 ${activeSection === link.href.substring(1) ? 'border-b-2 border-yellow-500' : ''}`}>
+                  <img src={link.icon} alt={link.label} className="md:w-5 md:h-5 w-8 h-8 md:mr-2" />
                   {link.label}
                 </div>
               </Link>
@@ -226,21 +500,20 @@ const Destmainn = () => {
         <section id="overview" >
         <div className="flex md:flex-row  flex-col md:mx-8 mx-2 text-white md:mt-10 mt-4 ">
   <div className="px-2 md:w-[80%]" >
-    <h2 className="text-xl font-semibold text-gray-100">"Nature's Abode"
-    {/* SVG content, ensure paths don't have a hardcoded `fill` attribute for this to work */}
-  </h2>
-    <h3 className="text-2xl font-semibold text-yellow-500">Wayanad Tourism</h3>
+  
+    <h2 className="text-2xl font-semibold text-yellow-500">Chikmagalur Tourism</h2>
     <p className="md:text-base text-sm text-gray-400 mt-2">
-      Wayanad, nestled in the Western Ghats of Kerala, India, is a district known for its enchanting beauty, rich history, and vibrant culture. It's a place where nature's bounty is on full display, from lush forests and exotic wildlife to sprawling spice plantations and serene water bodies.
+    Nestled in the serene foothills of the Western Ghats in Karnataka, India, Chikmagalur is a picturesque town that captivates visitors with its mesmerizing natural beauty and tranquil ambiance. Known as the "Coffee Land of Karnataka," Chikmagalur is revered for its lush coffee plantations that sprawl across the rolling hills, exuding the rich aroma of freshly brewed coffee. This charming town is not just a haven for coffee lovers but also a sanctuary for nature enthusiasts, trekkers, and anyone seeking solace away from the hustle and bustle of city life.
+Weather in Chikmagalur: A Year-Round Delight
     </p>
     <p className={`md:text-base text-sm text-gray-400 mt-2 ${!readMore ? 'hidden sm:block' : 'block'}`}>
-      Wayanad's geography is characterized by its rugged terrain, dense forests, and high altitude, making it a part of the majestic Western Ghats. The district is elevated at an altitude ranging from 700 to 2100 meters above sea level, which contributes to its cool climate and rich biodiversity. It's home to various wildlife sanctuaries, including the Wayanad Wildlife Sanctuary, which is a part of the Nilgiri Biosphere Reserve and a key element in conserving the region's flora and fauna.
+    Chikmagalur boasts a moderate climate, with temperatures from 11°C to 35°C, making it welcoming year-round. The cooler months, September to March, are perfect for exploring, while the monsoon season, June to September, offers lush landscapes and quieter visits. Post-monsoon, waterfalls are a splendid sight, and summer is ideal for the cooler highlands.
     </p>
     <p className={`md:text-base text-sm text-gray-400 mt-2 ${readMore ? 'block' : 'block'}`}>
-    Wayanad's history is as rich as its landscapes, with evidence of New Stone Age civilization through various archaeological finds. The region was an integral part of the ancient silk routes and has been ruled by several dynasties, including the Kadambas, Hoysalas, and the Vijayanagara Empire. Its historical significance is also marked by the Edakkal Caves, which contain ancient petroglyphs dating back to the Neolithic Age, showcasing the prehistoric culture and civilization of the area.
+    Chikmagalur, "younger daughter's town," has a rich history dating back to dynasties like the Hoysalas and Vijayanagara. 
     </p>
     <p className={`md:text-base text-sm text-gray-400 mt-2 ${readMore ? 'block' : 'hidden'}`}>
-    The best time to visit Wayanad is from October to May. During these months, the weather is pleasant, making it ideal for trekking, wildlife safaris, and sightseeing. The monsoon season, from June to September, blankets the region in lush greenery, offering a different kind of beauty, although trekking and outdoor activities might be challenging due to the heavy rains.
+    The region flourished under the Hoysalas in the 12th century, notable for its architectural achievements. Coffee cultivation, initiated in the 17th century by Baba Budan, significantly impacted its culture and economy, blending tradition with modernity.
     </p>
     <button
       className="text-yellow-600 text-sm hover:underline mt-4 inline-block"
@@ -255,13 +528,13 @@ const Destmainn = () => {
         {/* Image container */}
         <div className="image-container" style={{ width: '100%', height: 'auto', textAlign: 'center' }}>
           {/* Replace 'placeholder.png' with your image file */}
-          <img src="/about/wyanad_map.png" alt="Wayanad District" style={{ maxWidth: '100%', height: 'auto' }} />
+          <img src="/dest/chikmagmap.png" alt="Wayanad District" style={{ maxWidth: '100%', height: 'auto' }} />
         </div>
         <h3 className="text-lg leading-6 font-medium text-white-900">
-          Wayanad District
+          Chikmaglur District
         </h3>
         <p className="mt-1 max-w-2xl text-sm text-yellow-500 border-b pb-2 border-gray-200">
-          Location in Kerala
+          Location in Karnataka
         </p>
       </div>
       <div >
@@ -280,7 +553,7 @@ const Destmainn = () => {
     Best time to visit
   </div>
   <div className="text-sm text-gray-500 col-span-2">
-    Oct-May
+    Sep-March
   </div>
 </div>
 <div className="bg-black-50 px-4 py-3 grid grid-cols-3 gap-4 ">
@@ -301,7 +574,7 @@ const Destmainn = () => {
         </section>
         <section id='travel' className='md:px-10 px-2'>
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 my-4 text-white"><span className='text-yellow-500'>Travel </span>  </h2>
+  <h2 className="text-3xl font-bold md:my-6 my-4 text-white"><span className='text-yellow-500'>Tour </span> Packages </h2>
 </div>
         <div>
     <TrekSlider destination={destinations2}  sliderId="destsliderab" />
@@ -309,7 +582,7 @@ const Destmainn = () => {
         </section>
         <section id="attraction" className='md:px-10 px-4'>
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 mt-8  mb-4 text-white"><span className='text-yellow-500'>Attractions </span> in Wayanad  </h2>
+  <h2 className="text-3xl font-bold md:my-6 mt-8  mb-4 text-white"><span className='text-yellow-500'>Attractions </span> in Chikmaglur  </h2>
 </div>
         <div className="text-center">
       <p className="text-white text-sm md:text-base">{displayText}</p>
@@ -322,31 +595,49 @@ const Destmainn = () => {
       </button>
     </div>
   <div className='md:py-10 md:pb-0 py-4'>
-    <DestShop />
+    <DestShop destinations= {dest1}/>
     </div>
     </section>
+    <section id="activities" className='md:px-10 px-2'>
+        <div className="text-center ">
+  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Activities </span> in Chikmagalur  </h2>
+</div>
+        <div className="text-center md:px-0 px-2">
+      <p className="text-white text-sm md:text-base">
+      {displayTexta}</p>
+      <button
+        onClick={toggleShowna}
+        className="text-gray-400 mt-2 flex items-center justify-center mx-auto"
+      >
+        Show {isShowna ? 'less' : 'more'}
+        <FontAwesomeIcon icon={isShowna ? faChevronUp : faChevronDown} className="ml-1" />
+      </button>
+    </div>
+    <div className='px-0 md:px-0'>
+    <TrekSlider destination={destinations4} sliderId="destsliderc" />
+    </div>
+        </section>
     <section id="food" className='md:mt-10 px-4 md:px-0'>
   <div className=" text-white">
     <h2 className="text-3xl font-bold md:mb-5 mt-4 mb-5 text-center">
       <span className='text-yellow-500'>Food </span>
     </h2>
   </div>
-  <div className="grid md:grid-cols-6 grid-cols-1 md:gap-4 md:px-40 md:pb-0 pb-0 p-0 ">
+  <div className="grid md:grid-cols-6 grid-cols-1 md:gap-6 md:px-40 md:pb-0 pb-0 p-0 ">
   <motion.div
       whileHover={{ scale: 1.05 }}
       className="col-span-2 md:col-span-3 relative overflow-hidden w-full rounded-lg md:h-[460px] h-[200px]"
     >
       <Link href="/destinations/wayanad">
         <Image
-          src='/food/spice.jpg'
+          src='/dest/koli.avif'
           alt="Spices of Wayanad"
           layout="fill"
           objectFit="cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute bottom-0 p-3 md:p-5">
-          <div className="text-yellow-500 font-bold md:text-2xl text-base">Explore the rich flavors</div>
-          <div className="text-white md:text-lg text-sm">Spices</div>
+          <div className="text-white font-bold md:text-2xl text-base">Explore the rich flavors</div>
         </div>
       </Link>
     </motion.div>
@@ -364,8 +655,7 @@ const Destmainn = () => {
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute bottom-0 p-3 md:p-5">
-          <div className="text-yellow-500 font-bold md:text-xl text-sm">Taste the ocean's bounty</div>
-          <div className="text-white md:text-lg text-xs">Seafood</div>
+          <div className="text-white font-bold md:text-xl text-sm">Taste the ocean's bounty</div>
         </div>
       </Link>
     </motion.div>
@@ -382,8 +672,7 @@ const Destmainn = () => {
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute bottom-0 p-3 md:p-5">
-          <div className="text-yellow-500 font-bold md:text-xl text-sm">Savor the sweet and savory</div>
-          <div className="text-white md:text-lg text-xs">Bakery</div>
+          <div className="text-white font-bold md:text-xl text-sm">Savor the sweet and savory</div>
         </div>
       </Link>
     </motion.div>
@@ -401,8 +690,7 @@ const Destmainn = () => {
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute bottom-0 p-3 md:p-5">
-          <div className="text-yellow-500 font-bold md:text-xl text-sm">Delight in traditional tastes</div>
-          <div className="text-white md:text-lg text-xs">Cuisine</div>
+          <div className="text-white font-bold md:text-xl text-sm">Delight in traditional tastes</div>
         </div>
       </Link>
     </motion.div>
@@ -419,84 +707,17 @@ const Destmainn = () => {
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute bottom-0 p-3 md:p-5">
-          <div className="text-yellow-500 font-bold md:text-xl text-sm">Indulge in the aroma of luxury</div>
-          <div className="text-white md:text-lg text-xs">Saffron</div>
+          <div className="text-white font-bold md:text-xl text-sm">Indulge in the aroma of luxury</div>
         </div>
       </Link>
     </motion.div>
     </div>
   </div>
 </section>
-<section id="culture" className='md:mt-10 mt-8 px-4 md:px-0'>
-  <div className=" text-white">
-    <h2 className="text-3xl font-bold md:mb-5  text-center">
-      <span className='text-yellow-500'>Culture </span>
-    </h2>
-  </div>
-  <div className="grid md:grid-cols-6 grid-cols-1 gap-4 md:px-40 md:pb-0 pb-0 p-0 pt-5">
-  <motion.div
-      whileHover={{ scale: 1.05 }}
-      className="col-span-2 md:col-span-3 relative overflow-hidden w-full rounded-lg md:h-[460px] h-[255px]"
-    >
-      <Link href="/destinations/wayanad">
-        <Image
-          src='/food/culturea.jpg'
-          alt="Spices of Wayanad"
-          layout="fill"
-          objectFit="cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="absolute bottom-0 p-3 md:p-5">
-          <div className="text-yellow-500 font-bold md:text-2xl text-lg">Explore the rich flavors</div>
-          <div className="text-white md:text-lg text-sm">Spices</div>
-        </div>
-      </Link>
-    </motion.div>
-<div className="grid md:grid-cols-1 grid-cols-2 gap-4 col-span-3">
-<motion.div
-      whileHover={{ scale: 1.05 }}
-      className="col-span-1 md:row-span-2 relative overflow-hidden w-full rounded-lg md:h-[220px] h-[200px]"
-    >
-      <Link href="/destinations/gokarna">
-        <Image
-          src='/food/cultureb.jpg'
-          alt="Seafood of Gokarna"
-          layout="fill"
-          objectFit="cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="absolute bottom-0 p-3 md:p-5">
-          <div className="text-yellow-500 font-bold md:text-xl text-sm">Taste the ocean's bounty</div>
-          <div className="text-white md:text-lg text-xs">Seafood</div>
-        </div>
-      </Link>
-    </motion.div>
 
-
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      className="col-span-1 md:col-span-1 relative overflow-hidden w/full rounded-lg md:h-[220px] h-[200px]"
-    >
-      <Link href="/destinations/srinagar">
-        <Image
-          src='/food/srikanth.jpg'
-          alt="Kashmiri Cuisine"
-          layout="fill"
-          objectFit="cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="absolute bottom-0 p-3 md:p-5">
-          <div className="text-yellow-500 font-bold md:text-xl text-sm">Delight in traditional tastes</div>
-          <div className="text-white md:text-lg text-xs">Cuisine</div>
-        </div>
-      </Link>
-    </motion.div>
-    </div>
-  </div>
-</section>
-        <section id="activities" className='md:px-10 px-2'>
+<section id="stays" className='md:px-10 px-2 '>
         <div className="text-center ">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Activities </span> in Wayanad  </h2>
+  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Stays </span> in Chikmagalur  </h2>
 </div>
         <div className="text-center md:px-0 px-2">
       <p className="text-white text-sm md:text-base">{displayText}</p>
@@ -508,21 +729,88 @@ const Destmainn = () => {
         <FontAwesomeIcon icon={isShown ? faChevronUp : faChevronDown} className="ml-1" />
       </button>
     </div>
-    <div className='px-0 md:px-0'>
-    <TrekSlider destination={destinations2}  sliderId="destsliderc" />
+    <div >
+    <TrekSlider destination={destinations3}  sliderId="destsliderstay" />
     </div>
-        </section>
-        <section id="shopping" className='md:px-10 px-4'>
+    </section>
+    <section id="shopping" className='md:px-10 px-4'>
         <div className="text-center">
   <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Shopping </span> </h2>
 </div>
   <div >
-    <DestShop />
+    <DestShop destinations= {dest3}/>
     </div>
         </section>
+<section id="culture" className='md:mt-10 mt-8 px-4 md:px-0'>
+  <div className=" text-white">
+    <h2 className="text-3xl font-bold md:mb-5  text-center">
+      <span className='text-yellow-500'>Culture </span>
+    </h2>
+  </div>
+  <div className="grid md:grid-cols-6 grid-cols-1 md:gap-6 md:px-40 md:pb-0 pb-0 p-0 pt-5">
+  <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="col-span-2 md:col-span-3 relative overflow-hidden w-full rounded-lg md:h-[460px] h-[255px]"
+    >
+      <Link href="/destinations/wayanad">
+        <Image
+          src='/dest/museum.jpg'
+          alt="Spices of Wayanad"
+          layout="fill"
+          objectFit="cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute bottom-0 p-3 md:p-5">
+          <div className="text-white font-bold md:text-2xl text-lg">Explore the rich flavors</div>
+        </div>
+      </Link>
+    </motion.div>
+<div className="grid md:grid-cols-1 grid-cols-2 gap-4 col-span-3 md:mt-0 
+mt-4">
+<motion.div
+      whileHover={{ scale: 1.05 }}
+      className="col-span-1 md:row-span-2 relative overflow-hidden w-full rounded-lg md:h-[220px] h-[200px]"
+    >
+      <Link href="/destinations/gokarna">
+        <Image
+          src='/dest/drum.webp'
+          alt="Seafood of Gokarna"
+          layout="fill"
+          objectFit="cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute bottom-0 p-3 md:p-5">
+          <div className="text-white font-bold md:text-xl text-sm">Taste the ocean's bounty</div>
+        </div>
+      </Link>
+    </motion.div>
+
+
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="col-span-1 md:col-span-1 relative overflow-hidden w/full rounded-lg md:h-[220px] h-[200px]"
+    >
+      <Link href="/destinations/srinagar">
+        <Image
+          src='/dest/dola.jpg'
+          alt="Kashmiri Cuisine"
+          layout="fill"
+          objectFit="cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute bottom-0 p-3 md:p-5">
+          <div className="text-white font-bold md:text-xl text-sm">Delight in traditional tastes</div>
+        </div>
+      </Link>
+    </motion.div>
+    </div>
+  </div>
+</section>
+
+   
         <section id="religioussites" className='md:px-10 px-4' >
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Religious Sites </span> in Wayanad  </h2>
+  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Religious Sites </span> in Chikmagalur  </h2>
 </div>
         <div className="text-center">
       <p className="text-white text-sm md:text-base">{displayText}</p>
@@ -535,31 +823,13 @@ const Destmainn = () => {
       </button>
     </div>
   <div className='md:py-5 md:pb-0'>
-    <DestShop />
+    <DestShop destinations= {dest2}/>
     </div>
         </section>
     
-        <section id="stays" className='md:px-10 px-2 '>
-        <div className="text-center ">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Stays </span> in Wayanad  </h2>
-</div>
-        <div className="text-center md:px-0 px-2">
-      <p className="text-white text-sm md:text-base">{displayText}</p>
-      <button
-        onClick={toggleShown}
-        className="text-gray-400 mt-2 flex items-center justify-center mx-auto"
-      >
-        Show {isShown ? 'less' : 'more'}
-        <FontAwesomeIcon icon={isShown ? faChevronUp : faChevronDown} className="ml-1" />
-      </button>
-    </div>
-    <div >
-    <TrekSlider destination={destinations2}  sliderId="destsliderstay" />
-    </div>
-    </section>
     <section id="camping" className='md:px-10 px-2 '>
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Camping Sites </span> in Wayanad  </h2>
+  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Camping Sites </span> in Chikmagalur  </h2>
 </div>
         <div className="text-center md:px-0 px-2">
       <p className="text-white text-sm md:text-base">{displayText}</p>
@@ -572,7 +842,7 @@ const Destmainn = () => {
       </button>
     </div>
     <div >
-    <TrekSlider destination={destinations2}  sliderId="destslidercamp" />
+    <TrekSlider destination={destinations5}  sliderId="destslidercamp" />
     </div>
     </section>
         <section id="blogs" className='md:px-10 px-4'>
@@ -631,7 +901,7 @@ const Destmainn = () => {
         </section>
         <section id="related" className='mt-8 md:mt-10'>
 <div>
-<h2 className="md:text-4xl text-xl font-semibold md:mb-4 text-white md:px-10 px-4">Related destinations for Wayanad</h2>
+<h2 className="md:text-4xl text-xl font-semibold md:mb-4 text-white md:px-10 px-4">Related destinations for Chikmagalur</h2>
     <RelatedDestinations />
     </div>
         </section>

@@ -5,7 +5,7 @@ const Header = dynamic(() => import('@/Components/Navbar/Header/Header'));
 const Hero = dynamic(() => import('@/Components/Home/Hero/Hero'));
 const TestimonialSection = dynamic(() => import('@/Components/Home/Testimonials/Testimonials'));
 const Promo = dynamic(() => import('@/Components/Home/Promo/Promo'));
-const TrekSlider = dynamic(() => import('@/Components/Home/Trekslider/Trekslide'));
+const TrekSlider = dynamic(() => import('@/Components/Home/Trekslider/Trekslidea'));
 const Popular = dynamic(() => import('@/Components/Home/Popular/Popular'));
 const LocationListSection = dynamic(() => import('@/Components/Home/Location/Location'));
 const Footer = dynamic(() => import('@/Components/Navbar/Footer/Footer'));

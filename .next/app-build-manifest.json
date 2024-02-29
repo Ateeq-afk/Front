@@ -1,38 +1,22 @@
 {
   "pages": {
-    "/dest/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dest/page.css",
-      "static/chunks/app/dest/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/dest/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/css/app/dest/page.css",
+      "static/chunks/app/dest/page.js"
     ],
-    "/treks/page": [
+    "/act/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/treks/page.js"
-    ],
-    "/tours/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/tours/page.js"
-    ],
-    "/trek/[name]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/trek/[name]/page.css",
-      "static/chunks/app/trek/[name]/page.js"
+      "static/css/app/act/page.css",
+      "static/chunks/app/act/page.js"
     ]
   }
 }

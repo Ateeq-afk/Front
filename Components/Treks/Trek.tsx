@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation,Pagination  } from 'swiper/modules';
+import { useEffect, useState,useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faIndianRupeeSign, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
@@ -42,6 +43,7 @@ const calculateDiscountPercentage = (originalPrice: number, amount: number) => {
   return Math.round(discount)
 }
 const Trek: React.FC<TrekProps> = ({ trek, uniqueId, name }) => {
+
   return (
     <div className=" relative">
       <Swiper

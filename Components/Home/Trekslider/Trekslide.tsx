@@ -11,7 +11,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 type DestinationItem = {
   title: string;
-  location: string;
+  location?: string;
   img: string;
   url: string;
   badge?: string; 
@@ -82,8 +82,8 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
          {destination.map((item, idx) => (
    <SwiperSlide key={idx}>
 <Link href={`${item.url}`} className="block"> 
-     <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white md:p-4 p-2 md:h-[400px] h-[320px]">
-       <div className="overflow-hidden relative rounded-xl md:h-60 h-40 w-full">
+     <div className="rounded-xl shadow-lg relative flex flex-col items-center justify-between transition duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 transform bg-black text-white md:p-4 p-3 md:h-[400px] h-[320px]">
+       <div className="overflow-hidden relative rounded-xl md:h-60 h-[300px] w-full">
          <Image
            src={item.img}
            alt={item.title}
@@ -121,9 +121,8 @@ const TrekSlider: React.FC<TrekSliderProps> = ({destination, sliderId }) => {
 )}
        <div className="p-4 pb-0 text-center">
   <h4 className="md:text-lg text-sm mb-1">{item.title}</h4>
-  <p className="md:text-sm  text-sm mb-2">{item.location}</p>
        </div>
-       <div className="flex flex-row justify-between items-center md:mt-2 md:space-x-4 space-x-2"> {/* Adjusted margin-top and space between price and button */}
+       <div className="flex flex-row justify-between items-center md:mt-2 md:space-x-4 space-x-6"> {/* Adjusted margin-top and space between price and button */}
        <div className="flex flex-col items-start mb-2 sm:mb-0">
   <p className="text-xs text-gray-400">Starting from</p>
   {item.originalprice && (

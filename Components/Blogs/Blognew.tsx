@@ -188,7 +188,7 @@ const Blognew = () => {
   </div>
 </div>
     </div>
-    <div className="flex w-[100%] max-w-screen-xl  mb-4 h-[400px]">
+    <div className="flex w-[100%] max-w-screen-xl mb-4 h-[400px]">
         <div className="bg-gray-200 rounded-lg shadow-md overflow-hidden  mx-auto flex">
   <div className="w-1/2  relative" > 
     <Image

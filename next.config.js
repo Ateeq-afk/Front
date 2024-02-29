@@ -5,7 +5,7 @@ const cspHeader = `
     default-src 'self';
     script-src 'self' https://www.googletagmanager.com https://va.vercel-scripts.com https://waw.gallabox.com https://checkout.razorpay.com https://maps.googleapis.com 'unsafe-eval' 'unsafe-inline';
     style-src 'self' https://maps.gstatic.com https://fonts.googleapis.com 'unsafe-inline';
-    img-src 'self' blob: data: https://www.google.co.in/ads/ga-audiences https://maps.gstatic.com https://maps.googleapis.com https://www.googletagmanager.com https://source.unsplash.com https://images.unsplash.com; 
+    img-src 'self' blob: data: https://www.google.co.in/ads/ga-audiences https://maps.gstatic.com https://maps.googleapis.com https://www.googletagmanager.com https://source.unsplash.com https://images.unsplash.com https://bpu-images-v1.s3.eu-north-1.amazonaws.com;
     font-src 'self' data: https://maps.googleapis.com https://fonts.gstatic.com;
     object-src 'self' data:;
     base-uri 'self';

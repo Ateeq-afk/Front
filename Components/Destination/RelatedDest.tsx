@@ -6,11 +6,11 @@ import { FreeMode } from 'swiper/modules';
 const RelatedDestinations = () => {
   const destinations = [
     { name: 'Wayanad', image: '/home/KASHMIR.jpg' },
-    { name: 'Chikamagalur', image: '/home/Chikmagalur.webp' },
+    { name: 'Ooty', image: '/home/Chikmagalur.webp' },
     { name: 'Munnar', image: '/home/Goa.webp' },
-    { name: 'Ooty', image: '/home/MUNAR.jpg' },
+    { name: 'Kodaikanal', image: '/home/MUNAR.jpg' },
     { name: 'Coorg', image: '/home/Coorg.jpg' },
-    { name: 'Kodaikanal', image: '/home/Kodaikanal.webp' },
+    { name: 'Chikamagalur', image: '/home/Kodaikanal.webp' },
   ];
   return (
     <div className="mx-auto p-5 pb-0 md:p-10 md:pt-0">
