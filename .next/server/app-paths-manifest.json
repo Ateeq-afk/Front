@@ -1,3 +1,7 @@
 {
-  "/act/page": "app/act/page.js"
+  "/act/page": "app/act/page.js",
+  "/dest/page": "app/dest/page.js",
+  "/blogs/page": "app/blogs/page.js",
+  "/page": "app/page.js",
+  "/blog/page": "app/blog/page.js"
 }

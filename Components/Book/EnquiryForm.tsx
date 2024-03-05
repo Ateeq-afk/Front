@@ -57,7 +57,7 @@ const EnquiryForm = ({ onClose, source }: EnquiryFormProps) => {
     }
   };
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto z-10">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto z-50">
       <div className="bg-black text-white rounded-lg shadow-lg p-4">
         <form onSubmit={handleSubmit}>
           <div className='flex justify-between '>
