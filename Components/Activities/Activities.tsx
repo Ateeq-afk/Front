@@ -331,23 +331,23 @@ const Activities = () => {
         </Swiper>
       </nav>
     </div>
-    <div className="bg-white text-black py-1 px-4">
+    <div className="bg-white text-black py-1 md:pl-8 pl-2">
     <nav className="text-black " aria-label="Breadcrumb">
       <ol className="list-none p-0 inline-flex">
         <li className="flex items-center">
-          <a href="/" className="text-gray-700 hover:text-yellow-500 ">Home</a>
+          <a href="/" className="text-gray-700 hover:text-yellow-500 text-xs md:text-base">Home</a>
           <span className="text-gray-700 mx-2">/</span>
         </li>
         <li className="flex items-center">
-          <a href="/destinations" className="text-gray-700 hover:text-yellow-500">Destinations</a>
+          <a href="/destinations" className="text-gray-700 hover:text-yellow-500 text-xs md:text-base">Destinations</a>
           <span className="text-gray-700 mx-2">/</span> 
         </li>
         <li className="flex items-center">
-          <a href="#" className="text-gray-700 hover:text-yellow-500">Wayanad</a>
+          <a href="#" className="text-gray-700 hover:text-yellow-500 text-xs md:text-base">Wayanad</a>
           <span className="text-gray-700 mx-2">/</span>
         </li>
-        <li className="flex items-center text-black font-bold">
-     20 Things to do in Wayanad
+        <li className="flex items-center text-black font-bold text-xs md:text-base">
+     Chikmagular
         </li>
       </ol>
     </nav>
@@ -357,7 +357,7 @@ const Activities = () => {
     <div className="md:px-2 md:w-[75%] order-2" >
     <section id="overview" >
         <div className="bg-gray-200 text-black md:mt-5 mt-8 p-4 md:rounded-xl shadow-md ">
-    <h2 className="md:text-3xl font-semibold text-black text-xl">Overview</h2>
+    <h2 className="md:text-3xl font-semibold text-black text-xl">Common Name Overview</h2>
     <p className="md:text-base text-sm text-black mt-2">
     Nestled in the serene foothills of the Western Ghats in Karnataka, India, Chikmagalur is a picturesque town that captivates visitors with its mesmerizing natural beauty and tranquil ambiance. Known as the "Coffee Land of Karnataka," Chikmagalur is revered for its lush coffee plantations that sprawl across the rolling hills, exuding the rich aroma of freshly brewed coffee. This charming town is not just a haven for coffee lovers but also a sanctuary for nature enthusiasts, trekkers, and anyone seeking solace away from the hustle and bustle of city life.
 Weather in Chikmagalur: A Year-Round Delight

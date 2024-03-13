@@ -4,6 +4,8 @@ import Image from 'next/image';
 import BlogSlider from '@/Components/Blogs/Blogsslider/BlogSlider';
 import Header from '@/Components/Navbar/Header/Header';
 import Footer from '@/Components/Navbar/Footer/Footer';
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css';
 interface Blog {
   name: string;
   over: string[];
@@ -52,6 +54,7 @@ const Blogmain : FC <BlogProps> = ({ blog })=> {
   const toggleExpanded = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
   };
+
   const transformBlogToDataProps = (blog: Blog): DataProps => {
     return {
       products: blog.products // Directly use the products array from Blog
@@ -107,7 +110,16 @@ const Blogmain : FC <BlogProps> = ({ blog })=> {
             </div>
           ))}
         </div>
+        {/* <div>
+       {blog && blog.blog && blog.blog.map((blogs, index) => (
+        <div className='bg-white'>
+        <div className='text-black'>{blogs.title}</div>
+   <ReactQuill value={blogs.para} readOnly={true} theme={"bubble"} />
+   </div>
+       ) )}
+        </div> */}
       </div>
+
  {blog && <BlogSlider data={transformBlogToDataProps(blog)} />}
       <Footer />
       </div> 
