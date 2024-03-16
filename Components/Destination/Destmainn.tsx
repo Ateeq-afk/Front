@@ -498,7 +498,7 @@ const Destmainn = () => {
       {/* Rest of the page content */}
       <main>
         <section id="overview" >
-        <div className="flex md:flex-row  flex-col md:mx-8 mx-2 text-white md:mt-10 mt-4 ">
+        <div className="flex md:flex-row  flex-col md:mx-8 mx-2 text-white md:mt-10 mt-6 ">
   <div className="px-2 md:w-[80%]" >
   
     <h2 className="text-2xl font-semibold text-yellow-500">Chikmagalur Tourism</h2>
@@ -523,7 +523,7 @@ Weather in Chikmagalur: A Year-Round Delight
     </button>
   </div>
   <div className="w-full max-w-[395px] mx-auto ">
-    <div className="bg-black shadow overflow-hidden rounded-xl border border-gray-300 my-5 md:my-0">
+    <div className="bg-black shadow overflow-hidden rounded-xl border border-gray-300 my-6 md:my-0">
       <div className="px-4 py-0 sm:px-6">
         {/* Image container */}
         <div className="image-container" style={{ width: '100%', height: 'auto', textAlign: 'center' }}>
@@ -574,17 +574,17 @@ Weather in Chikmagalur: A Year-Round Delight
         </section>
         <section id='travel' className='md:px-10 px-2'>
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 my-4 text-white"><span className='text-yellow-500'>Tour </span> Packages </h2>
+  <h2 className="text-3xl font-bold md:my-10 mb-6 mt-2 text-white"><span className='text-yellow-500'>Tour </span> Packages </h2>
 </div>
         <div>
     <TrekSlider destination={destinations2}  sliderId="destsliderab" />
     </div>
         </section>
-        <section id="attraction" className='md:px-10 px-4'>
+        <section id="attraction" className='md:px-12 px-4'>
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 mt-8  mb-4 text-white"><span className='text-yellow-500'>Attractions </span> in Chikmaglur  </h2>
+  <h2 className="text-3xl font-bold md:my-10 mt-8  mb-4 text-white"><span className='text-yellow-500'>Attractions </span> in Chikmaglur  </h2>
 </div>
-        <div className="text-center">
+        <div className="text-center mb-2">
       <p className="text-white text-sm md:text-base">{displayText}</p>
       <button
         onClick={toggleShown}
@@ -594,13 +594,13 @@ Weather in Chikmagalur: A Year-Round Delight
         <FontAwesomeIcon icon={isShown ? faChevronUp : faChevronDown} className="ml-1" />
       </button>
     </div>
-  <div className='md:py-10 md:pb-0 py-4'>
+  <div className='md:py-10 md:pb-0 py-4 '>
     <DestShop destinations= {dest1}/>
     </div>
     </section>
     <section id="activities" className='md:px-10 px-2'>
         <div className="text-center ">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Activities </span> in Chikmagalur  </h2>
+  <h2 className="text-3xl font-bold md:my-10 mb-3 mt-8 text-white"><span className='text-yellow-500'>Activities </span> in Chikmagalur  </h2>
 </div>
         <div className="text-center md:px-0 px-2">
       <p className="text-white text-sm md:text-base">
@@ -613,13 +613,13 @@ Weather in Chikmagalur: A Year-Round Delight
         <FontAwesomeIcon icon={isShowna ? faChevronUp : faChevronDown} className="ml-1" />
       </button>
     </div>
-    <div className='px-0 md:px-0'>
+    <div className='px-0 md:px-0 md:py-10'>
     <TrekSlider destination={destinations4} sliderId="destsliderc" />
     </div>
         </section>
-    <section id="food" className='md:mt-10 px-4 md:px-0'>
+    <section id="food" className='px-4 md:px-0'>
   <div className=" text-white">
-    <h2 className="text-3xl font-bold md:mb-5 mt-4 mb-5 text-center">
+    <h2 className="text-3xl font-bold md:mb-10 my-6 text-center">
       <span className='text-yellow-500'>Food </span>
     </h2>
   </div>
@@ -717,9 +717,9 @@ Weather in Chikmagalur: A Year-Round Delight
 
 <section id="stays" className='md:px-10 px-2 '>
         <div className="text-center ">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Stays </span> in Chikmagalur  </h2>
+  <h2 className="text-3xl font-bold md:my-10 mb-3 mt-8 text-white"><span className='text-yellow-500'>Stays </span> in Chikmagalur  </h2>
 </div>
-        <div className="text-center md:px-0 px-2">
+        <div className="text-center md:px-0 px-2 ">
       <p className="text-white text-sm md:text-base">{displayText}</p>
       <button
         onClick={toggleShown}
@@ -729,19 +729,19 @@ Weather in Chikmagalur: A Year-Round Delight
         <FontAwesomeIcon icon={isShown ? faChevronUp : faChevronDown} className="ml-1" />
       </button>
     </div>
-    <div >
+    <div className='md:my-10' >
     <TrekSlider destination={destinations3}  sliderId="destsliderstay" />
     </div>
     </section>
     <section id="shopping" className='md:px-10 px-4'>
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Shopping </span> </h2>
+  <h2 className="text-3xl font-bold md:mb-10 mb-3 mt-8 text-white"><span className='text-yellow-500'>Shopping </span> </h2>
 </div>
   <div >
     <DestShop destinations= {dest3}/>
     </div>
         </section>
-<section id="culture" className='md:mt-10 mt-8 px-4 md:px-0'>
+<section id="culture" className='md:my-10 mt-8 px-4 md:px-0'>
   <div className=" text-white">
     <h2 className="text-3xl font-bold md:mb-5  text-center">
       <span className='text-yellow-500'>Culture </span>
@@ -808,9 +808,9 @@ mt-4">
 </section>
 
    
-        <section id="religioussites" className='md:px-10 px-4' >
+        <section id="religioussites" className='md:px-12 px-4 ' >
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Religious Sites </span> in Chikmagalur  </h2>
+  <h2 className="text-3xl font-bold md:my-10 mb-3 mt-8 text-white"><span className='text-yellow-500'>Religious Sites </span> in Chikmagalur  </h2>
 </div>
         <div className="text-center">
       <p className="text-white text-sm md:text-base">{displayText}</p>
@@ -822,14 +822,14 @@ mt-4">
         <FontAwesomeIcon icon={isShown ? faChevronUp : faChevronDown} className="ml-1" />
       </button>
     </div>
-  <div className='md:py-5 md:pb-0'>
+  <div className='md:py-10 md:pb-0'>
     <DestShop destinations= {dest2}/>
     </div>
         </section>
     
-    <section id="camping" className='md:px-10 px-2 '>
+    <section id="camping" className='md:px-12 px-2 '>
         <div className="text-center">
-  <h2 className="text-3xl font-bold md:my-6 mb-3 mt-8 text-white"><span className='text-yellow-500'>Camping Sites </span> in Chikmagalur  </h2>
+  <h2 className="text-3xl font-bold md:my-10 mb-3 mt-8 text-white"><span className='text-yellow-500'>Camping Sites </span> in Chikmagalur  </h2>
 </div>
         <div className="text-center md:px-0 px-2">
       <p className="text-white text-sm md:text-base">{displayText}</p>
@@ -841,15 +841,15 @@ mt-4">
         <FontAwesomeIcon icon={isShown ? faChevronUp : faChevronDown} className="ml-1" />
       </button>
     </div>
-    <div >
+    <div className='my-10'>
     <TrekSlider destination={destinations5}  sliderId="destslidercamp" />
     </div>
     </section>
-        <section id="blogs" className='md:px-10 px-4'>
+        <section id="blogs" className='md:px-12 px-4'>
         <div className="bg-black ">
-    <div className="text-center md:my-6 mb-3 mt-8">
+    <div className="text-center md:mt-10  md:mb-0 mt-8">
     <h2 className="text-3xl font-bold text-white mb-2">Adventurer's <span className='text-yellow-500'>Digest </span></h2>
-    <p className="text-gray-300 mb-4">Curated guides for every traveler's need.</p>
+    <p className="text-gray-300 ">Curated guides for every traveler's need.</p>
   </div>
   <Swiper
       modules={[FreeMode]}
@@ -862,18 +862,18 @@ mt-4">
             initialSlide: 0
           },
         1000: {
-          slidesPerView: 3.8,
-          initialSlide: 0
+          slidesPerView: 3.4,
+          initialSlide: 20
         },
         1300:{
             slidesPerView: 4.5,
-            initialSlide: 0
+            initialSlide: 10
         }
       }}
     >
       {cards.map((card, index) => (
         <SwiperSlide key={index} className="shadow-lg" style={{ width: 'auto', flexShrink: 0 }}> {/* Adjust width as needed */}
-          <div className="rounded overflow-hidden">
+          <div className="rounded overflow-hidden py-10">
             <div className='relative h-[180px] w-full'>
               <Image className="rounded-lg" src={card.imageUrl} alt={card.title} objectFit='cover' layout='fill' />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
@@ -899,9 +899,9 @@ mt-4">
     </Swiper>
     </div>
         </section>
-        <section id="related" className='mt-8 md:mt-10'>
-<div>
-<h2 className="md:text-4xl text-xl font-semibold md:mb-4 text-white md:px-10 px-4">Related destinations for Chikmagalur</h2>
+        <section id="related">
+<div className=' md:px-12 px-4'>
+<h2 className="md:text-4xl text-xl font-semibold text-white md:text-center ">Related  <span className='text-yellow-500'>destinations </span>  for  <span className='text-yellow-500'>Chikmagalur</span>  </h2>
     <RelatedDestinations />
     </div>
         </section>

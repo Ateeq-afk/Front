@@ -302,3 +302,51 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+/* Add this to your CSS file (e.g., globals.css) */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-enter {
+  animation: slideUp 0.5s forwards;
+}
+.input-placeholder {
+  font-size: 13px;
+ 
+}
+
+/* .input-placeholder::placeholder {
+  color: #FCB418;
+}  */
+/* globals.css */
+/* .modal-enter {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.modal-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms;
+}
+.modal-exit {
+  opacity: 1;
+}
+.modal-exit-active {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 500ms, transform 500ms;
+}
+.modal-enter-active::after {
+  content: "modal-enter-active is applied";
+} */
+
+
+
+

@@ -2,8 +2,9 @@
 import './globals.css';
 import { Jost } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { AuthProvider } from '../app/AuthContext';
+import EnquiryForm from '@/Components/Book/EnquiryForm';
 const Jostr = Jost({ weight: '400', subsets: ['latin'] });
 declare global {
   interface Window {
@@ -24,6 +25,28 @@ declare global {
   }
 }
 export default function RootLayout({ children }:  { children: React.ReactNode }){
+  const [showForm, setShowForm] = useState(false);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowForm(true);
+  //   }, 3000); // 3000 ms = 3 seconds
+
+  //   return () => clearTimeout(timer);
+  // }, []);
+  useEffect(() => {
+    // Check if the enquiry form has been shown in the current session
+    const isFormShown = sessionStorage.getItem('enquiryFormShown');
+    if (!isFormShown) {
+      const timer = setTimeout(() => {
+        setShowForm(true);
+        // Mark enquiry form as shown in sessionStorage
+        sessionStorage.setItem('enquiryFormShown', 'true');
+      }, 3000); // 3000 ms = 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
   useEffect(() => {
     if (!document.getElementById("whatsapp-widget-script")) {
       const setupScript = () => {
@@ -64,6 +87,7 @@ export default function RootLayout({ children }:  { children: React.ReactNode })
       </head>
       <body className={`${Jostr.className}`}>
         {children}
+        {showForm && <EnquiryForm onClose={() => setShowForm(false)} source="allpage"/>}
         <Analytics />
       </body>
     </html>

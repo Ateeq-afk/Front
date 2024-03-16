@@ -365,7 +365,7 @@ const Page = () => {
 
   </div>
   
-  <section id='mustseeattractions' className='relative bg-black md:mt-5 p-4'>
+  <section id='mustseeattractions' className='relative bg-black md:mt-5 p-4 px-10'>
   <div className="text-center">
         <h3 className="text-xl md:text-3xl font-bold  text-white">
             <span className='text-yellow-500'>Must Visit</span> Attractions</h3>
@@ -388,7 +388,7 @@ const Page = () => {
           spaceBetween: 20,
         },
         1024: {
-          slidesPerView: 3,
+          slidesPerView: 3.5,
           spaceBetween: 30,
         },
       }}
@@ -397,7 +397,7 @@ const Page = () => {
       {YourNewAttractionsArray.map((attraction, index) => (
         <SwiperSlide key={index}>
           <div className="shadow-lg rounded-xl overflow-hidden">
-            <div className="relative w-full h-48 ">
+            <div className="relative w-full h-[300px] ">
               <Image
                 src={attraction.imageUrl}
                 alt={attraction.name}
@@ -421,7 +421,7 @@ const Page = () => {
 
 </section>
 
-<section id='newsection' className='relative bg-black px-4 md: p-4'>
+<section id='newsection' className='relative bg-black md:p-4 md:px-10'>
 <div className="text-center">
         <h3 className="text-xl md:text-3xl font-bold  text-white">
             <span className='text-yellow-500'>Related</span> Attractions </h3>
@@ -444,7 +444,7 @@ const Page = () => {
           spaceBetween: 20,
         },
         1024: {
-          slidesPerView: 4,
+          slidesPerView: 4.5,
           spaceBetween: 30,
         },
       }}

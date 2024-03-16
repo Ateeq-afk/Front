@@ -13,7 +13,7 @@ const RelatedDestinations = () => {
     { name: 'Chikamagalur', image: '/home/Kodaikanal.webp' },
   ];
   return (
-    <div className="mx-auto p-5 pb-0 md:p-10 md:pt-0">
+    <div className="mx-auto pb-0 md:py-10 py-6">
       <Swiper
         spaceBetween={10}
         slidesPerView={2}
@@ -27,11 +27,11 @@ const RelatedDestinations = () => {
               },
             1000: {
               slidesPerView: 4,
-              initialSlide: 0
+              initialSlide: 20
             },
             1300:{
                 slidesPerView: 5,
-                initialSlide: 0
+                initialSlide: 20
             }
           }}
       >

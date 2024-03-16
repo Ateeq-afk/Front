@@ -37,8 +37,8 @@ const LocationListSection = () => {
         <div className="text-lg mb-6">
           <span onClick={() => setActiveCategory('all')} className={activeCategory === 'all' ? 'underline cursor-pointer' : 'cursor-pointer' }>All</span> <span className='text-yellow-500'>|</span>
           <span onClick={() => setActiveCategory('international')} className={activeCategory === 'international' ? 'underline cursor-pointer' : 'cursor-pointer'}> International</span> <span className='text-yellow-500'>|</span>
-          <span onClick={() => setActiveCategory('northIndian')} className={activeCategory === 'northIndian' ? 'underline cursor-pointer' : 'cursor-pointer'}> North Indian</span> <span className='text-yellow-500'>|</span>
-          <span onClick={() => setActiveCategory('southIndian')} className={activeCategory === 'southIndian' ? 'underline cursor-pointer' : 'cursor-pointer'}> South Indian</span>
+          <span onClick={() => setActiveCategory('northIndian')} className={activeCategory === 'northIndian' ? 'underline cursor-pointer' : 'cursor-pointer'}> North India</span> <span className='text-yellow-500'>|</span>
+          <span onClick={() => setActiveCategory('southIndian')} className={activeCategory === 'southIndian' ? 'underline cursor-pointer' : 'cursor-pointer'}> South India</span>
         </div>
         <div className="text-gray-300 text-sm">
           {activeCategory === 'all' || activeCategory === 'international' ? displayLocations(internationalLocations) : null}
